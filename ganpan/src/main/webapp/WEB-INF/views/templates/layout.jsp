@@ -8,7 +8,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		alert("즐거운 코딩 시작!");
+// 		alert("즐거운 코딩 시작!");
 	}); // ready
 </script>
 </head>
