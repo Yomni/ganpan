@@ -1,0 +1,11 @@
+MemberController - MemberService
+
+GroupController - GroupService
+
+SignBoardController - SignBoardService
+
+WorkController - WorkService
+
+MoveController - MoveService
+
+각 테이블 당 DAO 생성
