@@ -113,3 +113,5 @@ as bgboardname, bg.boss_nickname as bgboss, o.sign_board_name as o, o.boss_nickn
 FROM work w, organization o, board_genre bg
 WHERE w.board_no = bg.board_no and w.sign_board_name = bg.sign_board_name and w.boss_nickname = bg.boss_nickname 
 and w.worker_nickname = o.worker_nickname and w.sign_board_name = o.sign_board_name and w.boss_nickname = o.boss_nickname;
+
+-- 민서 push test
