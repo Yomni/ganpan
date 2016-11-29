@@ -5,6 +5,8 @@
 <head>
 <!-- title이 null인 경우는 무시된다 -->
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	$(function() {

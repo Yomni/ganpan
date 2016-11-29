@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+.bs-docs-header, .bs-docs-masthead {
+    position: relative;
+    padding: 30px 15px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+    background-color: #0c2410;
+    background-image: linear-gradient(to bottom,#5dd27f 0,#5dd27f 100%);
+}
+
+.input-group{
+	align: right;
+}
