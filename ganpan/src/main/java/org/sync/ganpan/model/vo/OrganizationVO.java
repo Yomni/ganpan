@@ -2,52 +2,39 @@ package org.sync.ganpan.model.vo;
 
 /**
  * Table schema가 올 예정
+ * 
  * @author JYM
  *
  */
 public class OrganizationVO {
-	private String workerNickName;
-	private String signBoardName;
-	private String bossNickName;
-
-	public OrganizationVO() {
+	private MemberVO memberVO;// workerNickName
+	private SignBoardVO signBoardVO;// bossNickName, signBoardName
+	//Organization 강한 has a signBoardVO & 강한 has a signBoardVO
+	public OrganizationVO(MemberVO memberVO, SignBoardVO signBoardVO) {
 		super();
+		this.memberVO = memberVO;
+		this.signBoardVO = signBoardVO;
 	}
 
-	public OrganizationVO(String workerNickName, String signBoardName, String bossNickName) {
-		super();
-		this.workerNickName = workerNickName;
-		this.signBoardName = signBoardName;
-		this.bossNickName = bossNickName;
+	public MemberVO getMemberVO() {
+		return memberVO;
 	}
 
-	public String getWorkerNickName() {
-		return workerNickName;
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
 
-	public void setWorkerNickName(String workerNickName) {
-		this.workerNickName = workerNickName;
+	public SignBoardVO getSignBoardVO() {
+		return signBoardVO;
 	}
 
-	public String getSignBoardName() {
-		return signBoardName;
-	}
-
-	public void setSignBoardName(String signBoardName) {
-		this.signBoardName = signBoardName;
-	}
-
-	public String getBossNickName() {
-		return bossNickName;
-	}
-
-	public void setBossNickName(String bossNickName) {
-		this.bossNickName = bossNickName;
+	public void setSignBoardVO(SignBoardVO signBoardVO) {
+		this.signBoardVO = signBoardVO;
 	}
 
 	@Override
 	public String toString() {
-		return "OrganizationVO [workerNickName=" + workerNickName + ", signBoardName=" + signBoardName
-				+ ", bossNickName=" + bossNickName + "]";
+		return "OrganizationVO [memberVO=" + memberVO + ", signBoardVO=" + signBoardVO + "]";
 	}
-}
+
+}// class OrganizationVO
