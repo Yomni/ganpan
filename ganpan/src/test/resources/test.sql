@@ -1,11 +1,20 @@
+drop table change_management;
+drop sequence seq_change_management_no;
+drop table change_genre;
+drop table work;
+drop sequence seq_work_no;
+drop table board_genre;
+drop table invitation_management;
+drop table organization;
+drop table sign_board;
 drop table member;
+
 create table member(
    nickname varchar2(50) primary key,
    e_mail varchar2(100) unique not null,
    password varchar2(50) not null
 )
 
-drop table sign_board;
 create table sign_board(
    sign_board_name varchar2(50) not null,
    boss_nickname varchar2(50) not null,
@@ -15,7 +24,6 @@ create table sign_board(
    constraint pk_sign_board primary key(sign_board_name,boss_nickname)
 )
 
-drop table organization;
 create table organization (
    worker_nickname varchar2(50) unique not null,
    boss_nickname varchar2(50) not null,
@@ -25,7 +33,6 @@ create table organization (
    constraint pk_organization primary key(worker_nickname ,boss_nickname ,sign_board_name)
 )
 
-drop table invitation_management;
 create table invitation_management (
    sign_board_name varchar2(50) not null,
    boss_nickname varchar2(50) not null,
@@ -37,7 +44,6 @@ create table invitation_management (
 )
 
 --board no : TODO(1) / DOING(2) / DONE(3)
-drop table board_genre;
 create table board_genre (
    sign_board_name varchar2(50) not null,
    board_no number not null,
@@ -47,9 +53,7 @@ create table board_genre (
    constraint pk_board_genre primary key(sign_board_name,board_no,boss_nickname)
 )
 
-drop sequence seq_work_no;
 create sequence seq_work_no;
-drop table work;
 create table work(
    work_no number primary key,
    work_name varchar2(50) not null,
@@ -64,15 +68,12 @@ create table work(
     constraint fk_org_pk_organization foreign key(worker_nickname ,sign_board_name,boss_nickname) references organization(worker_nickname ,sign_board_name,boss_nickname)
 )
 
-drop table change_genre;
 create table change_genre(
    change_no number primary key,
    change_name varchar2(50) not null
 )
 
-drop sequence seq_change_management_no;
 create sequence seq_change_management_no;
-drop table change_management;
 create table change_management(
    change_management_no number primary key,
    change_details clob not null,
@@ -112,5 +113,3 @@ as bgboardname, bg.boss_nickname as bgboss, o.sign_board_name as o, o.boss_nickn
 FROM work w, organization o, board_genre bg
 WHERE w.board_no = bg.board_no and w.sign_board_name = bg.sign_board_name and w.boss_nickname = bg.boss_nickname 
 and w.worker_nickname = o.worker_nickname and w.sign_board_name = o.sign_board_name and w.boss_nickname = o.boss_nickname;
-
--- 주선이 수정
