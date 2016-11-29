@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class MoveServiceImpl {
+public class MoveServiceImpl implements MoveService {
 
 }
