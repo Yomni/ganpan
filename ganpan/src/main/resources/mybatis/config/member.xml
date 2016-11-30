@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+ <mapper namespace="member">   
+ 	<sql id="selectMember">
+		select nickname,e_mail,password from member
+	</sql>
+	<select id="nickNameLogin" parameterType="Map" resultType="memberVO">
+		<include refid="selectMember" />
+		WHERE nickname=#{id} and password=#{password}
+	</select>
+	<select id="eMailLogin" parameterType="Map" resultType="memberVO">
+		<include refid="selectMember" />
+		WHERE e_mail=#{id} and password=#{password}
+	</select>
+ 	<select id="findMemberByEmail" resultType="memberVO">
+ 		<include refid="selectMember"></include>
+ 		where e_mail=#{value}
+ 	</select>
+	<insert id="register" parameterType="memberVO">
+		insert into member(nickname,e_mail,password) values(#{nickName},#{eMail},#{password})
+	</insert>
+	<select id="eMailCheck" resultType="int">
+		select count(*) from member where e_mail=#{value}
+	</select>
+		<select id="nickNameCheck" resultType="int">
+		select count(*) from member where nickname=#{value}
+	</select>
+</mapper>
+
+
+

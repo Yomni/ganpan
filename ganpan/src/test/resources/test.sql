@@ -14,7 +14,7 @@ create table member(
    e_mail varchar2(100) unique not null,
    password varchar2(50) not null
 )
-
+select * from member;
 create table sign_board(
    sign_board_name varchar2(50) not null,
    boss_nickname varchar2(50) not null,
