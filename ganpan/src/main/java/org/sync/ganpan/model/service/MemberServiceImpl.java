@@ -1,9 +1,11 @@
 package org.sync.ganpan.model.service;
 
+
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+//github.com/Yomni/ganpan.git
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.MemberDAO;
 import org.sync.ganpan.model.vo.MemberVO;
@@ -17,6 +19,7 @@ import org.sync.ganpan.model.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 	@Resource
 	private MemberDAO memberDAO;
+
 	
 	public void register(MemberVO mvo){
 		memberDAO.register(mvo);
@@ -30,10 +33,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.nickNameCheck(nickName);
 	}
 	
-	public MemberVO findMemberByEmail(String eMail){
-		return memberDAO.findMemberByEmail(eMail);
+	public MemberVO findMemberByNickName(String nickName){
+		return memberDAO.findMemberByNickName(nickName);
 	}
-	
+
 	@Override
 	public MemberVO nickNameLogin(HashMap<String, String> map) {
 		return memberDAO.nickNameLogin(map);

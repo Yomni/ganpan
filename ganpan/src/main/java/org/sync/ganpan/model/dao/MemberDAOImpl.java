@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 
+//github.com/Yomni/ganpan.git
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,8 +23,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO eMailLogin(HashMap<String, String> map) {
 		return (MemberVO) template.selectOne("member.eMailLogin",map);
 	}
-	
-	@Override
+
 	public void register(MemberVO mvo) {
 		template.insert("member.register",mvo);
 	}
@@ -39,7 +39,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO findMemberByEmail(String email) {
-		return template.selectOne("member.findMemberByEmail",email);
+	public MemberVO findMemberByNickName(String nickName) {
+		return template.selectOne("member.findMemberByNickName",nickName);
 	}
+
 }

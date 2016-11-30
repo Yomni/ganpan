@@ -1,11 +1,13 @@
 package org.sync.ganpan.controller;
 
+
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,19 +30,22 @@ public class MemberController {
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String register(MemberVO mvo) {
 		memberService.register(mvo);
-		return "redirect:registerResultView.do?email=" + mvo.geteMail();
+		//return "registerResultView.do?nickName=" + mvo.getNickName();
+		System.out.println("register method mvo.getNickName() : "+mvo.getNickName());
+		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
 	}
 	
 	@RequestMapping("registerResultView.do")
-	public ModelAndView registerResultView(String email) {
-		MemberVO mvo = memberService.findMemberByEmail(email);
-		return new ModelAndView("register_result", "memberVO", mvo);
+	public ModelAndView registerResultView(String nickName) {
+		System.out.println("받아온 nickName : "+nickName);
+		MemberVO mvo = memberService.findMemberByNickName(nickName);
+		System.out.println(mvo);
+		return new ModelAndView("member/register_result", "mvo", mvo);
 	}
 	
 	@RequestMapping("eMailCheckAjax.do")
 	@ResponseBody
 	public String eMailCheckAjax(String eMail) {
-		System.out.println(eMail);
 		int count = memberService.eMailCheck(eMail);
 		return (count == 0) ? "ok" : "fail";
 	}
@@ -61,7 +66,6 @@ public class MemberController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("password", password);
-		System.out.println(map);
 		MemberVO mvo = memberService.nickNameLogin(map);
 		MemberVO mvo2 = memberService.eMailLogin(map);
 		if (mvo != null) {
@@ -84,4 +88,8 @@ public class MemberController {
 		return "redirect:home.do";
 	}
 	/************************************************************************/
+	
 }
+
+
+	
