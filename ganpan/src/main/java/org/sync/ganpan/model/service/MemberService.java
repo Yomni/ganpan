@@ -10,7 +10,8 @@ public interface MemberService {
 	MemberVO eMailLogin(HashMap<String, String> map);
 	int nickNameCheck(String nickName);
 	int eMailCheck(String eMail);
-	void register(MemberVO mvo);
+	void registerMember(MemberVO mvo);
 	MemberVO findMemberByNickName(String nickName);
+	int updateMember(MemberVO mvo);
 
 }

@@ -27,9 +27,10 @@ public class MemberController {
 	private MemberService memberService;
 	
 /****************************************민영**********************************************/
+	
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	public String register(MemberVO mvo) {
-		memberService.register(mvo);
+	public String registerMember(MemberVO mvo) {
+		memberService.registerMember(mvo);
 		//return "registerResultView.do?nickName=" + mvo.getNickName();
 		System.out.println("register method mvo.getNickName() : "+mvo.getNickName());
 		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
@@ -68,6 +69,9 @@ public class MemberController {
 		map.put("password", password);
 		MemberVO mvo = memberService.nickNameLogin(map);
 		MemberVO mvo2 = memberService.eMailLogin(map);
+		System.out.println(mvo);
+		System.out.println("-------------------");
+		System.out.println(mvo2);
 		if (mvo != null) {
 			request.getSession().setAttribute("mvo", mvo);
 			return "redirect:home.do";
@@ -88,6 +92,20 @@ public class MemberController {
 		return "redirect:home.do";
 	}
 	/************************************************************************/
+
+	/**
+	 * 회원 정보 수정
+	 * @author 주선,민영
+	 */
+	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
+	public String updateMember(HttpServletRequest request, MemberVO mvo) {
+		int check = memberService.updateMember(mvo);
+		System.out.println(check);
+		request.getSession().setAttribute("mvo", mvo);
+		//return "registerResultView.do?nickName=" + mvo.getNickName();
+		System.out.println("updateMember method mvo.getNickName() : "+mvo.getNickName());
+		return "redirect:member/my_info.do";
+	}
 	
 }
 

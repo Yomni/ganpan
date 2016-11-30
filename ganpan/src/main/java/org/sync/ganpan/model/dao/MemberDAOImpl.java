@@ -24,8 +24,8 @@ public class MemberDAOImpl implements MemberDAO {
 		return (MemberVO) template.selectOne("member.eMailLogin",map);
 	}
 
-	public void register(MemberVO mvo) {
-		template.insert("member.register",mvo);
+	public void registerMember(MemberVO mvo) {
+		template.insert("member.registerMember",mvo);
 	}
 
 	@Override
@@ -41,6 +41,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberVO findMemberByNickName(String nickName) {
 		return template.selectOne("member.findMemberByNickName",nickName);
+	}
+
+	@Override
+	public int updateMember(MemberVO mvo) {
+		return template.update("member.updateMember", mvo);
 	}
 
 }

@@ -23,7 +23,7 @@
 				return false;
 			}
 			if(checkResultEMail == "" || checkResultNickName == ""){
-				alert("이메일과 닉네임 중복확인을 해주세요!");
+				alert("전자우편과 닉네임 중복확인을 해주세요!");
 				return false;
 			}
 		});//submit

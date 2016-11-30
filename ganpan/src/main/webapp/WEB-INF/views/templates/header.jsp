@@ -13,6 +13,9 @@
 		$("#register").click(function(){
 			location.href="${pageContext.request.contextPath}/member/registerForm.do";
 		});
+		$("#myPage").click(function(){
+			location.href="${pageContext.request.contextPath}/member/my_info.do";
+		});
 	});
 </script>
 <div class="bs-docs-header" id="content" tabindex="-1">
@@ -29,7 +32,7 @@
 		  	  	</c:when>
 		  	  	<c:otherwise>
 		  	  		${mvo.nickName}님 환영^^
-			  	  <button type="button" id="mypage" class="btn btn-primary">내정보</button>
+			  	  <button type="button" id="myPage" class="btn btn-primary">내정보</button>
 			  	  <button type="button" id="logout" class="btn btn-primary">나가기</button>
 		  	  	</c:otherwise>
 		  	  </c:choose>

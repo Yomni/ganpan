@@ -1,9 +1,13 @@
 package org.sync.ganpan;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.sync.ganpan.controller.MemberController;
 
 /*
  *    TDD : 테스트 주도 개발(test-driven development, TDD)은 
@@ -32,6 +36,6 @@ public class TestJUnit {
 
 	@Test
 	public void test() {
-		
+		MemberController memberController;
 	}
 }

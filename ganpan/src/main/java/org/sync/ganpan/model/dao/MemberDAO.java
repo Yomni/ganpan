@@ -9,9 +9,10 @@ public interface MemberDAO {
 
 	MemberVO nickNameLogin(HashMap<String, String> map);
 	MemberVO eMailLogin(HashMap<String, String> map);
-	void register(MemberVO vo);
+	void registerMember(MemberVO vo);
 	int emailCheck(String email);
 	int nickNameCheck(String nickName);
 	MemberVO findMemberByNickName(String nickName);
+	int updateMember(MemberVO mvo);
 
 }

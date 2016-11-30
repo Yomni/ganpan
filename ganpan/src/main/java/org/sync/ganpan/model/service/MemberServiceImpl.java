@@ -21,8 +21,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDAO;
 
 	
-	public void register(MemberVO mvo){
-		memberDAO.register(mvo);
+	public void registerMember(MemberVO mvo){
+		memberDAO.registerMember(mvo);
 	}
 	
 	public int eMailCheck(String eMail){
@@ -45,5 +45,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO eMailLogin(HashMap<String, String> map) {
 		return memberDAO.eMailLogin(map);
+	}
+
+	@Override
+	public int updateMember(MemberVO mvo) {
+		return memberDAO.updateMember(mvo);
 	}
 }
