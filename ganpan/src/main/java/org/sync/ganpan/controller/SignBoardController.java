@@ -72,4 +72,5 @@ public class SignBoardController {
 		int count = signBoardService.titleCheck(map);
 		return (count == 0) ? "ok" : "fail";
 	}
+	
 }
