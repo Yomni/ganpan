@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript">
-	$(document).ready
-</script>
-<div class="bs-docs-header" id="content" tabindex="-1">
-	<div class="container">
-		<h1>간판</h1>
-		<p>
-		<form class="form-inline">
-		  <div class="form-group" align="right">
-		      <input type="text" class="form-control" id="search" placeholder="검색어 입력">
-		  	  <button type="submit" class="btn btn-default">검색</button>
-		  	  <button type="button" id="login" class="btn btn-primary">들어가기</button>
-		  	  <button type="button" class="btn btn-primary">회원가입</button>
-		  </div>
-		</form>
-	</div>
+<!-- Header -->
+<div id="header-wrapper">
+		<header id="header" class="container">
+			<div class="row">
+				<div class="12u">
+					<!-- Logo -->
+					<h1>
+						<a href="${pageContext.request.contextPath}/home.do" id="logo">로고자리</a>
+					</h1>
+					<!-- Nav -->
+					<div>
+						<nav id="nav">
+							<a href="${pageContext.request.contextPath}/home.do">처음으로</a> 
+							<a href="${pageContext.request.contextPath}/page/introduce.do">소개글</a> 
+							<a href="${pageContext.request.contextPath}/page/threecolumn.do">(양쪽에 메뉴)</a> 
+							<a href="${pageContext.request.contextPath}/page/twocolumn_left.do">(왼쪽에 메인)</a> 
+							<a href="${pageContext.request.contextPath}/page/twocolumn_right.do">(오른쪽 메인)</a>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
 </div>
-<hr>
-<h2><a href="${pageContext.request.contextPath}/home.do">kosta shop</a></h2>

@@ -14,9 +14,6 @@
 	<body class="subpage">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-			<jsp:include page="template/header.jsp"/>
-
 			<!-- Content -->
 				<div id="content-wrapper">
 					<div id="content">
@@ -86,11 +83,6 @@
 					</div>
 				</div>
 
-			<!-- Footer -->
-			<jsp:include page="template/footer.jsp"/>
-
-		</div>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
@@ -98,6 +90,7 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+		</div>
 
 	</body>
 </html>

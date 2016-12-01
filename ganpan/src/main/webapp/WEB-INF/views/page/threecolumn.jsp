@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<title>Three Column - Halcyonic by HTML5 UP</title>
@@ -14,9 +13,6 @@
 	</head>
 	<body class="subpage">
 		<div id="page-wrapper">
-
-			<!-- Header -->
-			<jsp:include page="template/header.jsp"/>
 
 			<!-- Content -->
 				<div id="content-wrapper">
@@ -110,8 +106,6 @@
 					</div>
 				</div>
 
-			<!-- Footer -->
-			<jsp:include page="template/footer.jsp"/>
 		</div>
 
 		<!-- Scripts -->
