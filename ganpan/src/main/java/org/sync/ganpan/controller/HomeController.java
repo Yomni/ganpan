@@ -29,7 +29,7 @@ public class HomeController {
 	@RequestMapping("{dirName}/{viewName}.do")
 	public String showView(@PathVariable String dirName, @PathVariable String viewName) {
 		System.out.println("@PathVariable:" + dirName + "/" + viewName);
-		return dirName + "/" + viewName;
+		return dirName + "/" + viewName;	
 	}
 
 	@RequestMapping("member/admin/{viewName}.do")
