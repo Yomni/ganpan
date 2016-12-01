@@ -17,6 +17,7 @@ public class SignBoardVO {
 	public SignBoardVO(String signBoardName, String boss_nickname) {
 		super();
 		this.signBoardName = signBoardName;
+		this.bossMemberVO = new MemberVO();
 		this.bossMemberVO.setNickName(boss_nickname);
 	}
 	
