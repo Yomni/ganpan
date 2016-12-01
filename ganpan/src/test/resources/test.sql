@@ -23,6 +23,13 @@ create table sign_board(
    constraint fk_member_nickname foreign key(boss_nickname) references member(nickname),
    constraint pk_sign_board primary key(sign_board_name,boss_nickname)
 )
+select s.sign_board_name, m.nickname as boss_nickname
+from sign_board s, member m
+where s.boss_nickname=m.nickname and sign_board_name='간판';
+
+SELECT sign_board_name, boss_nickname
+FROM sign_board
+WHERE sign_board_name = '간판';
 
 create table organization (
    worker_nickname varchar2(50) unique not null,

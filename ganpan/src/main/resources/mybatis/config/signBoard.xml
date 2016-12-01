@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+
+ <mapper namespace="signBoard">
+   
+	<resultMap id="signBoardRM" type="signBoardVO">
+		<result property="signBoardName" column="sign_board_name"/>
+		<result property="bossMemberVO.nickName" column="boss_nickname"/>
+		<result property="creationDate" column="creation_date"/>
+	</resultMap>
+	
+ 	<select id="findSignBoardListByTitle" resultMap="signBoardRM" parameterType="String">
+ 		select s.sign_board_name, m.nickname as boss_nickname
+		from sign_board s, member m
+		where s.boss_nickname=m.nickname and sign_board_name=#{title}
+ 	</select>
+ 	
+<!-- 	<select id="getBoardList" resultMap="boardRM" parameterType="map"> -->
+<!-- 		SELECT b.no,b.title,b.time_posted,b.hits,b.id,m.name FROM( -->
+<!-- 		SELECT row_number() over(order by no desc) as rnum,no,title,hits, -->
+<!-- 		to_char(time_posted,'YYYY.MM.DD') as time_posted,id -->
+<!-- 		FROM spring_board_inst -->
+<!-- 		) b,spring_member m where b.id=m.id and rnum between #{startRowNumber} and #{endRowNumber} -->
+<!-- 		order by no desc -->
+<!-- 	</select> -->
+</mapper>
+
+
+

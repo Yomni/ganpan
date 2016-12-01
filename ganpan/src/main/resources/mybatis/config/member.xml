@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<sql id="selectMember">
 		select nickname,e_mail,password from member
 	</sql>
-	<resultMap id="memberMap" type="memberVO">
+	<resultMap id="memberRM" type="memberVO">
 		<result property="nickName" column="nickname"/>
 		<result property="eMail" column="e_mail"/>
 		<result property="password" column="password"/>
@@ -16,11 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectMember" />
 		WHERE nickname=#{id} and password=#{password}
 	</select>
-	<select id="eMailLogin" parameterType="Map" resultMap="memberMap">
+	<select id="eMailLogin" parameterType="Map" resultMap="memberRM">
 		<include refid="selectMember" />
 		WHERE e_mail=#{id} and password=#{password}
 	</select>
- 	<select id="findMemberByNickName" resultMap="memberMap">
+ 	<select id="findMemberByNickName" resultMap="memberRM">
  		<include refid="selectMember" />
  		where nickname=#{value}
  	</select>
