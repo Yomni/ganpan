@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
+
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+
 
  <mapper namespace="signBoard">
    
@@ -12,10 +16,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="creationDate" column="creation_date"/>
 	</resultMap>
 	
+
  	<select id="findSignBoardListByTitle" resultMap="signBoardRM" parameterType="String">
  		select s.sign_board_name, m.nickname as boss_nickname
 		from sign_board s, member m
 		where s.boss_nickname=m.nickname and sign_board_name=#{title}
+ 	</select>
+ 	
+ 	<insert id="createNewGanpan" parameterType="map">
+ 		insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
+ 		values(#{signBoardName},#{bossNickName},#{visibility},sysdate)
+ 	</insert>
+ 	
+ 	<select id="titleCheck" resultType="int" parameterType="map">
+ 		select count(*) from sign_board 
+ 		where sign_board_name=#{signBoardName} and boss_nickname=#{bossNickName}
  	</select>
  	
 <!-- 	<select id="getBoardList" resultMap="boardRM" parameterType="map"> -->
@@ -26,7 +41,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 		) b,spring_member m where b.id=m.id and rnum between #{startRowNumber} and #{endRowNumber} -->
 <!-- 		order by no desc -->
 <!-- 	</select> -->
+
 </mapper>
+
+
+
+
 
 
 

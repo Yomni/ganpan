@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,6 +22,16 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public List<SignBoardVO> findSignBoardListByTitle(String title) {
 		return signBoardDAO.findSignBoardListByTitle(title);
+	}
+
+	@Override
+	public int titleCheck(HashMap<String, String> map) {
+		return signBoardDAO.titleCheck(map);
+	}
+
+	@Override
+	public void createNewGanpan(HashMap<String, Object> map) {
+		signBoardDAO.createNewGanpan(map);
 	}
 
 }

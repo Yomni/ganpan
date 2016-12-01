@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +19,16 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", title);
 		System.out.println("DAOImpl: "+sbList);
 		return sbList;
+	}
+
+	@Override
+	public int titleCheck(HashMap<String, String> map) {
+		return template.selectOne("signBoard.titleCheck",map);
+	}
+
+	@Override
+	public void createNewGanpan(HashMap<String, Object> map) {
+		template.insert("signBoard.createNewGanpan",map);
 	}
 
 }
