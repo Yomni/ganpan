@@ -57,7 +57,6 @@ public class SignBoardController {
 		return new ModelAndView("board/search_result" );
 	}
 	
-	
 	/**
 	 * 간판 생성시
 	 * 소유자의 소유칸판 중 중복되는 타이틀이 있는지 확인
