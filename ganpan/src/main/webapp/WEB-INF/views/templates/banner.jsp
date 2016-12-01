@@ -1,38 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!-- banner -->
 <div id="banner">
 	<div class="container">
 		<div class="row">
+			
+		  	<c:choose>
+	  	  		<c:when test="${empty sessionScope.mvo}">
 			<!-- 왼편 글자 -->
 			<div class="6u 12u(mobile)">
 				<!-- Banner Copy -->
 				<p>놀랄만큼 쉽습니다.</p>
 				<p>놀랄만큼 간단합니다.</p>
 				<p>지금 당장 사용해보세요</p>
-				<a href="#" class="button-big">Go on, click me!</a>
 			</div>
-
-			<!-- 회원가입form -->
-			<div class="6u 12u(mobile)">
-				<form id="msform">
-					<fieldset>
-						<h2 class="fs-title">계정을 생성하세요</h2>
-						<input type="text" name="email" placeholder="Email" /> <input
-							type="text" name="nickName" placeholder="nickName" /> <input
-							type="password" name="pass" placeholder="Password" /> <input
-							type="password" name="cpass" placeholder="Confirm Password" /> <input
-							type="button" name="register" class="next action-button"
-							value="가입" />
-					</fieldset>
-				</form>
-			</div>
-			<!-- 회원가입form의 div -->
-
+					<!-- 회원가입form -->
+					<div class="6u 12u(mobile)">
+						<form method="post" action="${pageContext.request.contextPath}/register.do" id="msform">
+							<fieldset>
+								<h2 class="fs-title">계정을 생성하세요</h2>
+								<input type="text" id="eMail" name="eMail" placeholder="Email" />
+								<input type="text" id="nickName" name="nickName" placeholder="nickName" /><span id="eMailCheckView">
+								<input type="password" id="password" name="password" placeholder="Password" /><span id="nickNameCheckView"></span>
+								<input type="password" id="passwordCheck" placeholder="Confirm Password" /> <span id="passwordCheckView"></span>
+								<input type="submit" class="next action-button" value="회원가입" />
+							</fieldset>
+						</form>
+					</div>
+					<!-- 회원가입form의 div -->
+	  	  		</c:when>
+	  	  		<c:otherwise>
+					<a href="${pageContext.request.contextPath}/board/guide.do" class="button-big">간판 소개</a>
+					<a href="${pageContext.request.contextPath}/board/create_new_ganpan.do" class="button-big">간판 만들기</a>
+	  	  		</c:otherwise>
+	  	  	</c:choose>
+			
 		</div>
 		<!-- div class row -->
 	</div>
 	<!-- div class container -->
 </div>
 <!-- div id=banner -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		var checkResultNickName="";	
+		var checkResultEMail="";		
+		$("#msform").submit(function(){	
+			if($(":input[name=eMail]").val().trim()==""){
+				alert("전자우편을 입력하세요");				
+				return false;
+			}
+			if($(":input[name=nickName]").val().trim()==""){
+				alert("별명을 입력하세요");				
+				return false;
+			}
+			if($(":input[name=password]").val().trim()==""){
+				alert("비밀번호를 입력하세요");				
+				return false;
+			}
+			if($("#password").val()!=$("#passwordCheck").val()){
+				alert("비밀번호 중복확인을 하세요");
+				return false;
+			}
+			if(checkResultEMail == "" || checkResultNickName == ""){
+				alert("전자우편과 닉네임 중복확인을 해주세요!");
+				return false;
+			}
+		});//submit
+		$(":input[name=eMail]").keyup(function(){
+			var eMail=$(this).val().trim();
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/eMailCheckAjax.do",				
+				data:"eMail="+eMail,
+				success:function(data){						
+					if(data=="fail"){
+						$("#eMail").css("color", "red");
+						checkResultEMail="";
+					}else{
+						$("#eMail").css("color","green");		
+						checkResultEMail=eMail;
+					}					
+				}//callback			
+			});//ajax
+		});//keyup
+		$(":input[name=nickName]").keyup(function(){
+			var nickName=$(this).val().trim();
+			if(nickName.length<2 || nickName.length>15){
+				$("#nickName").css("color", "red");
+// 				.html("별명은 2자이상 15자 이하여야 합니다!")
+				return;
+			}else{						
+				$("#nickName").css("color", "green");		
+				checkResultNickName=nickName;
+			}
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/nickNameCheckAjax.do",				
+				data:"nickName="+nickName,
+				success:function(data){						
+					if(data=="fail"){
+					$("#nickName").css("color", "red");
+						checkResultNickName="";
+					}else{						
+						$("#nickName").css("color", "green");		
+						checkResultNickName=nickName;
+					}					
+				}//callback			
+			});//ajax
+		});//keyup	
+	});//ready
+	
+
+	$(document).ready(function(){
+	   $("#createBtn").click(function(){ 
+	      location.href="${pageContext.request.contextPath}/board/create_new_ganpan.do";
+	   });
+	   $("#ganpanGuideBtn").click(function(){ 
+	      location.href="${pageContext.request.contextPath}/board/guide.do";
+	   });
+	});
+</script>
