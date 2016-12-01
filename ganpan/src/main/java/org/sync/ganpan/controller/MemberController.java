@@ -31,8 +31,6 @@ public class MemberController {
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO mvo) {
 		memberService.registerMember(mvo);
-		//return "registerResultView.do?nickName=" + mvo.getNickName();
-		System.out.println("register method mvo.getNickName() : "+mvo.getNickName());
 		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
 	}
 	

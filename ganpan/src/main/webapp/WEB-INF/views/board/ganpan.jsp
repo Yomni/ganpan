@@ -24,15 +24,14 @@
 									<!-- Sidebar -->
 										<section>
 											<header>
-												<h2>Magna Phasellus</h2>
+												<h2>칸반 제목</h2>
 											</header>
 											<ul class="link-list">
-												<li><a href="#">Sed dolore viverra</a></li>
-												<li><a href="#">Ligula non varius</a></li>
-												<li><a href="#">Nec sociis natoque</a></li>
-												<li><a href="#">Penatibus et magnis</a></li>
-												<li><a href="#">Dis parturient montes</a></li>
-												<li><a href="#">Nascetur ridiculus</a></li>
+												<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
+												<li><a href="${pageContext.request.contextPath}/board/group_member_list.do">참여 구성원 보기</a></li>
+												<li><a href="${pageContext.request.contextPath}/board/ganpan_setting.do">간판 설정</a></li>
+<!-- 												<li><a href="#">Dis parturient montes</a></li> -->
+<!-- 												<li><a href="#">Nascetur ridiculus</a></li> -->
 											</ul>
 										</section>
 
