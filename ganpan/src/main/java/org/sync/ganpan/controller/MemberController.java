@@ -27,28 +27,44 @@ public class MemberController {
 	private MemberService memberService;
 	
 /****************************************민영**********************************************/
-	
+	/**
+	 * 회원 가입
+	 * @author 민영
+	 * @param mvo
+	 */
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String registerMember(MemberVO mvo) {
 		memberService.registerMember(mvo);
 		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
 	}
 	
+	/**
+	 * 회원가입 결과화면으로 이동
+	 * @author 민영
+	 * @param nickName
+	 */
 	@RequestMapping("registerResultView.do")
 	public ModelAndView registerResultView(String nickName) {
-		System.out.println("받아온 nickName : "+nickName);
 		MemberVO mvo = memberService.findMemberByNickName(nickName);
-		System.out.println(mvo);
 		return new ModelAndView("member/register_result", "mvo", mvo);
 	}
 	
+	/**
+	 * 회원가입 시 이메일 중복확인
+	 * @author 민영
+	 * @param eMail
+	 */
 	@RequestMapping("eMailCheckAjax.do")
 	@ResponseBody
 	public String eMailCheckAjax(String eMail) {
 		int count = memberService.eMailCheck(eMail);
 		return (count == 0) ? "ok" : "fail";
 	}
-	
+
+	/**
+	 * 회원가입 시 닉네임 중복확인
+	 * @author 민영
+	 */
 	@RequestMapping("nickNameCheckAjax.do")
 	@ResponseBody
 	public String nickNameCheckAjax(String nickName) {
@@ -60,6 +76,13 @@ public class MemberController {
 	
 	
 	/******************************** 주선 **********************************/
+	/**
+	 * 회원 로그인
+	 * @author 주선
+	 * @param request
+	 * @param id
+	 * @param password
+	 */
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, String id, String password) {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -74,7 +97,6 @@ public class MemberController {
 			request.getSession().setAttribute("mvo", mvo);
 			return "redirect:home.do";
 		} else if(mvo2 != null){
-			System.out.println(mvo2);
 			request.getSession().setAttribute("mvo", mvo2);
 			return "redirect:home.do";
 		} else{
@@ -82,6 +104,11 @@ public class MemberController {
 		}
 	}
 	
+	/**
+	 * 회원 로그아웃
+	 * @author 주선
+	 * @param request
+	 */
 	@RequestMapping("logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);

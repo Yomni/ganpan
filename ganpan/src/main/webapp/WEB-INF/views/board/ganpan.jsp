@@ -52,7 +52,17 @@
 											</span>
 											</header>
 											<span style="display:inline-block; width:265px; background-color:#CCCC">
-												<table border"1">
+												<table border="1">
+													<tr>
+														<td>1</td>
+													</tr>
+													<tr>
+														<td>1</td>
+													</tr>
+												</table>
+											</span>
+											<span style="display:inline-block; width:265px; background-color:#CCCC">
+												<table border="1">
 													<tr>
 														<td>1</td><td>1</td><td>1</td><td>1</td>
 													</tr>
@@ -62,17 +72,7 @@
 												</table>
 											</span>
 											<span style="display:inline-block; width:265px; background-color:#CCCC">
-												<table border"1">
-													<tr>
-														<td>1</td><td>1</td><td>1</td><td>1</td>
-													</tr>
-													<tr>
-														<td>1</td><td>1</td><td>1</td><td>1</td>
-													</tr>
-												</table>
-											</span>
-											<span style="display:inline-block; width:265px; background-color:#CCCC">
-												<table border"1">
+												<table border="1">
 													<tr>
 														<td>1</td><td>1</td><td>1</td><td>1</td>
 													</tr>

@@ -28,7 +28,7 @@ public class SignBoardController {
 	
 	/**
 	 * 칸반 검색
-	 * @author Kang
+	 * @author 주선
 	 */
 	@RequestMapping("findSignBoardListByTitle.do")
 	public ModelAndView findSignBoardListByTitle(String title) {
