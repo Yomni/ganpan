@@ -13,7 +13,6 @@
 	</head>
 	<body class="subpage">
 		<div id="page-wrapper">
-
 			<!-- Content -->
 				<div id="content-wrapper">
 					<div id="content">
@@ -50,10 +49,8 @@
 												<li><a href="#">Nascetur ridiculus</a></li>
 											</ul>
 										</section>
-
 								</div>
 								<div class="9u 12u(mobile) important(mobile)">
-
 									<!-- Main Content -->
 										<section>
 											<header>
@@ -76,13 +73,11 @@
 												문단5
 											</p>
 										</section>
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
