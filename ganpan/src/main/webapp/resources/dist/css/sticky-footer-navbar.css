@@ -21,7 +21,6 @@ body {
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-
 body {
   min-height: 2000px;
 }
@@ -29,6 +28,7 @@ body {
 .navbar-static-top {
   margin-bottom: 19px;
 }
+
 
 body > .container {
   padding: 60px 15px 0;

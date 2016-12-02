@@ -7,14 +7,14 @@
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Project name</a>
+			<%-- 홈화면 가는 icon삽입 --%>
+			<a class="navbar-brand" href="gohome.do"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#contact">Contact</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+				<li><a href="#about">소개</a></li>
+				<%-- dropdown 버튼일단 추후 보정 --%>
+				<%--  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Action</a></li>
 						<li><a href="#">Another action</a></li>
@@ -23,13 +23,22 @@
 						<li class="dropdown-header">Nav header</li>
 						<li><a href="#">Separated link</a></li>
 						<li><a href="#">One more separated link</a></li>
-					</ul></li>
+					</ul></li> --%>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../navbar/">Default</a></li>
-				<li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
-				<li><a href="../navbar-fixed-top/">Fixed top</a></li>
-			</ul>
+			<span class="pull-right">
+				<form action="searchGanpan.do" method="get" class="navbar-form navbar-left" role="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="간판명으로 검색"> 
+						<span class="input-group-btn">
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+						</span>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary navbar-btn">들어가기</button>
+				<button type="button" class="btn btn-success navbar-btn">회원가입</button>
+			</span>
 		</div>
 		<!--/.nav-collapse -->
 	</div>

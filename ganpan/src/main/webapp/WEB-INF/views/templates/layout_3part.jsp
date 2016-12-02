@@ -9,19 +9,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/sticky-footer-navbar.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- header, main, footer 있는 layout -->
-	<div id="page-wrapper">
-		<div id="header">
-			<tiles:insertAttribute name="header" />
-		</div>
-		<div id="main">
-			<tiles:insertAttribute name="main" />
-		</div>
-		<div id="footer">
-			<tiles:insertAttribute name="footer" />
-		</div>
+	<div id="header">
+		<tiles:insertAttribute name="header" />
+	</div>
+	<div id="main">
+		<tiles:insertAttribute name="main" />
+	</div>
+	<div id="footer">
+		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
 </html>

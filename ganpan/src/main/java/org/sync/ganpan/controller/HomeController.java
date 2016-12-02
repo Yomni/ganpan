@@ -15,7 +15,7 @@ public class HomeController {
 	 * @PathVariable 적용 메서드가 실행된다 
 	 */
 	
-	@RequestMapping("{viewName}.do")
+	@RequestMapping("go{viewName}.do")
 	public String showView(@PathVariable String viewName) {
 		System.out.println("@PathVariable:" + viewName);
 		return viewName;
