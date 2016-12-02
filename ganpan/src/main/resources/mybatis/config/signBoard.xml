@@ -7,7 +7,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
 
-
  <mapper namespace="signBoard">
    
 	<resultMap id="signBoardRM" type="signBoardVO">
@@ -16,7 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="creationDate" column="creation_date"/>
 	</resultMap>
 	
-
  	<select id="findSignBoardListByTitle" resultMap="signBoardRM" parameterType="String">
  		SELECT sign_board_name, boss_nickname
 		FROM sign_board
@@ -32,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select count(*) from sign_board 
  		where sign_board_name=#{signBoardName} and boss_nickname=#{bossNickName}
  	</select>
- 	
+
  	<select id="mySignBoardList" resultMap="signBoardRM">
  		SELECT sign_board_name, boss_nickname
 		FROM sign_board
