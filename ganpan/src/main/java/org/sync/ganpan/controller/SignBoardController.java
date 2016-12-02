@@ -121,7 +121,6 @@ public class SignBoardController {
 		
 		System.out.println("SignBoardController sesseion 값 : "+session.getAttribute("mvo"));
 		
-		
 		return new ModelAndView("board/viewGanpan");
 }
 
