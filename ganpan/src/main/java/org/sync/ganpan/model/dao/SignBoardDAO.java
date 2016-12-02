@@ -19,4 +19,12 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
+	List<SignBoardVO> myPublicSignBoardList(String nickName);
+
+	List<SignBoardVO> myPublicJoinSignBoardList(String nickName);
+
+	List<SignBoardVO> myPrivateSignBoardList(String nickName);
+
+	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
+
 }

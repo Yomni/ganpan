@@ -76,17 +76,6 @@ public class SignBoardController {
 	}
 	
 	/**
-	 * 내 모든 간판 보기
-	 * @author 주선, 민영
-	 */
-	@RequestMapping("allSignBoardList.do")
-	public ModelAndView allSignBoardList(HttpSession session) {
-		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
-		List<SignBoardVO> sbList = signBoardService.allSignBoardList(mvo.getNickName());
-		return new ModelAndView("board/search_result", "sbList", sbList);
-	}
-	
-	/**
 	 * 소유 간판 보기
 	 * @author 주선, 민영
 	 */
@@ -112,6 +101,20 @@ public class SignBoardController {
 			return new ModelAndView("member/my_join_ganpan_list_fail");
 		else
 		return new ModelAndView("member/my_join_ganpan_list", "sbList", sbList);
+	}
+
+	
+	/**
+	 * 홈에서 보여지는
+	 * 간판 리스트 보기(all, public, private)
+	 * @author 주선, 민영
+	 */
+	@RequestMapping("homeSignBoardList.do")
+	public ModelAndView homeSignBoardList(HttpSession session) {
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		String nickName = mvo.getNickName();
+		HashMap<String, List> sbMap = signBoardService.homeSignBoardList(nickName);
+		return new ModelAndView("home", "sbMap", sbMap);
 	}
 	
 }
