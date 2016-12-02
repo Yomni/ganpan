@@ -49,4 +49,9 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return signBoardDAO.myJoinSignBoardList(nickName);
 	}
 
+	@Override
+	public List<SignBoardVO> showContentList(String bossNickName, String signBoardName) {
+		return signBoardDAO.showContentList(bossNickName,signBoardName);
+	}
+
 }

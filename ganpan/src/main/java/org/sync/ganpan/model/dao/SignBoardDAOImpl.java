@@ -46,4 +46,9 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		return template.selectList("signBoard.myJoinSignBoardList", nickName);
 	}
 
+	@Override
+	public List<SignBoardVO> showContentList(String bossNickName, String signBoardName) {
+		return template.selectList("signBoard.showContentList");
+	}
+
 }

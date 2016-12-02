@@ -113,5 +113,27 @@ public class SignBoardController {
 		else
 		return new ModelAndView("member/my_join_ganpan_list", "sbList", sbList);
 	}
+	/**
+	 * 간판 내용 보기(작업들)
+	 * @author 동혁
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("showContentList.do")
+	public ModelAndView showContentList(HttpSession session,HttpServletRequest request,SignBoardVO svo){
+		System.out.println("SignBoardController bossNickName : "+request.getParameter("bossNickName"));
+		System.out.println("SignBoardController signBaordName : "+request.getParameter("signBoardName"));
+		String bossNickName=request.getParameter("bossNickName");
+		String signBoardName=request.getParameter("signBoardName");
+		System.out.println("받아온 svo : "+svo.toString());
+		
+		List<SignBoardVO> sblist=signBoardService.showContentList(bossNickName,signBoardName);
+		
+		System.out.println("SignBoardController sesseion 값 : "+session.getAttribute("mvo"));
+		
+		
+		return new ModelAndView("board/viewGanpan");
+	}
 	
-}
+	
+}//class

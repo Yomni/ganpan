@@ -19,4 +19,6 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
+	List<SignBoardVO> showContentList(String bossNickName, String signBoardName);
+
 }
