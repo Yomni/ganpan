@@ -21,10 +21,13 @@
 						<form method="post" action="${pageContext.request.contextPath}/register.do" id="msform">
 							<fieldset>
 								<h2 class="fs-title">계정을 생성하세요</h2>
-								<input type="text" id="eMail" name="eMail" placeholder="Email" />
-								<input type="text" id="nickName" name="nickName" placeholder="nickName" /><span id="eMailCheckView">
-								<input type="password" id="password" name="password" placeholder="Password" /><span id="nickNameCheckView"></span>
-								<input type="password" id="passwordCheck" placeholder="Confirm Password" /> <span id="passwordCheckView"></span>
+								<h2 class="fs-title"><span id="eMailCheckView"></span></h2>
+								<input type="text" id="eMail" name="eMail" placeholder="전자우편" />
+								<h2 class="fs-title"><span id="nickNameCheckView"></span></h2>
+								<input type="text" id="nickName" name="nickName" placeholder="별명" />
+								<h2 class="fs-title"><span id="passwordView"></span></h2>
+								<input type="password" id="password" id="password" name="password" placeholder="비밀번호" />
+								<input type="password" id="passwordCheck" placeholder="비밀번호 확인" /><span id="passwordCheckView"></span>
 								<input type="submit" class="next action-button" value="회원가입" />
 							</fieldset>
 						</form>
@@ -36,7 +39,6 @@
 					<a href="${pageContext.request.contextPath}/board/create_new_ganpan.do" class="button-big">간판 만들기</a>
 	  	  		</c:otherwise>
 	  	  	</c:choose>
-			
 		</div>
 		<!-- div class row -->
 	</div>
@@ -69,6 +71,15 @@
 				return false;
 			}
 		});//submit
+		$(":input[name=password]").keyup(function(){
+			var password=$(this).val().trim();
+			if(password.length<6 || password.length>15){
+				$("#passwordView").html("비밀번호는 6자 이상 15자로 입력해주세요").css("color", "red");
+				return false;
+			}else{
+				$("#passwordView").html("");	
+			}
+		});
 		$(":input[name=eMail]").keyup(function(){
 			var eMail=$(this).val().trim();
 			$.ajax({
@@ -77,10 +88,10 @@
 				data:"eMail="+eMail,
 				success:function(data){						
 					if(data=="fail"){
-						$("#eMail").css("color", "red");
+						$("#eMailCheckView").html("사용중인 전자우편입니다!").css("color", "red");
 						checkResultEMail="";
 					}else{
-						$("#eMail").css("color","green");		
+						$("#eMailCheckView").html("");	
 						checkResultEMail=eMail;
 					}					
 				}//callback			
@@ -89,11 +100,10 @@
 		$(":input[name=nickName]").keyup(function(){
 			var nickName=$(this).val().trim();
 			if(nickName.length<2 || nickName.length>15){
-				$("#nickName").css("color", "red");
-// 				.html("별명은 2자이상 15자 이하여야 합니다!")
+				$("#nickNameCheckView").html("별명은 2자 이상 15자 이하로 입력해주세요").css("color", "red");
 				return;
 			}else{						
-				$("#nickName").css("color", "green");		
+				$("#nickNameCheckView").html("");		
 				checkResultNickName=nickName;
 			}
 			$.ajax({
@@ -102,24 +112,14 @@
 				data:"nickName="+nickName,
 				success:function(data){						
 					if(data=="fail"){
-					$("#nickName").css("color", "red");
+					$("#nickNameCheckView").html("사용중인 별명입니다!").css("color", "red");
 						checkResultNickName="";
 					}else{						
-						$("#nickName").css("color", "green");		
+						$("#nickNameCheckView").html("");		
 						checkResultNickName=nickName;
 					}					
 				}//callback			
 			});//ajax
 		});//keyup	
 	});//ready
-	
-
-	$(document).ready(function(){
-	   $("#createBtn").click(function(){ 
-	      location.href="${pageContext.request.contextPath}/board/create_new_ganpan.do";
-	   });
-	   $("#ganpanGuideBtn").click(function(){ 
-	      location.href="${pageContext.request.contextPath}/board/guide.do";
-	   });
-	});
 </script>

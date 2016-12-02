@@ -1,11 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<!-- 회원가입form -->
+	<div class="6u 12u(mobile)">
+		<form method="post" action="${pageContext.request.contextPath}/register.do" id="msform">
+			<fieldset>
+				<h2 class="fs-title">계정을 생성하세요</h2>
+				<h2 class="fs-title"><span id="eMailCheckView"></span></h2>
+				<input type="text" id="eMail" name="eMail" placeholder="전자우편" />
+				<h2 class="fs-title"><span id="nickNameCheckView"></span></h2>
+				<input type="text" id="nickName" name="nickName" placeholder="별명" />
+				<h2 class="fs-title"><span id="passwordView"></span></h2>
+				<input type="password" id="password" id="password" name="password" placeholder="비밀번호" />
+				<input type="password" id="passwordCheck" placeholder="비밀번호 확인" /><span id="passwordCheckView"></span>
+				<input type="submit" class="next action-button" value="회원가입" />
+			</fieldset>
+		</form>
+	</div>
+<!-- 회원가입form의 div -->
+					
 <script type="text/javascript">
 	$(document).ready(function(){
 		var checkResultNickName="";	
 		var checkResultEMail="";		
-		$("#regForm").submit(function(){	
+		$("#msform").submit(function(){	
 			if($(":input[name=eMail]").val().trim()==""){
 				alert("전자우편을 입력하세요");				
 				return false;
@@ -27,6 +45,15 @@
 				return false;
 			}
 		});//submit
+		$(":input[name=password]").keyup(function(){
+			var password=$(this).val().trim();
+			if(password.length<6 || password.length>15){
+				$("#passwordView").html("비밀번호는 6자 이상 15자로 입력해주세요").css("color", "red");
+				return false;
+			}else{
+				$("#passwordView").html("");	
+			}
+		});
 		$(":input[name=eMail]").keyup(function(){
 			var eMail=$(this).val().trim();
 			$.ajax({
@@ -35,10 +62,10 @@
 				data:"eMail="+eMail,
 				success:function(data){						
 					if(data=="fail"){
-						$("#eMailCheckView").html(eMail+" 사용불가!").css("color", "red");
+						$("#eMailCheckView").html("사용중인 전자우편입니다!").css("color", "red");
 						checkResultEMail="";
 					}else{
-						$("#eMailCheckView").html(eMail+" 사용가능!").css("color","green");		
+						$("#eMailCheckView").html("");	
 						checkResultEMail=eMail;
 					}					
 				}//callback			
@@ -47,10 +74,11 @@
 		$(":input[name=nickName]").keyup(function(){
 			var nickName=$(this).val().trim();
 			if(nickName.length<2 || nickName.length>15){
-				$("#nickNameCheckView").html("별명은 2자이상 15자 이하여야 합니다!").css("color", "red");
+				$("#nickNameCheckView").html("별명은 2자 이상 15자 이하로 입력해주세요").css("color", "red");
 				return;
-			}else{
-				$("#nickNameCheckView").html("");
+			}else{						
+				$("#nickNameCheckView").html("");		
+				checkResultNickName=nickName;
 			}
 			$.ajax({
 				type:"POST",
@@ -58,10 +86,10 @@
 				data:"nickName="+nickName,
 				success:function(data){						
 					if(data=="fail"){
-					$("#nickNameCheckView").html(nickName+" 사용불가!").css("color", "red");
+					$("#nickNameCheckView").html("사용중인 별명입니다!").css("color", "red");
 						checkResultNickName="";
 					}else{						
-						$("#nickNameCheckView").html(nickName+" 사용가능!").css("color", "green");		
+						$("#nickNameCheckView").html("");		
 						checkResultNickName=nickName;
 					}					
 				}//callback			
@@ -69,11 +97,3 @@
 		});//keyup	
 	});//ready
 </script>
-
-<form method="post" action="${pageContext.request.contextPath}/register.do" id="regForm">
-	전자우편 <input type="text" name="eMail"><span id="eMailCheckView"></span><br>
-	별명 <input type="text" name="nickName"><span id="nickNameCheckView"></span><br> 
-	비밀번호 <input type="password" name="password" id="password"><span id="passwordCheckView"></span><br> 
-	비밀번호 확인 <input type="password" id="passwordCheck"><br> 
-	<input type="submit" value="회원가입">
-</form>

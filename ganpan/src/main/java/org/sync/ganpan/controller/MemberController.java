@@ -45,6 +45,7 @@ public class MemberController {
 	 */
 	@RequestMapping("registerResultView.do")
 	public ModelAndView registerResultView(String nickName) {
+		System.out.println(nickName);
 		MemberVO mvo = memberService.findMemberByNickName(nickName);
 		return new ModelAndView("member/register_result", "mvo", mvo);
 	}

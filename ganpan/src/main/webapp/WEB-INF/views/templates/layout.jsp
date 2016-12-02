@@ -9,10 +9,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
 	</head>
-
 	<body>
 		<div id="page-wrapper">
-			
 			<div id="header">
 				<tiles:insertAttribute name="header" />
 			</div>
