@@ -90,10 +90,9 @@ CREATE TABLE WORK(
    
    CONSTRAINT fk_work_HAVE_BOARD FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
    		REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
-   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname ,sign_board_name,boss_nickname) 
-   		REFERENCES ORGANIZATION(worker_nickname ,sign_board_name,boss_nickname) ON DELETE CASCADE
+   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname, sign_board_name, boss_nickname) 
+   		REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname) ON DELETE CASCADE
 );
-
 
 CREATE TABLE CHANGE_GENRE(
    change_no NUMBER PRIMARY KEY,
@@ -121,6 +120,12 @@ INSERT INTO MEMBER VALUES('sync','kosta@naver.com', '1234');
 INSERT INTO BOARD_GENRE VALUES(1, 'TO_DO');
 INSERT INTO BOARD_GENRE VALUES(2, 'DOING');
 INSERT INTO BOARD_GENRE VALUES(3, 'DONE');
+
+-- INSERT CHANGE_GENRE(추가 수정 삭제 이동)
+INSERT INTO CHANGE_GENRE VALUES(0, '추가');
+INSERT INTO CHANGE_GENRE VALUES(1, '수정');
+INSERT INTO CHANGE_GENRE VALUES(2, '삭제');
+INSERT INTO CHANGE_GENRE VALUES(3, '이동');
 
 -- TEST SELECT
 SELECT * FROM MEMBER;
