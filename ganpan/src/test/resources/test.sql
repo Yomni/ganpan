@@ -126,6 +126,20 @@ FROM work w, organization o, board_genre bg
 WHERE w.board_no = bg.board_no and w.sign_board_name = bg.sign_board_name and w.boss_nickname = bg.boss_nickname 
 and w.worker_nickname = o.worker_nickname and w.sign_board_name = o.sign_board_name and w.boss_nickname = o.boss_nickname;
 
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판','우주선','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판2','우주선','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판3','우주선','1');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판','민영','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판2','민영','1');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판3','민영','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판4','민영','1');
+
+select * from SIGN_BOARD;
+
+insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('민영','우주선','간판');
+insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('민영','우주선','간판2');
+
+select * from organization;
 
  		SELECT sb.sign_board_name, sb.boss_nickname
 		FROM sign_board sb, organization o 

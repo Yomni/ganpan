@@ -6,10 +6,11 @@
 		<title><tiles:insertAttribute name="title" ignore="true" /></title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
-		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>

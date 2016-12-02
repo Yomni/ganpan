@@ -57,12 +57,17 @@
 								</header>
 								
 								
-								<ul class="nav nav-tabs">
-								  <li role="presentation" class="active"><a href="#">Home</a></li>
-								  <li role="presentation"><a href="#">Profile</a></li>
-								  <li role="presentation"><a href="#">Messages</a></li>
+								<ul class="nav nav-tabs" role="tablist" id="myTab">
+								  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">모든 칸반</a></li>
+								  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">공개 칸반</a></li>
+								  <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">비공개 칸반</a></li>
 								</ul>
 								
+								<div class="tab-content">
+								  <div role="tabpanel" class="tab-pane fade in active" id="home">모든 칸반</div>
+								  <div role="tabpanel" class="tab-pane fade" id="profile">공개 칸반</div>
+								  <div role="tabpanel" class="tab-pane fade" id="messages">비공개 칸반</div>
+								</div>
 								
 							</section>
 
@@ -71,13 +76,13 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script type="text/javascript">
-	$('#myTab a').click(function (e) {
-		  e.preventDefault()
-		  $(this).tab('show')
-		})
-	$(function () {
-	    $('#myTab a:last').tab('show')
-	  })
+	$(document).ready(function(){
+        
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        	  e.target // newly activated tab
+        	  e.relatedTarget // previous active tab
+        	})
+	}); // ready
 	</script>
