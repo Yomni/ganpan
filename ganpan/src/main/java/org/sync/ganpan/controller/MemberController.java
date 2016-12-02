@@ -98,7 +98,7 @@ public class MemberController {
 			return "redirect:home.do";
 		} else if(mvo2 != null){
 			request.getSession().setAttribute("mvo", mvo2);
-			return "redirect:home.do";
+			return "redirect:home.doㅋ";
 		} else{
 			return "redirect:member/login_fail.do";
 		}

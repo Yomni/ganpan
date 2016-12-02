@@ -47,7 +47,37 @@
 							</section>
 
 					</div>
+					
+					<div class="4u 12u(mobile)">
+
+						<!-- Box #3 -->
+							<section>
+								<header>
+									<h2>내 간판 리스트</h2>
+								</header>
+								
+								
+								<ul class="nav nav-tabs">
+								  <li role="presentation" class="active"><a href="#">Home</a></li>
+								  <li role="presentation"><a href="#">Profile</a></li>
+								  <li role="presentation"><a href="#">Messages</a></li>
+								</ul>
+								
+								
+							</section>
+
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	$('#myTab a').click(function (e) {
+		  e.preventDefault()
+		  $(this).tab('show')
+		})
+	$(function () {
+	    $('#myTab a:last').tab('show')
+	  })
+	</script>

@@ -34,4 +34,19 @@ public class SignBoardServiceImpl implements SignBoardService {
 		signBoardDAO.createNewGanpan(map);
 	}
 
+	@Override
+	public List<SignBoardVO> allSignBoardList(String nickName) {
+		return signBoardDAO.allSignBoardList(nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> mySignBoardList(String nickName) {
+		return signBoardDAO.mySignBoardList(nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
+		return signBoardDAO.myJoinSignBoardList(nickName);
+	}
+
 }

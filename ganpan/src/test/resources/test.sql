@@ -40,6 +40,11 @@ create table organization (
    constraint pk_organization primary key(worker_nickname ,boss_nickname ,sign_board_name)
 )
 
+select * from SIGN_BOARD;
+insert into organization values('엄민영', '우주선', '간판2');
+insert into organization values('엄민영', '우주선', '1234');
+select * from organization;
+
 create table invitation_management (
    sign_board_name varchar2(50) not null,
    boss_nickname varchar2(50) not null,
@@ -121,3 +126,7 @@ FROM work w, organization o, board_genre bg
 WHERE w.board_no = bg.board_no and w.sign_board_name = bg.sign_board_name and w.boss_nickname = bg.boss_nickname 
 and w.worker_nickname = o.worker_nickname and w.sign_board_name = o.sign_board_name and w.boss_nickname = o.boss_nickname;
 
+
+ 		SELECT sb.sign_board_name, sb.boss_nickname
+		FROM sign_board sb, organization o 
+		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '엄민영';
