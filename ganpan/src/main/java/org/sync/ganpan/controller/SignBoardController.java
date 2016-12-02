@@ -75,7 +75,9 @@ public class SignBoardController {
 		return (count == 0) ? "ok" : "fail";
 	}
 	
-	/**
+
+
+    /**
 	 * 소유 간판 보기
 	 * @author 주선, 민영
 	 */
@@ -122,9 +124,8 @@ public class SignBoardController {
 		System.out.println("SignBoardController sesseion 값 : "+session.getAttribute("mvo"));
 		
 		return new ModelAndView("board/viewGanpan");
-}
 
-	
+}
 	/**
 	 * 홈에서 보여지는
 	 * 간판 리스트 보기(all, public, private)
