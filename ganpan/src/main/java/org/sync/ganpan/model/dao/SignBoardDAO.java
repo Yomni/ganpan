@@ -19,8 +19,6 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
-	List<SignBoardVO> showContentList(String bossNickName, String signBoardName);
-
 	List<SignBoardVO> myPublicSignBoardList(String nickName);
 
 	List<SignBoardVO> myPublicJoinSignBoardList(String nickName);
@@ -28,5 +26,7 @@ public interface SignBoardDAO {
 	List<SignBoardVO> myPrivateSignBoardList(String nickName);
 
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
+
+	List<SignBoardVO> showContentList(SignBoardVO svo);
 
 }

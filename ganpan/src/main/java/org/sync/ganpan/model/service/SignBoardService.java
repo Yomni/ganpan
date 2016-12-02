@@ -20,7 +20,7 @@ public interface SignBoardService {
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
-	List<SignBoardVO> showContentList(String bossNickName, String signBoardName);
+	List<SignBoardVO> showContentList(SignBoardVO svo);
 	
 	HashMap<String, List> homeSignBoardList(String nickName);
 

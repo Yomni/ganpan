@@ -48,11 +48,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
 		return signBoardDAO.myJoinSignBoardList(nickName);
 	}
-
-	@Override
-	public List<SignBoardVO> showContentList(String bossNickName, String signBoardName) {
-		return signBoardDAO.showContentList(bossNickName,signBoardName);
-	}
 	
 	public HashMap<String, List> homeSignBoardList(String nickName) {
 		HashMap<String, List> sbMap = new HashMap<String, List>();
@@ -60,17 +55,21 @@ public class SignBoardServiceImpl implements SignBoardService {
 		List<SignBoardVO> allList2 = signBoardDAO.myJoinSignBoardList(nickName);
 		allList.addAll(allList2);
 		sbMap.put("allList", allList);
-
 		List<SignBoardVO> publicList = signBoardDAO.myPublicSignBoardList(nickName);
 		List<SignBoardVO> publicList2 = signBoardDAO.myPublicJoinSignBoardList(nickName);
 		publicList.addAll(publicList2);
 		sbMap.put("publicList", publicList);
-
 		List<SignBoardVO> privateList = signBoardDAO.myPrivateSignBoardList(nickName);
 		List<SignBoardVO> privateList2 = signBoardDAO.myPrivateJoinSignBoardList(nickName);
 		privateList.addAll(privateList2);
 		sbMap.put("privateList", privateList);
 		return sbMap;
+	}
+	
+	
+	@Override
+	public List<SignBoardVO> showContentList(SignBoardVO svo) {
+		return signBoardDAO.showContentList(svo);
 	}
 
 }
