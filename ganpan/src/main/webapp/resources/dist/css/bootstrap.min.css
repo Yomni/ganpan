@@ -5250,11 +5250,15 @@ a.badge:focus, a.badge:hover {
 	margin-left: 3px
 }
 
+#jumbotron-main {
+	background-image: url("/ganpan/resources/img/kanban_background.jpg");
+	background-size: 100% 100%;
+}
 .jumbotron {
 	padding: 30px 15px;
 	margin-bottom: 30px;
 	color: inherit;
-	background-color: #eee
+	background-color: #eee;
 }
 
 .jumbotron .h1, .jumbotron h1 {

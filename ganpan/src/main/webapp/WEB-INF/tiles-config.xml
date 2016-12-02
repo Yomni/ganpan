@@ -27,9 +27,9 @@
     </definition>
     
     <!-- {디렉토리명}/{디렉토리명}/{view이름} -->
-	<definition name="member/admin/*" extends="home">
+	<!-- <definition name="member/admin/*" extends="home">
 		<put-attribute name="header" value="/WEB-INF/views/templates/admin/header.jsp" />
         <put-attribute name="main" value="/WEB-INF/views/member/admin/{1}.jsp" />        
         <put-attribute name="title" value="{1}" />
-    </definition>
+    </definition> -->
 </tiles-definitions>

@@ -36,10 +36,12 @@
 						</span>
 					</div>
 				</form>
-				<button type="button" class="btn btn-primary navbar-btn">들어가기</button>
-				<button type="button" class="btn btn-success navbar-btn">회원가입</button>
+				<a class="btn btn-primary navbar-btn">들어가기</a>
+				<a class="btn btn-success navbar-btn">회원가입</a>
 			</span>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
+	<!-- container -->
 </nav>
+<!-- navbar -->
