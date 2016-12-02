@@ -1,38 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!-- Header -->
-<div id="header-wrapper">
-	<header id="header" class="container">
-		<div class="row">
-			<div class="12u">
-				<!-- Logo -->
-				<h1>
-					<a href="${pageContext.request.contextPath}/home.do" id="logo">로고자리</a>
-				</h1>
-				<!-- Nav -->
-				<div>
-					<nav id="nav">
-						<form action="findSignBoardListByTitle.do" class="form-inline">
-							<input type="text" class="form-control" name="title" placeholder="검색어 입력">
-							<button type="submit" class="btn btn-default">검색</button>
-						</form>
-						<c:choose>
-							<c:when test="${empty sessionScope.mvo}">
-								<a href="${pageContext.request.contextPath}/member/loginForm.do">들어가기</a>
-								<a href="${pageContext.request.contextPath}/member/registerForm.do">회원가입</a>
-							</c:when>
-							<c:otherwise>
-					  	  			${mvo.nickName}님 환영^^
-									<a href="${pageContext.request.contextPath}/member/my_info.do">내정보</a>
-								<a href="${pageContext.request.contextPath}/logout.do">나가기</a>
-								<a href="${pageContext.request.contextPath}/board/ganpan.do">내 간판</a>
-							</c:otherwise>
-						</c:choose>
-						<a href="${pageContext.request.contextPath}/home.do">처음으로</a> <a href="${pageContext.request.contextPath}/board/guide.do">소개글</a> <a href="${pageContext.request.contextPath}/page/threecolumn.do">(양쪽에 메뉴)</a> <a href="${pageContext.request.contextPath}/page/twocolumn_left.do">(왼쪽에 메인)</a> <a href="${pageContext.request.contextPath}/page/twocolumn_right.do">(오른쪽 메인)</a>
-					</nav>
-				</div>
-			</div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Project name</a>
 		</div>
-	</header>
-</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">Nav header</li>
+						<li><a href="#">Separated link</a></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../navbar/">Default</a></li>
+				<li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
+				<li><a href="../navbar-fixed-top/">Fixed top</a></li>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+</nav>
