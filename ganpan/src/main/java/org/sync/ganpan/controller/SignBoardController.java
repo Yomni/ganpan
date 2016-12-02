@@ -75,16 +75,7 @@ public class SignBoardController {
 		return (count == 0) ? "ok" : "fail";
 	}
 	
-	/**
-	 * 소유 간판 보기
-	 * @author 주선, 민영
-	 */
-	@RequestMapping("mySignBoardList.do")
-	public ModelAndView mySignBoardList(HttpSession session) {
-		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
-		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName());
-		return new ModelAndView("member/my_ganpan_list", "sbList", sbList);
-	}
+
 
     /**
 	 * 소유 간판 보기
