@@ -1,115 +1,115 @@
-drop table member;
-create table member(
-   nickname varchar2(50) primary key,
-   e_mail varchar2(100) unique not null,
-   password varchar2(50) not null
-)
+-- DROP TABLE
+DROP TABLE CHANGE_MANAGEMENT;
+DROP TABLE CHANGE_GENRE;
+DROP TABLE WORK;
+DROP TABLE INVITATION_MANAGEMENT;
+DROP TABLE BOARD_GENRE;
+DROP TABLE ORGANIZATION;
+DROP TABLE SIGN_BOARD;
+DROP TABLE MEMBER;
 
-drop table sign_board;
-create table sign_board(
-   sign_board_name varchar2(50) not null,
-   boss_nickname varchar2(50) not null,
-   visibility number default 0 not null,
-   creation_date date default sysdate not null,
-   constraint fk_member_nickname foreign key(boss_nickname) references member(nickname),
-   constraint pk_sign_board primary key(sign_board_name,boss_nickname)
-)
+-- DROP SEQUENCE
+DROP SEQUENCE seq_change_management_no;
+DROP SEQUENCE seq_work_no;
 
-drop table organization;
-create table organization (
-   worker_nickname varchar2(50) unique not null,
-   boss_nickname varchar2(50) not null,
-   sign_board_name varchar2(50) not null,
-   constraint fk_member_nickname2 foreign key(worker_nickname) references member(nickname),
-   constraint fk_sign_board_pk_sign_board foreign key(sign_board_name, boss_nickname) references sign_board(boss_nickname,sign_board_name),
-   constraint pk_organization primary key(worker_nickname ,boss_nickname ,sign_board_name)
-)
+-- CREATE SEQUENCE
+CREATE SEQUENCE seq_change_management_no;
+CREATE SEQUENCE seq_work_no;
 
-drop table invitation_management;
-create table invitation_management (
-   sign_board_name varchar2(50) not null,
-   boss_nickname varchar2(50) not null,
-   nickname varchar2(50) not null,
-   invitation_date date default sysdate not null,
-   constraint fk_member_nickname3 foreign key(nickname) references member(nickname),
-   constraint fk_sign_board_pk_sign_board2 foreign key(sign_board_name, boss_nickname) references sign_board(sign_board_name, boss_nickname),
-   constraint pk_invitation_management primary key(sign_board_name, boss_nickname,nickname)
-)
+-- CREATE TABLE
+CREATE TABLE MEMBER(
+   nickname VARCHAR2(50) PRIMARY KEY,
+   e_mail VARCHAR2(100) UNIQUE NOT NULL,
+   password VARCHAR2(50) NOT NULL
+);
+
+CREATE TABLE SIGN_BOARD(
+   sign_board_name VARCHAR2(50) NOT NULL,
+   boss_nickname VARCHAR2(50) NOT NULL,
+   visibility NUMBER DEFAULT 0 NOT NULL,
+   -- visibility : 0 공개, 1 비공개  	
+   creation_date DATE DEFAULT SYSDATE NOT NULL,
+   
+   CONSTRAINT fk_boss_nickname FOREIGN KEY(boss_nickname) 
+   		REFERENCES MEMBER(nickname) ON DELETE CASCADE,
+   CONSTRAINT pk_sign_board PRIMARY KEY(sign_board_name, boss_nickname)
+);
+
+CREATE TABLE ORGANIZATION (
+   worker_nickname VARCHAR2(50) NOT NULL,
+   boss_nickname VARCHAR2(50) NOT NULL,
+   sign_board_name VARCHAR2(50) NOT NULL,
+   
+   CONSTRAINT fk_organization_worker FOREIGN KEY(worker_nickname) 
+   		REFERENCES MEMBER(nickname) ON DELETE CASCADE,
+   CONSTRAINT fk_organization_sing_board FOREIGN KEY(sign_board_name, boss_nickname) 
+   		REFERENCES SIGN_BOARD(boss_nickname,sign_board_name) ON DELETE CASCADE,
+   CONSTRAINT pk_organization PRIMARY KEY(worker_nickname ,boss_nickname ,sign_board_name)
+);
+
+CREATE TABLE INVITATION_MANAGEMENT (
+   sign_board_name VARCHAR2(50) NOT NULL,
+   boss_nickname VARCHAR2(50) NOT NULL,
+   nickname VARCHAR2(50) NOT NULL,
+   invitation_date DATE DEFAULT SYSDATE NOT NULL,
+   
+   CONSTRAINT fk_invitation_management_nickname FOREIGN KEY(nickname) 
+   		REFERENCES MEMBER(nickname) ON DELETE CASCADE,
+   CONSTRAINT fk_invitation_management_sign_board FOREIGN KEY(sign_board_name, boss_nickname) 
+   		REFERENCES SIGN_BOARD(sign_board_name, boss_nickname) ON DELETE CASCADE,
+   CONSTRAINT pk_invitation_management PRIMARY KEY(sign_board_name, boss_nickname,nickname)
+);
+
+CREATE TABLE BOARD_GENRE (
+   sign_board_name VARCHAR2(50) NOT NULL,
+   board_no NUMBER NOT NULL,
+   boss_nickname VARCHAR2(50) NOT NULL,
+   board_name VARCHAR2(50) NOT NULL,
+   
+   CONSTRAINT fk_board_genre_sign_board FOREIGN KEY(sign_board_name, boss_nickname) 
+   		REFERENCES SIGN_BOARD(sign_board_name, boss_nickname) ON DELETE CASCADE,
+   CONSTRAINT pk_board_genre PRIMARY KEY(sign_board_name,board_no,boss_nickname)
+);
+INSERT INTO 
+
+CREATE TABLE WORK(
+   work_no NUMBER PRIMARY KEY,
+   work_name VARCHAR2(50) NOT NULL,
+   creation_DATE DATE DEFAULT SYSDATE NOT NULL,
+   change_DATE DATE DEFAULT SYSDATE NOT NULL,
+   board_no NUMBER NOT NULL,
+   worker_nickname VARCHAR2(50) NOT NULL,
+   sign_board_name VARCHAR2(50) NOT NULL,
+   boss_nickname VARCHAR2(50) NOT NULL,
+   
+   CONSTRAINT fk_work_board_genre FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
+   		REFERENCES BOARD_GENRE(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
+   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname ,sign_board_name,boss_nickname) 
+   		REFERENCES ORGANIZATION(worker_nickname ,sign_board_name,boss_nickname) ON DELETE CASCADE
+);
+
+
+CREATE TABLE CHANGE_GENRE(
+   change_no NUMBER PRIMARY KEY,
+   change_name VARCHAR2(50) NOT NULL
+);
+
+CREATE TABLE CHANGE_MANAGEMENT(
+   change_management_no NUMBER PRIMARY KEY,
+   change_worker VARCHAR2(50) NOT NULL,
+   change_management_DATE DATE DEFAULT SYSDATE NOT NULL,
+   board_no NUMBER NOT NULL,
+   work_no NUMBER NOT NULL,
+   change_no NUMBER NOT NULL,
+   
+   CONSTRAINT fk_change_management_change_genre FOREIGN KEY(change_no) 
+   		REFERENCES CHANGE_GENRE(change_no) ON DELETE CASCADE,
+   CONSTRAINT fk_change_management_work FOREIGN KEY(work_no) 
+   		REFERENCES WORK(work_no)
+);
+
+-- INSERT MEMBER(테스트용 입니다.)
+INSERT INTO MEMBER VALUES('sync','kosta@naver.com', '1234');
 
 --board no : TODO(1) / DOING(2) / DONE(3)
-drop table board_genre;
-create table board_genre (
-   sign_board_name varchar2(50) not null,
-   board_no number not null,
-   boss_nickname varchar2(50) not null,
-   board_name varchar2(50) not null,
-   constraint fk_sign_board_pk_sign_board3 foreign key(sign_board_name, boss_nickname) references sign_board(sign_board_name, boss_nickname),
-   constraint pk_board_genre primary key(sign_board_name,board_no,boss_nickname)
-)
-
-drop sequence seq_work_no;
-create sequence seq_work_no;
-drop table work;
-create table work(
-   work_no number primary key,
-   work_name varchar2(50) not null,
-   work_details clob not null,
-   creation_date date default sysdate not null,
-   change_date date default sysdate not null,
-   board_no number not null,
-   worker_nickname varchar2(50) not null,
-   sign_board_name varchar2(50) not null,
-   boss_nickname varchar2(50) not null,
-    constraint fk_board_genre_pk_board_genre foreign key(board_no, sign_board_name, boss_nickname) references board_genre(board_no, sign_board_name, boss_nickname),
-    constraint fk_org_pk_organization foreign key(worker_nickname ,sign_board_name,boss_nickname) references organization(worker_nickname ,sign_board_name,boss_nickname)
-)
-
-drop table change_genre;
-create table change_genre(
-   change_no number primary key,
-   change_name varchar2(50) not null
-)
-
-drop sequence seq_change_management_no;
-create sequence seq_change_management_no;
-
-drop table change_management;
-create table change_management(
-   change_management_no number primary key,
-   change_worker varchar2(50) not null,
-   change_management_date date default sysdate not null,
-   board_no number not null,
-   work_no number not null,
-   change_no number not null,
-    constraint fk_change_genre_change_no foreign key(change_no) references change_genre(change_no),
-    constraint fk_work_work_no foreign key(work_no) references work(work_no)
-)
-
-
--- InvitationMngVO has a MemberVO ( composition )
-SELECT sb.sign_board_name, sb.boss_nickname, m.nickname, im.invitation_date
-FROM invitation_management im, member m, sign_board sb
-WHERE im.sign_board_name = sb.sign_board_name and im.boss_nickname = sb.boss_nickname and im.nickname = m.nickname;
-
--- BoardGenreVO has a WorkVO ( aggregation )
-SELECT bg.sign_board_name, bg.boss_nickname, bg.board_no, w.work_no, w.work_name, w.work_details, w.creation_date, w.change_date, o.worker_nickname
-FROM board_genre bg, work w, organization o
-WHERE bg.sign_board_name = w.sign_board_name and bg.board_no = w.board_no and bg.boss_nickname = w.boss_nickname 
-and o.worker_nickname = w.worker_nickname;
-
--- SignBoardVO has a MemberVO & has a BoardGenreVO
-SELECT sb.sign_board_name, sb.boss_nickname, sb.visibility, sb.creation_date, bg.board_name, m.nickname as boss_nickname
-FROM sign_board sb, board_genre bg, member m
-WHERE sb.sign_board_name = bg.sign_board_name and sb.boss_nickname = m.nickname;
-
--- ChangeMngVO has a ChangeGenreVO & has a WorkVO
-SELECT cm.change_management_no, cm.change_details, cm.change_management_date, cm.board_no, w.work_no, cg.change_no
-FROM change_management cm, change_genre cg, work w
-WHERE w.work_no = cm.work_no and cg.change_no = cm.change_no; 
-
--- WorkVO has a OrganizationVO
-SELECT w.work_name, w.work_details, w.creation_date, w.change_date, bg.board_no, o.worker_nickname, bg.sign_board_name 
-as bgboardname, bg.boss_nickname as bgboss, o.sign_board_name as o, o.boss_nickname as oboss
-FROM work w, organization o, board_genre bg
-WHERE w.board_no = bg.board_no and w.sign_board_name = bg.sign_board_name and w.boss_nickname = bg.boss_nickname 
-and w.worker_nickname = o.worker_nickname and w.sign_board_name = o.sign_board_name and w.boss_nickname = o.boss_nickname;
+-- INSERT BOARD_GENRE
