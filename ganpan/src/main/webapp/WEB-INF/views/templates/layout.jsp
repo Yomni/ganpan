@@ -27,14 +27,4 @@
 			<div id="footer">
 				<tiles:insertAttribute name="footer" />
 			</div>
-		<!-- Scripts -->
-			<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/assets/js/skel.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/assets/js/skel-viewport.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
-	</div>
-</body>
 </html>

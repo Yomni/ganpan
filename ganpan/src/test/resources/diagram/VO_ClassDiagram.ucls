@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.12" icons="true" automaticImage="PNG" always-add-relationships="false" 
+<class-diagram version="1.1.11" icons="true" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
   <class id="1" language="java" name="org.sync.ganpan.model.vo.ChangeGenreVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/ChangeGenreVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="190" x="-99" y="450"/>    
+    <position height="-1" width="-1" x="-32" y="642"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="org.sync.ganpan.model.vo.BoardGenreVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/BoardGenreVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="250" width="257" x="-3" y="956"/>    
+    <position height="-1" width="-1" x="216" y="1079"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   </class>  
   <class id="3" language="java" name="org.sync.ganpan.model.vo.MemberVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/MemberVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="59" y="1845"/>    
+    <position height="-1" width="-1" x="273" y="1879"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </class>  
   <class id="4" language="java" name="org.sync.ganpan.model.vo.ChangeMngVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/ChangeMngVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="394" width="386" x="16" y="16"/>    
+    <position height="-1" width="-1" x="225" y="213"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   </class>  
   <class id="5" language="java" name="org.sync.ganpan.model.vo.InvitationMngVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/InvitationMngVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="315" x="-358" y="956"/>    
+    <position height="-1" width="-1" x="-110" y="1070"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </class>  
   <class id="7" language="java" name="org.sync.ganpan.model.vo.SignBoardVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/SignBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="304" width="304" x="-31" y="1246"/>    
+    <position height="-1" width="-1" x="218" y="1448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,7 +67,7 @@
   </class>  
   <class id="8" language="java" name="org.sync.ganpan.model.vo.OrganizationVO" project="ganpan" 
     file="/ganpan/src/main/java/org/sync/ganpan/model/vo/OrganizationVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="275" x="347" y="1029"/>    
+    <position height="-1" width="-1" x="575" y="1116"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,84 +76,124 @@
   </class>  
   <association id="9">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="workVO"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
+      <attribute id="10" name="workVO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="12">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="13" name="changeGenreVO"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="15">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="16" name="bossMemberVO"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+    <bendpoint x="576" y="1659"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="13" name="memberVO">        
+        <position height="0" width="0" x="214" y="34"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="214" y="34"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="19" name="boardGenreVO"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
+  <association id="15">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="16" name="signBoardVO">        
+        <position height="0" width="0" x="97" y="50"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="97" y="50"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="19" name="bossMemberVO">        
+        <position height="0" width="0" x="214" y="34"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="214" y="34"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="21">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="22" name="signBoardVO"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="22" name="signBoardVO">        
+        <position height="0" width="0" x="97" y="50"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="97" y="50"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="24">    
-    <bendpoint x="366" y="1466"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="25" name="memberVO"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="25" name="organizationVO">        
+        <position height="0" width="0" x="91" y="-2"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="91" y="-2"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="27">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="28" name="signBoardVO"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="30">    
+    <bendpoint x="-110" y="1637"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="31" name="signBoardVO"/>      
-      <multiplicity id="32" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="33">    
-    <bendpoint x="-318" y="1318"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="34" name="workNickName"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
+      <attribute id="28" name="workNickName">        
+        <position height="0" width="0" x="214" y="34"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="214" y="34"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="36">    
+  <association id="30">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="37" name="organizationVO"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
+      <attribute id="31" name="boardGenreVO">        
+        <position height="0" width="0" x="91" y="-2"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="91" y="-2"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="34" name="changeGenreVO">        
+        <position height="0" width="0" x="-28" y="76"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-28" y="76"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="37" name="signBoardVO">        
+        <position height="0" width="0" x="97" y="50"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1">        
+        <position height="0" width="0" x="97" y="50"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
