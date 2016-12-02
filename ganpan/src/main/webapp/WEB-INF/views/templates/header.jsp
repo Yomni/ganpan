@@ -8,7 +8,7 @@
 			<div class="12u">
 				<!-- Logo -->
 				<h1>
-					<a href="${pageContext.request.contextPath}/home.do" id="logo">로고자리</a>
+					<a href="${pageContext.request.contextPath}/homeSignBoardList.do" id="logo">로고자리</a>
 				</h1>
 				<!-- Nav -->
 				<div>
