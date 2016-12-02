@@ -8,10 +8,10 @@
 			location.href="${pageContext.request.contextPath}/member/my_info_update.do";
 		});
 		$("#my_ganpan_list").click(function(){
-			location.href="${pageContext.request.contextPath}/member/my_ganpan_list.do";
+			location.href="${pageContext.request.contextPath}/mySignBoardList.do";
 		});
 		$("#my_join_ganpan_list").click(function(){
-			location.href="${pageContext.request.contextPath}/member/my_join_ganpan_list.do";
+			location.href="${pageContext.request.contextPath}/myJoinSignBoardList.do";
 		});
 		$("#leave").click(function(){
 			location.href="${pageContext.request.contextPath}/member/leave.do";

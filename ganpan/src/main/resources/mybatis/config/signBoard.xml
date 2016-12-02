@@ -30,13 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select count(*) from sign_board 
  		where sign_board_name=#{signBoardName} and boss_nickname=#{bossNickName}
  	</select>
- 	
-<!--  	<select id="allSignBoardList" resultMap="signBoardRM"> -->
-<!--  		SELECT sb.sign_board_name, m.nickname as boss_nickname -->
-<!-- 		FROM sign_board sb, member m -->
-<!-- 		WHERE sb.boss_nickname=m.nickname and sb.visibility = 0 and sb.sign_board_name=#{title} -->
-<!--  	</select> -->
- 	
+
  	<select id="mySignBoardList" resultMap="signBoardRM">
  		SELECT sign_board_name, boss_nickname
 		FROM sign_board
@@ -44,9 +38,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<select id="myJoinSignBoardList" resultMap="signBoardRM">
- 		SELECT sign_board_name, boss_nickname
+ 		SELECT sb.sign_board_name, sb.boss_nickname
 		FROM sign_board sb, organization o 
-		WHERE sb. boss_nickname = #{value}
+		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value}
+ 	</select>
+ 	
+ 	<select id="myPublicSignBoardList" resultMap="signBoardRM">
+ 		SELECT sign_board_name, boss_nickname
+		FROM sign_board
+		WHERE boss_nickname = #{value} and visibility = 0
+ 	</select>
+ 	
+ 	<select id="myPublicJoinSignBoardList" resultMap="signBoardRM">
+ 		SELECT sb.sign_board_name, sb.boss_nickname
+		FROM sign_board sb, organization o 
+		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value} and visibility = 0
+ 	</select>
+ 	
+ 	<select id="myPrivateSignBoardList" resultMap="signBoardRM">
+ 		SELECT sign_board_name, boss_nickname
+		FROM sign_board
+		WHERE boss_nickname = #{value} and visibility = 1
+ 	</select>
+ 	
+ 	<select id="myPrivateJoinSignBoardList" resultMap="signBoardRM">
+ 		SELECT sb.sign_board_name, sb.boss_nickname
+		FROM sign_board sb, organization o 
+		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value} and visibility = 1
  	</select>
  	
 </mapper>

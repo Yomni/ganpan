@@ -44,7 +44,7 @@ CREATE TABLE ORGANIZATION (
    CONSTRAINT fk_organization_worker FOREIGN KEY(worker_nickname) 
    		REFERENCES MEMBER(nickname) ON DELETE CASCADE,
    CONSTRAINT fk_organization_sing_board FOREIGN KEY(sign_board_name, boss_nickname) 
-   		REFERENCES SIGN_BOARD(boss_nickname,sign_board_name) ON DELETE CASCADE,
+   		REFERENCES SIGN_BOARD(sign_board_name, boss_nickname) ON DELETE CASCADE,
    CONSTRAINT pk_organization PRIMARY KEY(worker_nickname ,boss_nickname ,sign_board_name)
 );
 

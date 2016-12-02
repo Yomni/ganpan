@@ -30,76 +30,118 @@
 												<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
 												<li><a href="${pageContext.request.contextPath}/board/group_member_list.do">참여 구성원 보기</a></li>
 												<li><a href="${pageContext.request.contextPath}/board/ganpan_setting.do">간판 설정</a></li>
-<!-- 												<li><a href="#">Dis parturient montes</a></li> -->
-<!-- 												<li><a href="#">Nascetur ridiculus</a></li> -->
 											</ul>
 										</section>
-
 								</div>
+								
+								
+								
+								<div id="sample">
+									  <h3>GoJS Kanban Board</h3>
+									  <div id="myDiagramDiv" style="border: solid 1px gray; width:100%; height:500px;"></div>
+									  <p></p>
+									  <button id="SaveButton" onclick="save()">Save</button>
+									  <button onclick="load()">Load</button>
+									  Diagram Model saved in JSON format:
+									  <br>
+								</div>
+								
+								
+								
+								
+								
 								<div class="9u 12u(mobile) important(mobile)">
-
 									<!-- Main Content -->
 										<section>
 											<header>
-											<span style="display:inline-block; width:265px; background-color:#CCCC; text-align:center">
-												<h2>To Do</h2>
-											</span>
-											<span style="display:inline-block; width:265px; background-color:#CCCC; text-align:center">
-												<h2>Doing</h2>
-											</span>
-											<span style="display:inline-block; width:265px; background-color:#CCCC; text-align:center">
-												<h2>Done</h2>
-											</span>
+												<h2>내 간판 명</h2>
 											</header>
-											<span style="display:inline-block; width:265px; background-color:#CCCC">
-												<table border="1">
-													<tr>
-														<td>1</td>
-													</tr>
-													<tr>
-														<td>1</td>
-													</tr>
-												</table>
-											</span>
-											<span style="display:inline-block; width:265px; background-color:#CCCC">
-												<table border="1">
-													<tr>
-														<td>1</td><td>1</td><td>1</td><td>1</td>
-													</tr>
-													<tr>
-														<td>1</td><td>1</td><td>1</td><td>1</td>
-													</tr>
-												</table>
-											</span>
-											<span style="display:inline-block; width:265px; background-color:#CCCC">
-												<table border="1">
-													<tr>
-														<td>1</td><td>1</td><td>1</td><td>1</td>
-													</tr>
-													<tr>
-														<td>1</td><td>1</td><td>1</td><td>1</td>
-													</tr>
-												</table>
-											</span>
+											<section>
+											</section>
 											
-											<p>
-												문단1
-											</p>
-											<p>
-												문단2
-											</p>
-											<p>
-												문단3
-											</p>
-											<p>
-												문단4
-											</p>
-											<p>
-												문단5
-											</p>
+											
+											<div class="container-fluid">
+												<!-- 간판 레이아웃 -->
+										        <div id="sortableKanbanBoards" class="row">
+										            <div class="panel panel-primary kanban-col"  style="border: 1px solid black">
+										                <div class="panel-heading">
+										                    TODO
+										                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
+										                </div>
+										                <div class="panel-body">
+										                    <div id="TODO" class="kanban-centered">
+										                    	<!-- work -->
+										                        <article class="kanban-entry grab" id="item1" draggable="true">
+										                            <div class="kanban-entry-inner">
+										                                <div class="kanban-label">
+										                                    <p>work1</p>
+										                                </div>
+										                            </div>
+										                        </article>
+										                        
+										                    </div><!-- todo -->
+										                </div><!-- panel -->
+										                <div class="panel-footer">
+										                    <a href="#">Add a card...</a>
+										                </div>
+										            </div>
+										            
+										            <div class="panel panel-primary kanban-col"  style="border: 1px solid black">
+										                <div class="panel-heading">
+										                    DOING
+										                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
+										                </div>
+										                <div class="panel-body">
+										                    <div id="DOING" class="kanban-centered">
+										                    	<!-- work -->
+										                        <article class="kanban-entry grab" id="item1" draggable="true">
+										                            <div class="kanban-entry-inner">
+										                                <div class="kanban-label">
+										                                    <p>work1</p>
+										                                </div>
+										                            </div>
+										                        </article>
+										                        
+										                    </div><!-- todo -->
+										                </div><!-- panel -->
+										                <div class="panel-footer">
+										                    <a href="#">Add a card...</a>
+										                </div>
+										            </div>
+										            
+										            <div class="panel panel-primary kanban-col"  style="border: 1px solid black">
+										                <div class="panel-heading">
+										                    DONE
+										                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
+										                </div>
+										                <div class="panel-body">
+										                    <div id="DONE" class="kanban-centered">
+										                    	<!-- work -->
+										                        <article class="kanban-entry grab" id="item1" draggable="true">
+										                            <div class="kanban-entry-inner">
+										                                <div class="kanban-label">
+										                                    <p>work1</p>
+										                                </div>
+										                            </div>
+										                        </article>
+										                        
+										                    </div><!-- todo -->
+										                </div><!-- panel -->
+										                <div class="panel-footer">
+										                    <a href="#">Add a card...</a>
+										                </div>
+										            </div>
+										            
+										            
+										            
+										
+										        </div>
+   										 </div><!-- ganpan -->
+											
+											
+											
 										</section>
-
-								</div>
+								</div><!-- main content -->
 							</div>
 						</div>
 					</div>

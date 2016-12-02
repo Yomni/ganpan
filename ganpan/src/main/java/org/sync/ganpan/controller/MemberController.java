@@ -45,7 +45,6 @@ public class MemberController {
 	 */
 	@RequestMapping("registerResultView.do")
 	public ModelAndView registerResultView(String nickName) {
-		System.out.println(nickName);
 		MemberVO mvo = memberService.findMemberByNickName(nickName);
 		return new ModelAndView("member/register_result", "mvo", mvo);
 	}
@@ -96,10 +95,10 @@ public class MemberController {
 		System.out.println(mvo2);
 		if (mvo != null) {
 			request.getSession().setAttribute("mvo", mvo);
-			return "redirect:home.do";
+			return "redirect:homeSignBoardList.do";
 		} else if(mvo2 != null){
 			request.getSession().setAttribute("mvo", mvo2);
-			return "redirect:home.do";
+			return "redirect:homeSignBoardList.do";
 		} else{
 			return "redirect:member/login_fail.do";
 		}
