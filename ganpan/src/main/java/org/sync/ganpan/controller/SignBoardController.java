@@ -33,8 +33,10 @@ public class SignBoardController {
 	@RequestMapping("findSignBoardListByTitle.do")
 	public ModelAndView findSignBoardListByTitle(String title) {
 		List<SignBoardVO> sbList = signBoardService.findSignBoardListByTitle(title);
-		System.out.println(sbList);
-		return new ModelAndView("board/search_result", "sbList", sbList);
+		if(sbList.isEmpty())
+			return new ModelAndView("board/search_result_fail");
+		else
+			return new ModelAndView("board/search_result", "sbList", sbList);
 	}
 	
 	/**
