@@ -31,4 +31,19 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		template.insert("signBoard.createNewGanpan",map);
 	}
 
+	@Override
+	public List<SignBoardVO> allSignBoardList(String nickName) {
+		return template.selectList("signBoard.allSignBoardList", nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> mySignBoardList(String nickName) {
+		return template.selectList("signBoard.mySignBoardList", nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
+		return template.selectList("signBoard.myJoinSignBoardList", nickName);
+	}
+
 }

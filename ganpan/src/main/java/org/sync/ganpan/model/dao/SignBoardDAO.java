@@ -13,4 +13,10 @@ public interface SignBoardDAO {
 
 	void createNewGanpan(HashMap<String, Object> map);
 
+	List<SignBoardVO> allSignBoardList(String nickName);
+
+	List<SignBoardVO> mySignBoardList(String nickName);
+
+	List<SignBoardVO> myJoinSignBoardList(String nickName);
+
 }
