@@ -1,8 +1,9 @@
 -- DROP TABLE
 DROP TABLE CHANGE_MANAGEMENT;
 DROP TABLE CHANGE_GENRE;
-DROP TABLE WORK;
 DROP TABLE INVITATION_MANAGEMENT;
+DROP TABLE WORK;
+DROP TABLE HAVE_BOARD;
 DROP TABLE BOARD_GENRE;
 DROP TABLE ORGANIZATION;
 DROP TABLE SIGN_BOARD;
@@ -53,24 +54,29 @@ CREATE TABLE INVITATION_MANAGEMENT (
    nickname VARCHAR2(50) NOT NULL,
    invitation_date DATE DEFAULT SYSDATE NOT NULL,
    
-   CONSTRAINT fk_invitation_management_nickname FOREIGN KEY(nickname) 
+   CONSTRAINT fk_invitation_management FOREIGN KEY(nickname) 
    		REFERENCES MEMBER(nickname) ON DELETE CASCADE,
-   CONSTRAINT fk_invitation_management_sign_board FOREIGN KEY(sign_board_name, boss_nickname) 
+   CONSTRAINT fk_invitation_management_sign FOREIGN KEY(sign_board_name, boss_nickname) 
    		REFERENCES SIGN_BOARD(sign_board_name, boss_nickname) ON DELETE CASCADE,
    CONSTRAINT pk_invitation_management PRIMARY KEY(sign_board_name, boss_nickname,nickname)
 );
-
+	
 CREATE TABLE BOARD_GENRE (
+	BOARD_NO NUMBER PRIMARY KEY,
+	BOARD_NAME VARCHAR2(50) NOT NULL
+);
+
+CREATE TABLE HAVE_BOARD (
    sign_board_name VARCHAR2(50) NOT NULL,
    board_no NUMBER NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
-   board_name VARCHAR2(50) NOT NULL,
    
-   CONSTRAINT fk_board_genre_sign_board FOREIGN KEY(sign_board_name, boss_nickname) 
+   CONSTRAINT fk_HAVE_BOARD_sign_board FOREIGN KEY(sign_board_name, boss_nickname) 
    		REFERENCES SIGN_BOARD(sign_board_name, boss_nickname) ON DELETE CASCADE,
-   CONSTRAINT pk_board_genre PRIMARY KEY(sign_board_name,board_no,boss_nickname)
+   CONSTRAINT fk_have_board_genre FOREIGN KEY(board_no) 
+   		REFERENCES BOARD_GENRE(board_no) ON DELETE CASCADE,
+   CONSTRAINT pk_HAVE_BOARD PRIMARY KEY(sign_board_name,board_no,boss_nickname)
 );
-INSERT INTO 
 
 CREATE TABLE WORK(
    work_no NUMBER PRIMARY KEY,
@@ -82,8 +88,8 @@ CREATE TABLE WORK(
    sign_board_name VARCHAR2(50) NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
    
-   CONSTRAINT fk_work_board_genre FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
-   		REFERENCES BOARD_GENRE(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
+   CONSTRAINT fk_work_HAVE_BOARD FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
+   		REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
    CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname ,sign_board_name,boss_nickname) 
    		REFERENCES ORGANIZATION(worker_nickname ,sign_board_name,boss_nickname) ON DELETE CASCADE
 );
@@ -102,7 +108,7 @@ CREATE TABLE CHANGE_MANAGEMENT(
    work_no NUMBER NOT NULL,
    change_no NUMBER NOT NULL,
    
-   CONSTRAINT fk_change_management_change_genre FOREIGN KEY(change_no) 
+   CONSTRAINT fk_change_management_change FOREIGN KEY(change_no) 
    		REFERENCES CHANGE_GENRE(change_no) ON DELETE CASCADE,
    CONSTRAINT fk_change_management_work FOREIGN KEY(work_no) 
    		REFERENCES WORK(work_no)
@@ -111,5 +117,11 @@ CREATE TABLE CHANGE_MANAGEMENT(
 -- INSERT MEMBER(테스트용 입니다.)
 INSERT INTO MEMBER VALUES('sync','kosta@naver.com', '1234');
 
---board no : TODO(1) / DOING(2) / DONE(3)
 -- INSERT BOARD_GENRE
+INSERT INTO BOARD_GENRE VALUES(1, 'TO_DO');
+INSERT INTO BOARD_GENRE VALUES(2, 'DOING');
+INSERT INTO BOARD_GENRE VALUES(3, 'DONE');
+
+-- TEST SELECT
+SELECT * FROM MEMBER;
+SELECT * FROM BOARD_GENRE;
