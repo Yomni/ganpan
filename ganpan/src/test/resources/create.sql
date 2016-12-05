@@ -81,6 +81,7 @@ CREATE TABLE HAVE_BOARD (
 CREATE TABLE WORK(
    work_no NUMBER PRIMARY KEY,
    work_name VARCHAR2(50) NOT NULL,
+   work_details clob not null,
    creation_DATE DATE DEFAULT SYSDATE NOT NULL,
    change_DATE DATE DEFAULT SYSDATE NOT NULL,
    board_no NUMBER NOT NULL,
@@ -89,9 +90,9 @@ CREATE TABLE WORK(
    boss_nickname VARCHAR2(50) NOT NULL,
    
    CONSTRAINT fk_work_HAVE_BOARD FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
-   		REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
-   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname ,sign_board_name,boss_nickname) 
-   		REFERENCES ORGANIZATION(worker_nickname ,sign_board_name,boss_nickname) ON DELETE CASCADE
+         REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
+   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname, sign_board_name, boss_nickname) 
+         REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname) ON DELETE CASCADE
 );
 
 
