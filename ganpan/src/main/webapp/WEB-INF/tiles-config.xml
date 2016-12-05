@@ -13,6 +13,12 @@
 		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
 	</definition>
+	<definition name="home_login" template="/WEB-INF/views/templates/layout_3part.jsp">
+		<put-attribute name="title" value="sync" />
+		<put-attribute name="header" value="/WEB-INF/views/templates/header_login.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
+		<put-attribute name="main" value="/WEB-INF/views/home_login.jsp" />
+	</definition>
 	<definition name="home_left" template="/WEB-INF/views/templates/layout_4part.jsp">
 		<put-attribute name="title" value="sync" />
 		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
