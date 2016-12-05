@@ -3,6 +3,7 @@ package org.sync.ganpan.model.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardDAO {
@@ -28,5 +29,7 @@ public interface SignBoardDAO {
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
 	List<SignBoardVO> showContentList(SignBoardVO svo);
-
+	
+	List<OrganizationVO> getGroupList(String nickName);
+	/*List<OrganizationVO> getGroupList(String ganpan);*/
 }

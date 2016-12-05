@@ -3,6 +3,7 @@ package org.sync.ganpan.model.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardService {
@@ -22,5 +23,7 @@ public interface SignBoardService {
 	List<SignBoardVO> showContentList(SignBoardVO svo);
 	
 	HashMap<String, List> homeSignBoardList(String nickName);
-
+	
+	List<OrganizationVO> getGroupList(String nickName);
+/*	List<OrganizationVO> getGroupList(String ganpan);*/
 }

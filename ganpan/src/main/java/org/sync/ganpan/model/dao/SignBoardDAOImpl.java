@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 @Repository
@@ -70,7 +72,13 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<SignBoardVO> showContentList(SignBoardVO svo) {
 		return template.selectList("signBoard.showContentList",svo);
 	}
-	
-
+/*	@Override
+	public List<OrganizationVO> getGroupList(String ganpan) {
+		return template.selectList("signBoard.getGroupList",ganpan);
+	}	*/
+	@Override
+	public List<OrganizationVO> getGroupList(String nickName) {
+		return template.selectList("signBoard.getGroupList",nickName);
+	}
 }//class
 

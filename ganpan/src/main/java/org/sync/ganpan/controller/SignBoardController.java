@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 
@@ -134,7 +135,21 @@ public class SignBoardController {
 
 		return new ModelAndView("board/viewGanpan");
 	}
+	/**
+	 * 구성원 보기
+	 * @author 민서
+	 */
+/*	@RequestMapping("group_member_list.do")
+	public ModelAndView getGroupList(String ganpan) {
+		List<OrganizationVO> oList = signBoardService.getGroupList(ganpan);
+		System.out.println(oList);
+		return new ModelAndView("board/group_member_list", "oList", oList);
+	}*/
 	
-	
-	
+	@RequestMapping("group_member_list.do")
+	public ModelAndView getGroupList(HttpSession session) {
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		List<OrganizationVO> oList = signBoardService.getGroupList(mvo.getNickName());
+		return new ModelAndView("board/group_member_list");
+	}
 }//class

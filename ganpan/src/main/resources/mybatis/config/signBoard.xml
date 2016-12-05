@@ -67,16 +67,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value} and visibility = 1
  	</select>
  	
- 	<select id="showContentList" parameterType="svo">
+ 	<!-- <select id="showContentList" parameterType="svo">
  		SELECT work_no,work_name,worker_nicname
  		FROM work
  		WHERE 
  		signBoardName, boss_nick_name
+ 	</select> -->
  	
  	
+ 	 	<select id="getGroupList" resultMap="signBoardRM" parameterType="String">
+ 		SELECT worker_nickname
+		FROM organization 
+		WHERE boss_nickname=#{value} and sign_board_name=#{value}
  	</select>
  	
- 	
+ 	 		<!-- <select id="getGroupList" resultMap="signBoardRM">
+ 		SELECT sign_board_name, boss_nickname
+		FROM sign_board
+		WHERE boss_nickname = #{value}
+		
+		
+ 	</select> -->
 </mapper>
 
 
