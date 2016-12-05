@@ -21,13 +21,12 @@
 	</definition>
 	
 	<!-- 상속받아 변경부분만 재정의한다  -->
-	<!-- <definition name="page/*" extends="form">
-		<put-attribute name="title" value="{2}" />
-		<put-attribute name="main" value="/WEB-INF/views/page/{2}.jsp" />
-	</definition> -->
-	
+	<definition name="member/*" extends="home">
+        <put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
+    </definition>
+    
 	<!-- {디렉토리명}/{view이름} --><!-- home을 제외한 다른 페이지들을 관리함 -->
-	<definition name="member/*" extends="home_left">
+	<definition name="member/my_info/*" extends="home_left">
 		<put-attribute name="left" value="/WEB-INF/views/member/left.jsp" />
         <put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
     </definition>
