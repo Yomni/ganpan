@@ -20,12 +20,12 @@ public class SignBoardVO {
 		this.creationDate = creationDate;
 	}
 	
-	public SignBoardVO(String signBoardName, String bossNickname) {
+	public SignBoardVO(String signBoardName, String bossNickName) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = new MemberVO();
-		this.bossMemberVO.setNickName(bossNickname);
-	}//SignBaordController -> WorkVO -> HaveBoardVO -> SignBoardVO
+		this.bossMemberVO.setNickName(bossNickName);
+	}
 	
 	public String getSignBoardName() {
 		return signBoardName;

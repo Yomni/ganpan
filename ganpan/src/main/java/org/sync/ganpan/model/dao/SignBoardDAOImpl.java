@@ -72,6 +72,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		System.out.println("SignBoardDAOImpl wvo : "+svo);
 		return template.selectList("work.showContentList",svo);
 	}
+
+	@Override
+	public SignBoardVO ganpanSetting(SignBoardVO svo) {
+		return template.selectOne("signBoard.ganpanSetting",svo);
+	}
 	
 
 }//class

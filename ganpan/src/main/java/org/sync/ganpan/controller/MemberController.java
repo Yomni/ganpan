@@ -33,8 +33,9 @@ public class MemberController {
 	 * @param mvo
 	 */
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	public String registerMember(MemberVO mvo) {
+	public String registerMember(MemberVO mvo, HttpServletRequest request) {
 		memberService.registerMember(mvo);
+		request.getSession().setAttribute("mvo", mvo);
 		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
 	}
 	
