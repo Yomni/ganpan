@@ -1,10 +1,19 @@
 package org.sync.ganpan.model.vo;
 
+import java.util.ArrayList;
+
 public class SignBoardVO {
 	private String signBoardName;
 	private MemberVO bossMemberVO;
+	private ArrayList<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
 	private boolean visibility;
 	private String creationDate;
+	
+	public SignBoardVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	//SignBoardVO 강한 has a MemberVO(nickName)
 	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, boolean visibility, String creationDate) {
 		super();

@@ -12,7 +12,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#about">소개</a></li>
+				<li><a href="${pageContext.request.contextPath}/goboard/guide.do">소개</a></li>
 				<%-- dropdown 버튼일단 추후 보정 --%>
 				<%--  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -36,8 +36,8 @@
 						</span>
 					</div>
 				</form>
-				<a class="btn btn-primary navbar-btn">들어가기</a>
-				<a class="btn btn-success navbar-btn">회원가입</a>
+				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/gomember/login_form.do">들어가기</a>
+				<a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/gomember/register_form.do">회원가입</a>
 			</span>
 		</div>
 		<!--/.nav-collapse -->

@@ -40,17 +40,20 @@
 <script type="text/javascript">
 	$(function() {
 		$("#registerBtn").click(function() {
-			if($("#nickName").val().trim() == "") {
+			var nickName = $("#nickName").val().trim();
+			var eMail = $("#eMail").val().trim();
+			var password = $("#password").val().trim();
+			if(nickName == "") {
 				alert("별명을 입력하세요!");
 				$("#nickName").focus();
 				return false;
 			}
-			if($("#eMail").val().trim() == "") {
+			if(eMail == "") {
 				alert("전자우편을 입력하세요!");
 				$("#eMail").focus();
 				return false;
 			}
-			if($("#password").val().trim() == "") {
+			if(password == "") {
 				alert("비밀번호을 입력하세요!");
 				$("#password").focus();
 				return false;

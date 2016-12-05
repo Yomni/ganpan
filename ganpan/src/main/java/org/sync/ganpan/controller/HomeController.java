@@ -21,11 +21,6 @@ public class HomeController {
 		return viewName;
 	}
 
-	public HomeController() {
-		super();
-		System.out.println("homecontroller 생성");
-	}
-
 	@RequestMapping("go{dirName}/{viewName}.do")
 	public String showView(@PathVariable String dirName, @PathVariable String viewName) {
 		System.out.println("@PathVariable:" + dirName + "/" + viewName);
