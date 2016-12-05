@@ -14,28 +14,24 @@ public class HomeController {
 	 * 없으면 
 	 * @PathVariable 적용 메서드가 실행된다 
 	 */
-	
-	@RequestMapping("{viewName}.do")
+
+	@RequestMapping("go_{viewName}.do")
 	public String showView(@PathVariable String viewName) {
 		System.out.println("@PathVariable:" + viewName);
 		return viewName;
 	}
 
-	public HomeController() {
-		super();
-		System.out.println("homecontroller 생성");
-	}
-
-	@RequestMapping("{dirName}/{viewName}.do")
+	@RequestMapping("go_{dirName}/{viewName}.do")
 	public String showView(@PathVariable String dirName, @PathVariable String viewName) {
 		System.out.println("@PathVariable:" + dirName + "/" + viewName);
-		return dirName + "/" + viewName;	
+		return dirName + "/" + viewName;
 	}
 
-	@RequestMapping("member/admin/{viewName}.do")
-	public String showAdminLoginForm(@PathVariable String viewName) {
-		System.out.println("@PathVariable showAdminLoginForm");
-		return "member/admin/" + viewName;
+	@RequestMapping("go_{dirName1}/{dirName2}/{viewName}.do")
+	public String showView(@PathVariable String dirName1, @PathVariable String dirName2,
+			@PathVariable String viewName) {
+		System.out.println("@PathVariable:" + dirName1 + "/" + dirName2 + "/" + viewName);
+		return dirName1 + "/" + dirName2 + "/" + viewName;
 	}
 	
 }

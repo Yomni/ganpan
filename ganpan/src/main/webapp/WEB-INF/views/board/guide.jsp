@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <h2>환영합니다 ! </h2><br>
 <h5>■ 간판(칸반)이란</h5><br>
 간판(칸반)이란 생산시스템의 생산흐름을 통제하기 위하여 사용되는 마분지 카드를 의미한다. 여기에는 부품에 대한 정보가 기록된다. <br>
@@ -25,5 +18,3 @@ Stormpath는 코드 품질을 매우 중요하게 생각했기 때문에, 이렇
 •이름이 부여된 열을 사용하여 각 항목이 작업 흐름의 어디에 있는지 표시한다<br>
 •WIP(작업 중인 일) 개수를 제한하라. 각 작업 흐름 상태(단계)별로 작업 중인 항목을 얼마나 허용할 것인지 확실한 수치를 부여한다<br>
 •리드 타임(한 항목을 완료하는 데 소요되는 평균 시간)을 측정하고, 리드 타임을 가능한 한 짧고 예측 가능하게 만들 수 있도록 프로세스를 최적화한다
-</body>
-</html>

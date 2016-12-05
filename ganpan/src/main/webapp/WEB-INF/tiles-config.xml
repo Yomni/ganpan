@@ -7,36 +7,38 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
 <tiles-definitions>
 	<!-- Definition => viewName -->
-	<definition name="home" template="/WEB-INF/views/templates/layout.jsp">
+	<definition name="home" template="/WEB-INF/views/templates/layout_3part.jsp">
 		<put-attribute name="title" value="sync" />
 		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
-		<put-attribute name="banner" value="/WEB-INF/views/templates/banner.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
 	</definition>
-	<definition name="form" template="/WEB-INF/views/templates/form.jsp">
+	<definition name="home_login" template="/WEB-INF/views/templates/layout_3part.jsp">
+		<put-attribute name="title" value="sync" />
+		<put-attribute name="header" value="/WEB-INF/views/templates/header_login.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
+		<put-attribute name="main" value="/WEB-INF/views/home_login.jsp" />
+	</definition>
+	<definition name="home_left" template="/WEB-INF/views/templates/layout_4part.jsp">
 		<put-attribute name="title" value="sync" />
 		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
-	</definition>	
+		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
+	</definition>
 	
 	<!-- 상속받아 변경부분만 재정의한다  -->
-	<!-- <definition name="page/*" extends="form">
-		<put-attribute name="title" value="{2}" />
-		<put-attribute name="main" value="/WEB-INF/views/page/{2}.jsp" />
-	</definition> -->
-	
-	<!-- {디렉토리명}/{view이름} --><!-- home을 제외한 다른 페이지들을 관리함 -->
-	<definition name="*/*" extends="form">
-        <put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp" />
-        <put-attribute name="title" value="{2}" />
+	<definition name="member/*" extends="home">
+        <put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
     </definition>
     
-    <!-- {디렉토리명}/{디렉토리명}/{view이름} -->
-	<definition name="member/admin/*" extends="home">
-		<put-attribute name="header" value="/WEB-INF/views/templates/admin/header.jsp" />
-        <put-attribute name="main" value="/WEB-INF/views/member/admin/{1}.jsp" />        
-        <put-attribute name="title" value="{1}" />
+	<!-- 상속받아 변경부분만 재정의한다  -->
+	<definition name="board/*" extends="home">
+        <put-attribute name="main" value="/WEB-INF/views/board/{1}.jsp" />
+    </definition>
+    
+	<!-- {디렉토리명}/{view이름} --><!-- home을 제외한 다른 페이지들을 관리함 -->
+	<definition name="member/my_info/*" extends="home_left">
+		<put-attribute name="left" value="/WEB-INF/views/member/left.jsp" />
+        <put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
     </definition>
 </tiles-definitions>

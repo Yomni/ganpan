@@ -1,8 +1,11 @@
 package org.sync.ganpan.model.vo;
 
+import java.util.ArrayList;
+
 public class SignBoardVO {
 	private String signBoardName;
 	private MemberVO bossMemberVO;
+	private ArrayList<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
 	private boolean visibility;
 	private String creationDate;
 	
@@ -12,21 +15,23 @@ public class SignBoardVO {
 	}
 
 	//SignBoardVO 강한 has a MemberVO(nickName)
-	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, boolean visibility, String creationDate) {
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, ArrayList<HaveBoardVO> boardList,
+			boolean visibility, String creationDate) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = bossMemberVO;
+		this.boardList = boardList;
 		this.visibility = visibility;
 		this.creationDate = creationDate;
 	}
 	
-	public SignBoardVO(String signBoardName, String bossNickname) {
+	public SignBoardVO(String signBoardName, String bossNickName) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = new MemberVO();
-		this.bossMemberVO.setNickName(bossNickname);
+		this.bossMemberVO.setNickName(bossNickName);
 	}
-	
+
 	public String getSignBoardName() {
 		return signBoardName;
 	}
@@ -41,6 +46,14 @@ public class SignBoardVO {
 
 	public void setBossMemberVO(MemberVO bossMemberVO) {
 		this.bossMemberVO = bossMemberVO;
+	}
+
+	public ArrayList<HaveBoardVO> getBoardList() {
+		return boardList;
+	}
+
+	public void setBoardList(ArrayList<HaveBoardVO> boardList) {
+		this.boardList = boardList;
 	}
 
 	public boolean isVisibility() {
@@ -61,8 +74,9 @@ public class SignBoardVO {
 
 	@Override
 	public String toString() {
-		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", visibility="
-				+ visibility + ", creationDate=" + creationDate + "]";
+		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", boardList="
+				+ boardList + ", visibility=" + visibility + ", creationDate=" + creationDate + "]";
 	}
+	
 
 }// class SignBoardVO
