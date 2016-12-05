@@ -1,38 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!-- Header -->
-<div id="header-wrapper">
-	<header id="header" class="container">
-		<div class="row">
-			<div class="12u">
-				<!-- Logo -->
-				<h1>
-					<a href="${pageContext.request.contextPath}/homeSignBoardList.do" id="logo">로고자리</a>
-				</h1>
-				<!-- Nav -->
-				<div>
-					<nav id="nav">
-						<form action="findSignBoardListByTitle.do" class="form-inline">
-							<input type="text" class="form-control" name="title" placeholder="검색어 입력">
-							<button type="submit" class="btn btn-default">검색</button>
-						</form>
-						<c:choose>
-							<c:when test="${empty sessionScope.mvo}">
-								<a href="${pageContext.request.contextPath}/member/loginForm.do">들어가기</a>
-								<a href="${pageContext.request.contextPath}/member/registerForm.do">회원가입</a>
-							</c:when>
-							<c:otherwise>
-					  	  			${mvo.nickName}님 환영^^
-									<a href="${pageContext.request.contextPath}/member/my_info.do">내정보</a>
-								<a href="${pageContext.request.contextPath}/logout.do">나가기</a>
-								<a href="${pageContext.request.contextPath}/board/ganpan.do">내 간판</a>
-							</c:otherwise>
-						</c:choose>
-						<a href="${pageContext.request.contextPath}/home.do">처음으로</a> <a href="${pageContext.request.contextPath}/board/guide.do">소개글</a> <a href="${pageContext.request.contextPath}/page/threecolumn.do">(양쪽에 메뉴)</a> <a href="${pageContext.request.contextPath}/page/twocolumn_left.do">(왼쪽에 메인)</a> <a href="${pageContext.request.contextPath}/page/twocolumn_right.do">(오른쪽 메인)</a>
-					</nav>
-				</div>
-			</div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<%-- 홈화면 가는 icon삽입 --%>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/gohome.do"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
 		</div>
-	</header>
-</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="${pageContext.request.contextPath}/goboard/guide.do">소개</a></li>
+				<%-- dropdown 버튼일단 추후 보정 --%>
+				<%--  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">Nav header</li>
+						<li><a href="#">Separated link</a></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul></li> --%>
+			</ul>
+			<span class="pull-right">
+				<form action="searchGanpan.do" method="get" class="navbar-form navbar-left" role="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="간판명으로 검색"> 
+						<span class="input-group-btn">
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+						</span>
+					</div>
+				</form>
+				<c:choose>
+                     <c:when test="${empty sessionScope.mvo}">
+                        <a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/gomember/login_form.do">들어가기</a>
+                        <a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/gomember/register_form.do">회원가입</a>
+                     </c:when>
+                     <c:otherwise>
+                               ${mvo.nickName}님 환영^^
+                           <a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/gomember/my_info.do">내정보</a>
+                        <a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a>
+                        <a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/showContentList.do">내 간판</a>
+                     </c:otherwise>
+                  </c:choose>
+			</span>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+	<!-- container -->
+</nav>
+<!-- navbar -->

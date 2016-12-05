@@ -1,8 +1,11 @@
 package org.sync.ganpan.model.vo;
 
+import java.util.ArrayList;
+
 public class SignBoardVO {
 	private String signBoardName;
 	private MemberVO bossMemberVO;
+	private ArrayList<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
 	private boolean visibility;
 	private String creationDate;
 	
