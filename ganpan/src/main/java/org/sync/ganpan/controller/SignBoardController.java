@@ -15,7 +15,6 @@ import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
-
 /**
  * 간판을 위해 설정하는 Controller
  * @author JYM
@@ -134,7 +133,5 @@ public class SignBoardController {
 
 		return new ModelAndView("board/viewGanpan");
 	}
-	
-	
 	
 }//class
