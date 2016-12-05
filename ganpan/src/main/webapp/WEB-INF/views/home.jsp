@@ -12,9 +12,12 @@
 			<!-- col-md-6 -->
 
 			<div class="col-md-6">
-				<input type="text" class="form-control" id="inputEmail3" placeholder="별명"><br>
-				<input type="email" class="form-control" id="inputEmail3" placeholder="전자우편"><br>
-				<input type="password" class="form-control" id="inputEmail3" placeholder="비밀번호"><br>
+				<input type="text" class="form-control" id="inputEmail3" placeholder="별명">
+				<br>
+				<input type="email" class="form-control" id="inputEmail3" placeholder="전자우편">
+				<br>
+				<input type="password" class="form-control" id="inputEmail3" placeholder="비밀번호">
+				<br>
 				<button type="submit" class="btn btn-default btn-success btn-block">가입하기</button>
 			</div>
 			<!-- col-md-6 -->

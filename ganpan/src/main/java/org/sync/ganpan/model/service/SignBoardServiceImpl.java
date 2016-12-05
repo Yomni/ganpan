@@ -34,4 +34,42 @@ public class SignBoardServiceImpl implements SignBoardService {
 		signBoardDAO.createNewGanpan(map);
 	}
 
+	@Override
+	public List<SignBoardVO> allSignBoardList(String nickName) {
+		return signBoardDAO.allSignBoardList(nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> mySignBoardList(String nickName) {
+		return signBoardDAO.mySignBoardList(nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
+		return signBoardDAO.myJoinSignBoardList(nickName);
+	}
+	
+	public HashMap<String, List> homeSignBoardList(String nickName) {
+		HashMap<String, List> sbMap = new HashMap<String, List>();
+		List<SignBoardVO> allList = signBoardDAO.mySignBoardList(nickName);
+		List<SignBoardVO> allList2 = signBoardDAO.myJoinSignBoardList(nickName);
+		allList.addAll(allList2);
+		sbMap.put("allList", allList);
+		List<SignBoardVO> publicList = signBoardDAO.myPublicSignBoardList(nickName);
+		List<SignBoardVO> publicList2 = signBoardDAO.myPublicJoinSignBoardList(nickName);
+		publicList.addAll(publicList2);
+		sbMap.put("publicList", publicList);
+		List<SignBoardVO> privateList = signBoardDAO.myPrivateSignBoardList(nickName);
+		List<SignBoardVO> privateList2 = signBoardDAO.myPrivateJoinSignBoardList(nickName);
+		privateList.addAll(privateList2);
+		sbMap.put("privateList", privateList);
+		return sbMap;
+	}
+	
+	
+	@Override
+	public List<SignBoardVO> showContentList(SignBoardVO svo) {
+		return signBoardDAO.showContentList(svo);
+	}
+
 }

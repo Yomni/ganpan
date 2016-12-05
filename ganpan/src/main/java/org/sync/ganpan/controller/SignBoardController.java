@@ -33,8 +33,10 @@ public class SignBoardController {
 	@RequestMapping("findSignBoardListByTitle.do")
 	public ModelAndView findSignBoardListByTitle(String title) {
 		List<SignBoardVO> sbList = signBoardService.findSignBoardListByTitle(title);
-		System.out.println(sbList);
-		return new ModelAndView("board/search_result", "sbList", sbList);
+		if(sbList.isEmpty())
+			return new ModelAndView("board/search_result_fail");
+		else
+			return new ModelAndView("board/search_result", "sbList", sbList);
 	}
 	
 	/**
@@ -73,4 +75,66 @@ public class SignBoardController {
 		return (count == 0) ? "ok" : "fail";
 	}
 	
-}
+	/**
+	 * 소유 간판 보기
+	 * @author 주선, 민영
+	 */
+	@RequestMapping("mySignBoardList.do")
+	public ModelAndView mySignBoardList(HttpSession session) {
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName());
+		if(sbList.isEmpty())
+			return new ModelAndView("member/my_ganpan_list_fail");
+		else
+			return new ModelAndView("member/my_ganpan_list", "sbList", sbList);
+	}
+
+	/**
+	 * 참여 간판 보기
+	 * @author 주선, 민영
+	 */
+	@RequestMapping("myJoinSignBoardList.do")
+	public ModelAndView myJoinSignBoardList(HttpSession session) {
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		List<SignBoardVO> sbList = signBoardService.myJoinSignBoardList(mvo.getNickName());
+		if(sbList.isEmpty())
+			return new ModelAndView("member/my_join_ganpan_list_fail");
+		else
+		return new ModelAndView("member/my_join_ganpan_list", "sbList", sbList);
+	}
+	
+	/**
+	 * 홈에서 보여지는
+	 * 간판 리스트 보기(all, public, private)
+	 * @author 주선, 민영
+	 */
+	@RequestMapping("homeSignBoardList.do")
+	public ModelAndView homeSignBoardList(HttpSession session) {
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		String nickName = mvo.getNickName();
+		HashMap<String, List> sbMap = signBoardService.homeSignBoardList(nickName);
+		return new ModelAndView("home", "sbMap", sbMap);
+	}
+	
+	/**
+	 * 간판 내용 보기(작업들)
+	 * @author 동혁
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("showContentList.do")
+	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
+		System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
+		System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
+		String signBoardName = request.getParameter("signBoardName");
+		String bossNickName = request.getParameter("bossNickName");
+		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
+		List<SignBoardVO> sblist = signBoardService.showContentList(svo);
+		System.out.println("SignBoardController sesseion 값 : " + session.getAttribute("mvo"));
+
+		return new ModelAndView("board/viewGanpan");
+	}
+	
+	
+	
+}//class

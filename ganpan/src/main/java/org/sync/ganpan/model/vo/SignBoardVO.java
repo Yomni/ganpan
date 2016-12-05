@@ -13,12 +13,12 @@ public class SignBoardVO {
 		this.visibility = visibility;
 		this.creationDate = creationDate;
 	}
-
-	public SignBoardVO(String signBoardName, String boss_nickname) {
+	
+	public SignBoardVO(String signBoardName, String bossNickname) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = new MemberVO();
-		this.bossMemberVO.setNickName(boss_nickname);
+		this.bossMemberVO.setNickName(bossNickname);
 	}
 	
 	public String getSignBoardName() {

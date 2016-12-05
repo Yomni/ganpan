@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<input type="button" class="action" id="ganpanGuideBtn" value="간판사용안내" />
-<input type="button" class="action" id="createBtn" value="간판 만들기"> 
-<script type="text/javascript">
-$(document).ready(function(){
-   $("#createBtn").click(function(){ 
-      location.href="${pageContext.request.contextPath}/board/create_new_ganpan.do";
-   });
-   $("#ganpanGuideBtn").click(function(){ 
-      location.href="${pageContext.request.contextPath}/board/guide.do";
-   });
-});
-</script>
+<h3>${mvo.nickName}님 회원가입 축하</h3>
+<a href="${pageContext.request.contextPath}/board/guide.do" class="button-big">간판 사용 안내</a>
+<a href="${pageContext.request.contextPath}/board/create_new_ganpan.do" class="button-big">간판 만들기</a>

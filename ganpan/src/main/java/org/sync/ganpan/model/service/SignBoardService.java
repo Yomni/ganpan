@@ -12,5 +12,15 @@ public interface SignBoardService {
 	int titleCheck(HashMap<String, String> map);
 
 	void createNewGanpan(HashMap<String, Object> map);
+	
+	List<SignBoardVO> allSignBoardList(String nickName);
+
+	List<SignBoardVO> mySignBoardList(String nickName);
+
+	List<SignBoardVO> myJoinSignBoardList(String nickName);
+
+	List<SignBoardVO> showContentList(SignBoardVO svo);
+	
+	HashMap<String, List> homeSignBoardList(String nickName);
 
 }

@@ -95,10 +95,10 @@ public class MemberController {
 		System.out.println(mvo2);
 		if (mvo != null) {
 			request.getSession().setAttribute("mvo", mvo);
-			return "redirect:home.do";
+			return "redirect:homeSignBoardList.do";
 		} else if(mvo2 != null){
 			request.getSession().setAttribute("mvo", mvo2);
-			return "redirect:home.do";
+			return "redirect:homeSignBoardList.do";
 		} else{
 			return "redirect:member/login_fail.do";
 		}
