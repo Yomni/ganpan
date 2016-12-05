@@ -70,6 +70,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<SignBoardVO> showContentList(SignBoardVO svo) {
 		return template.selectList("signBoard.showContentList",svo);
 	}
+
+	@Override
+	public SignBoardVO ganpanSetting(SignBoardVO svo) {
+		return template.selectOne("signBoard.ganpanSetting",svo);
+	}
 	
 
 }//class

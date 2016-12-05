@@ -29,4 +29,6 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> showContentList(SignBoardVO svo);
 
+	SignBoardVO ganpanSetting(SignBoardVO svo);
+
 }

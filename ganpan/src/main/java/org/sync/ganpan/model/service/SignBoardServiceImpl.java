@@ -72,4 +72,9 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return signBoardDAO.showContentList(svo);
 	}
 
+	@Override
+	public SignBoardVO ganpanSetting(SignBoardVO svo) {
+		return signBoardDAO.ganpanSetting(svo);
+	}
+
 }

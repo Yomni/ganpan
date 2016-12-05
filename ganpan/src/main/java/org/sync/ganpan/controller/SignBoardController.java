@@ -136,5 +136,35 @@ public class SignBoardController {
 	}
 	
 	
+	/**
+	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @return
+	 */
+	@RequestMapping("ganpanSetting.do")
+	public ModelAndView ganpanSetting(String signBoardName, String bossNickName){
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		SignBoardVO svo2 = signBoardService.ganpanSetting(svo);
+		return new ModelAndView("board/ganpan_setting", "svo", svo2);
+	}
+	
+	/**
+	 * 간판 이름 수정하기
+	 * @author 주선, 민영
+	 * @return
+	 */
+	@RequestMapping("updateSignBoardName.do")
+	public ModelAndView updateSignBoardName(String changeTitle, String signBoardName, String bossNickName){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("changeTitle", changeTitle);
+		map.put("signBoardName", signBoardName);
+		map.put("bossNickName", bossNickName);
+//		signBoardService.updateSignBoardName(map);
+		
+		return new ModelAndView("");
+	}
+	
+	
 	
 }//class
