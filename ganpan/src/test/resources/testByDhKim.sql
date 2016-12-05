@@ -45,7 +45,9 @@ select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nic
 from work
 where boss_nickname='kosta1' and sign_board_name='ganpan1';
 
-
+select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+		from work
+		where boss_nickname='kosta1' and sign_board_name='ganpan1';
 
 
 

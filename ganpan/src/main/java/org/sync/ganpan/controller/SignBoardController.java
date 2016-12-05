@@ -124,8 +124,8 @@ public class SignBoardController {
 	 */
 	@RequestMapping("showContentList.do")
 	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
-		System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
-		System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
+		//System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
+		//System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);

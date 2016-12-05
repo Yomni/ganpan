@@ -13,7 +13,7 @@ public class WorkVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public WorkVO(int workNo, String workName, String workDetails, String creationDate, String changeDate,
 			HaveBoardVO haveBoardVO, OrganizationVO organizationVO) {
 		super();
@@ -25,6 +25,14 @@ public class WorkVO {
 		this.haveBoardVO = haveBoardVO;
 		this.organizationVO = organizationVO;
 	}
+	
+	public WorkVO(int workNo, String workName, HaveBoardVO haveBoardVO, OrganizationVO organizationVO) {
+		super();
+		this.workNo = workNo;
+		this.workName = workName;
+		this.haveBoardVO = haveBoardVO;
+		this.organizationVO = organizationVO;
+	}//showContentList에 사용되는 생성자
 
 	public int getWorkNo() {
 		return workNo;
