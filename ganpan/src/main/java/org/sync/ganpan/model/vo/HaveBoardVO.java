@@ -13,6 +13,11 @@ public class HaveBoardVO {
 		this.boardGenreVO = boardGenreVO;
 	}
 	
+	public HaveBoardVO(SignBoardVO signBoardVO) {
+		super();
+		this.signBoardVO = signBoardVO;
+	}
+	
 	public SignBoardVO getSignBoardVO() {
 		return signBoardVO;
 	}

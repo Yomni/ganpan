@@ -25,7 +25,7 @@ public class SignBoardVO {
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = new MemberVO();
 		this.bossMemberVO.setNickName(bossNickname);
-	}
+	}//SignBaordController -> WorkVO -> HaveBoardVO -> SignBoardVO
 	
 	public String getSignBoardName() {
 		return signBoardName;
