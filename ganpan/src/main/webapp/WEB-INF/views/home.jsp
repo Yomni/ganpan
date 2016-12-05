@@ -12,14 +12,14 @@
 			<!-- col-md-6 -->
 
 			<div class="col-md-6">
-				<form action="register.do" method="post">
+				<form action="register.do" method="post" id="registerForm">
 					<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명">
 					<br>
 					<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편">
 					<br>
 					<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호">
 					<br>
-					<button type="submit" class="btn btn-default btn-success btn-block">가입하기</button>
+					<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
 				</form>
 			</div>
 			<!-- col-md-6 -->
@@ -35,3 +35,26 @@
 	<!-- main container-fluid -->
 </div>
 <!-- /container -->
+
+<!-- jquery -->
+<script type="text/javascript">
+	$(function() {
+		$("#registerBtn").click(function() {
+			if($("#nickName").val().trim() == "") {
+				alert("별명을 입력하세요!");
+				$("#nickName").focus();
+				return false;
+			}
+			if($("#eMail").val().trim() == "") {
+				alert("전자우편을 입력하세요!");
+				$("#eMail").focus();
+				return false;
+			}
+			if($("#password").val().trim() == "") {
+				alert("비밀번호을 입력하세요!");
+				$("#password").focus();
+				return false;
+			}
+		}); // btn click
+	}); // ready
+</script>
