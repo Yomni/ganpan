@@ -15,10 +15,12 @@ public class SignBoardVO {
 	}
 
 	//SignBoardVO 강한 has a MemberVO(nickName)
-	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, boolean visibility, String creationDate) {
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, ArrayList<HaveBoardVO> boardList,
+			boolean visibility, String creationDate) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = bossMemberVO;
+		this.boardList = boardList;
 		this.visibility = visibility;
 		this.creationDate = creationDate;
 	}
@@ -29,7 +31,7 @@ public class SignBoardVO {
 		this.bossMemberVO = new MemberVO();
 		this.bossMemberVO.setNickName(bossNickName);
 	}
-	
+
 	public String getSignBoardName() {
 		return signBoardName;
 	}
@@ -44,6 +46,14 @@ public class SignBoardVO {
 
 	public void setBossMemberVO(MemberVO bossMemberVO) {
 		this.bossMemberVO = bossMemberVO;
+	}
+
+	public ArrayList<HaveBoardVO> getBoardList() {
+		return boardList;
+	}
+
+	public void setBoardList(ArrayList<HaveBoardVO> boardList) {
+		this.boardList = boardList;
 	}
 
 	public boolean isVisibility() {
@@ -64,8 +74,9 @@ public class SignBoardVO {
 
 	@Override
 	public String toString() {
-		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", visibility="
-				+ visibility + ", creationDate=" + creationDate + "]";
+		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", boardList="
+				+ boardList + ", visibility=" + visibility + ", creationDate=" + creationDate + "]";
 	}
+	
 
 }// class SignBoardVO
