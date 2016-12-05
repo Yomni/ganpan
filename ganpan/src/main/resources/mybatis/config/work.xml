@@ -17,11 +17,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="changeDate" column="change_DATE"/>
 		<result property="haveBoardVO.boardGenreVO.boardNo" column="board_no"/>
 		<result property="organizationVO.memberVO.nickName" column="worker_nickname"/>
+		
 		<result property="haveBoardVO.signBoardVO.signBoardName" column="sign_board_name"/>
 		<result property="haveBoardVO.signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+		
+		
+		<!-- <result property="signBoardName" column="sign_board_name"/>
+		<result property="bossMemverVO.nickName" column="boss_nickname"/> -->
+		
 	</resultMap>
 	
- 	<select id="showContentList" resultMap="workRM" parameterType="workVO">
+ 	<select id="showContentList" resultMap="workRM" parameterType="signBoardVO">
  		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
 		from work
 		where boss_nickname=#{haveBoardVO.signBoardVO.bossMemberVO.nickName} and sign_board_name=#{haveBoardVO.signBoardVO.signBoardName}

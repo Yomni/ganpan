@@ -15,7 +15,7 @@ public class OrganizationVO {
 		this.memberVO = memberVO;
 		this.signBoardVO = signBoardVO;
 	}
-
+	
 	public MemberVO getMemberVO() {
 		return memberVO;
 	}
