@@ -37,4 +37,5 @@ public class HomeController {
 		System.out.println("@PathVariable showAdminLoginForm");
 		return "member/admin/" + viewName;
 	}
+	
 }
