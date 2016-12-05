@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 /**
  * SignBoard의 Business layer를 담당하기 위한 ServiceClass
@@ -68,7 +69,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
+	public List<WorkVO> showContentList(SignBoardVO svo) {
 		return signBoardDAO.showContentList(svo);
 	}
 

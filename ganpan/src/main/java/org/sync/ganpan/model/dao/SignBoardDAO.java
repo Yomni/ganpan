@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 public interface SignBoardDAO {
 
@@ -27,6 +28,6 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
-	List<SignBoardVO> showContentList(SignBoardVO svo);
+	List<WorkVO> showContentList(SignBoardVO svo);
 
 }

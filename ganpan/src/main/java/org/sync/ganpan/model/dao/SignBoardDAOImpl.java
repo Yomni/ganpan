@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 @Repository
 public class SignBoardDAOImpl implements SignBoardDAO {
@@ -67,8 +68,8 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	}
 
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
-		return template.selectList("signBoard.showContentList",svo);
+	public List<WorkVO> showContentList(SignBoardVO svo) {
+		return template.selectList("work.showContentList",svo);
 	}
 	
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 public interface SignBoardService {
 
@@ -19,7 +20,7 @@ public interface SignBoardService {
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
-	List<SignBoardVO> showContentList(SignBoardVO svo);
+	List<WorkVO> showContentList(SignBoardVO svo);
 	
 	HashMap<String, List> homeSignBoardList(String nickName);
 
