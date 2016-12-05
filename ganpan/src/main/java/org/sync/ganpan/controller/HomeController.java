@@ -26,15 +26,9 @@ public class HomeController {
 		System.out.println("homecontroller 생성");
 	}
 
-	@RequestMapping("{dirName}/{viewName}.do")
+	@RequestMapping("go{dirName}/{viewName}.do")
 	public String showView(@PathVariable String dirName, @PathVariable String viewName) {
 		System.out.println("@PathVariable:" + dirName + "/" + viewName);
 		return dirName + "/" + viewName;	
-	}
-
-	@RequestMapping("member/admin/{viewName}.do")
-	public String showAdminLoginForm(@PathVariable String viewName) {
-		System.out.println("@PathVariable showAdminLoginForm");
-		return "member/admin/" + viewName;
 	}
 }

@@ -25,6 +25,7 @@
 
 	<div class="container">
 		<p>우리거 다 구현하면 채울 예정</p>
+		<a href="gomember/my_info.do">내 정보 보기</a>
 	</div>
 	<!-- main container-fluid -->
 </div>

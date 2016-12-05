@@ -8,7 +8,7 @@
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
 			<%-- 홈화면 가는 icon삽입 --%>
-			<a class="navbar-brand" href="gohome.do"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/gohome.do"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
