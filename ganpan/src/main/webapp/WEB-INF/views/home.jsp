@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
 	<div class="jumbotron" id="jumbotron-main">
 		<div class="container-fluid">
@@ -27,6 +28,74 @@
 		<!-- container-fluid -->
 	</div>
 	<!-- jumbotron -->
+
+
+	<c:if test="${!empty sessionScope.mvo}">
+	    <div class="4u 12u(mobile)">
+	
+	       <!-- Box #3 -->
+	          <section>
+	             <header>
+	                <h2>내 간판 리스트</h2>
+	             </header>
+	             
+	             
+	             <ul class="nav nav-tabs" role="tablist" id="myTab">
+	               <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">모든 칸반</a></li>
+	               <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">공개 칸반</a></li>
+	               <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">비공개 칸반</a></li>
+	             </ul>
+	             
+	             <div class="tab-content">
+	               <div role="tabpanel" class="tab-pane fade in active" id="home">
+	                   <table>
+	                      <tr>
+	                         <th>간판 제목</th>
+	                         <th>그룹장</th>
+	                      </tr>
+	                      <c:forEach items="${sbMap.allList}" var="signBoardVO">         
+	                         <tr>   
+	                            <td>${signBoardVO.signBoardName}</td>
+	                            <td>${signBoardVO.bossMemberVO.nickName}</td>
+	                         </tr>
+	                      </c:forEach>
+	                   </table>
+	               </div>
+	               <div role="tabpanel" class="tab-pane fade" id="profile">
+	                   <table>
+	                      <tr>
+	                         <th>간판 제목</th>
+	                         <th>그룹장</th>
+	                      </tr>
+	                      <c:forEach items="${sbMap.publicList}" var="signBoardVO">         
+	                         <tr>   
+	                            <td>${signBoardVO.signBoardName}</td>
+	                            <td>${signBoardVO.bossMemberVO.nickName}</td>
+	                         </tr>
+	                      </c:forEach>
+	                   </table>
+	             </div>
+	               <div role="tabpanel" class="tab-pane fade" id="messages">
+	                   <table>
+	                      <tr>
+	                         <th>간판 제목</th>
+	                         <th>그룹장</th>
+	                      </tr>
+	                      <c:forEach items="${sbMap.privateList}" var="signBoardVO">         
+	                         <tr>   
+	                            <td>${signBoardVO.signBoardName}</td>
+	                            <td>${signBoardVO.bossMemberVO.nickName}</td>
+	                         </tr>
+	                      </c:forEach>
+	                   </table>
+	             </div>
+	             </div>
+	             
+	          </section>
+	
+	    </div>
+	 </c:if>
+
 
 	<div class="container">
 		<p>우리거 다 구현하면 채울 예정</p>

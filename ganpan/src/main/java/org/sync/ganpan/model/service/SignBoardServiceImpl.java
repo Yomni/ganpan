@@ -74,8 +74,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 	@Override
-	public SignBoardVO ganpanSetting(SignBoardVO svo) {
-		return signBoardDAO.ganpanSetting(svo);
+	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
+		return null;
 	}
 
 }

@@ -13,9 +13,9 @@
 							<!-- Sidebar -->
 								<section>
 									<ul class="link-list">
-										<li><a href="${pageContext.request.contextPath}/board/ganpan_setting.do">간판 설정</a></li>
-										<li><a href="${pageContext.request.contextPath}/board/invite_group_member.do">그룹원 초대</a></li>
-										<li><a href="${pageContext.request.contextPath}/board/manage_group_member.do">그룹원 관리</a></li>
+										<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판 설정</a></li>
+										<li><a href="${pageContext.request.contextPath}/inviteGroupMemberPage.do">그룹원 초대</a></li>
+										<li><a href="${pageContext.request.contextPath}/manageGroupMemberPage.do">그룹원 관리</a></li>
 									</ul>
 								</section>
 						</div>
