@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
+import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -125,15 +127,50 @@ public class SignBoardController {
 	 */
 	@RequestMapping("showContentList.do")
 	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
-		System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
-		System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
+		//System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
+		//System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
+		
+		
+		///WorkVO wvo=new WorkVO(new HaveBoardVO(new SignBoardVO(signBoardName,bossNickName)),new OrganizationVO(new MemberVO()));
+		
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
+		System.out.println("SignBoardController svo : "+svo);
 		List<WorkVO> sblist = signBoardService.showContentList(svo);
 		System.out.println(sblist.toString());
 
 		return new ModelAndView("board/ganpan","sblist",sblist);
+	}
+	
+	
+	/**
+	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @return
+	 */
+	@RequestMapping("ganpanSetting.do")
+	public ModelAndView ganpanSetting(String signBoardName, String bossNickName){
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		SignBoardVO svo2 = signBoardService.ganpanSetting(svo);
+		return new ModelAndView("board/ganpan_setting", "svo", svo2);
+	}
+	
+	/**
+	 * 간판 이름 수정하기
+	 * @author 주선, 민영
+	 * @return
+	 */
+	@RequestMapping("updateSignBoardName.do")
+	public ModelAndView updateSignBoardName(String changeTitle, String signBoardName, String bossNickName){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("changeTitle", changeTitle);
+		map.put("signBoardName", signBoardName);
+		map.put("bossNickName", bossNickName);
+//		signBoardService.updateSignBoardName(map);
+		
+		return new ModelAndView("");
 	}
 	
 	
