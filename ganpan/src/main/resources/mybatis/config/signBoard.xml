@@ -66,13 +66,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM sign_board sb, organization o 
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value} and visibility = 1
  	</select>
- 	
-<!--  	<select id="showContentList" parameterType="signBoardVO"> -->
-<!--  		SELECT work_no,work_name,worker_nicname -->
-<!--  		FROM work -->
-<!--  		WHERE  -->
-<!--  		signBoardName, boss_nick_name -->
-<!--  	</select> -->
 
 	<select id="ganpanSetting" resultMap="signBoardRM" parameterType="signBoardVO">
 		SELECT sign_board_name, boss_nickname, visibility
@@ -80,9 +73,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossNickName}
 	</select>
  	
- 	
- 	
- 	
+ 	<select id="showContentList" resultMap="signBoardRM" parameterType="signBoardVO">
+ 		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+		from work
+		where boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
+ 	</select>
 </mapper>
 
 

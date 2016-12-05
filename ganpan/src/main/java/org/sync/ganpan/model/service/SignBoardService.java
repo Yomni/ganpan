@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 public interface SignBoardService {
 	
@@ -25,8 +26,7 @@ public interface SignBoardService {
 	// 닉네임으로 내가 그룹원인 보스닉네임, 간판 타이블 반환
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
-	// 보스닉네임, 간판 타이틀로 콘텐츠 정보 반환
-	List<SignBoardVO> showContentList(SignBoardVO svo);
+	List<WorkVO> showContentList(SignBoardVO svo);
 	
 	// 닉네임으로 전체, 공개, 비공개 간판 리스트 정보 반환
 	HashMap<String, List> homeSignBoardList(String nickName);

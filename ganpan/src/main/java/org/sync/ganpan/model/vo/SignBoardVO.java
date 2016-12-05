@@ -5,6 +5,12 @@ public class SignBoardVO {
 	private MemberVO bossMemberVO;
 	private boolean visibility;
 	private String creationDate;
+	
+	public SignBoardVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	//SignBoardVO 강한 has a MemberVO(nickName)
 	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, boolean visibility, String creationDate) {
 		super();

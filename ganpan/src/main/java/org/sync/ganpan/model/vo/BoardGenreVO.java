@@ -1,44 +1,33 @@
 package org.sync.ganpan.model.vo;
 
 public class BoardGenreVO {
-	private SignBoardVO signBoardVO;//signBoardName, bossMemberVO
-	private int boardNo;
+	private String boardNo;
 	private String boardName;
-
-	public BoardGenreVO(SignBoardVO signBoardVO, int boardNo, String boardName) {
+	public BoardGenreVO() {
 		super();
-		this.signBoardVO = signBoardVO;
+		// TODO Auto-generated constructor stub
+	}
+	public BoardGenreVO(String boardNo, String boardName) {
+		super();
 		this.boardNo = boardNo;
 		this.boardName = boardName;
 	}
-
-	public SignBoardVO getSignBoardVO() {
-		return signBoardVO;
-	}
-
-	public void setSignBoardVO(SignBoardVO signBoardVO) {
-		this.signBoardVO = signBoardVO;
-	}
-
-	public int getBoardNo() {
+	public String getBoardNo() {
 		return boardNo;
 	}
-
-	public void setBoardNo(int boardNo) {
+	public void setBoardNo(String boardNo) {
 		this.boardNo = boardNo;
 	}
-
 	public String getBoardName() {
 		return boardName;
 	}
-
 	public void setBoardName(String boardName) {
 		this.boardName = boardName;
 	}
-
 	@Override
 	public String toString() {
-		return "BoardGenreVO [signBoardVO=" + signBoardVO + ", boardNo=" + boardNo + ", boardName=" + boardName + "]";
-	};
-
-}// class BoardGenreVO
+		return "BoardGenre [boardNo=" + boardNo + ", boardName=" + boardName + "]";
+	}
+	
+	
+}//class BoardGenre

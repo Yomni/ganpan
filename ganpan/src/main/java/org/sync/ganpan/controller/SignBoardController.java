@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 
 /**
@@ -124,15 +125,15 @@ public class SignBoardController {
 	 */
 	@RequestMapping("showContentList.do")
 	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
-		System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
-		System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
+		//System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
+		//System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
-		List<SignBoardVO> sblist = signBoardService.showContentList(svo);
-		System.out.println("SignBoardController sesseion 값 : " + session.getAttribute("mvo"));
+		List<WorkVO> sblist = signBoardService.showContentList(svo);
+		System.out.println(sblist.toString());
 
-		return new ModelAndView("board/viewGanpan");
+		return new ModelAndView("board/ganpan","sblist",sblist);
 	}
 	
 	
