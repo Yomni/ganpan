@@ -33,4 +33,5 @@ public class HomeController {
 		System.out.println("@PathVariable:" + dirName1 + "/" + dirName2 + "/" + viewName);
 		return dirName1 + "/" + dirName2 + "/" + viewName;
 	}
+	
 }

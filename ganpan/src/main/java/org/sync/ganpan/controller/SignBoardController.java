@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
-import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.MemberVO;
-import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
-
 
 /**
  * 간판을 위해 설정하는 Controller
@@ -143,7 +140,6 @@ public class SignBoardController {
 		return new ModelAndView("board/ganpan","sblist",sblist);
 	}
 	
-	
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
 	 * @param signBoardName
@@ -172,7 +168,5 @@ public class SignBoardController {
 		
 		return new ModelAndView("");
 	}
-	
-	
 	
 }//class
