@@ -32,6 +32,6 @@ public interface SignBoardService {
 	HashMap<String, List> homeSignBoardList(String nickName);
 
 	// 보스닉네임, 간판 타이틀로 보스닉네임, 간판 타이틀, 공개 여부 반환
-	SignBoardVO ganpanSetting(SignBoardVO svo);
+	SignBoardVO ganpanSettingPage(SignBoardVO svo);
 
 }
