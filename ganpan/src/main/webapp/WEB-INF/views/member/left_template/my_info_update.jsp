@@ -1,51 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<form method="post" action="${pageContext.request.contextPath}/updateMember.do" >
+		<div class="form-group">
+			<h4><span id="eMailCheckView"></span></h4>
+			<label for="eMail">전자우편</label>
+			<input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편"
+				value="${mvo.eMail}" required="required"/>
+		</div>
+		<div class="form-group">
+			<h4><span id="nickNameCheckView"></span></h4>
+			<label for="nickName">별명</label>
+			<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명"
+				value="${mvo.nickName}" readonly="readonly" />
+		</div>
+		<div class="form-group">
+			<h4><span id="passwordView"></span></h4>
+			<label for="password">비밀번호</label>
+			<input type="password" class="form-control" id="password"
+				value="${mvo.password}" name="password" placeholder="비밀번호" />
+		</div>
+		<div class="form-group">
+			<h4><span id="passwordCheckView"></span></h4>
+			<label for="passwordCheck">비밀번호 확인</label>
+			<input type="password" class="form-control" id="passwordCheck" 
+				value="${mvo.password}" placeholder="비밀번호 확인" />
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-default btn-success btn-block" id="updateBtn">회원정보수정</button>
+		</div>
+	</form>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var checkResultEMail="";		
-		$("#updateForm").submit(function(){	
-			if($(":input[name=eMail]").val().trim()==""){
-				alert("전자우편을 입력하세요");				
+		var checkResultEMail = true;
+		var checkResultPassword = true;
+		
+		$("#updateBtn").click(function() {
+			var eMail = $("#eMail").val().trim();
+			var password = $("#password").val().trim();
+			if(eMail == "") {
+				alert("전자우편을 입력하세요!");
+				$("#eMail").focus();
 				return false;
 			}
-			if($(":input[name=password]").val().trim()==""){
-				alert("비밀번호를 입력하세요");				
+			if(password == "") {
+				alert("비밀번호을 입력하세요!");
+				$("#password").focus();
 				return false;
 			}
-			if($("#password").val()!=$("#passwordCheck").val()){
-				alert("비밀번호 중복확인을 하세요");
+			if(checkResultEMail == false) {
+				alert("전자우편을 확인하세요!");
+				$("#eMail").val("").focus();
 				return false;
-			}
-			if(checkResultEMail == ""){
-				alert("전자우편 중복확인을 해주세요!");
+			}	
+			if(checkResultPassword == false) {
+				alert("비밀번호를 확인하세요!");
+				$("#passwordCheck").val("");
+				$("#password").val("").focus();
 				return false;
 			}
 		});//submit
-		$(":input[name=eMail]").keyup(function(){
+		
+		$("#password").keyup(function(){
+			var password=$(this).val().trim();
+			var passwordCheck = $("#passwordCheck").val().trim();
+			if(password == ""){
+				$("#passwordView").html("");
+				$("#passwordCheck").html("");
+				checkResultPassword = false;
+				return;
+			}
+			if(password.length < 6 || password.length > 15){
+				$("#passwordView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "비밀번호는 6자 이상 15자 이하로 작성해주세요."
+					+ "</div>");
+				checkResultPassword = false;
+				return;
+			} else {
+				$("#passwordView").html("");
+			}
+			if(password != passwordCheck) {
+				$("#passwordCheckView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "입력하신 비밀번호와 일치하지 않습니다."
+					+ "</div>");
+				checkResultPassword = false;
+				return;
+			}
+		}); //password key up
+		
+		$("#passwordCheck").keyup(function(){
+			var passwordCheck=$(this).val().trim();
+			var password = $("#password").val().trim();
+			if(passwordCheck == "") {
+				$("#passwordCheckView").html("");
+				checkResultPassword = false;
+				return;
+			} 
+			if(password != passwordCheck) {
+				$("#passwordCheckView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "입력하신 비밀번호와 일치하지 않습니다."
+					+ "</div>");
+				checkResultPassword = false;
+				return;
+			} else {
+				$("#passwordCheckView").html("");
+				checkResultPassword = true;
+			}
+		}); //passwordCheck key up
+		
+		$("#eMail").keyup(function(){
 			var eMail=$(this).val().trim();
-			$.ajax({
-				type:"POST",
-				url:"${pageContext.request.contextPath}/eMailCheckAjax.do",				
-				data:"eMail="+eMail,
-				success:function(data){						
-					if(data=="fail"){
-						$("#eMailCheckView").html(eMail+" 사용불가!").css("color", "red");
-						checkResultEMail="";
-					}else{
-						$("#eMailCheckView").html(eMail+" 사용가능!").css("color","green");		
-						checkResultEMail=eMail;
-					}					
-				}//callback			
-			});//ajax
-		});//keyup
+			if("${mvo.eMail}" != eMail) {
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/eMailCheckAjax.do",				
+					data:"eMail="+eMail,
+					success:function(data){						
+						if(data=="fail"){
+							$("#eMailCheckView").html(
+								"<div class='alert alert-danger' role='alert'>"
+								+ "사용중인 전자우편입니다."
+								+ "</div>");
+							checkResultEMail=false;
+						}else{
+							$("#eMailCheckView").html("");	
+							checkResultEMail=true;
+						}			
+					}//callback			
+				});//ajax
+			} else {// end - if
+				$("#eMailCheckView").html("");	
+				checkResultEMail=true;
+			} // end - else
+		});//eMail keyup
 	});//ready
 </script>
-
-<form method="post" action="${pageContext.request.contextPath}/updateMember.do" id="updateForm">
-	전자우편 <input type="text" name="eMail" value="${sessionScope.mvo.eMail}"><span id="eMailCheckView"></span><br>
-	별명 <input type="text" name="nickName" readonly="readonly"  value="${sessionScope.mvo.nickName}"><br> 
-	비밀번호 <input type="password" name="password" id="password" ><span id="passwordCheckView"></span><br> 
-	비밀번호 확인 <input type="password" id="passwordCheck"><br> 
-	<input type="submit" value="회원정보수정">
-</form>

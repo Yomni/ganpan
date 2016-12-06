@@ -10,14 +10,6 @@
 					<div class="row">
 						<div class="3u 12u(mobile)">
 
-							<!-- Sidebar -->
-								<section>
-									<ul class="link-list">
-										<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판 설정</a></li>
-										<li><a href="${pageContext.request.contextPath}/inviteGroupMemberPage.do">그룹원 초대</a></li>
-										<li><a href="${pageContext.request.contextPath}/manageGroupMemberPage.do">그룹원 관리</a></li>
-									</ul>
-								</section>
 						</div>
 						<div class="9u 12u(mobile) important(mobile)">
 							<!-- Main Content -->
@@ -70,7 +62,7 @@
 					alert("수정하실 간판 이름을 입력하세요!");
 					return false;
 				}
-				if(checkResultTitle==""){
+				if(checkResultTitle == ""){
 					alert("이미 소유한 간판 이름입니다.");
 					$("#changeTitle").val("");
 					return false;
