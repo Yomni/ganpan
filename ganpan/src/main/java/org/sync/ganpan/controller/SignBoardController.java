@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
-<<<<<<< HEAD
-import org.sync.ganpan.model.vo.InvitationMngVO;
-=======
 import org.sync.ganpan.model.vo.HaveBoardVO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
-import org.sync.ganpan.model.vo.WorkVO;
 
 /**
  * 간판을 위해 설정하는 Controller
