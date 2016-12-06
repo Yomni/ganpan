@@ -27,7 +27,7 @@
 											</header>
 											<p>
 											<%-- ${OrganizationVO.memberVO.nickName} --%>
-											 ${requestScope.OrganizationVO.memberVO.worker_nickname} 
+											 ${requestScope.svo} 
 											</p>
 										</section>
 								</div>

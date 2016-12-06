@@ -29,12 +29,14 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
-
 	List<SignBoardVO> showContentList(SignBoardVO svo);
 	
-	List<OrganizationVO> getGroupList(String nickName);
+	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	List<WorkVO> showContentList(SignBoardVO svo);
+
+	List<SignBoardVO> showContentList(SignBoardVO svo);
+
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);
 

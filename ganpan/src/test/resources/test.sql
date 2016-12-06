@@ -240,3 +240,6 @@ select * from change_management;
 insert into change_management(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
 values('111','kosta1',to_date('2016/11/05 12:00','YYYY/MM/DD HH24:MI'),'1','1','0');
 
+SELECT worker_nickname
+		FROM organization 
+		WHERE boss_nickname='kosta3' and sign_board_name='ganpan3'

@@ -1,6 +1,5 @@
 package org.sync.ganpan.model.service;
 
-
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -20,31 +19,26 @@ public class MemberServiceImpl implements MemberService {
 	@Resource
 	private MemberDAO memberDAO;
 
-	
-	public void registerMember(MemberVO mvo){
+	public void registerMember(MemberVO mvo) {
 		memberDAO.registerMember(mvo);
 	}
-	
-	public int eMailCheck(String eMail){
+
+	public int eMailCheck(String eMail) {
 		return memberDAO.emailCheck(eMail);
 	}
-	
-	public int nickNameCheck(String nickName){
+
+	public int nickNameCheck(String nickName) {
 		return memberDAO.nickNameCheck(nickName);
 	}
-	
-	public MemberVO findMemberByNickName(String nickName){
+
+	public MemberVO findMemberByNickName(String nickName) {
 		return memberDAO.findMemberByNickName(nickName);
 	}
 
 	@Override
-	public MemberVO nickNameLogin(HashMap<String, String> map) {
-		return memberDAO.nickNameLogin(map);
-	}
-
-	@Override
-	public MemberVO eMailLogin(HashMap<String, String> map) {
-		return memberDAO.eMailLogin(map);
+	public MemberVO login(HashMap<String, String> map) {
+		// id만 받아와서 login 가능--> 굳이 nickname login과 email login으로 나뉠 필요가 없으므로 수정
+		return memberDAO.login(map);
 	}
 
 	@Override

@@ -82,9 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	
  	 	<select id="getGroupList" resultMap="signBoardRM" parameterType="signBoardVO">
- 		SELECT worker_nickname
+ 		SELECT worker_nickname, boss_nickname
 		FROM organization 
-		WHERE boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
+		WHERE boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName}
 </select>
 
  	<select id="showContentList" resultMap="signBoardRM" parameterType="signBoardVO">

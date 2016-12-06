@@ -8,7 +8,7 @@ test page
 		<hr>
 		<a href="">내 정보 보기</a><br>
 		<a href="">내 정보 수정</a><br>
-		<a href="${pageContext.request.contextPath}/member/go_my_ganpan_list.do">내 소유 작업</a><br>
+		<a href="${pageContext.request.contextPath}/go_member/my_ganpan_list.do">내 소유 작업</a><br>
 		<a href="">참여 작업</a><br>
 		<a href="">회원탈퇴</a><br>
 		<a href="">초대 현황</a><br>

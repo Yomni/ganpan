@@ -85,9 +85,9 @@ public class SignBoardController {
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
 		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName());
 		if(sbList.isEmpty())
-			return new ModelAndView("member/my_ganpan_list_fail");
+			return new ModelAndView("member/left_template/my_ganpan_list_fail");
 		else
-			return new ModelAndView("member/my_ganpan_list", "sbList", sbList);
+			return new ModelAndView("member/left_template/my_ganpan_list", "sbList", sbList);
 	}
 
 	/**
@@ -125,18 +125,13 @@ public class SignBoardController {
 	 */
 	@RequestMapping("showContentList.do")
 	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
-		//System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
-		//System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
 		
-		
-		///WorkVO wvo=new WorkVO(new HaveBoardVO(new SignBoardVO(signBoardName,bossNickName)),new OrganizationVO(new MemberVO()));
-		
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
 		System.out.println("SignBoardController svo : "+svo);
-		List<WorkVO> sblist = signBoardService.showContentList(svo);
-		System.out.println(sblist.toString());
+		List<SignBoardVO> sblist = signBoardService.showContentList(svo);
+		System.out.println("SignBoardController List<WorkVO> sblist 값 : "+sblist.toString());
 
 		return new ModelAndView("board/ganpan","sblist",sblist);
 	}
@@ -147,8 +142,10 @@ public class SignBoardController {
 	@RequestMapping("group_member_list.do")
 	public ModelAndView getGroupList(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		System.out.println("svo"+svo);
 		List<OrganizationVO> oList = signBoardService.getGroupList(svo);
-		return new ModelAndView("board/group_member_list");
+		System.out.println("oList"+oList);
+		return new ModelAndView("board/group_member_list","svo", oList);
 	}
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동

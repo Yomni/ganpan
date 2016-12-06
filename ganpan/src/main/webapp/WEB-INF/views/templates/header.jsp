@@ -39,7 +39,6 @@
 				</form>
 				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/go_member/login_form.do">들어가기</a>
 				<a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/go_member/register_form.do">회원가입</a>
-				<a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/go_test/test.do">테스트</a>
 			</span>
 		</div>
 		<!--/.nav-collapse -->

@@ -28,7 +28,7 @@
 											</header>
 											<ul class="link-list">
 												<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
-												<li><a href="${pageContext.request.contextPath}/board/group_member_list.do">참여 구성원 보기</a></li>
+												<li><a href="${pageContext.request.contextPath}/group_member_list.do?bossNickName=${sblist.bossNickName}&signBoardName=${sblist.signBoardName} ">참여 구성원 보기</a></li>
 												<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판 설정</a></li>
 											</ul>
 										</section>
@@ -74,9 +74,13 @@
 										                        <article class="kanban-entry grab" id="item1" draggable="true">
 										                            <div class="kanban-entry-inner">
 										                                <div class="kanban-label">
-										                                	<c:forEach items="${sblist }" var="sblist">
-											                                    <p>${sblist }</p>
-										                                		
+										                                	<c:forEach items="${sblist}" var="sblist">
+										                                		<c:forEach items="${sblist.boardList}" var="boardList">
+										                                			<c:forEach items="${boardList.works}" var="works">
+										                                				${works.workName}
+										                                			
+										                                			</c:forEach>
+										                                		</c:forEach>
 										                                	</c:forEach>
 										                                </div>
 										                            </div>
