@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,8 +71,7 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	}
 
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
-		System.out.println("SignBoardDAOImpl wvo : "+svo);
+	public List<WorkVO> showContentList(SignBoardVO svo) {
 		return template.selectList("signBoard.showContentList",svo);
 	}
 

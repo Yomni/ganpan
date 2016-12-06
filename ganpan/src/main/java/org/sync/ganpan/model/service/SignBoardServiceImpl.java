@@ -7,7 +7,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.SignBoardDAO;
+<<<<<<< HEAD
 import org.sync.ganpan.model.vo.OrganizationVO;
+=======
+import org.sync.ganpan.model.vo.HaveBoardVO;
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -70,8 +74,12 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
-		return signBoardDAO.showContentList(svo);
+	public List<HaveBoardVO> showContentList(SignBoardVO svo) {
+		List<HaveBoardVO> hlist=null;
+		List<WorkVO> wlist=signBoardDAO.showContentList(svo);
+		
+		
+		return hlist;
 	}
 
 	@Override

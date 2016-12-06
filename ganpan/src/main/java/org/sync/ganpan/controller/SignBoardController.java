@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
+import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -130,8 +131,12 @@ public class SignBoardController {
 		
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
 		System.out.println("SignBoardController svo : "+svo);
-		List<SignBoardVO> sblist = signBoardService.showContentList(svo);
-		System.out.println("SignBoardController List<WorkVO> sblist 값 : "+sblist.toString());
+		List<HaveBoardVO> sblist = signBoardService.showContentList(svo);
+		System.out.println("SignBoardController List<SignBoardVO> sblist 값 : "+sblist.get(0));
+		
+		
+		//System.out.println("boardList : "+sblist.get(0).getBoardList().toString());;
+		//System.out.println("workName : "+sblist.get(0).getBoardList().get(0).getWorks().get(0).getWorkName());
 
 		return new ModelAndView("board/ganpan","sblist",sblist);
 	}
