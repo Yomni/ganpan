@@ -60,6 +60,10 @@ values('간판', '우주선', '민영');
 insert into invitation_management(sign_board_name, boss_nickname, nickname)
 values('간판2', '우주선', '민영');
 
+Delete invitation_management 
+Where sign_board_name='간판' and boss_nickname='우주선' and nickname='민영'
+ 	
+
 SELECT sign_board_name, boss_nickname, nickname, invitation_date
 FROM invitation_management
 WHERE nickname = '민영'

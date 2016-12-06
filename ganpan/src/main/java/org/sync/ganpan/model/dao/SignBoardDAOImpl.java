@@ -83,6 +83,16 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return template.selectList("signBoard.invitationList",nickName);
 	}
+
+	@Override
+	public void deleteInvitationMng(InvitationMngVO ivo) {
+		template.delete("invitationMng.deleteInvitationMng",ivo);
+	}
+
+	@Override
+	public void addOrganization(InvitationMngVO ivo) {
+		template.insert("invitationMng.addOrganization",ivo);
+	}
 	
 
 }//class

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+ <mapper namespace="invitationMng">
+	<resultMap id="InvitationMngRM" type="InvitationMngVO">
+		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
+		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+		<result property="workNickName.nickName" column="nickname"/>
+		<result property="invitationDate" column="invitation_date"/>
+	</resultMap> 
+ 
+ 	<delete id="deleteInvitationMng" parameterType="invitationMngVO">
+	 	Delete invitation_management 
+	 	Where sign_board_name=#{signBoardVO.signBoardName} and boss_nickname=#{signBoardVO.bossMemberVO.nickName} and nickname=#{workNickName.nickName}
+ 	</delete>
+ 	<insert id="addOrganization" parameterType="invitationMngVO">
+ 		insert into organization(worker_nickname,boss_nickname,sign_board_name)
+ 		values(#{workNickName.nickName},#{signBoardVO.bossMemberVO.nickName},#{signBoardVO.signBoardName})
+ 	</insert>
+ 	
+</mapper>
+
+
+
