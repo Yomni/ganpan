@@ -1,6 +1,7 @@
 package org.sync.ganpan.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.MemberService;
+import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
  * Member의 제어를 위한 Controller
@@ -24,6 +27,8 @@ import org.sync.ganpan.model.vo.MemberVO;
 public class MemberController {
 	@Resource
 	private MemberService memberService;
+	@Resource
+	private SignBoardService signBoardService;
 
 	/****************************************민영**********************************************/
 	/**
@@ -83,16 +88,18 @@ public class MemberController {
 	 * @param password
 	 */
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, String id, String password) {
+	public String login(HttpSession session, String id, String password) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("password", password);
 		MemberVO mvo = memberService.login(map);
 		System.out.println(mvo);
-		System.out.println("-------------------");
 		if (mvo != null) {
-			request.getSession().setAttribute("mvo", mvo);
-			return "redirect:home_login.do";
+			session.setAttribute("mvo", mvo);
+			List<SignBoardVO> slist = signBoardService.allSignBoardList(mvo.getNickName());
+			System.out.println(slist);
+			session.setAttribute("slist", slist);
+			return "redirect:go_home.do";
 		} else {
 			return "redirect:member/login_fail.do";
 		}
