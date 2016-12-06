@@ -25,6 +25,22 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- Interceptor 설정 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*.do" />
+			<mvc:mapping path="/*/*.do" />
+			<mvc:mapping path="/*/*/*.do" />
+			<!-- login, 홈화면, 소개글, 간판검색, 간판보기 이외의 경우 -->
+			<mvc:exclude-mapping path="/login.do" />
+			<mvc:exclude-mapping path="/go_home.do" />
+			<mvc:exclude-mapping path="/go_board/guide.do" />
+			<mvc:exclude-mapping path="/findSignBoardListByTitle.do" />
+			<bean class="org.sync.ganpan.controller.LoginCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- Tiles ViewResolver 설정 -->
 	<bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -32,4 +48,5 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="0" />
 	</bean>
+
 </beans>
