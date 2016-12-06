@@ -93,7 +93,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public void addOrganization(InvitationMngVO ivo) {
 		template.insert("invitationMng.addOrganization",ivo);
 	}
-	
+
+	@Override
+	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
+		return template.selectOne("signBoard.ganpanSettingPage",svo);
+	}
 
 }//class
 
