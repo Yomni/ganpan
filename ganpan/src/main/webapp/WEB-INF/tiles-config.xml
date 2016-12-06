@@ -31,4 +31,5 @@
 		<put-attribute name="left" value="/WEB-INF/views/member/left_template/left.jsp" />
         <put-attribute name="main" value="/WEB-INF/views/member/left_template/{1}.jsp" />
     </definition>
+    
 </tiles-definitions>
