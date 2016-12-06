@@ -15,7 +15,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		if (session == null || session.getAttribute("mvo") == null) {
 			String uri = request.getRequestURI();
 			System.out.println("핸들러 인터셉서 실행" + uri);
-			response.sendRedirect(request.getContextPath()+"/go_etc/bad_access.do");
+			response.sendRedirect(request.getContextPath() + "/go_etc/bad_access.do");
 			return false; // 컨트롤러 가기 전에 걸러준다.
 		}
 		return true;

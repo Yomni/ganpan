@@ -166,6 +166,7 @@ select * from organization;
 		FROM sign_board sb, organization o 
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영';
 		
+<<<<<<< HEAD
 		
 		SELECT worker_nickname
 		FROM organization 
@@ -256,3 +257,8 @@ values('111','kosta1',to_date('2016/11/05 12:00','YYYY/MM/DD HH24:MI'),'1','1','
 SELECT worker_nickname
 		FROM organization 
 		WHERE boss_nickname='kosta3' and sign_board_name='ganpan3'
+=======
+		SELECT sb.sign_board_name, sb.boss_nickname
+		FROM sign_board sb, organization o 
+		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영'
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git

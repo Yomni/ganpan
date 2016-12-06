@@ -16,6 +16,7 @@
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="1"></property>
 	</bean>
+	
 	<!-- Tiles 설정 -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -26,6 +27,14 @@
 		</property>
 	</bean>
 	
+	<!-- Tiles ViewResolver 설정 -->
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="0" />
+	</bean>
+
 	<!-- Interceptor 설정 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -33,7 +42,10 @@
 			<mvc:mapping path="/*/*.do" />
 			<mvc:mapping path="/*/*/*.do" />
 			<!-- login, 홈화면, 소개글, 간판검색, 간판보기 이외의 경우 -->
+			<mvc:exclude-mapping path="/*Ajax.do" />
 			<mvc:exclude-mapping path="/login.do" />
+			<mvc:exclude-mapping path="/register.do" />
+			<mvc:exclude-mapping path="/register_main.do" />
 			<mvc:exclude-mapping path="/go_home.do" />
 			<mvc:exclude-mapping path="/go_board/guide.do" />
 			<mvc:exclude-mapping path="/go_etc/bad_access.do" />
@@ -43,13 +55,4 @@
 			<bean class="org.sync.ganpan.controller.LoginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
-	<!-- Tiles ViewResolver 설정 -->
-	<bean id="tilesViewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<property name="order" value="0" />
-	</bean>
-
 </beans>

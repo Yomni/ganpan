@@ -103,7 +103,7 @@ public class SignBoardController {
 		if(sbList.isEmpty())
 			return new ModelAndView("member/left_template/my_join_ganpan_list_fail");
 		else
-		return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
+			return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class SignBoardController {
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName){
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
 		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		return new ModelAndView("board/ganpan_setting", "svo", svo2);
+		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
 	}
 	
 	/**
