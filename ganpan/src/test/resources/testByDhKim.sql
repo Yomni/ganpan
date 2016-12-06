@@ -41,6 +41,7 @@ insert into change_management values(2,'kosta4',sysdate,1,2,0);
 
 
 -- test
+select 
 
 
 

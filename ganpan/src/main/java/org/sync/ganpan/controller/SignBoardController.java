@@ -131,7 +131,14 @@ public class SignBoardController {
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
 		System.out.println("SignBoardController svo : "+svo);
 		List<SignBoardVO> sblist = signBoardService.showContentList(svo);
-		System.out.println("SignBoardController List<WorkVO> sblist 값 : "+sblist.toString());
+		System.out.println("SignBoardController List<SignBoardVO> sblist 값 : "+sblist.get(0));
+		
+		for(int i=0; i<sblist.size(); i++){
+			System.out.println("for문 : "+sblist.get(i).getBoardList().get(i).getWorks().get(i).getWorkName());
+		}
+		
+		//System.out.println("boardList : "+sblist.get(0).getBoardList().toString());;
+		//System.out.println("workName : "+sblist.get(0).getBoardList().get(0).getWorks().get(0).getWorkName());
 
 		return new ModelAndView("board/ganpan","sblist",sblist);
 	}
