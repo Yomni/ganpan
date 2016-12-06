@@ -74,9 +74,13 @@
 										                        <article class="kanban-entry grab" id="item1" draggable="true">
 										                            <div class="kanban-entry-inner">
 										                                <div class="kanban-label">
-										                                	<c:forEach items="${sblist }" var="sblist">
-											                                    <p>${sblist }</p>
-										                                		
+										                                	<c:forEach items="${sblist}" var="sblist">
+										                                		<c:forEach items="${sblist.boardList}" var="boardList">
+										                                			<c:forEach items="${boardList.works}" var="works">
+										                                				${works.workName}
+										                                			
+										                                			</c:forEach>
+										                                		</c:forEach>
 										                                	</c:forEach>
 										                                </div>
 										                            </div>

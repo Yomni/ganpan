@@ -69,7 +69,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public List<WorkVO> showContentList(SignBoardVO svo) {
+	public List<SignBoardVO> showContentList(SignBoardVO svo) {
 		return signBoardDAO.showContentList(svo);
 	}
 

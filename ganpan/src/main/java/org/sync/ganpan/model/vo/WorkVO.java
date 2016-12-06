@@ -12,7 +12,7 @@ public class WorkVO {
 	public WorkVO() {
 		super();
 	}
-
+	
 	public WorkVO(int workNo, String workName, String workDetails, String creationDate, String changeDate,
 			HaveBoardVO haveBoardVO, OrganizationVO organizationVO) {
 		super();
