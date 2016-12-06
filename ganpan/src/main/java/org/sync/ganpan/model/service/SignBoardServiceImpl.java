@@ -86,26 +86,26 @@ public class SignBoardServiceImpl implements SignBoardService {
 		
 		map.put("boardNo", "1");
 		List<WorkVO> toDoWorkList=workDAO.getWorkList(map);
-		System.out.println("key가 boardNo 값 : "+map.get("boardNo"));
-		for(int i=0; i<toDoWorkList.size(); i++){
-			System.out.println(toDoWorkList.get(i).toString());
-		}
-		
-		
-		/*map.put("boardNo", "2");
+		map.put("boardNo", "2");
 		List<WorkVO> doingWorkList=workDAO.getWorkList(map);
 		map.put("boardNo", "3");
-		List<WorkVO> doneWorkList=workDAO.getWorkList(map);*/
+		List<WorkVO> doneWorkList=workDAO.getWorkList(map);
 
-		List<HaveBoardVO> boardList = haveBoardDAO.getHaveBoardList();
 		// boardList의 size는 무조건 3(todo, doing, done)
-		// todo work셋팅
-		boardList.get(0).setWorks(toDoWorkList);
+		List<HaveBoardVO> boardList = haveBoardDAO.getHaveBoardList();
+		/*for(int i=0; i<boardList.size(); i++){
+		 	//boardName이 null값이 불러짐
+			System.out.println("-------------------------------");
+			System.out.println(boardList.get(i).getBoardGenreVO().getBoardName());
+		}*/
 		
-		/*boardList.get(1).setWorks(doingWorkList);
+		
+		// todo work,doing,done 셋팅
+		boardList.get(0).setWorks(toDoWorkList);
+		boardList.get(1).setWorks(doingWorkList);
 		boardList.get(2).setWorks(doneWorkList);
-*/		
-//		svo.setBoardList(boardList);
+		
+		svo.setBoardList(boardList);
 		return svo;
 	}
 

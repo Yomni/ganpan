@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+
+ <mapper namespace="haveBoard">
+   
+   <resultMap id="haveBoardRM" type="haveBoardVO">
+   		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
+   		<result property="boardGenreVO.boardNo" column="board_no"/>
+   		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+   </resultMap>
+   
+   <select id="getHaveBoardList" resultMap="haveBoardRM">
+   		select board_no,board_name 
+   		from board_genre
+   </select>
+   
+</mapper>
+
+
+
+
+
+
+

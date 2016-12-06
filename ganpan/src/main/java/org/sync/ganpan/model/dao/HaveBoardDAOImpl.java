@@ -15,7 +15,7 @@ public class HaveBoardDAOImpl implements HaveBoardDAO {
 
 	@Override
 	public List<HaveBoardVO> getHaveBoardList() {
-		return ;
+		return sqlSessionTemplate.selectList("haveBoard.getHaveBoardList");
 	}
 
 }
