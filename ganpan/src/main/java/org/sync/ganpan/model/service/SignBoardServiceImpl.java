@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
+import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -81,6 +82,11 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
 		return null;
+	}
+
+	@Override
+	public List<InvitationMngVO> invitationList(String nickName) {
+		return signBoardDAO.invitationList(nickName);
 	}
 
 }

@@ -1,12 +1,11 @@
 package org.sync.ganpan.model.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.HaveBoardVO;
+import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
-import org.sync.ganpan.model.vo.WorkVO;
 
 public interface SignBoardService {
 	
@@ -36,5 +35,8 @@ public interface SignBoardService {
 
 	// 보스닉네임, 간판 타이틀로 보스닉네임, 간판 타이틀, 공개 여부 반환
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
+
+	// 닉네임으로 초대받은 이력 정보 반환
+	List<InvitationMngVO> invitationList(String nickName);
 
 }

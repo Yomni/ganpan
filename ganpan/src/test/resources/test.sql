@@ -54,6 +54,15 @@ create table invitation_management (
    constraint fk_sign_board_pk_sign_board2 foreign key(sign_board_name, boss_nickname) references sign_board(sign_board_name, boss_nickname),
    constraint pk_invitation_management primary key(sign_board_name, boss_nickname,nickname)
 )
+select* from invitation_management;
+insert into invitation_management(sign_board_name, boss_nickname, nickname)
+values('간판', '우주선', '민영');
+insert into invitation_management(sign_board_name, boss_nickname, nickname)
+values('간판2', '우주선', '민영');
+
+SELECT sign_board_name, boss_nickname, nickname, invitation_date
+FROM invitation_management
+WHERE nickname = '민영'
 
 --board no : TODO(1) / DOING(2) / DONE(3)
 create table board_genre (
