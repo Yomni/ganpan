@@ -161,3 +161,7 @@ select * from organization;
 		SELECT sb.sign_board_name, sb.boss_nickname
 		FROM sign_board sb, organization o 
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영'
+		
+		SELECT sign_board_name, boss_nickname, visibility
+		FROM sign_board
+		WHERE sign_board_name = '간판' and boss_nickname = '우주선'

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <body class="subpage">
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	<div id="page-wrapper">
 		<!-- Content -->
 		<div id="content-wrapper">
@@ -15,7 +18,8 @@
 							<!-- Main Content -->
 							<section>
 								<form id="updateSignBoardNameForm" action="${pageContext.request.contextPath}/updateSignBoardName.do">
-									<input type="hidden" name="" value="" />
+									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
+									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
 									<h2>이름 바꾸기</h2>
 									<input type="text" name="changeTitle" id="changeTitle" placeholder="새로운 간판 이름 작성" />
 									<span id="titleCheckView"></span><br>
@@ -49,6 +53,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 	<script type="text/javascript">
 		$(document).ready(function(){
