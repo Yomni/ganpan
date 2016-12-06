@@ -74,6 +74,9 @@ public class SignBoardServiceImpl implements SignBoardService {
 		List<HaveBoardVO> hlist=null;
 		List<WorkVO> wlist=signBoardDAO.showContentList(svo);
 		
+		HaveBoardVO hvo=new HaveBoardVO();
+		
+		hvo.setWorks(wlist);
 		
 		return hlist;
 	}
@@ -84,3 +87,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 }
+
+
+
