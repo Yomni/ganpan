@@ -81,8 +81,8 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	}
 	
 	@Override
-	public List<OrganizationVO> getGroupList(String nickName) {
-		return template.selectList("signBoard.getGroupList",nickName);
+	public List<OrganizationVO> getGroupList(String worker_nickName) {
+		return template.selectList("signBoard.getGroupList",worker_nickName);
 	}
 }//class
 

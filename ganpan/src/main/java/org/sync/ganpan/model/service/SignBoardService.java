@@ -33,7 +33,7 @@ public interface SignBoardService {
 	HashMap<String, List> homeSignBoardList(String nickName);
 
 	//구성원보기 수정중
-	List<OrganizationVO> getGroupList(String nickName);
+	List<OrganizationVO> getGroupList(String worker_nickname);
 
 	// 보스닉네임, 간판 타이틀로 보스닉네임, 간판 타이틀, 공개 여부 반환
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);

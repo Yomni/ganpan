@@ -145,9 +145,9 @@ public class SignBoardController {
 	 * @author 민서
 	 */
 	@RequestMapping("group_member_list.do")
-	public ModelAndView getGroupList(HttpSession session) {
-		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
-		List<OrganizationVO> oList = signBoardService.getGroupList(mvo.getNickName());
+	public ModelAndView getGroupList(String signBoardName, String bossNickName) {
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		List<OrganizationVO> oList = signBoardService.getGroupList(svo);
 		return new ModelAndView("board/group_member_list");
 	}
 	/**

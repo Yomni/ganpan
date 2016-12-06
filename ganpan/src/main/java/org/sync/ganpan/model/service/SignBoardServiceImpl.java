@@ -75,8 +75,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 	@Override
-	public List<OrganizationVO> getGroupList(String nickName) {
-		return signBoardDAO.getGroupList(nickName);
+	public List<OrganizationVO> getGroupList(String worker_nickname) {
+		return signBoardDAO.getGroupList(worker_nickname);
 	}
 
 
