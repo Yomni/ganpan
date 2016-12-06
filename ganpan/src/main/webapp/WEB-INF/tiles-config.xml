@@ -23,7 +23,7 @@
 	
 	<definition name="home_left" template="/WEB-INF/views/templates/layout_4part.jsp">
 		<put-attribute name="title" value="sync" />
-		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/templates/header_login.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
 	</definition>
@@ -43,4 +43,5 @@
 		<put-attribute name="left" value="/WEB-INF/views/member/left_template/left.jsp" />
         <put-attribute name="main" value="/WEB-INF/views/member/left_template/{1}.jsp" />
     </definition>
+    
 </tiles-definitions>
