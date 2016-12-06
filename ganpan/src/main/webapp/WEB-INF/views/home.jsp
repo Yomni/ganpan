@@ -37,20 +37,52 @@
 	<!-- main container-fluid -->
 	</c:when>
 	<c:otherwise>
-	<div class="jumbotron" id="jumbotron-main">
-		<div class="container-fluid">
-			로그인 index 화면
-			${sessionScope.mvo}
+	<div class="row">
+		<div class="text-center">
+			<a href="${pageContext.request.contextPath}/go_board/guide.do"
+				class="btn btn-lg btn-success">간판 길잡이</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do"
+				class="btn btn-lg btn-success">간판 만들기</a>
 		</div>
-		<!-- container-fluid -->
+		<!-- text-center -->
 	</div>
-	<!-- jumbotron -->
-	<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do">간판 만들기</a><br>
-	<div class="container">
-		<c:forEach items="${sessionScope.slist}" var="ganpan">
-			<a href="#">${ganpan.signBoardName}</a>
-		</c:forEach> 
+	<!-- row -->
+	<hr>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="jumbotron">
+				변경이력들 공개
+			</div>
+			<!-- jumbotron -->
+		</div>
+		<!-- col-md-6 -->
+		
+		<div class="col-md-4">
+			<div class="well">
+				<h3>${mvo.nickName}님 간판 현황 | ${ganpanCount}개</h3>
+				<ul class="nav nav-pills">
+					<li><a role="presentation" class="active" href="#">전체</a></li>
+					<li><a role="presentation" href="#">공개</a></li>
+					<li><a role="presentation" href="#">비공개</a></li>
+				</ul>
+				<br>
+				<table class="table">
+					<c:forEach items="${sessionScope.slist}" var="ganpan">
+					<tr>
+						<td>
+							<a href="#">${ganpan.signBoardName}</a>
+						</td>
+					</tr>
+					</c:forEach> 
+				</table>
+				<!-- table -->
+			</div>
+			<!-- well -->
+		</div>
+		<!-- col-md-6 -->
 	</div>
+	<!-- row -->
 	</c:otherwise>
 	</c:choose>
 </div>

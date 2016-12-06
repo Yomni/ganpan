@@ -2,6 +2,7 @@ package org.sync.ganpan.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,11 +34,7 @@ public class SignBoardController {
 	 */
 	@RequestMapping("findSignBoardListByTitle.do")
 	public ModelAndView findSignBoardListByTitle(String title) {
-		List<SignBoardVO> sbList = signBoardService.findSignBoardListByTitle(title);
-		if (sbList.isEmpty())
-			return new ModelAndView("board/search_result_fail");
-		else
-			return new ModelAndView("board/search_result", "sbList", sbList);
+		return new ModelAndView("board/search_result", signBoardService.findSignBoardListByTitle(title));
 	}
 
 	/**
@@ -45,10 +42,9 @@ public class SignBoardController {
 	 * @author 민영
 	 */
 	@RequestMapping("createNewGanpan.do")
-	public ModelAndView createNewGanpan(HttpSession session, String title, String ganpanType) {
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	public ModelAndView createNewGanpan(String bossNickName, String title, String ganpanType) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bossNickName", mvo.getNickName());
+		map.put("bossNickName", bossNickName);
 		map.put("signBoardName", title);
 		if (ganpanType.equals("public")) {// 간판 공개시 visibility default 0
 			map.put("visibility", 0);
@@ -124,13 +120,13 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("showGanpan.do")
-	public ModelAndView showGanpan(HttpSession session, HttpServletRequest request) {
-		String signBoardName = request.getParameter("signBoardName");
-		String bossNickName = request.getParameter("bossNickName");
-		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
-		SignBoardVO rsvo = signBoardService.showGanpan(svo);
-		
-		return new ModelAndView("board/ganpan","rsvo",rsvo);
+	public ModelAndView showGanpan(String signBoardName, String bossNickName) {
+		// String signBoardName = request.getParameter("signBoardName");
+		// String bossNickName = request.getParameter("bossNickName");
+		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
+		System.out.println(rsvo);
+		rsvo = signBoardService.showGanpan(rsvo);
+		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
 
 	/**
@@ -142,10 +138,10 @@ public class SignBoardController {
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("1"+svo);
+		System.out.println("1" + svo);
 
 		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		System.out.println("2"+svo2);
+		System.out.println("2" + svo2);
 		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
 	}
 

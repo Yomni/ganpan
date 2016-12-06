@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -19,7 +20,6 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public List<SignBoardVO> findSignBoardListByTitle(String title) {
 		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", title);
-		System.out.println("DAOImpl: "+sbList);
 		return sbList;
 	}
 
