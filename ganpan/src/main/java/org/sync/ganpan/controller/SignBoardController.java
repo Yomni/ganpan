@@ -84,9 +84,9 @@ public class SignBoardController {
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
 		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName());
 		if(sbList.isEmpty())
-			return new ModelAndView("member/my_ganpan_list_fail");
+			return new ModelAndView("member/left_template/my_ganpan_list_fail");
 		else
-			return new ModelAndView("member/my_ganpan_list", "sbList", sbList);
+			return new ModelAndView("member/left_template/my_ganpan_list", "sbList", sbList);
 	}
 
 	/**
@@ -98,9 +98,9 @@ public class SignBoardController {
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
 		List<SignBoardVO> sbList = signBoardService.myJoinSignBoardList(mvo.getNickName());
 		if(sbList.isEmpty())
-			return new ModelAndView("member/my_join_ganpan_list_fail");
+			return new ModelAndView("member/left_template/my_join_ganpan_list_fail");
 		else
-		return new ModelAndView("member/my_join_ganpan_list", "sbList", sbList);
+		return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
 	}
 	
 	/**

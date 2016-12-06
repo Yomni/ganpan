@@ -129,6 +129,6 @@ public class MemberController {
 		request.getSession().setAttribute("mvo", mvo);
 		// return "registerResultView.do?nickName=" + mvo.getNickName();
 		System.out.println("updateMember method mvo.getNickName() : " + mvo.getNickName());
-		return "redirect:member/my_info.do";
+		return "redirect:member/left_template/my_info.do";
 	}
 }

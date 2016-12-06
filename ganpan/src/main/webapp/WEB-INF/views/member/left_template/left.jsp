@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><a href="${pageContext.request.contextPath}/gomember/my_info.do">내 정보 보기<span class="sr-only">(current)</span></a></li>
+				<li><a href="${pageContext.request.contextPath}/go_member/my_info.do">내 정보 보기<span class="sr-only">(current)</span></a></li>
 				<li><a href="${pageContext.request.contextPath}/member/my_info_update.do">내 정보 수정</a></li>
 				<li><a href="${pageContext.request.contextPath}/member/leave.do">회원 탈퇴</a></li>
 			</ul>
