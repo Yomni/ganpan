@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Header -->
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
@@ -29,16 +28,16 @@
 			<span class="pull-right">
 				<form action="searchGanpan.do" method="get" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="간판명으로 검색"> 
+						<input type="text" class="form-control" placeholder="간판명으로 검색">
 						<span class="input-group-btn">
-						<button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						</button>
+							<button type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
 						</span>
 					</div>
-				</form>
-				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/go_member/login_form.do">들어가기</a>
-				<a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/go_member/register_form.do">회원가입</a>
+				</form> 
+				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/go_member/my_info/show_info.do">내 정보</a> 
+				<a class="btn btn-danger navbar-btn" href="${pageContext.request.contextPath}/go_member/logout.do">나가기</a> 
 				<a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/go_test/test.do">테스트</a>
 			</span>
 		</div>

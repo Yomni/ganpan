@@ -15,7 +15,7 @@ import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
-
+import org.sync.ganpan.model.vo.WorkVO;
 
 /**
  * 간판을 위해 설정하는 Controller
@@ -125,31 +125,58 @@ public class SignBoardController {
 	 */
 	@RequestMapping("showContentList.do")
 	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
-		System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
-		System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
+		//System.out.println("SignBoardController bossNickName : " + request.getParameter("bossNickName"));
+		//System.out.println("SignBoardController signBaordName : " + request.getParameter("signBoardName"));
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
+		
+		
+		///WorkVO wvo=new WorkVO(new HaveBoardVO(new SignBoardVO(signBoardName,bossNickName)),new OrganizationVO(new MemberVO()));
+		
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
-		List<SignBoardVO> sblist = signBoardService.showContentList(svo);
-		System.out.println("SignBoardController sesseion 값 : " + session.getAttribute("mvo"));
+		System.out.println("SignBoardController svo : "+svo);
+		List<WorkVO> sblist = signBoardService.showContentList(svo);
+		System.out.println(sblist.toString());
 
-		return new ModelAndView("board/viewGanpan");
+		return new ModelAndView("board/ganpan","sblist",sblist);
 	}
 	/**
 	 * 구성원 보기
 	 * @author 민서
 	 */
-/*	@RequestMapping("group_member_list.do")
-	public ModelAndView getGroupList(String ganpan) {
-		List<OrganizationVO> oList = signBoardService.getGroupList(ganpan);
-		System.out.println(oList);
-		return new ModelAndView("board/group_member_list", "oList", oList);
-	}*/
-	
 	@RequestMapping("group_member_list.do")
 	public ModelAndView getGroupList(HttpSession session) {
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
 		List<OrganizationVO> oList = signBoardService.getGroupList(mvo.getNickName());
 		return new ModelAndView("board/group_member_list");
 	}
+	/**
+	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @return
+	 */
+	@RequestMapping("ganpanSettingPage.do")
+	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName){
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
+		return new ModelAndView("board/ganpan_setting", "svo", svo2);
+	}
+	
+	/**
+	 * 간판 이름 수정하기
+	 * @author 주선, 민영
+	 * @return
+	 */
+	@RequestMapping("updateSignBoardName.do")
+	public ModelAndView updateSignBoardName(String changeTitle, String signBoardName, String bossNickName){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("changeTitle", changeTitle);
+		map.put("signBoardName", signBoardName);
+		map.put("bossNickName", bossNickName);
+//		signBoardService.updateSignBoardName(map);
+		
+		return new ModelAndView("");
+	}
+	
 }//class

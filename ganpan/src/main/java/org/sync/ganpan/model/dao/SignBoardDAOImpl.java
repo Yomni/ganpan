@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 @Repository
 public class SignBoardDAOImpl implements SignBoardDAO {
@@ -69,13 +70,16 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	}
 
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
-		return template.selectList("signBoard.showContentList",svo);
+	public List<WorkVO> showContentList(SignBoardVO svo) {
+		System.out.println("SignBoardDAOImpl wvo : "+svo);
+		return template.selectList("work.showContentList",svo);
 	}
-/*	@Override
-	public List<OrganizationVO> getGroupList(String ganpan) {
-		return template.selectList("signBoard.getGroupList",ganpan);
-	}	*/
+
+	@Override
+	public SignBoardVO ganpanSetting(SignBoardVO svo) {
+		return template.selectOne("signBoard.ganpanSetting",svo);
+	}
+	
 	@Override
 	public List<OrganizationVO> getGroupList(String nickName) {
 		return template.selectList("signBoard.getGroupList",nickName);

@@ -29,11 +29,11 @@
 											<ul class="link-list">
 												<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
 												<li><a href="${pageContext.request.contextPath}/board/group_member_list.do">참여 구성원 보기</a></li>
-												<li><a href="${pageContext.request.contextPath}/board/ganpan_setting.do">간판 설정</a></li>
+												<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판 설정</a></li>
 											</ul>
 										</section>
 								</div>
-								
+							
 								
 								
 								<div id="sample">
@@ -74,7 +74,10 @@
 										                        <article class="kanban-entry grab" id="item1" draggable="true">
 										                            <div class="kanban-entry-inner">
 										                                <div class="kanban-label">
-										                                    <p>work1</p>
+										                                	<c:forEach items="${sblist }" var="sblist">
+											                                    <p>${sblist }</p>
+										                                		
+										                                	</c:forEach>
 										                                </div>
 										                            </div>
 										                        </article>

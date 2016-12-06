@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 /**
  * SignBoard의 Business layer를 담당하기 위한 ServiceClass
@@ -69,15 +70,18 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
+	public List<WorkVO> showContentList(SignBoardVO svo) {
 		return signBoardDAO.showContentList(svo);
 	}
-/*	@Override
-	public List<OrganizationVO> getGroupList(String ganpan) {
-		return signBoardDAO.getGroupList(ganpan);
-	}*/
+
 	@Override
 	public List<OrganizationVO> getGroupList(String nickName) {
 		return signBoardDAO.getGroupList(nickName);
+	}
+
+
+	@Override
+	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
+		return null;
 	}
 }

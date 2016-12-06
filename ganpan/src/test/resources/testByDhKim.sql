@@ -26,8 +26,8 @@ insert into have_board values('ganpan1',2,'kosta1');
 insert into have_board values('ganpan1',3,'kosta1');
 
 -- work
-insert into work values(1,'work1',sysdate,sysdate,1,'kosta3','ganpan1','kosta1');
-insert into work values(2,'work2',sysdate,sysdate,1,'kosta4','ganpan1','kosta1');
+insert into work values(1,'work1','상세정보1',sysdate,sysdate,1,'kosta3','ganpan1','kosta1');
+insert into work values(2,'work2','상세정보2',sysdate,sysdate,1,'kosta4','ganpan1','kosta1');
 
 -- change_genre
 insert into change_genre values(0,'추가');
@@ -40,7 +40,16 @@ insert into change_management values(1,'kosta3',sysdate,1,1,0);
 insert into change_management values(2,'kosta4',sysdate,1,2,0);
 
 
+-- test
+select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+from work
+where boss_nickname='kosta1' and sign_board_name='ganpan1';
 
+select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+		from work
+		where boss_nickname='kosta1' and sign_board_name='ganpan1';
+
+select * from organization;
 
 
 
