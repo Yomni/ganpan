@@ -1,10 +1,8 @@
 package org.sync.ganpan.model.vo;
 
-import java.security.Timestamp;
-
 public class InvitationMngVO {
 
-	private SignBoardVO signBoardVO;// signBoardNamem, bossNickName
+	private SignBoardVO signBoardVO;// signBoardName, bossNickName
 	private MemberVO workNickName;// nickName
 	private String invitationDate;
 
