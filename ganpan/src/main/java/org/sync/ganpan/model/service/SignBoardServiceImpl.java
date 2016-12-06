@@ -71,9 +71,9 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	@Override
 	public List<HaveBoardVO> showContentList(SignBoardVO svo) {
-		List<SignBoardVO> slist = null;
 		List<HaveBoardVO> hlist=null;
 		List<WorkVO> wlist=signBoardDAO.showContentList(svo);
+		
 		
 		return hlist;
 	}
