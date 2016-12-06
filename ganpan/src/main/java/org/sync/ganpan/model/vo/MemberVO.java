@@ -21,6 +21,10 @@ public class MemberVO {
 		this.password = password;
 	}
 
+	public MemberVO(String nickName) {
+		this.nickName = nickName;
+	}
+
 	public String getNickName() {
 		return nickName;
 	}

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.HaveBoardVO;
+import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
-import org.sync.ganpan.model.vo.WorkVO;
 
 /**
  * 간판을 위해 설정하는 Controller
@@ -99,9 +99,9 @@ public class SignBoardController {
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
 		List<SignBoardVO> sbList = signBoardService.myJoinSignBoardList(mvo.getNickName());
 		if(sbList.isEmpty())
-			return new ModelAndView("member/my_join_ganpan_list_fail");
+			return new ModelAndView("member/left_template/my_join_ganpan_list_fail");
 		else
-		return new ModelAndView("member/my_join_ganpan_list", "sbList", sbList);
+		return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
 	}
 	
 	/**
@@ -167,6 +167,19 @@ public class SignBoardController {
 //		signBoardService.updateSignBoardName(map);
 		
 		return new ModelAndView("");
+	}
+	
+	@RequestMapping("invitationList.do")
+	public ModelAndView invitationList(HttpSession session){
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		System.out.println("mvo: " + mvo);
+		System.out.println("-----------------------");
+		List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
+		System.out.println("inviteList: " + inviteList);
+		if(inviteList.size() == 0)
+			return new ModelAndView("member/left_template/invitation_list_fail");
+		else
+			return new ModelAndView("member/left_template/invitation_list", "inviteList", inviteList);
 	}
 	
 }//class
