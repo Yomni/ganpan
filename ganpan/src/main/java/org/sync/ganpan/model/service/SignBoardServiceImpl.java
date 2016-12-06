@@ -99,4 +99,14 @@ public class SignBoardServiceImpl implements SignBoardService {
 		signBoardDAO.deleteInvitationMng(ivo);
 	}
 
+	@Override
+	public void updateSignBoardName(HashMap<String, String> map) {
+		signBoardDAO.updateSignBoardName(map);
+	}
+
+	@Override
+	public void updateVisibility(SignBoardVO signBoardVO) {
+		signBoardDAO.updateVisibility(signBoardVO);
+	}
+
 }

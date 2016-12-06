@@ -127,12 +127,9 @@ public class SignBoardController {
 	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
-
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("SignBoardController svo : " + svo);
 		List<HaveBoardVO> sblist = signBoardService.showContentList(svo);
 		System.out.println("SignBoardController List<SignBoardVO> sblist 값 : " + sblist.get(0));
-
 		// System.out.println("boardList : "+sblist.get(0).getBoardList().toString());;
 		// System.out.println("workName :
 		// "+sblist.get(0).getBoardList().get(0).getWorks().get(0).getWorkName());
@@ -148,9 +145,8 @@ public class SignBoardController {
 	 */
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
+		System.out.println("signBoardName: " + signBoardName + " bossNickName: " + bossNickName);
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("1"+svo);
-
 		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
 		System.out.println("2"+svo2);
 		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
@@ -167,9 +163,23 @@ public class SignBoardController {
 		map.put("changeTitle", changeTitle);
 		map.put("signBoardName", signBoardName);
 		map.put("bossNickName", bossNickName);
-		// signBoardService.updateSignBoardName(map);
-
-		return new ModelAndView("");
+		signBoardService.updateSignBoardName(map);
+		return new ModelAndView("redirect:ganpanSettingPage.do?signBoardName="+changeTitle+"&bossNickName="+bossNickName);
+	}
+	
+	
+	@RequestMapping("updateVisibility.do")
+	public String updateVisibility(String signBoardName, String bossNickName, String visibility) {
+		int visibility2 = 0;
+		if(visibility.equals("private")){
+			visibility2 = 1;
+		}
+		System.out.println(visibility+visibility2);
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName, visibility2);
+		System.out.println(svo);
+		signBoardService.updateVisibility(svo);
+		System.out.println("signBoardName: " + signBoardName + " bossNickName: " + bossNickName +"ha");
+		return "redirect:ganpanSettingPage.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
 	}
 
 	/**

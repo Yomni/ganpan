@@ -39,10 +39,16 @@ public interface SignBoardService {
 	// 닉네임으로 초대받은 이력 정보 반환
 	List<InvitationMngVO> invitationList(String nickName);
 
-	//
+	// 초대 수락 시 그룹 테이블에 추가
 	void addOrganization(InvitationMngVO ivo);
 
-	//
+	// 초대 수락, 거절 시 초대 현황에서 삭제
 	void deleteInvitationMng(InvitationMngVO ivo);
+
+	// 간판 이름 변경 map[수정하고싶은 간판이름, 수정전 간판이름, 간판 그룹장]
+	void updateSignBoardName(HashMap<String, String> map);
+
+	// 간판
+	void updateVisibility(SignBoardVO signBoardVO);
 
 }
