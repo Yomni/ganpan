@@ -15,15 +15,11 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public MemberVO nickNameLogin(HashMap<String, String> map) {
-		return (MemberVO) template.selectOne("member.nickNameLogin",map);
+	public MemberVO login(HashMap<String, String> map) {
+		return template.selectOne("member.login",map);
 	}
 
 	@Override
-	public MemberVO eMailLogin(HashMap<String, String> map) {
-		return (MemberVO) template.selectOne("member.eMailLogin",map);
-	}
-
 	public void registerMember(MemberVO mvo) {
 		template.insert("member.registerMember",mvo);
 	}
