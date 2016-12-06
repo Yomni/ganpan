@@ -36,6 +36,9 @@
 			<mvc:exclude-mapping path="/login.do" />
 			<mvc:exclude-mapping path="/go_home.do" />
 			<mvc:exclude-mapping path="/go_board/guide.do" />
+			<mvc:exclude-mapping path="/go_etc/bad_access.do" />
+			<mvc:exclude-mapping path="/go_member/login_form.do" />
+			<mvc:exclude-mapping path="/go_member/register_form.do" />
 			<mvc:exclude-mapping path="/findSignBoardListByTitle.do" />
 			<bean class="org.sync.ganpan.controller.LoginCheckInterceptor" />
 		</mvc:interceptor>
