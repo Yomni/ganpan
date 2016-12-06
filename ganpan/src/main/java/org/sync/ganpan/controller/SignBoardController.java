@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -162,17 +163,55 @@ public class SignBoardController {
 		return new ModelAndView("");
 	}
 	
+	/**
+	 * 초대 현황 리스트 보기
+	 * @author 주선, 민영
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("invitationList.do")
 	public ModelAndView invitationList(HttpSession session){
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		System.out.println("mvo: " + mvo);
-		System.out.println("-----------------------");
 		List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
-		System.out.println("inviteList: " + inviteList);
 		if(inviteList.size() == 0)
 			return new ModelAndView("member/left_template/invitation_list_fail");
 		else
 			return new ModelAndView("member/left_template/invitation_list", "inviteList", inviteList);
+	}
+	
+	/**
+	 * 초대 수락시 그룹에 추가, 초대 이력에서 제거
+	 * @author 주선, 민영
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("acceptInvitation.do")
+	public String acceptInvitaton(String signBoardName, String bossNickName, HttpSession session){
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		String nickname=mvo.getNickName();
+		InvitationMngVO ivo= new InvitationMngVO(signBoardName, bossNickName, nickname);
+		signBoardService.addOrganization(ivo);
+		signBoardService.deleteInvitationMng(ivo);
+		return "redirect:invitationList.do";
+	}
+	
+	/**
+	 * 초대 거절 시, 초대 이력에서 제거
+	 * @author 주선, 민영
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("rejectInvitation.do")
+	public String rejectInvitation(String signBoardName, String bossNickName, HttpSession session){
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		String nickname=mvo.getNickName();
+		InvitationMngVO ivo= new InvitationMngVO(signBoardName, bossNickName, nickname);
+		signBoardService.deleteInvitationMng(ivo);
+		return "redirect:invitationList.do";
 	}
 	
 }//class
