@@ -15,10 +15,10 @@
 			<!-- col-md-6 -->
 			
 			<div class="col-md-6">
-				<form action="register.do" method="post" id="registerForm">
-					<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명">
+				<form action="register_main.do" method="post" id="registerForm">
+					<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명" required="required">
 					<br>
-					<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편">
+					<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편" required="required">
 					<br>
 					<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호">
 					<br>

@@ -9,11 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  <mapper namespace="signBoard">
    
-	<resultMap id="signBoardRM" type="signBoardVO">
-		<result property="signBoardName" column="sign_board_name"/>
-		<result property="bossMemberVO.nickName" column="boss_nickname"/>
-		<result property="creationDate" column="creation_date"/>
-	</resultMap>
+   <resultMap id="signBoardRM" type="signBoardVO">
+      <result property="signBoardName" column="sign_board_name"/>
+      <result property="bossMemberVO.nickName" column="boss_nickname"/>
+      <result property="creationDate" column="creation_date"/>
+   </resultMap>
 	
 	<resultMap id="InvitationMngRM" type="InvitationMngVO">
 		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
@@ -80,10 +80,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value} and visibility = 1
  	</select>
 
-	<select id="ganpanSetting" resultMap="signBoardRM" parameterType="signBoardVO">
+	<select id="ganpanSettingPage" resultMap="signBoardRM" parameterType="signBoardVO">
 		SELECT sign_board_name, boss_nickname, visibility
 		FROM sign_board
-		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossNickName}
+		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
 	</select>
  	
  	<select id="showContentList" resultMap="signBoardRM" parameterType="signBoardVO">

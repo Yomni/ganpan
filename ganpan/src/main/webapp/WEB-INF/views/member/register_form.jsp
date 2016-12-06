@@ -11,22 +11,26 @@
 				<div class="form-group">
 					<h4><span id="eMailCheckView"></span></h4>
 					<label for="eMail">전자우편</label>
-					<input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편" />
+					<input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편"
+						value="${mvo.eMail}" required="required"/>
 				</div>
 				<div class="form-group">
 					<h4><span id="nickNameCheckView"></span></h4>
 					<label for="nickName">별명</label>
-					<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명" />
+					<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명"
+						value="${mvo.nickName}" />
 				</div>
 				<div class="form-group">
 					<h4><span id="passwordView"></span></h4>
 					<label for="password">비밀번호</label>
-					<input type="password" class="form-control" id="password" id="password" name="password" placeholder="비밀번호" />
+					<input type="password" class="form-control" id="password"
+						value="${mvo.password}" name="password" placeholder="비밀번호" />
 				</div>
 				<div class="form-group">
 					<h4><span id="passwordCheckView"></span></h4>
 					<label for="passwordCheck">비밀번호 확인</label>
-					<input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호 확인" />
+					<input type="password" class="form-control" id="passwordCheck" 
+						value="${mvo.password}" placeholder="비밀번호 확인" />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
@@ -36,8 +40,33 @@
 	</div>
 </div>
 <!-- 회원가입 form의 div -->
+
 <script type="text/javascript">
 	$(document).ready(function(){
+		if("${requestScope.nickNameLengthFlag}"){
+			$("#nickNameCheckView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "별명은 2자 이상 15자 이하로 작성해주세요."
+					+ "</div>");
+		}
+		if("${requestScope.nickNameDuplicateFlag}"){
+			$("#nickNameCheckView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ " 사용중인 별명입니다."
+					+ "</div>");
+		}
+		if("${requestScope.passwordLengthFlag}"){
+			$("#passwordView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "비밀번호는 6자 이상 15자 이하로 작성해주세요."
+					+ "</div>");
+		}
+		if("${requestScope.eMailDuplicateFlag}"){
+			$("#eMailCheckView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "사용중인 전자우편입니다."
+					+ "</div>");
+		}
 		var checkResultNickName = false;	
 		var checkResultEMail = false;
 		var checkResultPassword = false;
@@ -81,11 +110,13 @@
 		
 		$("#password").keyup(function(){
 			var password=$(this).val().trim();
+			var passwordCheck = $("#passwordCheck").val().trim();
 			if(password == ""){
 				$("#passwordView").html("");
+				$("#passwordCheck").html("");
 				checkResultPassword = false;
 				return;
-			} 
+			}
 			if(password.length < 6 || password.length > 15){
 				$("#passwordView").html(
 					"<div class='alert alert-danger' role='alert'>"
@@ -95,7 +126,14 @@
 				return;
 			} else {
 				$("#passwordView").html("");
-				checkResultPassword = true;
+			}
+			if(password != passwordCheck) {
+				$("#passwordCheckView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "입력하신 비밀번호와 일치하지 않습니다."
+					+ "</div>");
+				checkResultPassword = false;
+				return;
 			}
 		}); //password key up
 		
@@ -106,7 +144,7 @@
 				$("#passwordCheckView").html("");
 				checkResultPassword = false;
 				return;
-			}
+			} 
 			if(password != passwordCheck) {
 				$("#passwordCheckView").html(
 					"<div class='alert alert-danger' role='alert'>"

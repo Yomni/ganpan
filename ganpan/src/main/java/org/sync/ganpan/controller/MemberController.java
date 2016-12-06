@@ -37,10 +37,53 @@ public class MemberController {
 	 * @param mvo
 	 */
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	public String registerMember(MemberVO mvo, HttpServletRequest request) {
+	public String registerMember(MemberVO mvo, HttpSession session) {
 		memberService.registerMember(mvo);
-		request.getSession().setAttribute("mvo", mvo);
+		session.setAttribute("mvo", mvo);
 		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
+	}
+
+	/**
+	 * home화면에서 회원가입 실패 시 register.jsp로 넘겨주거나 성공시 성공화면으로 전송
+	 * @author 용민
+	 * @param mvo
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "register_main.do", method = RequestMethod.POST)
+	public ModelAndView registerFromIndexMember(MemberVO mvo, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		boolean nickNameLengthFlag = false;
+		boolean nickNameDuplicateFlag = false;
+		boolean eMailDuplicateFlag = false;
+		boolean passwordLengthFlag = false;
+		if(mvo.getNickName().trim().length() < 2 || mvo.getNickName().trim().length() > 15) {
+			nickNameLengthFlag = true; // 길이 
+		}
+		if(memberService.nickNameCheck(mvo.getNickName()) != 0) { // nickName이 중복
+			nickNameDuplicateFlag = true; // nickName 중복됨.
+		}
+		if(memberService.eMailCheck(mvo.geteMail()) != 0) {
+			eMailDuplicateFlag = true;
+		}
+		if(mvo.getPassword().trim().length() < 6 || mvo.getPassword().trim().length() > 15) {
+			passwordLengthFlag = true;
+		}
+		// 네가지 중 하나라도 true면
+		if(nickNameLengthFlag || nickNameDuplicateFlag || eMailDuplicateFlag || passwordLengthFlag) {
+			HashMap<String, Boolean> modelMap = new HashMap<String, Boolean>();
+			modelMap.put("nickNameLengthFlag", nickNameLengthFlag);
+			modelMap.put("nickNameDuplicateFlag", nickNameDuplicateFlag);
+			modelMap.put("eMailDuplicateFlag", eMailDuplicateFlag);
+			modelMap.put("passwordLengthFlag", passwordLengthFlag);
+			mv.setViewName("member/register_form");
+			mv.addAllObjects(modelMap);
+			mv.addObject("mvo", mvo);
+		} else {
+			session.setAttribute("mvo", mvo); // login
+			mv.setViewName("redirect:registerResultView.do?nickName=" + mvo.getNickName());
+		}
+		return mv;
 	}
 
 	/**
@@ -111,10 +154,8 @@ public class MemberController {
 	 * @param request
 	 */
 	@RequestMapping("logout.do")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session != null)
-			session.invalidate();
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "redirect:go_home.do";
 	}
 
@@ -125,12 +166,9 @@ public class MemberController {
 	 * @author 주선,민영
 	 */
 	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
-	public String updateMember(HttpServletRequest request, MemberVO mvo) {
-		int check = memberService.updateMember(mvo);
-		System.out.println(check);
-		request.getSession().setAttribute("mvo", mvo);
-		// return "registerResultView.do?nickName=" + mvo.getNickName();
-		System.out.println("updateMember method mvo.getNickName() : " + mvo.getNickName());
-		return "redirect:member/left_template/my_info.do";
+	public String updateMember(HttpSession session, MemberVO mvo) {
+		memberService.updateMember(mvo);
+		session.setAttribute("mvo", mvo);
+		return "redirect:go_member/left_template/my_info.do";
 	}
 }

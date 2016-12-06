@@ -2,11 +2,14 @@ package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.sync.ganpan.model.dao.HaveBoardDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
+import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -21,6 +24,10 @@ import org.sync.ganpan.model.vo.WorkVO;
 public class SignBoardServiceImpl implements SignBoardService {
 	@Resource
 	private SignBoardDAO signBoardDAO;
+	@Resource
+	private WorkDAO workDAO;
+	@Resource
+	private HaveBoardDAO haveBoardDAO;
 	
 	@Override
 	public List<SignBoardVO> findSignBoardListByTitle(String title) {
@@ -71,17 +78,41 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public List<HaveBoardVO> showContentList(SignBoardVO svo) {
-		List<HaveBoardVO> hlist=null;
-		List<WorkVO> wlist=signBoardDAO.showContentList(svo);
+	public SignBoardVO showGanpan(SignBoardVO svo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("signBoardName", svo.getSignBoardName());
+		map.put("bossNickName", svo.getBossMemberVO().getNickName());
+		System.out.println("map signBaordName : "+map.get("signBoardName")+" "+map.get("bossNickName"));
+		
+		map.put("boardNo", "1");
+		List<WorkVO> toDoWorkList=workDAO.getWorkList(map);
+		map.put("boardNo", "2");
+		List<WorkVO> doingWorkList=workDAO.getWorkList(map);
+		map.put("boardNo", "3");
+		List<WorkVO> doneWorkList=workDAO.getWorkList(map);
+
+		// boardList의 size는 무조건 3(todo, doing, done)
+		List<HaveBoardVO> boardList = haveBoardDAO.getHaveBoardList();
+		for(int i=0; i<boardList.size(); i++){
+		 	//boardName이 null값이 불러짐
+			System.out.println("-------------------------------");
+			System.out.println(boardList.get(i).getBoardGenreVO().getBoardNo());
+			System.out.println(boardList.get(i).getBoardGenreVO().getBoardName());
+		}
 		
 		
-		return hlist;
+		// todo work,doing,done 셋팅
+		boardList.get(0).setWorks(toDoWorkList);
+		boardList.get(1).setWorks(doingWorkList);
+		boardList.get(2).setWorks(doneWorkList);
+		
+		svo.setBoardList(boardList);
+		return svo;
 	}
 
 	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
-		return null;
+		return signBoardDAO.ganpanSettingPage(svo);
 	}
 
 	@Override
@@ -89,4 +120,17 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return signBoardDAO.invitationList(nickName);
 	}
 
+	@Override
+	public void addOrganization(InvitationMngVO ivo) {
+		signBoardDAO.addOrganization(ivo);
+	}
+
+	@Override
+	public void deleteInvitationMng(InvitationMngVO ivo) {
+		signBoardDAO.deleteInvitationMng(ivo);
+	}
+
 }
+
+
+

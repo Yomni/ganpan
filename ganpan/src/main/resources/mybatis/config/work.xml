@@ -8,25 +8,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
 
  <mapper namespace="work">
+ 
+	<resultMap id="signBoardRM" type="signBoardVO">
+      <result property="signBoardName" column="sign_board_name"/>
+      <result property="bossMemberVO.nickName" column="boss_nickname"/>
+      <result property="creationDate" column="creation_date"/>
+   </resultMap>
    
-	<!-- <resultMap id="workRM" type="workVO">
+	<resultMap id="workRM" type="workVO">
 		<result property="workNo" column="work_no"/>
 		<result property="workName" column="work_name"/>
 		<result property="workDetails" column="work_details"/>
 		<result property="creationDate" column="creation_DATE"/>
 		<result property="changeDate" column="change_DATE"/>
+		<result property="boardNo" column="board_no"/>
+		<result property="organizationVO.workerNickName.nickName" column="worker_nickname"/>
 		
-		<result property="" column="board_no"/>
-		<result property="" column="worker_nickname"/>
-		<result property="" column="sign_board_name"/>
-		<result property="" column="boss_nickname"/>
-	</resultMap> -->
+		<result property="organizationVO.signBoardVO.signBoardName" column="sign_board_name"/>
+		<result property="organizationVO.signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+	</resultMap>
 	
- 	<!-- <select id="showContentList" resultMap="workRM" parameterType="signBoardVO">
+ 	<select id="getWorkList" resultMap="workRM" parameterType="map">
  		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
 		from work
-		where boss_nickname=#{haveBoardVO.signBoardVO.bossMemberVO.nickName} and sign_board_name=#{haveBoardVO.signBoardVO.signBoardName}
- 	</select> -->
+		where boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName} and board_no=#{boardNo}
+ 	</select>
  	
 </mapper>
 

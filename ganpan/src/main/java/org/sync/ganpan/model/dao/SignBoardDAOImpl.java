@@ -1,6 +1,5 @@
 package org.sync.ganpan.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,7 +82,21 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return template.selectList("signBoard.invitationList",nickName);
 	}
-	
+
+	@Override
+	public void deleteInvitationMng(InvitationMngVO ivo) {
+		template.delete("invitationMng.deleteInvitationMng",ivo);
+	}
+
+	@Override
+	public void addOrganization(InvitationMngVO ivo) {
+		template.insert("invitationMng.addOrganization",ivo);
+	}
+
+	@Override
+	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
+		return template.selectOne("signBoard.ganpanSettingPage",svo);
+	}
 
 }//class
 
