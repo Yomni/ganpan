@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+<<<<<<< HEAD
 import org.sync.ganpan.model.vo.OrganizationVO;
+=======
+import org.sync.ganpan.model.vo.InvitationMngVO;
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -43,5 +47,15 @@ public interface SignBoardDAO {
 	List<WorkVO> showContentList(SignBoardVO svo);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);
+<<<<<<< HEAD
 
+=======
+
+	List<InvitationMngVO> invitationList(String nickName);
+
+	void deleteInvitationMng(InvitationMngVO ivo);
+
+	void addOrganization(InvitationMngVO ivo);
+
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }

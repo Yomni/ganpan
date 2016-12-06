@@ -2,7 +2,7 @@ package org.sync.ganpan.model.vo;
 
 public class InvitationMngVO {
 
-	private SignBoardVO signBoardVO;// signBoardNamem, bossNickName
+	private SignBoardVO signBoardVO;// signBoardName, bossNickName
 	private MemberVO workNickName;// nickName
 	private String invitationDate;
 
@@ -11,6 +11,19 @@ public class InvitationMngVO {
 		this.signBoardVO = signBoardVO;
 		this.workNickName = workNickName;
 		this.invitationDate = invitationDate;
+	}
+
+	public InvitationMngVO(String signBoardName, String bossNickName, String nickName, String invitationDate) {
+		super();
+		this.signBoardVO = new SignBoardVO(signBoardName, bossNickName);
+		this.workNickName = new MemberVO(nickName);
+		this.invitationDate = invitationDate;
+	}
+	
+	public InvitationMngVO(String signBoardName, String bossNickName, String nickName) {
+		super();
+		this.signBoardVO = new SignBoardVO(signBoardName, bossNickName);
+		this.workNickName = new MemberVO(nickName);
 	}
 
 	public SignBoardVO getSignBoardVO() {

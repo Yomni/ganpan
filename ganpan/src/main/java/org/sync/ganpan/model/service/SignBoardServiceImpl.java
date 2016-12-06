@@ -11,6 +11,10 @@ import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 =======
 import org.sync.ganpan.model.vo.HaveBoardVO;
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+=======
+import org.sync.ganpan.model.vo.InvitationMngVO;
 >>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
@@ -92,4 +96,23 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
 		return null;
 	}
+<<<<<<< HEAD
+=======
+
+	@Override
+	public List<InvitationMngVO> invitationList(String nickName) {
+		return signBoardDAO.invitationList(nickName);
+	}
+
+	@Override
+	public void addOrganization(InvitationMngVO ivo) {
+		signBoardDAO.addOrganization(ivo);
+	}
+
+	@Override
+	public void deleteInvitationMng(InvitationMngVO ivo) {
+		signBoardDAO.deleteInvitationMng(ivo);
+	}
+
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }

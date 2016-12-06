@@ -8,8 +8,12 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+<<<<<<< HEAD
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
+=======
+import org.sync.ganpan.model.vo.InvitationMngVO;
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -78,6 +82,21 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public SignBoardVO ganpanSetting(SignBoardVO svo) {
 		return template.selectOne("signBoard.ganpanSetting",svo);
+	}
+
+	@Override
+	public List<InvitationMngVO> invitationList(String nickName) {
+		return template.selectList("signBoard.invitationList",nickName);
+	}
+
+	@Override
+	public void deleteInvitationMng(InvitationMngVO ivo) {
+		template.delete("invitationMng.deleteInvitationMng",ivo);
+	}
+
+	@Override
+	public void addOrganization(InvitationMngVO ivo) {
+		template.insert("invitationMng.addOrganization",ivo);
 	}
 	
 	@Override
