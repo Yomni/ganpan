@@ -3,6 +3,7 @@ package org.sync.ganpan.model.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -31,5 +32,7 @@ public interface SignBoardDAO {
 	List<WorkVO> showContentList(SignBoardVO svo);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);
+
+	List<InvitationMngVO> invitationList(String nickName);
 
 }

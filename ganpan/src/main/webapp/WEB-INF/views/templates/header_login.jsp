@@ -36,7 +36,7 @@
 						</span>
 					</div>
 				</form> 
-				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/my_info.do">내 정보</a> 
+				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/go_member/left_template/my_info.do">내 정보</a> 
 				<a class="btn btn-danger navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a> 
 			</span>
 		</div>

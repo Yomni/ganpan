@@ -1,5 +1,7 @@
 package org.sync.ganpan.model.vo;
 
+import java.security.Timestamp;
+
 public class InvitationMngVO {
 
 	private SignBoardVO signBoardVO;// signBoardNamem, bossNickName
@@ -10,6 +12,13 @@ public class InvitationMngVO {
 		super();
 		this.signBoardVO = signBoardVO;
 		this.workNickName = workNickName;
+		this.invitationDate = invitationDate;
+	}
+
+	public InvitationMngVO(String signBoardName, String bossNickName, String nickName, String invitationDate) {
+		super();
+		this.signBoardVO = new SignBoardVO(signBoardName, bossNickName);
+		this.workNickName = new MemberVO(nickName);
 		this.invitationDate = invitationDate;
 	}
 

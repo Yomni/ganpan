@@ -10,6 +10,6 @@
 			<ul class="nav nav-sidebar">
 				<li><a href="${pageContext.request.contextPath}/mySignBoardList.do">소유 작업</a></li>
 				<li><a href="${pageContext.request.contextPath}/myJoinSignBoardList.do">참여 작업</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/invitation_list.do">초대 현황</a></li>
+				<li><a href="${pageContext.request.contextPath}/invitationList.do">초대 현황</a></li>
 			</ul>
 		</div>

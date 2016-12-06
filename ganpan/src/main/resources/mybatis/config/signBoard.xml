@@ -15,6 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="creationDate" column="creation_date"/>
 	</resultMap>
 	
+	<resultMap id="InvitationMngRM" type="InvitationMngVO">
+		<result property="SignBoardVO.signBoardName" column="sign_board_name"/>
+		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+		<result property="workNickName.nickName" column="nickname"/>
+		<result property="invitationDate" column="invitation_date"/>
+	</resultMap>
+	
  	<select id="findSignBoardListByTitle" resultMap="signBoardRM" parameterType="String">
  		SELECT sign_board_name, boss_nickname
 		FROM sign_board
@@ -74,9 +81,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
  	
  	<select id="showContentList" resultMap="signBoardRM" parameterType="signBoardVO">
- 		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
-		from work
-		where boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
+ 		SELECT  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+		FROM work
+		WHERE boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
+ 	</select>
+ 	
+ 	<select id="invitationList" resultMap="InvitationMngRM" parameterType="String">
+		SELECT sign_board_name, boss_nickname, nickname, invitation_date
+		FROM invitation_management
+		WHERE nickname = #{value}
  	</select>
 </mapper>
 
