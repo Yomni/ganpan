@@ -6,8 +6,7 @@ import java.util.HashMap;
 import org.sync.ganpan.model.vo.MemberVO;
 
 public interface MemberService {
-	MemberVO nickNameLogin(HashMap<String, String> map);
-	MemberVO eMailLogin(HashMap<String, String> map);
+	MemberVO login(HashMap<String, String> map);
 	int nickNameCheck(String nickName);
 	int eMailCheck(String eMail);
 	void registerMember(MemberVO mvo);

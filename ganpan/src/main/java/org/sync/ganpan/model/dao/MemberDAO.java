@@ -7,12 +7,16 @@ import org.sync.ganpan.model.vo.MemberVO;
 
 public interface MemberDAO {
 
-	MemberVO nickNameLogin(HashMap<String, String> map);
-	MemberVO eMailLogin(HashMap<String, String> map);
+	MemberVO login(HashMap<String, String> map);
+
 	void registerMember(MemberVO vo);
+
 	int emailCheck(String email);
+
 	int nickNameCheck(String nickName);
+
 	MemberVO findMemberByNickName(String nickName);
+
 	int updateMember(MemberVO mvo);
 
 }

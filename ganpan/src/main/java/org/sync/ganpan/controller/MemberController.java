@@ -87,16 +87,11 @@ public class MemberController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("password", password);
-		MemberVO mvo = memberService.nickNameLogin(map);
-		MemberVO mvo2 = memberService.eMailLogin(map);
+		MemberVO mvo = memberService.login(map);
 		System.out.println(mvo);
 		System.out.println("-------------------");
-		System.out.println(mvo2);
 		if (mvo != null) {
 			request.getSession().setAttribute("mvo", mvo);
-			return "redirect:home_login.do";
-		} else if (mvo2 != null) {
-			request.getSession().setAttribute("mvo", mvo2);
 			return "redirect:home_login.do";
 		} else {
 			return "redirect:member/login_fail.do";
