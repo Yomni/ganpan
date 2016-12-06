@@ -13,4 +13,5 @@
 				<li><a href="${pageContext.request.contextPath}/member/invitation_list.do">초대 현황</a></li>
 			</ul>
 		</div>
-  
+  </div>
+  </div>
