@@ -30,7 +30,7 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
-	ArrayList<WorkVO> showContentList(SignBoardVO svo);
+	List<WorkVO> showContentList(SignBoardVO svo);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);
 

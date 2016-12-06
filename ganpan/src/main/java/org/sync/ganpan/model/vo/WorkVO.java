@@ -6,22 +6,22 @@ public class WorkVO {
 	private String workDetails;
 	private String creationDate;
 	private String changeDate;
-	private HaveBoardVO haveBoardVO;
+	private int boardNo;
 	private OrganizationVO organizationVO;
 	
 	public WorkVO() {
 		super();
 	}
-	
-	public WorkVO(int workNo, String workName, String workDetails, String creationDate, String changeDate,
-			HaveBoardVO haveBoardVO, OrganizationVO organizationVO) {
+
+	public WorkVO(int workNo, String workName, String workDetails, String creationDate, String changeDate, int boardNo,
+			OrganizationVO organizationVO) {
 		super();
 		this.workNo = workNo;
 		this.workName = workName;
 		this.workDetails = workDetails;
 		this.creationDate = creationDate;
 		this.changeDate = changeDate;
-		this.haveBoardVO = haveBoardVO;
+		this.boardNo = boardNo;
 		this.organizationVO = organizationVO;
 	}
 
@@ -65,12 +65,12 @@ public class WorkVO {
 		this.changeDate = changeDate;
 	}
 
-	public HaveBoardVO getHaveBoardVO() {
-		return haveBoardVO;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setHaveBoardVO(HaveBoardVO haveBoardVO) {
-		this.haveBoardVO = haveBoardVO;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public OrganizationVO getOrganizationVO() {
@@ -84,7 +84,8 @@ public class WorkVO {
 	@Override
 	public String toString() {
 		return "WorkVO [workNo=" + workNo + ", workName=" + workName + ", workDetails=" + workDetails
-				+ ", creationDate=" + creationDate + ", changeDate=" + changeDate + ", haveBoardVO=" + haveBoardVO
+				+ ", creationDate=" + creationDate + ", changeDate=" + changeDate + ", boardNo=" + boardNo
 				+ ", organizationVO=" + organizationVO + "]";
 	}
+	
 }

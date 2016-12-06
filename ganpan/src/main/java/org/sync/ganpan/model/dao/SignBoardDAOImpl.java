@@ -70,11 +70,8 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	}
 
 	@Override
-	public ArrayList<WorkVO> showContentList(SignBoardVO svo) {
-		ArrayList<WorkVO> wlist=new ArrayList<WorkVO>();
-		wlist.add((WorkVO) template.selectList("signBoard.showContentList",svo));
-		
-		return wlist;
+	public List<WorkVO> showContentList(SignBoardVO svo) {
+		return template.selectList("signBoard.showContentList",svo);
 	}
 
 	@Override

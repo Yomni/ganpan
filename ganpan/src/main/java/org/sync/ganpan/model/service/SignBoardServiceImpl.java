@@ -1,6 +1,5 @@
 package org.sync.ganpan.model.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.SignBoardDAO;
+import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
@@ -71,12 +71,12 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public ArrayList<SignBoardVO> showContentList(SignBoardVO svo) {
-		ArrayList<SignBoardVO> lvo = new ArrayList<SignBoardVO>();
+	public List<HaveBoardVO> showContentList(SignBoardVO svo) {
+		List<HaveBoardVO> hlist=null;
+		List<WorkVO> wlist=signBoardDAO.showContentList(svo);
 		
-		ArrayList<WorkVO> wvo = signBoardDAO.showContentList(svo);
 		
-		return lvo;
+		return hlist;
 	}
 
 	@Override
