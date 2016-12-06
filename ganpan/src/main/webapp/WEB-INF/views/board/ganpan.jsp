@@ -20,7 +20,6 @@
 						<div class="container">
 							<div class="row">
 								<div class="3u 12u(mobile)">
-
 									<!-- Sidebar -->
 										<section>
 											<header>
@@ -33,122 +32,42 @@
 											</ul>
 										</section>
 								</div>
-							
 								
 								
 								<div id="sample">
 									  <h3>GoJS Kanban Board</h3>
-									  <div id="myDiagramDiv" style="border: solid 1px gray; width:100%; height:500px;"></div>
+									  <div id="myDiagramDiv" style="border: solid 1px gray; width:100%; height:500px;">
+									  <div class="9u 12u(mobile) important(mobile)"></div>
+									  </div>
 									  <p></p>
 									  <button id="SaveButton" onclick="save()">Save</button>
 									  <button onclick="load()">Load</button>
 									  Diagram Model saved in JSON format:
 									  <br>
 								</div>
+								<table border="1" cellpadding="10">
+											<thead>
+												<tr>
+												<c:forEach items="${rsvo.boardList}" var="rsvo">
+													<th>${rsvo.boardGenreVO.boardName }</th>
+												</c:forEach>
+												</tr>
+											</thead>
+											<tbody>
+											<c:forEach items="${rsvo.boardList}" var="rsvo">
+														<c:forEach items="${rsvo.works}" var="works">
+												<tr>
+													<td>
+															${works.workName} | ${works.organizationVO.workerNickName.nickName}
+													</td>
+												</tr>
+														</c:forEach>
+											</c:forEach>
+											</tbody>
+										</table>
 								
 								
 								
-								
-								
-								<div class="9u 12u(mobile) important(mobile)">
-									<!-- Main Content -->
-										<section>
-											<header>
-												<h2>내 간판 명</h2>
-											</header>
-											<section>
-											</section>
-											
-											
-											<div class="container-fluid">
-												<!-- 간판 레이아웃 -->
-										        <div id="sortableKanbanBoards" class="row">
-										            <div class="panel panel-primary kanban-col"  style="border: 1px solid black">
-										                <div class="panel-heading">
-										                    TODO
-										                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
-										                </div>
-										                <div class="panel-body">
-										                    <div id="TODO" class="kanban-centered">
-										                    	<!-- work -->
-										                        <article class="kanban-entry grab" id="item1" draggable="true">
-										                            <div class="kanban-entry-inner">
-										                                <div class="kanban-label">
-										                                	<c:forEach items="${sblist}" var="sblist">
-										                                		<c:forEach items="${sblist.boardList}" var="boardList">
-										                                			<c:forEach items="${boardList.works}" var="works">
-										                                				${works.workName}
-										                                			
-										                                			</c:forEach>
-										                                		</c:forEach>
-										                                	</c:forEach>
-										                                </div>
-										                            </div>
-										                        </article>
-										                        
-										                    </div><!-- todo -->
-										                </div><!-- panel -->
-										                <div class="panel-footer">
-										                    <a href="#">Add a card...</a>
-										                </div>
-										            </div>
-										            
-										            <div class="panel panel-primary kanban-col"  style="border: 1px solid black">
-										                <div class="panel-heading">
-										                    DOING
-										                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
-										                </div>
-										                <div class="panel-body">
-										                    <div id="DOING" class="kanban-centered">
-										                    	<!-- work -->
-										                        <article class="kanban-entry grab" id="item1" draggable="true">
-										                            <div class="kanban-entry-inner">
-										                                <div class="kanban-label">
-										                                    <p>work1</p>
-										                                </div>
-										                            </div>
-										                        </article>
-										                        
-										                    </div><!-- todo -->
-										                </div><!-- panel -->
-										                <div class="panel-footer">
-										                    <a href="#">Add a card...</a>
-										                </div>
-										            </div>
-										            
-										            <div class="panel panel-primary kanban-col"  style="border: 1px solid black">
-										                <div class="panel-heading">
-										                    DONE
-										                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
-										                </div>
-										                <div class="panel-body">
-										                    <div id="DONE" class="kanban-centered">
-										                    	<!-- work -->
-										                        <article class="kanban-entry grab" id="item1" draggable="true">
-										                            <div class="kanban-entry-inner">
-										                                <div class="kanban-label">
-										                                    <p>work1</p>
-										                                </div>
-										                            </div>
-										                        </article>
-										                        
-										                    </div><!-- todo -->
-										                </div><!-- panel -->
-										                <div class="panel-footer">
-										                    <a href="#">Add a card...</a>
-										                </div>
-										            </div>
-										            
-										            
-										            
-										
-										        </div>
-   										 </div><!-- ganpan -->
-											
-											
-											
-										</section>
-								</div><!-- main content -->
 							</div>
 						</div>
 					</div>

@@ -28,14 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="organizationVO.signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
 	</resultMap>
 	
-	<!-- 작동완료 -->
- 	<!-- <select id="getWorkList" resultMap="workRM" parameterType="map">
- 		select  work_no, work_name, board_no
-		from work
-		where board_no=#{boardNo}
- 	</select> -->
- 	
- 	
  	<select id="getWorkList" resultMap="workRM" parameterType="map">
  		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
 		from work

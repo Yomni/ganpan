@@ -13,11 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
    		<result property="boardGenreVO.boardNo" column="board_no"/>
    		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+   		<result property="boardGenreVO.boardName" column="board_name"/>
    </resultMap>
    
    <select id="getHaveBoardList" resultMap="haveBoardRM">
-   		select board_no,board_name 
-   		from board_genre
+   		select hb.sign_board_name, hb.board_no, hb.boss_nickname, bg.board_name
+		from have_board hb, board_genre bg
+		where hb.board_no=bg.board_no
    </select>
    
 </mapper>

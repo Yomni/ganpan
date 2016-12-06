@@ -131,7 +131,7 @@ public class SignBoardController {
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
 		SignBoardVO rsvo = signBoardService.showGanpan(svo);
 		
-		return new ModelAndView("board/ganpan","sblist",rsvo);
+		return new ModelAndView("board/ganpan","rsvo",rsvo);
 	}
 	
 	/**
