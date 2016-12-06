@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<resultMap id="InvitationMngRM" type="InvitationMngVO">
-		<result property="SignBoardVO.signBoardName" column="sign_board_name"/>
+		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
 		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
 		<result property="workNickName.nickName" column="nickname"/>
 		<result property="invitationDate" column="invitation_date"/>
@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<select id="invitationList" resultMap="InvitationMngRM" parameterType="String">
-		SELECT sign_board_name, boss_nickname, nickname, invitation_date
+		SELECT sign_board_name, boss_nickname, nickname, to_char(invitation_date, 'YYYY.MM.DD HH:mm:ss') as invitation_date
 		FROM invitation_management
 		WHERE nickname = #{value}
  	</select>
