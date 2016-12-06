@@ -4,6 +4,7 @@
 		내정보보기 들어가면 바로 보여줄 내용들<br>
 		전자우편: ${sessionScope.mvo.eMail} <br>
 		별명: ${sessionScope.mvo.nickName}
+		<a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판설정</a>
 </div>
 
 
