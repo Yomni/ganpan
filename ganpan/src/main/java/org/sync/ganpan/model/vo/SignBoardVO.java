@@ -6,7 +6,7 @@ public class SignBoardVO {
 	private String signBoardName;
 	private MemberVO bossMemberVO;
 	private List<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
-	private boolean visibility;
+	private String visibility;
 	private String creationDate;
 
 	public SignBoardVO() {
@@ -15,7 +15,7 @@ public class SignBoardVO {
 	}
 
 	// SignBoardVO 강한 has a MemberVO(nickName)
-	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList, boolean visibility,
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList, String visibility,
 			String creationDate) {
 		super();
 		this.signBoardName = signBoardName;
@@ -56,11 +56,11 @@ public class SignBoardVO {
 		this.boardList = boardList;
 	}
 
-	public boolean isVisibility() {
+	public String isVisibility() {
 		return visibility;
 	}
 
-	public void setVisibility(boolean visibility) {
+	public void setVisibility(String visibility) {
 		this.visibility = visibility;
 	}
 
