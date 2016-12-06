@@ -40,4 +40,6 @@ public interface SignBoardDAO {
 
 	void addOrganization(InvitationMngVO ivo);
 
+	SignBoardVO ganpanSettingPage(SignBoardVO svo);
+
 }
