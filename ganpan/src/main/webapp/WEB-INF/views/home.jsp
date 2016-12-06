@@ -49,7 +49,7 @@
 	<div class="container">
 		<c:forEach items="${sessionScope.slist}" var="ganpan">
 			<a href="#">${ganpan.signBoardName}</a>
-		</c:forEach>
+		</c:forEach> 
 	</div>
 	</c:otherwise>
 	</c:choose>
