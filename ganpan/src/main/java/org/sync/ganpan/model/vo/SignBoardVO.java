@@ -1,11 +1,11 @@
 package org.sync.ganpan.model.vo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SignBoardVO {
 	private String signBoardName;
 	private MemberVO bossMemberVO;
-	private ArrayList<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
+	private List<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
 	private boolean visibility;
 	private String creationDate;
 	
@@ -15,7 +15,7 @@ public class SignBoardVO {
 	}
 
 	//SignBoardVO 강한 has a MemberVO(nickName)
-	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, ArrayList<HaveBoardVO> boardList,
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList,
 			boolean visibility, String creationDate) {
 		super();
 		this.signBoardName = signBoardName;
@@ -48,11 +48,11 @@ public class SignBoardVO {
 		this.bossMemberVO = bossMemberVO;
 	}
 
-	public ArrayList<HaveBoardVO> getBoardList() {
+	public List<HaveBoardVO> getBoardList() {
 		return boardList;
 	}
 
-	public void setBoardList(ArrayList<HaveBoardVO> boardList) {
+	public void setBoardList(List<HaveBoardVO> boardList) {
 		this.boardList = boardList;
 	}
 

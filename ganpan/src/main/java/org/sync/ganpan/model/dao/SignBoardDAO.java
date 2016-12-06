@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
-	List<SignBoardVO> showContentList(SignBoardVO svo);
+	ArrayList<WorkVO> showContentList(SignBoardVO svo);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);
 

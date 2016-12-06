@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface SignBoardService {
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 	
 	//내 소유 간판으로 이동하고 간판 내 작업을 호출
-	List<SignBoardVO> showContentList(SignBoardVO svo);
+	ArrayList<SignBoardVO> showContentList(SignBoardVO svo);
 	
 	// 닉네임으로 전체, 공개, 비공개 간판 리스트 정보 반환
 	HashMap<String, List> homeSignBoardList(String nickName);

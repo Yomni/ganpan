@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,8 +70,12 @@ public class SignBoardServiceImpl implements SignBoardService {
 	
 	
 	@Override
-	public List<SignBoardVO> showContentList(SignBoardVO svo) {
-		return signBoardDAO.showContentList(svo);
+	public ArrayList<SignBoardVO> showContentList(SignBoardVO svo) {
+		ArrayList<SignBoardVO> lvo = new ArrayList<SignBoardVO>();
+		
+		ArrayList<WorkVO> wvo = signBoardDAO.showContentList(svo);
+		
+		return lvo;
 	}
 
 	@Override
