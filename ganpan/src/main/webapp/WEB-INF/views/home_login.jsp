@@ -28,10 +28,10 @@
 		<!-- container-fluid -->
 	</div>
 	<!-- jumbotron -->
-	
+
 	<div class="container">
 		<p>우리거 다 구현하면 채울 예정</p>
-<!-- 		<a href="gomember/my_info.do">내 정보 보기</a> -->
+		<!-- 		<a href="gomember/my_info.do">내 정보 보기</a> -->
 	</div>
 	<!-- main container-fluid -->
 </div>
@@ -44,17 +44,17 @@
 			var nickName = $("#nickName").val().trim();
 			var eMail = $("#eMail").val().trim();
 			var password = $("#password").val().trim();
-			if(nickName == "") {
+			if (nickName == "") {
 				alert("별명을 입력하세요!");
 				$("#nickName").focus();
 				return false;
 			}
-			if(eMail == "") {
+			if (eMail == "") {
 				alert("전자우편을 입력하세요!");
 				$("#eMail").focus();
 				return false;
 			}
-			if(password == "") {
+			if (password == "") {
 				alert("비밀번호을 입력하세요!");
 				$("#password").focus();
 				return false;
