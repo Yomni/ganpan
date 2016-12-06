@@ -19,6 +19,12 @@ public class InvitationMngVO {
 		this.workNickName = new MemberVO(nickName);
 		this.invitationDate = invitationDate;
 	}
+	
+	public InvitationMngVO(String signBoardName, String bossNickName, String nickName) {
+		super();
+		this.signBoardVO = new SignBoardVO(signBoardName, bossNickName);
+		this.workNickName = new MemberVO(nickName);
+	}
 
 	public SignBoardVO getSignBoardVO() {
 		return signBoardVO;

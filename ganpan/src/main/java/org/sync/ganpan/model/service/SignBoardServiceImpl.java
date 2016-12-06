@@ -89,4 +89,14 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return signBoardDAO.invitationList(nickName);
 	}
 
+	@Override
+	public void addOrganization(InvitationMngVO ivo) {
+		signBoardDAO.addOrganization(ivo);
+	}
+
+	@Override
+	public void deleteInvitationMng(InvitationMngVO ivo) {
+		signBoardDAO.deleteInvitationMng(ivo);
+	}
+
 }

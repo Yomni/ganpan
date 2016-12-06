@@ -36,4 +36,8 @@ public interface SignBoardDAO {
 
 	List<InvitationMngVO> invitationList(String nickName);
 
+	void deleteInvitationMng(InvitationMngVO ivo);
+
+	void addOrganization(InvitationMngVO ivo);
+
 }

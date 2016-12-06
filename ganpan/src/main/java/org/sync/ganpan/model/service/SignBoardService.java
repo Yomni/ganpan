@@ -39,4 +39,10 @@ public interface SignBoardService {
 	// 닉네임으로 초대받은 이력 정보 반환
 	List<InvitationMngVO> invitationList(String nickName);
 
+	//
+	void addOrganization(InvitationMngVO ivo);
+
+	//
+	void deleteInvitationMng(InvitationMngVO ivo);
+
 }
