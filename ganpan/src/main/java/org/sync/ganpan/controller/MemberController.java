@@ -113,7 +113,7 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session != null)
 			session.invalidate();
-		return "redirect:gohome.do";
+		return "redirect:go_home.do";
 	}
 
 	/************************************************************************/
