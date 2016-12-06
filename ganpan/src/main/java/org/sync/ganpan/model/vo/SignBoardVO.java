@@ -8,15 +8,15 @@ public class SignBoardVO {
 	private List<HaveBoardVO> boardList; // size는 반드시 3이 될 예정
 	private boolean visibility;
 	private String creationDate;
-	
+
 	public SignBoardVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	//SignBoardVO 강한 has a MemberVO(nickName)
-	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList,
-			boolean visibility, String creationDate) {
+	// SignBoardVO 강한 has a MemberVO(nickName)
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList, boolean visibility,
+			String creationDate) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = bossMemberVO;
@@ -24,7 +24,7 @@ public class SignBoardVO {
 		this.visibility = visibility;
 		this.creationDate = creationDate;
 	}
-	
+
 	public SignBoardVO(String signBoardName, String bossNickName) {
 		super();
 		this.signBoardName = signBoardName;
@@ -77,6 +77,4 @@ public class SignBoardVO {
 		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", boardList="
 				+ boardList + ", visibility=" + visibility + ", creationDate=" + creationDate + "]";
 	}
-	
-
 }// class SignBoardVO
