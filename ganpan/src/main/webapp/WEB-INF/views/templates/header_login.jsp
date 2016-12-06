@@ -36,9 +36,8 @@
 						</span>
 					</div>
 				</form> 
-				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/go_member/my_info/show_info.do">내 정보</a> 
-				<a class="btn btn-danger navbar-btn" href="${pageContext.request.contextPath}/go_member/logout.do">나가기</a> 
-				<a class="btn btn-success navbar-btn" href="${pageContext.request.contextPath}/go_test/test.do">테스트</a>
+				<a class="btn btn-primary navbar-btn" href="${pageContext.request.contextPath}/my_info.do">내 정보</a> 
+				<a class="btn btn-danger navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a> 
 			</span>
 		</div>
 		<!--/.nav-collapse -->

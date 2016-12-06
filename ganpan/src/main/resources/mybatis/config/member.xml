@@ -12,13 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="eMail" column="e_mail"/>
 		<result property="password" column="password"/>
 	</resultMap>
-	<select id="nickNameLogin" parameterType="Map" resultType="memberVO">
+	<select id="login" parameterType="map" resultMap="memberRM">
 		<include refid="selectMember" />
-		WHERE nickname=#{id} and password=#{password}
-	</select>
-	<select id="eMailLogin" parameterType="Map" resultMap="memberRM">
-		<include refid="selectMember" />
-		WHERE e_mail=#{id} and password=#{password}
+		WHERE nickname=#{id} or e_mail=#{id} and password=#{password}
 	</select>
  	<select id="findMemberByNickName" resultMap="memberRM">
  		<include refid="selectMember" />
