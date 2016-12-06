@@ -123,21 +123,14 @@ public class SignBoardController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("showContentList.do")
-	public ModelAndView showContentList(HttpSession session, HttpServletRequest request) {
+	@RequestMapping("showGanpan.do")
+	public ModelAndView showGanpan(HttpSession session, HttpServletRequest request) {
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
-		
 		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
-		System.out.println("SignBoardController svo : "+svo);
-		List<HaveBoardVO> sblist = signBoardService.showContentList(svo);
-		System.out.println("SignBoardController List<SignBoardVO> sblist 값 : "+sblist.get(0));
+		SignBoardVO rsvo = signBoardService.showGanpan(svo);
 		
-		
-		//System.out.println("boardList : "+sblist.get(0).getBoardList().toString());;
-		//System.out.println("workName : "+sblist.get(0).getBoardList().get(0).getWorks().get(0).getWorkName());
-
-		return new ModelAndView("board/ganpan","sblist",sblist);
+		return new ModelAndView("board/ganpan","sblist",rsvo);
 	}
 	
 	/**

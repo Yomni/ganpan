@@ -9,11 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  <mapper namespace="signBoard">
    
-	<resultMap id="signBoardRM" type="signBoardVO">
-		<result property="signBoardName" column="sign_board_name"/>
-		<result property="bossMemberVO.nickName" column="boss_nickname"/>
-		<result property="creationDate" column="creation_date"/>
-	</resultMap>
+   <resultMap id="signBoardRM" type="signBoardVO">
+      <result property="signBoardName" column="sign_board_name"/>
+      <result property="bossMemberVO.nickName" column="boss_nickname"/>
+      <result property="creationDate" column="creation_date"/>
+   </resultMap>
 	
 	<resultMap id="InvitationMngRM" type="InvitationMngVO">
 		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
