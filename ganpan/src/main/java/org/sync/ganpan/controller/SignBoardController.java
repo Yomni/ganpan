@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
@@ -127,7 +129,6 @@ public class SignBoardController {
 		System.out.println("showGanpan: " + rsvo);
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
-
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
 	 * @param signBoardName
@@ -137,10 +138,7 @@ public class SignBoardController {
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("1" + svo);
-
 		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		System.out.println("2" + svo2);
 		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
 	}
 
@@ -177,9 +175,11 @@ public class SignBoardController {
 	}
 
 	@RequestMapping("deleteSignBoard.do")
-	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName) {
 
-		return "";
+	public String deleteSignBoard(String signBoardName, String bossNickName){
+		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
+		signBoardService.deleteSignBoard(svo);
+		return "redirect:homeSignBoardList.do";
 	}
 
 	/**

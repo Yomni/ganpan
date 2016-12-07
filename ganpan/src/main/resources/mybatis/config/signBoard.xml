@@ -86,6 +86,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
 	</select>
  	
+ 	<!-- <select id="showContentList" parameterType="svo">
+ 		SELECT work_no,work_name,worker_nicname
+ 		FROM work
+ 		WHERE 
+ 		signBoardName, boss_nick_name
+ 	</select> -->
+ 	
+ 	
+ 	 	<select id="getGroupList" resultMap="signBoardRM" parameterType="signBoardVO">
+ 		SELECT worker_nickname, boss_nickname
+		FROM organization 
+		WHERE boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName}
+</select>
+
  	<select id="showContentList" resultMap="signBoardRM" parameterType="signBoardVO">
  		SELECT  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
 		FROM work
@@ -97,6 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM invitation_management
 		WHERE nickname = #{value}
  	</select>
+
  	
  	<update id="updateSignBoardName" parameterType="map">
  		UPDATE sign_board
@@ -109,4 +124,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SET visibility = #{visibility}
  		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
  	</update>
+ 	
+ 	<delete id="deleteSignBoard" parameterType="signBoardVO">
+ 		DELETE sign_board 
+ 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
+ 	</delete>
 </mapper>

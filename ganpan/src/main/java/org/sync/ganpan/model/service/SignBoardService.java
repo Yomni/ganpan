@@ -4,8 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.sync.ganpan.model.vo.OrganizationVO;
+
 import org.sync.ganpan.model.vo.HaveBoardVO;
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardService {
@@ -51,5 +55,7 @@ public interface SignBoardService {
 
 	// 간판
 	void updateVisibility(SignBoardVO signBoardVO);
+
+	void deleteSignBoard(SignBoardVO svo);
 
 }
