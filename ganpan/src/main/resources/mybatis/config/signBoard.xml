@@ -109,4 +109,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SET visibility = #{visibility}
  		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
  	</update>
+ 	
+ 	<delete id="deleteSignBoard" parameterType="signBoardVO">
+ 		DELETE sign_board 
+ 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
+ 	</delete>
 </mapper>

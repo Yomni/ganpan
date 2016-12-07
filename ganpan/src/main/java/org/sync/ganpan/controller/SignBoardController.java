@@ -122,9 +122,9 @@ public class SignBoardController {
 		// String signBoardName = request.getParameter("signBoardName");
 		// String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
-		SignBoardVO rsvo2 = signBoardService.showGanpan(rsvo);
-		System.out.println("showGanpan: "+rsvo2);
-		return new ModelAndView("board/ganpan", "rsvo", rsvo2);
+		rsvo = signBoardService.showGanpan(rsvo);
+		System.out.println("showGanpan: " + rsvo);
+		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
 
 	/**
@@ -149,7 +149,8 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("updateSignBoardName.do")
-	public String updateSignBoardName(RedirectAttributes redirectAttributes, String changeTitle, String signBoardName, String bossNickName) {
+	public String updateSignBoardName(RedirectAttributes redirectAttributes, String changeTitle, String signBoardName,
+			String bossNickName) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("changeTitle", changeTitle);
 		map.put("signBoardName", signBoardName);
@@ -159,12 +160,12 @@ public class SignBoardController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:ganpanSettingPage.do";
 	}
-	
-	
+
 	@RequestMapping("updateVisibility.do")
-	public String updateVisibility(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String visibility) {
+	public String updateVisibility(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
+			String visibility) {
 		int visibility2 = 0;
-		if(visibility.equals("private")){
+		if (visibility.equals("private")) {
 			visibility2 = 1;
 		}
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName, visibility2);
@@ -173,12 +174,13 @@ public class SignBoardController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:ganpanSettingPage.do";
 	}
-	
 
 	@RequestMapping("deleteSignBoard.do")
-	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName){
-		
-		return "";
+
+	public String deleteSignBoard(String signBoardName, String bossNickName){
+		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
+		signBoardService.deleteSignBoard(svo);
+		return "redirect:homeSignBoardList.do";
 	}
 
 	/**
