@@ -288,6 +288,9 @@ SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitat
 FROM member m, invitation_management im
 WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
 
+
+insert into member values('dja','bubjalsdud@naver.com','1');
+
 SELECT * FROM member
 SELECT * FROM sign_board;
-SELECT* FROM invitation_management;
+SELECT * FROM invitation_management;

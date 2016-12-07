@@ -12,7 +12,7 @@
 			<tr>	
 				<td>${signBoardVO.signBoardName}</td>
 				<td>${signBoardVO.bossMemberVO.nickName}</td>
-				<td><a href="showContentList.do?bossNickName=${signBoardVO.bossMemberVO.nickName}&signBoardName=${signBoardVO.signBoardName}">간판으로 이동</a></td>
+					<td><a href="showGanpan.do?bossNickName=${signBoardVO.bossMemberVO.nickName}&signBoardName=${signBoardVO.signBoardName}">간판으로 이동</a></td>
 			</tr>
 		</c:forEach>
 	</table>
