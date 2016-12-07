@@ -12,7 +12,7 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 @Repository
 public class GroupDAOImpl implements GroupDAO {
 	@Resource
-	SqlSessionTemplate sqlSessionTemplate;
+	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
 	public List<OrganizationVO> getGroupList(SignBoardVO svo) {

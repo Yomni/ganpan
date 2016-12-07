@@ -17,7 +17,7 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 @Service
 public class GroupServiceImpl implements GroupService {
 	@Resource
-	GroupDAO groupDAO;
+	private GroupDAO groupDAO;
 	/**
 	 *  수정중 by dhKim
 	 */
