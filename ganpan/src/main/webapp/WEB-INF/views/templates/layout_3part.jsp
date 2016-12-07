@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/sticky-footer-navbar.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 	<!-- header, main, footer 있는 layout -->
