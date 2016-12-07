@@ -8,10 +8,10 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<form action="${pageContext.request.contextPath}/createWork.do" method="post">
-				<input type="hidden" name="bossNickName" value="${param.bossNickName}" />
+				<input type="hidden" name="bossNickName" value="${createSignBoardVO.bossMemberVO.nickName}" />
 				<div class="form-group">
 					<label for="signBoardName">간판명</label>
-					<input type="text" class="form-control" id="signBoardName" name="signBoardName" value="${param.signBoardName}"
+					<input type="text" class="form-control" id="signBoardName" name="signBoardName" value="${createSignBoardVO.signBoardName}"
 						readonly/>
 				</div>
 				<div class="form-group">

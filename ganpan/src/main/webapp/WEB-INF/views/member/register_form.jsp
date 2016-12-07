@@ -1,36 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 회원가입form -->
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<p><h1>간판에 가입하기</h1></p>
-			<p><h4>작업을 계획하고, 진행상황을 한번에 확인하세요</h4></p>
-			<form method="post" action="${pageContext.request.contextPath}/register.do" >
+			<p>
+			<h1>간판에 가입하기</h1>
+			</p>
+			<p>
+			<h4>작업을 계획하고, 진행상황을 한번에 확인하세요</h4>
+			</p>
+			<form method="post" action="${pageContext.request.contextPath}/register.do">
 				<div class="form-group">
-					<h4><span id="eMailCheckView"></span></h4>
-					<label for="eMail">전자우편</label>
-					<input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편"
-						value="${mvo.eMail}" required="required"/>
+					<h4>
+						<span id="eMailCheckView"></span>
+					</h4>
+					<label for="eMail">전자우편</label> <input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편" value="${mvo.eMail}" required="required" />
 				</div>
 				<div class="form-group">
-					<h4><span id="nickNameCheckView"></span></h4>
-					<label for="nickName">별명</label>
-					<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명"
-						value="${mvo.nickName}" />
+					<h4>
+						<span id="nickNameCheckView"></span>
+					</h4>
+					<label for="nickName">별명</label> <input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명" value="${mvo.nickName}" required="required" />
 				</div>
 				<div class="form-group">
-					<h4><span id="passwordView"></span></h4>
-					<label for="password">비밀번호</label>
-					<input type="password" class="form-control" id="password"
-						value="${mvo.password}" name="password" placeholder="비밀번호" />
+					<h4>
+						<span id="passwordView"></span>
+					</h4>
+					<label for="password">비밀번호</label> <input type="password" class="form-control" id="password" value="${mvo.password}" name="password" placeholder="비밀번호" required="required" />
 				</div>
 				<div class="form-group">
-					<h4><span id="passwordCheckView"></span></h4>
-					<label for="passwordCheck">비밀번호 확인</label>
-					<input type="password" class="form-control" id="passwordCheck" 
-						value="${mvo.password}" placeholder="비밀번호 확인" />
+					<h4>
+						<span id="passwordCheckView"></span>
+					</h4>
+					<label for="passwordCheck">비밀번호 확인</label> <input type="password" class="form-control" id="passwordCheck" value="${mvo.password}" placeholder="비밀번호 확인" required="required" />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
@@ -43,58 +47,48 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		if("${requestScope.nickNameLengthFlag}"){
+		var checkResultNickName = false;	
+		var checkResultEMail = false;
+		var checkResultPassword = false;
+		<c:if test="${mvo != null}">		
+		if(${requestScope.nickNameLengthFlag} == true){
 			$("#nickNameCheckView").html(
 					"<div class='alert alert-danger' role='alert'>"
 					+ "별명은 2자 이상 15자 이하로 작성해주세요."
 					+ "</div>");
 		}
-		if("${requestScope.nickNameDuplicateFlag}"){
+		if(${requestScope.nickNameDuplicateFlag} == true){
 			$("#nickNameCheckView").html(
 					"<div class='alert alert-danger' role='alert'>"
 					+ " 사용중인 별명입니다."
 					+ "</div>");
+		} else if(${requestScope.nickNameDuplicateFlag} == false){
+			checkResultNickName = true;
 		}
-		if("${requestScope.passwordLengthFlag}"){
+		if(${requestScope.passwordLengthFlag} == true){
 			$("#passwordView").html(
 					"<div class='alert alert-danger' role='alert'>"
 					+ "비밀번호는 6자 이상 15자 이하로 작성해주세요."
 					+ "</div>");
+		} else if(${requestScope.passwordLengthFlag} == false){
+			checkResultPassword = true;
 		}
-		if("${requestScope.eMailDuplicateFlag}"){
+		if(${requestScope.eMailDuplicateFlag} == true){
 			$("#eMailCheckView").html(
 					"<div class='alert alert-danger' role='alert'>"
 					+ "사용중인 전자우편입니다."
 					+ "</div>");
+		} else if(${requestScope.eMailDuplicateFlag} == false){
+			checkResultEMail = true;
 		}
-		var checkResultNickName = false;	
-		var checkResultEMail = false;
-		var checkResultPassword = false;
+		</c:if>
 		
 		$("#registerBtn").click(function() {
-			var nickName = $("#nickName").val().trim();
-			var eMail = $("#eMail").val().trim();
-			var password = $("#password").val().trim();
-			if(eMail == "") {
-				alert("전자우편을 입력하세요!");
-				$("#eMail").focus();
-				return false;
-			}
-			if(nickName == "") {
-				alert("별명을 입력하세요!");
-				$("#nickName").focus();
-				return false;
-			}
-			if(password == "") {
-				alert("비밀번호을 입력하세요!");
-				$("#password").focus();
-				return false;
-			}
-			if(checkResultNickName == false) {
+	 		if(checkResultNickName == false) {
 				alert("별명을 확인하세요!");
 				$("#nickName").val("").focus();
 				return false;
-			}	
+			}	 
 			if(checkResultEMail == false) {
 				alert("전자우편을 확인하세요!");
 				$("#eMail").val("").focus();
@@ -109,8 +103,8 @@
 		});//submit
 		
 		$("#password").keyup(function(){
-			var password=$(this).val().trim();
-			var passwordCheck = $("#passwordCheck").val().trim();
+			var password=$(this).val();
+			var passwordCheck = $("#passwordCheck").val();
 			if(password == ""){
 				$("#passwordView").html("");
 				$("#passwordCheck").html("");
@@ -134,6 +128,10 @@
 					+ "</div>");
 				checkResultPassword = false;
 				return;
+			}
+			else {
+				$("#passwordCheckView").html("");
+				checkResultPassword = true;
 			}
 		}); //password key up
 		

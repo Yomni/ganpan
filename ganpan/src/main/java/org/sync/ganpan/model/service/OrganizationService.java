@@ -7,13 +7,11 @@ import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
-public interface GroupService {
+public interface OrganizationService {
 
 	void cancelInvitation(InvitationMngVO ivo);
 
 	void inviteWorker(InvitationMngVO ivo);
-
-	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	String getNickNameByEmail(String id);
 
@@ -22,5 +20,17 @@ public interface GroupService {
 	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
 
 	void leaveOrganization(OrganizationVO ovo);
-	
+
+	/**
+	 * 참여 간판을 모두 가져온다.
+	 * @author JYM
+	 * @param nickName
+	 * @return
+	 */
+	List<OrganizationVO> getOrganizationSignBoardList(String nickName);
+
+	List<OrganizationVO> getOrganizationList(SignBoardVO svo);
+
+	int getJoinedSignBoardCount(String nickName);
+
 }

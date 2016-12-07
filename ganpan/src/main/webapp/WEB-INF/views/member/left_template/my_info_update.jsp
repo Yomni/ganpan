@@ -12,19 +12,19 @@
 			<h4><span id="nickNameCheckView"></span></h4>
 			<label for="nickName">별명</label>
 			<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명"
-				value="${mvo.nickName}" readonly="readonly" />
+				value="${mvo.nickName}" readonly="readonly" required="required"/>
 		</div>
 		<div class="form-group">
 			<h4><span id="passwordView"></span></h4>
 			<label for="password">비밀번호</label>
 			<input type="password" class="form-control" id="password"
-				value="${mvo.password}" name="password" placeholder="비밀번호" />
+				value="${mvo.password}" name="password" placeholder="비밀번호" required="required"/>
 		</div>
 		<div class="form-group">
 			<h4><span id="passwordCheckView"></span></h4>
 			<label for="passwordCheck">비밀번호 확인</label>
 			<input type="password" class="form-control" id="passwordCheck" 
-				value="${mvo.password}" placeholder="비밀번호 확인" />
+				value="${mvo.password}" placeholder="비밀번호 확인" required="required"/>
 		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-default btn-success btn-block" id="updateBtn">회원정보수정</button>
@@ -40,16 +40,6 @@
 		$("#updateBtn").click(function() {
 			var eMail = $("#eMail").val().trim();
 			var password = $("#password").val().trim();
-			if(eMail == "") {
-				alert("전자우편을 입력하세요!");
-				$("#eMail").focus();
-				return false;
-			}
-			if(password == "") {
-				alert("비밀번호을 입력하세요!");
-				$("#password").focus();
-				return false;
-			}
 			if(checkResultEMail == false) {
 				alert("전자우편을 확인하세요!");
 				$("#eMail").val("").focus();
@@ -64,8 +54,8 @@
 		});//submit
 		
 		$("#password").keyup(function(){
-			var password=$(this).val().trim();
-			var passwordCheck = $("#passwordCheck").val().trim();
+			var password=$(this).val();
+			var passwordCheck = $("#passwordCheck").val();
 			if(password == ""){
 				$("#passwordView").html("");
 				$("#passwordCheck").html("");
@@ -89,6 +79,10 @@
 					+ "</div>");
 				checkResultPassword = false;
 				return;
+			}
+			else {
+				$("#passwordCheckView").html("");
+				checkResultPassword = true;
 			}
 		}); //password key up
 		

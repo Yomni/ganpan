@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.MemberService;
+import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
@@ -29,6 +31,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Resource
 	private SignBoardService signBoardService;
+	@Resource
+	private OrganizationService organizationService;
 
 	/****************************************민영**********************************************/
 	/**
@@ -79,8 +83,11 @@ public class MemberController {
 			mv.setViewName("member/register_form");
 			mv.addAllObjects(modelMap);
 			mv.addObject("mvo", mvo);
+			System.out.println(mv);
 		} else {
 			session.setAttribute("mvo", mvo); // login
+			// 성공 시 db 반영
+			memberService.registerMember(mvo);
 			mv.setViewName("redirect:registerResultView.do?nickName=" + mvo.getNickName());
 		}
 		return mv;
@@ -151,13 +158,13 @@ public class MemberController {
 		map.put("id", id);
 		map.put("password", password);
 		MemberVO mvo = memberService.login(map);
-		System.out.println("login: " +mvo);
 		if (mvo != null) {
 			session.setAttribute("mvo", mvo);
-			List<SignBoardVO> slist = signBoardService.allSignBoardList(mvo.getNickName());
-			System.out.println(slist);
+			List<OrganizationVO> slist = organizationService.getOrganizationSignBoardList(mvo.getNickName());
+			int signBoardCount = organizationService.getJoinedSignBoardCount(mvo.getNickName());
+			session.setAttribute("signBoardCount", signBoardCount);
 			session.setAttribute("slist", slist);
-			return "redirect:homeSignBoardList.do";
+			return "redirect:go_home.do";
 		} else {
 			return "redirect:go_member/login_fail.do";
 		}

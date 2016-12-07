@@ -1,0 +1,68 @@
+package org.sync.ganpan.model.dao;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
+import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
+import org.sync.ganpan.model.vo.SignBoardVO;
+
+@Repository
+public class OrganizationDAOImpl implements OrganizationDAO {
+	@Resource
+	private SqlSessionTemplate template;
+
+	@Override
+	public int getJoinedSignBoardCount(String nickName) {
+		return template.selectOne("organization.getJoinedSignBoardCount", nickName);
+	}
+	@Override
+	public List<OrganizationVO> getOrganizationSignBoardList(String nickName) {
+		return template.selectList("organization.getOrganizationSignBoardList", nickName);
+	}
+
+	@Override
+	public void cancelInvitation(InvitationMngVO ivo) {
+		template.delete("invitationMng.deleteInvitationMng", ivo);
+	}
+
+	@Override
+	public void inviteWorker(InvitationMngVO ivo) {
+		template.insert("invitationMng.inviteWorker", ivo);
+	}
+
+	@Override
+	public List<OrganizationVO> getOrganizationList(SignBoardVO svo) {
+		return template.selectList("organization.getOrganizationList", svo);
+	}
+
+	@Override
+	public String getNickNameByEmail(String id) {
+		return template.selectOne("organization.getNickNameByEmail", id);
+	}
+
+	@Override
+	public int deleteWorker(OrganizationVO ovo) {
+		return template.delete("organization.deleteWorker", ovo);
+	}
+
+	@Override
+	public void registerBossNickName(HashMap<String, Object> map) {
+		template.insert("organization.registerBossNickName", map);
+	}
+
+	@Override
+	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
+		return template.selectList("organization.sendInvitationList", svo);
+	}
+
+	@Override
+	public void leaveOrganization(OrganizationVO ovo) {
+		template.delete("organization.leaveOrganization", ovo);
+	}
+
+}// class organizationDAOImpl

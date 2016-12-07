@@ -19,3 +19,6 @@ values('java','sync','test');
 
 insert into work(work_no,work_name, work_details, worker_nickname, sign_board_name,boss_nickname)
 values(seq_work_no.nextval, '콘텐츠상세보기','콘텐츠상세보기','java','test','sync');
+
+select * 
+from HAVE_BOARD;

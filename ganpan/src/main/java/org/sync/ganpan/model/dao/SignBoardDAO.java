@@ -19,8 +19,6 @@ public interface SignBoardDAO {
 
 	void createNewGanpan(HashMap<String, Object> map);
 
-	List<SignBoardVO> allSignBoardList(String nickName);
-
 	List<SignBoardVO> mySignBoardList(String nickName);
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
@@ -30,7 +28,7 @@ public interface SignBoardDAO {
 	List<SignBoardVO> myPublicJoinSignBoardList(String nickName);
 
 	List<SignBoardVO> myPrivateSignBoardList(String nickName);
-	
+
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);

@@ -8,7 +8,7 @@ import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardService {
-	
+
 	// 제목으로 간판 리스트 검색
 	Map<String, Object> findSignBoardListByTitle(String title);
 
@@ -17,19 +17,16 @@ public interface SignBoardService {
 
 	// 간판 생성
 	void createNewGanpan(HashMap<String, Object> map);
-	
-	// 닉네임으로 보스닉네임, 간판 타이틀 반환
-	List<SignBoardVO> allSignBoardList(String nickName);
 
 	// 닉네임으로 내가 보스닉네임인 보스닉네임, 간판 타이틀 반환
 	List<SignBoardVO> mySignBoardList(String nickName);
 
 	// 닉네임으로 내가 그룹원인 보스닉네임, 간판 타이블 반환
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
-	
-	//내 소유 간판으로 이동하고 간판 내 작업을 호출
-	SignBoardVO showGanpan(SignBoardVO svo);
-	
+
+	// 내 소유 간판으로 이동하고 간판 내 작업을 호출
+	SignBoardVO showSignBoard(SignBoardVO svo);
+
 	// 닉네임으로 전체, 공개, 비공개 간판 리스트 정보 반환
 	HashMap<String, List<SignBoardVO>> homeSignBoardList(String nickName);
 

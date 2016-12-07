@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- showGanpan -->
  	<select id="getWorkList" resultMap="workRM" parameterType="map">
- 		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+ 		select work_no, work_name, work_details, worker_nickname, board_no, sign_board_name, boss_nickname
 		from work
 		where boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName} and board_no=#{boardNo}
  	</select>
@@ -53,10 +53,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	
 </mapper>
-
-
-
-
-
-
-

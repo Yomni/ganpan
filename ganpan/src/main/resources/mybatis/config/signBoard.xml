@@ -22,12 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="invitationDate" column="invitation_date"/>
 	</resultMap>
 	
-	<select id="allSignBoardList" parameterType="String" resultMap="signBoardRM">
-		SELECT sign_board_name
-		FROM sign_board
-		WHERE boss_nickname=#{value}
-	</select>
-	
  	<select id="findSignBoardListByTitle" parameterType="String" resultMap="signBoardRM">
  		SELECT sign_board_name, boss_nickname 
 		FROM sign_board

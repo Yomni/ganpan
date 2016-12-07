@@ -9,22 +9,18 @@
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
 			<%-- 홈화면 가는 icon삽입 --%>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/go_home.do"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+			<c:choose>
+			<c:when test="${sessionScope.mvo == null }">
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/go_home.do"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+			</c:when>
+			<c:otherwise>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/getLoginHome.do?nickName=${mvo.nickName}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+			</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/go_board/guide.do">소개</a></li>
-				<%-- dropdown 버튼일단 추후 보정 --%>
-				<%--  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li> --%>
 			</ul>
 			<span class="pull-right">
 				<form action="${pageContext.request.contextPath}/findSignBoardListByTitle.do" method="get" class="navbar-form navbar-left" role="search">

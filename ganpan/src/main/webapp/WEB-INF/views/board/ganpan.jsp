@@ -23,77 +23,74 @@
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO'}">
+							<td><c:if test="${boardList.boardGenreVO.boardName == '해야 할 작업'}">
 									<a class="btn btn-default" href="${pageContext.request.contextPath}/
-								go_board/create_work.do?signBoardName=${rsvo.signBoardName}
-								&bossNickName=${rsvo.bossMemberVO.nickName}"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									</a>
+								goCreateWork.do?signBoardName=${rsvo.signBoardName}
+								&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a>
 								</c:if>
 								<ul class="list-unstyled connected" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
 										<li class="panel panel-info " id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#test" id="workerNickName">${works.organizationVO.workerMemberVO.nickName}</a>
+												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="workerNickName">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
+
+										<div class="modal fade" id="${works.workNo}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title">${works.workName}</h4>
+													</div>
+													<div class="modal-body">
+														<p>${works.workDetails}</p>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default">닫기</button>
+														<button type="button" class="btn btn-primary">수정</button>
+														<button type="button" class="btn btn-danger">삭제</button>
+													</div>
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+											<!-- 여기까지 뺄 것 -->
+										</div>
 									</c:forEach>
 								</ul></td>
 						</c:forEach>
 					</tr>
 				</tbody>
 			</table>
+			
+			<!-- test용도 -->
 			<div class="sideBySide">
-  <div class="left">
-    <ul class="source connected">
-      <li data-stock-symbol="BMW">BMW</li>
-      <li data-stock-symbol="DDFAIF">Daimler</li>
-      <li data-stock-symbol="FIADF">Fiat</li>
-      <li data-stock-symbol="F">Ford</li>
-      <li data-stock-symbol="POAHF">Porsche</li>
-      <li data-stock-symbol="TSLA">Tesla</li>
-      <li data-stock-symbol="VLKAF">Volkswagen</li>
-    </ul>
-  </div>
-  <div class="right">
-    <ul class="target connected">
-    </ul>
-  </div>
-</div>
+				<div class="left">
+					<ul class="source connected">
+						<li data-stock-symbol="BMW">BMW</li>
+						<li data-stock-symbol="DDFAIF">Daimler</li>
+						<li data-stock-symbol="FIADF">Fiat</li>
+						<li data-stock-symbol="F">Ford</li>
+						<li data-stock-symbol="POAHF">Porsche</li>
+						<li data-stock-symbol="TSLA">Tesla</li>
+						<li data-stock-symbol="VLKAF">Volkswagen</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul class="target connected">
+					</ul>
+				</div>
+			</div>
 		</div>
 		<!-- col-md-10 col-md-offset-1 -->
 	</div>
 	<!-- row -->
 </div>
 <!-- container -->
-
-<!-- modal test -->
-<div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title">제목</h4>
-			</div>
-			<div class="modal-body">
-				<p>컨텐츠</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-				<button type="button" class="btn btn-warning">Save changes</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div>
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-	<!-- 여기까지 뺄 것 -->
-</div>
-<!-- /.modal -->
-<!-- modal test -->
 
 <!-- 
 	1. sortable
@@ -102,35 +99,11 @@
  -->
 <script type="text/javascript">
 	$(function() {
-					if("${mvo.nickName}" == "${rsvo.bossMemberVO.nickName}" || "${mvo.nickName}" == $("#DOING li div #workerNickName").text()){
-		$("#TO_DO, #DOING").sortable({
-			connectWith : "#DOING",
-			update : function() {
-				if($(this).attr("id") == "DOING"){
-						alert();
-					$.ajax({
-						type:"POST",
-						url:"${pageContext.request.contextPath}/moveWork.do",				
-						data:"eMail="+eMail,
-						success:function(data){						
-							if(data=="fail"){
-								$("#eMailCheckView").html(
-									"<div class='alert alert-danger' role='alert'>"
-									+ "사용중인 전자우편입니다."
-									+ "</div>");
-								checkResultEMail=false;
-							}else{
-								$("#eMailCheckView").html("");	
-								checkResultEMail=true;
-							}					
-						}//callback			
-					});//ajax
-					}
-				} // if
-		}); // sortable
-			} // update
-		$("#DOING, #DONE").sortable({
-			connectWith : "#DONE"
-		});
-	});
+		$("#해야 할 작업, #하고있는 작업").sortable({
+			connectWith : "#하고있는 작업"
+		}); // sortable todo->doing
+		$("#하고있는 작업, #끝난 작업").sortable({
+			connectWith : "#끝난 작업"
+		}); // sortable doing->done
+	}); // ready 
 </script>

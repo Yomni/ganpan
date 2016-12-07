@@ -1,5 +1,8 @@
 package org.sync.ganpan.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,16 @@ public class WorkController {
 	private WorkService workService;
 
 	/**
+	 * @return
+	 */
+	@RequestMapping("goCreateWork.do")
+	public ModelAndView goCreateWork(String signBoardName, String bossNickName) {
+		SignBoardVO createSignBoardVO = new SignBoardVO(signBoardName, bossNickName);
+		return new ModelAndView("board/create_work", "createSignBoardVO", createSignBoardVO);
+
+	}
+
+	/**
 	 * 작업 추가
 	 * @author 용민
 	 * @param wvo
@@ -33,18 +46,25 @@ public class WorkController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createWork.do")
-	public ModelAndView createWork(WorkVO wvo, String signBoardName, String bossNickName, String workerMemberVO) {
+	public ModelAndView createWork(WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
 		ModelAndView mv = new ModelAndView();
 		wvo.setOrganizationVO(
-				new OrganizationVO(new MemberVO(workerMemberVO), new SignBoardVO(signBoardName, bossNickName)));
+				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
-		mv.setViewName("redirect:showGanpan.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName);
+		System.out.println(wvo);
+		// 한글 적용 ... redirect는 별도의 인코딩 작업이 필요하다.
+		try {
+			signBoardName = URLEncoder.encode(signBoardName, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		mv.setViewName("redirect:showSignBoard.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName);
 		return mv;
 	}
 
-//	@RequestMapping(method = RequestMethod.POST, value="moveWork.do")
-//	@ResponseBody
-//	public boolean moveWork(String){
-//		
-//	}
+	// @RequestMapping(method = RequestMethod.POST, value="moveWork.do")
+	// @ResponseBody
+	// public boolean moveWork(String){
+	//
+	// }
 }
