@@ -159,7 +159,7 @@ public class MemberController {
 			session.setAttribute("slist", slist);
 			return "redirect:homeSignBoardList.do";
 		} else {
-			return "redirect:member/login_fail.do";
+			return "redirect:go_member/login_fail.do";
 		}
 	}
 
