@@ -164,7 +164,7 @@ WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickn
 	
 SELECT sign_board_name, boss_nickname, visibility
 FROM sign_board
-WHERE sign_board_name = '간판' and boss_nickname = '우주선'
+WHERE sign_board_name = 'test' and boss_nickname = '우주선'
 				
 UPDATE sign_board
 SET sign_board_name = '간판1'
@@ -173,8 +173,6 @@ WHERE sign_board_name = '간판' and boss_nickname = '우주선'
 UPDATE sign_board
 SET visibility = 1
 WHERE sign_board_name = '간판1' and boss_nickname = ''
-
-
 
 
 
