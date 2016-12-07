@@ -17,19 +17,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectMember" />
 		WHERE (nickname=#{id} or e_mail=#{id}) and password=#{password}
 	</select>
+	
  	<select id="findMemberByNickName" resultMap="memberRM">
  		<include refid="selectMember" />
  		where nickname=#{value}
  	</select>
+ 	
 	<insert id="registerMember" parameterType="memberVO">
 		insert into member(nickname,e_mail,password) values(#{nickName},#{eMail},#{password})
 	</insert>
+	
 	<select id="eMailCheck" resultType="int">
 		select count(*) from member where e_mail=#{value}
 	</select>
-		<select id="nickNameCheck" resultType="int">
+	
+	<select id="nickNameCheck" resultType="int">
 		select count(*) from member where nickname=#{value}
 	</select>
+	
 	<update id="updateMember" parameterType="memberVO">
 		UPDATE member
 		SET e_mail = #{eMail}, password=#{password}

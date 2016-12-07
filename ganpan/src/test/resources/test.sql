@@ -9,6 +9,14 @@ drop table organization;
 drop table sign_board;
 drop table member;
 
+
+SELECT worker_nickname
+		FROM organization 
+		WHERE boss_nickname='우주선' and sign_board_name='간판';
+
+insert into member(nickname,e_mail,password) values('민영','kosta111@kosta.com','1234');
+
+
 create table member(
    nickname varchar2(50) primary key,
    e_mail varchar2(100) unique not null,
@@ -149,8 +157,10 @@ insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판4
 
 select * from SIGN_BOARD;
 
-insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('민영','우주선','간판');
+insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('kosta','우주선','간판');
 insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('민영','우주선','간판2');
+
+insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('kosta','kosta1','ganpan1');
 
 select * from organization;
 
@@ -177,13 +187,104 @@ WHERE sign_board_name = '간판1' and boss_nickname = ''
 INSERT into invitation_management(sign_board_name, boss_nickname, nickname) 
 VALUES ('ganpan1','kosta1','dja')
  		
-DROP TRIGGER test_trigger;
 
-CREATE OR REPLACE TRIGGER test_trigger
-AFTER UPDATE ON sign_board FOR EACH ROW
-BEGIN
-  UPDATE organization
-  SET sign_board_name=:NEW.sign_board_name
-  WHERE sign_board_name=:OLD.sign_board_name;
-END;
+		SELECT worker_nickname
+		FROM organization 
+		WHERE boss_nickname='kosta3' and sign_board_name='ganpan3';
 		
+		
+		
+		/*************************member 값*************************************************************/
+
+insert into member(nickname,e_mail,password) values('kosta1','kosta1@kosta.com','1234');
+insert into member(nickname,e_mail,password) values('kosta2','kosta2@kosta.com','1234');
+insert into member(nickname,e_mail,password) values('kosta3','kosta3@kosta.com','1234');
+insert into member(nickname,e_mail,password) values('kosta4','kosta4@kosta.com','1234');
+insert into member(nickname,e_mail,password) values('kosta5','kosta5@kosta.com','1234');
+
+/*************************sign_board값*************************************************************/
+insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
+values('ganpan1','kosta1','1',to_date('2016/12/01 9:00','YYYY/MM/DD HH24:MI'));
+
+insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
+values('ganpan2','kosta2','0',to_date('2016/12/02 12:00','YYYY/MM/DD HH24:MI'));
+
+insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
+values('ganpan3','kosta3','1',to_date('2016/12/03 12:00','YYYY/MM/DD HH24:MI'));
+
+insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
+values('ganpan4','kosta4','0',to_date('2016/12/04 12:00','YYYY/MM/DD HH24:MI'));
+
+insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
+values('ganpan5','kosta5','1',to_date('2016/12/05 12:00','YYYY/MM/DD HH24:MI'));
+
+/*********************************organization 값 *********************************/
+select * from member;
+delete from member where nickname='minseo';
+select * from sign_board;
+select * from organization;
+
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta1','kosta3','ganpan3');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta2','kosta4','ganpan4');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta3','kosta5','ganpan5');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta4','kosta2','ganpan2');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta5','kosta1','ganpan1');
+
+----------------------invitation_management-----------------------------------------------------------
+select * from invitation_management;
+
+insert into invitation_management (sign_board_name,boss_nickname,nickname,invitation_date) 
+values ('ganpan1','kosta1','kosta2',to_date('2016/11/01 12:00','YYYY/MM/DD HH24:MI'));
+
+insert into invitation_management (sign_board_name,boss_nickname,nickname,invitation_date) 
+values ('ganpan2','kosta2','kosta3',to_date('2016/11/02 12:00','YYYY/MM/DD HH24:MI'));
+
+insert into invitation_management (sign_board_name,boss_nickname,nickname,invitation_date) 
+values ('ganpan3','kosta3','kosta4',to_date('2016/11/03 12:00','YYYY/MM/DD HH24:MI'));
+
+insert into invitation_management (sign_board_name,boss_nickname,nickname,invitation_date) 
+values ('ganpan4','kosta4','kosta5',to_date('2016/11/04 12:00','YYYY/MM/DD HH24:MI'));
+
+------------------------board_genre-----------------------------
+select * from board_genre;
+
+insert into board_genre(sign_board_name,board_no,boss_nickname,board_name) values('ganpan1','1','kosta1','todo');
+insert into board_genre(sign_board_name,board_no,boss_nickname,board_name) values('ganpan2','2','kosta2','doing');
+insert into board_genre(sign_board_name,board_no,boss_nickname,board_name) values('ganpan3','3','kosta3','done');
+insert into board_genre(sign_board_name,board_no,boss_nickname,board_name) values('ganpan4','1','kosta4','todo');
+insert into board_genre(sign_board_name,board_no,boss_nickname,board_name) values('ganpan5','2','kosta5','doing');
+
+-----------------------------------------work-------------------------------------
+   
+insert into work(work_no,work_name,work_details,creation_date,change_date,board_no,worker_nickname,sign_board_name,boss_nickname)
+values('1','work1','detail1',to_date('2016/11/05 12:00','YYYY/MM/DD HH24:MI'),to_date('2016/11/06 12:00','YYYY/MM/DD HH24:MI'),
+'1','kosta2','ganpan1','kosta1');
+
+---------------------------------change_genre-----------------------------------
+select * from change_genre;
+
+insert into change_genre(change_no,change_name) values('0','생성');
+insert into change_genre(change_no,change_name) values('1','수정');
+insert into change_genre(change_no,change_name) values('2','삭제');
+insert into change_genre(change_no,change_name) values('3','이동');
+
+----------------------------change_management----------------------------------
+select * from change_management;
+ 
+insert into change_management(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
+values('111','kosta1',to_date('2016/11/05 12:00','YYYY/MM/DD HH24:MI'),'1','1','0');
+
+SELECT worker_nickname
+		FROM organization 
+		WHERE boss_nickname='kosta3' and sign_board_name='ganpan3'
+
+		SELECT sb.sign_board_name, sb.boss_nickname
+		FROM sign_board sb, organization o 
+		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영'
+
+		
+		SELECT sign_board_name, boss_nickname, visibility
+		FROM sign_board
+		WHERE sign_board_name = '간판' and boss_nickname = '우주선'
+
+
