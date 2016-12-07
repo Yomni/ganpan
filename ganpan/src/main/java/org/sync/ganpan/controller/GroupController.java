@@ -36,9 +36,12 @@ public class GroupController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("inviteWorker.do")
-	public String inviteWorker(String signBoardName, String bossNickName, String id){
+	public String inviteWorker(String signBoardName, String bossNickName, String id,String type){
 		//id는 이메일이나 닉네임
-		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, id);
+		System.out.println(type+" "+id);
+		if(type=="email"){
+			
+		}
 		groupService.inviteWorker(ivo);
 		return "redirect: ";
 	}
