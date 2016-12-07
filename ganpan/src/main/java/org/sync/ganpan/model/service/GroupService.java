@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
@@ -15,5 +16,7 @@ public interface GroupService {
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	String getNickNameByEmail(String id);
+
+	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
 	
 }

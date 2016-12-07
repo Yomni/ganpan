@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,10 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public String getNickNameByEmail(String id) {
 		return groupDAO.getNickNameByEmail(id);
+	}
+
+	@Override
+	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
+		return groupDAO.sendInvitationList(svo);
 	}
 }
