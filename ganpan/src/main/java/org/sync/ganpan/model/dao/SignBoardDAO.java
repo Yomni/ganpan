@@ -1,8 +1,8 @@
 package org.sync.ganpan.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -41,5 +41,9 @@ public interface SignBoardDAO {
 	void addOrganization(InvitationMngVO ivo);
 
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
+
+	void updateSignBoardName(HashMap<String, String> map);
+
+	void updateVisibility(SignBoardVO signBoardVO);
 
 }

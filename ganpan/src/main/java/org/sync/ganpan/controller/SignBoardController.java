@@ -4,15 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.SignBoardService;
-import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -33,11 +32,7 @@ public class SignBoardController {
 	 */
 	@RequestMapping("findSignBoardListByTitle.do")
 	public ModelAndView findSignBoardListByTitle(String title) {
-		List<SignBoardVO> sbList = signBoardService.findSignBoardListByTitle(title);
-		if (sbList.isEmpty())
-			return new ModelAndView("board/search_result_fail");
-		else
-			return new ModelAndView("board/search_result", "sbList", sbList);
+		return new ModelAndView("board/search_result", signBoardService.findSignBoardListByTitle(title));
 	}
 
 	/**
@@ -45,10 +40,9 @@ public class SignBoardController {
 	 * @author 민영
 	 */
 	@RequestMapping("createNewGanpan.do")
-	public ModelAndView createNewGanpan(HttpSession session, String title, String ganpanType) {
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	public ModelAndView createNewGanpan(String bossNickName, String title, String ganpanType) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bossNickName", mvo.getNickName());
+		map.put("bossNickName", bossNickName);
 		map.put("signBoardName", title);
 		if (ganpanType.equals("public")) {// 간판 공개시 visibility default 0
 			map.put("visibility", 0);
@@ -113,7 +107,7 @@ public class SignBoardController {
 	public ModelAndView homeSignBoardList(HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String nickName = mvo.getNickName();
-		HashMap<String, List> sbMap = signBoardService.homeSignBoardList(nickName);
+		HashMap<String, List<SignBoardVO>> sbMap = signBoardService.homeSignBoardList(nickName);
 		return new ModelAndView("home", "sbMap", sbMap);
 	}
 
@@ -124,13 +118,13 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("showGanpan.do")
-	public ModelAndView showGanpan(HttpSession session, HttpServletRequest request) {
-		String signBoardName = request.getParameter("signBoardName");
-		String bossNickName = request.getParameter("bossNickName");
-		SignBoardVO svo = new SignBoardVO(signBoardName,bossNickName);
-		SignBoardVO rsvo = signBoardService.showGanpan(svo);
-		
-		return new ModelAndView("board/ganpan","rsvo",rsvo);
+	public ModelAndView showGanpan(String signBoardName, String bossNickName) {
+		// String signBoardName = request.getParameter("signBoardName");
+		// String bossNickName = request.getParameter("bossNickName");
+		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
+		System.out.println(rsvo);
+		rsvo = signBoardService.showGanpan(rsvo);
+		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
 
 	/**
@@ -142,10 +136,10 @@ public class SignBoardController {
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("1"+svo);
+		System.out.println("1" + svo);
 
 		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		System.out.println("2"+svo2);
+		System.out.println("2" + svo2);
 		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
 	}
 
@@ -155,14 +149,29 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("updateSignBoardName.do")
-	public ModelAndView updateSignBoardName(String changeTitle, String signBoardName, String bossNickName) {
+	public String updateSignBoardName(RedirectAttributes redirectAttributes, String changeTitle, String signBoardName, String bossNickName) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("changeTitle", changeTitle);
 		map.put("signBoardName", signBoardName);
 		map.put("bossNickName", bossNickName);
-		// signBoardService.updateSignBoardName(map);
-
-		return new ModelAndView("");
+		signBoardService.updateSignBoardName(map);
+		redirectAttributes.addAttribute("signBoardName", changeTitle);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:ganpanSettingPage.do";
+	}
+	
+	
+	@RequestMapping("updateVisibility.do")
+	public String updateVisibility(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String visibility) {
+		int visibility2 = 0;
+		if(visibility.equals("private")){
+			visibility2 = 1;
+		}
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName, visibility2);
+		signBoardService.updateVisibility(svo);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:ganpanSettingPage.do";
 	}
 
 	/**
