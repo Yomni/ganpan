@@ -120,11 +120,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return svo;
 	}
 
-	@Override
-	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
-		return signBoardDAO.getGroupList(svo);
-	}
-
 
 	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {

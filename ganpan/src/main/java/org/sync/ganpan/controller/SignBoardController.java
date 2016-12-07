@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -126,18 +127,6 @@ public class SignBoardController {
 		rsvo = signBoardService.showGanpan(rsvo);
 		System.out.println("showGanpan: " + rsvo);
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
-	}
-	/**
-	 * 구성원 보기
-	 * @author 민서
-	 */
-	@RequestMapping("group_member_list.do")
-	public ModelAndView getGroupList(String signBoardName, String bossNickName) {
-		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("svo"+svo);
-		List<OrganizationVO> oList = signBoardService.getGroupList(svo);
-		System.out.println("oList"+oList);
-		return new ModelAndView("board/group_member_list","svo", oList);
 	}
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동

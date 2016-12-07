@@ -31,8 +31,6 @@ public interface SignBoardDAO {
 
 	List<SignBoardVO> myPrivateSignBoardList(String nickName);
 	
-	List<OrganizationVO> getGroupList(SignBoardVO svo);
-
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);

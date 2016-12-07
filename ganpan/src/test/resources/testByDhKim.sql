@@ -41,19 +41,10 @@ insert into change_management values(2,'kosta4',sysdate,1,2,0);
 
 
 -- test
-select * from work;
-select * from member;
 select * from organization;
-select * from board_genre;
-select * from have_board;
 
-select * from work;
-select * from sign_board;
 
-select hb.sign_board_name, hb.board_no, hb.boss_nickname, bg.board_name
-		from have_board hb, board_genre bg
-		where hb.board_no=bg.board_no 
-		and hb.sign_board_name='ganpan1' 
-		and hb.boss_nickname='kosta1';
+
+
 
 
