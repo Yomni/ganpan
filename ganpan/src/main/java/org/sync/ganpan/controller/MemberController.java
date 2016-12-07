@@ -129,6 +129,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value="idCheckAjax.do")
+	@ResponseBody
 	public boolean idCheckAjax(String id){
 		int count = memberService.idCheck(id);
 		System.out.println(count);
