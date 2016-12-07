@@ -10,6 +10,7 @@ drop table sign_board;
 drop table member;
 
 
+
 SELECT worker_nickname
 		FROM organization 
 		WHERE boss_nickname='우주선' and sign_board_name='간판';
@@ -22,7 +23,6 @@ create table member(
    e_mail varchar2(100) unique not null,
    password varchar2(50) not null
 )
-select * from member
 create table sign_board(
    sign_board_name varchar2(50) not null,
    boss_nickname varchar2(50) not null,
@@ -48,7 +48,6 @@ create table organization (
    constraint pk_organization primary key(worker_nickname ,boss_nickname ,sign_board_name)
 )
 
-select * from sign_board;
 insert into organization values('엄민영', '우주선', '간판2');
 insert into organization values('엄민영', '우주선', '1234');
 select * from organization;
@@ -62,7 +61,6 @@ create table invitation_management (
    constraint fk_sign_board_pk_sign_board2 foreign key(sign_board_name, boss_nickname) references sign_board(sign_board_name, boss_nickname),
    constraint pk_invitation_management primary key(sign_board_name, boss_nickname,nickname)
 )
-select* from invitation_management;
 insert into invitation_management(sign_board_name, boss_nickname, nickname)
 values('간판', '우주선', '민영');
 insert into invitation_management(sign_board_name, boss_nickname, nickname)
@@ -155,7 +153,6 @@ insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판2
 insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판3','민영','0');
 insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판4','민영','1');
 
-select * from SIGN_BOARD;
 
 insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('kosta','우주선','간판');
 insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('민영','우주선','간판2');
@@ -290,3 +287,7 @@ SELECT worker_nickname
 SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitationDate
 FROM member m, invitation_management im
 WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
+
+SELECT * FROM member
+SELECT * FROM sign_board;
+SELECT* FROM invitation_management;
