@@ -9,6 +9,4 @@ public interface GroupDAO {
 
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 	
-	
-
-}
+}//interface GroupDAO

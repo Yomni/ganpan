@@ -32,14 +32,22 @@ public class GroupController {
 		String signBoardName=request.getParameter("signBoardName");
 		String bossNickName=request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
-		System.out.println("SignBoardController svo : "+svo);
+		System.out.println("GroupController svo : "+svo);
 		
 		List<OrganizationVO> oList = groupService.getGroupList(svo);
-		System.out.println("oList"+oList);
-		return new ModelAndView("board/group_member_list","svo", oList);
+		for(int i=0; i<oList.size(); i++){
+			System.out.println("------GroupController oList값----------------");
+			System.out.println(oList.get(i).toString());
+		}
+		
+		return new ModelAndView("board/group_member_list","oList", oList);
 	}
 	
 	
 	
-	
-}
+}//class GroupController
+
+
+
+
+

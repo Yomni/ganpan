@@ -7,7 +7,7 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface GroupService {
 	
-	//구성원보기 수정중
+	//구성원보기 수정중 by dhKim
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 	
 }

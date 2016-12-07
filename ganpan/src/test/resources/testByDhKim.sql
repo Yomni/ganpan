@@ -40,9 +40,15 @@ insert into change_management values(1,'kosta3',sysdate,1,1,0);
 insert into change_management values(2,'kosta4',sysdate,1,2,0);
 
 
+
 -- test
 select * from organization;
 
+select * from organization;
+
+select boss_nickname, worker_nickname
+from organization
+where sign_board_name='ganpan1' and boss_nickname='kosta1';
 
 
 

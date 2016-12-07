@@ -18,7 +18,9 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class GroupServiceImpl implements GroupService {
 	@Resource
 	GroupDAO groupDAO;
-	
+	/**
+	 *  수정중 by dhKim
+	 */
 	@Override
 	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
 		return groupDAO.getGroupList(svo);

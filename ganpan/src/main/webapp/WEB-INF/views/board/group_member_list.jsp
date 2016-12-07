@@ -26,8 +26,11 @@
 												<h2>구성원 보기</h2>
 											</header>
 											<p>
-											<%-- ${OrganizationVO.memberVO.nickName} --%>
-											 ${requestScope.svo} 
+											그룹 구성원 명단<br>
+											그룹장 : ${oList[0].signBoardVO.bossMemberVO.nickName}<br>
+											<c:forEach items="${oList}" var="list">
+												그룸원 : ${list.workerNickName.nickName }<br>
+											</c:forEach>
 											</p>
 										</section>
 								</div>
