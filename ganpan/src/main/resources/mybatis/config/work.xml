@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<update id="updateWorkerToNull" parameterType="organizationVO">
  		update work
 		set worker_nickname=null
-		where worker_nickname=#{workerNickName.nickName}
+		where worker_nickname=#{workerMemberVO.nickName}
 		and boss_nickname=#{signBoardVO.bossMemberVO.nickName}
 		and sign_board_name=#{signBoardVO.signBoardName}
  	</update>

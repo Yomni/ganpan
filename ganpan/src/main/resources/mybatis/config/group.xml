@@ -7,13 +7,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
 <mapper namespace="group">
-
-	<resultMap id="organizationRM" type="organizationVO">
-		<result property="workerMemberVO.nickName" column="worker_nickname" />
-		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname" />
-		<result property="signBoardVO.signBoardName" column="sign_board_name" />
-	</resultMap>
-
+   
+   <resultMap id="organizationRM" type="organizationVO">
+	   	<result property="workerMemberVO.nickName" column="worker_nickname"/>
+   		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
+   		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
+   </resultMap>
+   
    <select id="getGroupList" resultMap="organizationRM" parameterType="signBoardVO">
    		select boss_nickname, worker_nickname,sign_board_name
 		from organization

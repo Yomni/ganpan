@@ -124,17 +124,18 @@ public class GroupController {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
 		List<OrganizationVO> oList = groupService.getGroupList(svo);
 		
-		
 		return new ModelAndView("board/left_template/group_member_list","oList", oList);
 	}
+	
+	
 	@RequestMapping("banish.do")
 	public String banish(HttpServletRequest request){
-		String workerNickName=request.getParameter("workerNickName");
+		String workerMemberVO=request.getParameter("workerMemberVO");
 		String signBoardName=request.getParameter("signBoardName");
 		String bossNickName=request.getParameter("bossNickName");
-		MemberVO workerNickNameVO=new MemberVO(workerNickName);
+		MemberVO workerMemberVOVO=new MemberVO(workerMemberVO);
 		SignBoardVO signBoardVO=new SignBoardVO(signBoardName,bossNickName);
-		OrganizationVO ovo=new OrganizationVO(workerNickNameVO,signBoardVO);
+		OrganizationVO ovo=new OrganizationVO(workerMemberVOVO,signBoardVO);
 		System.out.println("GroupController : "+ovo);
 		//그룹에서 강제퇴장!
 		groupService.banish(ovo);

@@ -19,11 +19,11 @@
 									<c:forEach items="${oList}" var="list">
 										<%-- 간판 이름 : ${list.signBoardVO.signBoardName}<br>
 										보스 이름 : ${list.signBoardVO.bossMemberVO.nickName}<br>
-										작업자 이름 : ${list.workerNickName.nickName}<br> --%>
-										그룸원 : ${list.workerNickName.nickName } | 
+										작업자 이름 : ${list.workerMemberVO.nickName}<br> --%>
+										그룸원 : ${list.workerMemberVO.nickName } | 
 											<a href="${pageContext.request.contextPath}/banish.do?signBoardName=${list.signBoardVO.signBoardName}
 												&bossNickName=${list.signBoardVO.bossMemberVO.nickName}
-												&workerNickName=${list.workerNickName.nickName}">그룹에서 추방</a><br>
+												&workerMemberVO=${list.workerMemberVO.nickName}">그룹에서 추방</a><br>
 									</c:forEach>
 									</p>
 								</section>

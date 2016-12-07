@@ -12,8 +12,5 @@ test page
 		<a href="">참여 작업</a><br>
 		<a href="">회원탈퇴</a><br>
 		<a href="">초대 현황</a><br>
-<<<<<<< HEAD
 		<a href="${pageContext.request.contextPath}/go_board/group_member_list.do">구성원 보기</a><br>
-=======
 		<a href="?signBoardName=간판&bossNickName=우주선">그룹원 초대</a><br>
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
