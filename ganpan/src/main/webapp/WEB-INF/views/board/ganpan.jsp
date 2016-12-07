@@ -4,7 +4,7 @@
 <ul class="link-list">
 	<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
 	<li><a href="${pageContext.request.contextPath}/board/group_member_list.do">참여 구성원 보기</a></li>
-	<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판 설정</a></li>
+	<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a></li>
 </ul>
 <table class="table table-bordered">
 	<thead>
