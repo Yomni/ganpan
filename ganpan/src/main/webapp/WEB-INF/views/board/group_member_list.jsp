@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,8 +14,6 @@
 	</head>
 	<body class="subpage">
 		<div id="page-wrapper">
-
-			<!-- Content -->
 				<div id="content-wrapper">
 					<div id="content">
 						<div class="container">
@@ -24,26 +23,13 @@
 									<!-- Main Content -->
 										<section>
 											<header>
-												<h2>간판을 소개합니다.</h2>
-												<h3>이 시대 최고의 일정관리 도구!</h3>
+												<h2>구성원 보기</h2>
 											</header>
 											<p>
-												문단1
-											</p>
-											<p>
-												문단2
-											</p>
-											<p>
-												문단3
-											</p>
-											<p>
-												문단4
-											</p>
-											<p>
-												문단5
+											<%-- ${OrganizationVO.memberVO.nickName} --%>
+											 ${requestScope.svo} 
 											</p>
 										</section>
-
 								</div>
 							</div>
 						</div>

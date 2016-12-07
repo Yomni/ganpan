@@ -4,8 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.sync.ganpan.model.vo.OrganizationVO;
+
 import org.sync.ganpan.model.vo.HaveBoardVO;
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardService {
@@ -33,6 +37,9 @@ public interface SignBoardService {
 	
 	// 닉네임으로 전체, 공개, 비공개 간판 리스트 정보 반환
 	HashMap<String, List<SignBoardVO>> homeSignBoardList(String nickName);
+
+	//구성원보기 수정중
+	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	// 보스닉네임, 간판 타이틀로 보스닉네임, 간판 타이틀, 공개 여부 반환
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
