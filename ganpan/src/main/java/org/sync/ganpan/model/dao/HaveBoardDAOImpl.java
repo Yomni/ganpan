@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,11 +12,16 @@ import org.sync.ganpan.model.vo.HaveBoardVO;
 @Repository
 public class HaveBoardDAOImpl implements HaveBoardDAO {
 	@Resource
-	private SqlSessionTemplate sqlSessionTemplate;
+	private SqlSessionTemplate template;
 
 	@Override
 	public List<HaveBoardVO> getHaveBoardList() {
-		return sqlSessionTemplate.selectList("haveBoard.getHaveBoardList");
+		return template.selectList("haveBoard.getHaveBoardList");
+	}
+	
+	@Override
+	public void createNewGanpan(HashMap<String, Object> map) {
+		template.insert("haveBoard.createNewGanpan", map);
 	}
 
 }

@@ -29,14 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
  	<select id="findSignBoardListByTitle" parameterType="String" resultMap="signBoardRM">
- 		SELECT sign_board_name, boss_nickname
+ 		SELECT sign_board_name, boss_nickname 
 		FROM sign_board
 		WHERE visibility = 0 and sign_board_name=#{title}
  	</select>
  	
  	<insert id="createNewGanpan" parameterType="map">
- 		insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
- 		values(#{signBoardName},#{bossNickName},#{visibility},sysdate)
+ 		insert into sign_board(sign_board_name,boss_nickname,visibility) 
+ 		values(#{signBoardName},#{bossNickName},#{visibility})
  	</insert>
  	
  	<select id="titleCheck" resultType="int" parameterType="map">
@@ -98,10 +98,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE nickname = #{value}
  	</select>
 </mapper>
-
-
-
-
-
-
-

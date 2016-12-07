@@ -42,6 +42,7 @@
 새로운 간판을 생성합니다
 <hr>
 <form name="createForm" action="${pageContext.request.contextPath}/createNewGanpan.do" method="post">
+	<input type="hidden" name="bossNickName" value="${sessionScope.mvo.nickName}" />
 	소유자 : ${sessionScope.mvo.nickName} <br>
 	간판명: <input type="text" name="title" /><span id="titleCheckView"></span><br>
 	간판공개<input type="radio" name="ganpanType" value="public"> <br>

@@ -2,6 +2,7 @@ package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
@@ -10,7 +11,7 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public interface SignBoardService {
 	
 	// 제목으로 간판 리스트 검색
-	List<SignBoardVO> findSignBoardListByTitle(String title);
+	Map<String, Object> findSignBoardListByTitle(String title);
 
 	// 세션 아이디, 간판 타이틀로 존재 유무 반환
 	int titleCheck(HashMap<String, String> map);
