@@ -28,6 +28,7 @@ public class GroupServiceImpl implements GroupService {
 	public void inviteWorker(InvitationMngVO ivo) {
 		groupDAO.inviteWorker(ivo);
 	}
+
 	/**
 	 *  수정중 by dhKim
 	 */

@@ -9,4 +9,7 @@ public interface WorkDAO {
 
 	List<WorkVO> getWorkList(HashMap<String, String> map);
 
+	void createWork(WorkVO wvo);
+
+	
 }//interface WorkDAO

@@ -84,7 +84,7 @@ CREATE TABLE WORK(
    work_details clob NOT NULL,
    creation_DATE DATE DEFAULT SYSDATE NOT NULL,
    change_DATE DATE DEFAULT SYSDATE NOT NULL,
-   board_no NUMBER NOT NULL,
+   board_no NUMBER default 1 NOT NULL,
    worker_nickname VARCHAR2(50) NOT NULL,
    sign_board_name VARCHAR2(50) NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
