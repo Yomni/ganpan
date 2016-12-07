@@ -52,6 +52,8 @@ select * from sign_board;
 
 select hb.sign_board_name, hb.board_no, hb.boss_nickname, bg.board_name
 		from have_board hb, board_genre bg
-		where hb.board_no=bg.board_no and hb.sign_board_name='ganpan1' and hb.boss_nickname='kosta1';
+		where hb.board_no=bg.board_no 
+		and hb.sign_board_name='ganpan1' 
+		and hb.boss_nickname='kosta1';
 
 
