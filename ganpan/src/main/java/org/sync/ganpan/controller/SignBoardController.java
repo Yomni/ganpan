@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
@@ -126,7 +127,18 @@ public class SignBoardController {
 		System.out.println("showGanpan: " + rsvo);
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
-
+	/**
+	 * 구성원 보기
+	 * @author 민서
+	 */
+	@RequestMapping("group_member_list.do")
+	public ModelAndView getGroupList(String signBoardName, String bossNickName) {
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		System.out.println("svo"+svo);
+		List<OrganizationVO> oList = signBoardService.getGroupList(svo);
+		System.out.println("oList"+oList);
+		return new ModelAndView("board/group_member_list","svo", oList);
+	}
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
 	 * @param signBoardName
@@ -173,9 +185,11 @@ public class SignBoardController {
 	}
 
 	@RequestMapping("deleteSignBoard.do")
-	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName) {
 
-		return "";
+	public String deleteSignBoard(String signBoardName, String bossNickName){
+		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
+		signBoardService.deleteSignBoard(svo);
+		return "redirect:homeSignBoardList.do";
 	}
 
 	/**

@@ -10,9 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
+import org.sync.ganpan.model.vo.OrganizationVO;
+
 import org.sync.ganpan.model.dao.WorkDAO;
+
 import org.sync.ganpan.model.vo.HaveBoardVO;
+
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -115,10 +121,15 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 	@Override
+	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
+		return signBoardDAO.getGroupList(svo);
+	}
+
+
+	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
 		return signBoardDAO.ganpanSettingPage(svo);
 	}
-
 	@Override
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return signBoardDAO.invitationList(nickName);
@@ -142,5 +153,10 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public void updateVisibility(SignBoardVO signBoardVO) {
 		signBoardDAO.updateVisibility(signBoardVO);
+	}
+
+	@Override
+	public void deleteSignBoard(SignBoardVO svo) {
+		signBoardDAO.deleteSignBoard(svo);
 	}
 }
