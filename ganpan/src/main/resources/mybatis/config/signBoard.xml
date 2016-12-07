@@ -97,4 +97,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM invitation_management
 		WHERE nickname = #{value}
  	</select>
+ 	
+ 	<update id="updateSignBoardName" parameterType="map">
+ 		UPDATE sign_board
+ 		SET sign_board_name = #{changeTitle}
+ 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossNickName}
+ 	</update>
+ 	
+ 	<update id="updateVisibility" parameterType="signBoardVO">
+ 		UPDATE sign_board
+ 		SET visibility = #{visibility}
+ 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
+ 	</update>
 </mapper>

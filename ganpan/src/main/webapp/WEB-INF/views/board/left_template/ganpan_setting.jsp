@@ -26,7 +26,9 @@
 									<input type="submit" id="changeTitleBtn" value="이름바꾸기" /><br>
 								</form><br>
 								
-								<form id="updateSignBoardVisibilityForm" action="${pageContext.request.contextPath}/updateSignBoardVisibility.do">
+								<form id="updateSignBoardVisibilityForm" action="${pageContext.request.contextPath}/updateVisibility.do">
+									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
+									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
 									<h2>공개 범위 설정</h2>
 									간판 공개<br><input type="radio" name="visibility" value="public" />
 									누구나 간판을 볼 수 있습니다.<br>
@@ -57,11 +59,12 @@
 </body>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			if(${svo.visibility} == 0){
-				$("input:radio[name=visibility]:radio[value=public]").attr("checked",true);
+			if(${svo.visibility == 0}){
+			$("input:radio[name=visibility]:radio[value=public]").attr("checked",true);
 			}else{
 				$("input:radio[name=visibility]:radio[value=private]").attr("checked",true);
 			}
+			
 			$("#updateSignBoardNameForm").submit(function(){
 				if($(":input[name=changeTitle]").val().trim()==""){
 					alert("수정하실 간판 이름을 입력하세요!");
