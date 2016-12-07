@@ -57,5 +57,10 @@ public interface SignBoardDAO {
 
 	void addOrganization(InvitationMngVO ivo);
 
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+=======
+	SignBoardVO ganpanSettingPage(SignBoardVO svo);
+
 >>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }

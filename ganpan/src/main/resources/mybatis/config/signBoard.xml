@@ -80,10 +80,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value} and visibility = 1
  	</select>
 
-	<select id="ganpanSetting" resultMap="signBoardRM" parameterType="signBoardVO">
+	<select id="ganpanSettingPage" resultMap="signBoardRM" parameterType="signBoardVO">
 		SELECT sign_board_name, boss_nickname, visibility
 		FROM sign_board
-		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossNickName}
+		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
 	</select>
  	
  	<!-- <select id="showContentList" parameterType="svo">

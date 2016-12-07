@@ -98,10 +98,19 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public void addOrganization(InvitationMngVO ivo) {
 		template.insert("invitationMng.addOrganization",ivo);
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
 		return template.selectList("signBoard.getGroupList",svo);
 	}
+=======
+
+	@Override
+	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
+		return template.selectOne("signBoard.ganpanSettingPage",svo);
+	}
+
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }//class
 
