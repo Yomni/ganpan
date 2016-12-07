@@ -136,7 +136,7 @@ public class MemberController {
 		map.put("id", id);
 		map.put("password", password);
 		MemberVO mvo = memberService.login(map);
-		System.out.println(mvo);
+		System.out.println("login: " +mvo);
 		if (mvo != null) {
 			session.setAttribute("mvo", mvo);
 			List<SignBoardVO> slist = signBoardService.allSignBoardList(mvo.getNickName());

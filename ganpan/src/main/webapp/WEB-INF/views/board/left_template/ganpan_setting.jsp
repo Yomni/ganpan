@@ -44,9 +44,11 @@
 								</form><br>
 								
 								<form id="deleteSignBoardForm" action="${pageContext.request.contextPath}/deleteSignBoard.do">
-								<h2>간판 삭제</h2>
-								*주의) 간판을 삭제합니다! 해당 이력과 모든 정보가 사라집니다.
-								<input type="submit" id="deleteGanpanBtn" value="간판 삭제" />
+									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
+									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
+									<h2>간판 삭제</h2>
+									*주의) 간판을 삭제합니다! 해당 이력과 모든 정보가 사라집니다.
+									<input type="submit" id="deleteGanpanBtn" value="간판 삭제" />
 								</form>
 							</section>
 						</div>
@@ -115,5 +117,6 @@
 					}//callback			
 				});//ajax
 			});//keyup
+			
 		}); // ready
 	</script>
