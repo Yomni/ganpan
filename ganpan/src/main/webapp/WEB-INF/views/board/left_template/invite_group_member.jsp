@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+${MList}
 	<h2>조원으로 초대할 회원의 별명이나 전자우편 주소로 초대해주세요.</h2>
 		<form method="post" action="${pageContext.request.contextPath}/inviteWorker.do" name="inviteForm">
-			<input type="hidden" value="${svo.signBoardName}" name="signBoardName">
-			<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName">
+<%-- 			<input type="hidden" value="${svo.signBoardName}" name="signBoardName">
+			<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName"> --%>
 			<input type="hidden" id="value" value="nickName" name="type">
 			<div class="form-group">
 				<h4><span id="memberCheckView"></span></h4>
@@ -21,6 +22,7 @@
 				<tr>
 					<th>별명</th>
 					<th>이메일</th>
+					<th>초대 날짜</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +30,7 @@
 					<tr>	
 						<td>${invitationMngVO.nickName}</td>
 						<td>${invitationMngVO.eMail}</td>
+						<td>${invitationMngVO.invitationDate}</td>
 						<td><input type="button" id="cancel${status.count}" value="초대 취소"/></td>
 					</tr>
 				</c:forEach>

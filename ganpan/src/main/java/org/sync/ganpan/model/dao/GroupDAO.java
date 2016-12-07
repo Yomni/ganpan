@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
@@ -15,5 +16,7 @@ public interface GroupDAO {
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	String getNickNameByEmail(String id);
+
+	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
 	
 }//interface GroupDAO

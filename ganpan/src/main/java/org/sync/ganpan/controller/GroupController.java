@@ -1,5 +1,6 @@
 package org.sync.ganpan.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.GroupService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -40,14 +42,33 @@ public class GroupController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("inviteWorker.do")
-	public String inviteWorker(String signBoardName, String bossNickName, String id,String type){
+	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id,String type){
 		//id는 이메일이나 닉네임
-		if(type=="email"){
+		if(type.equals("email")){
 			id=groupService.getNickNameByEmail(id);
 		}
 		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, id);
 		groupService.inviteWorker(ivo);
-		return "redirect: ";
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:sendInvitationList.do";
+	}
+	
+	/**
+	 * 그룹장이 초대장을 보낸 리스트 보기
+	 * @author 주선, 민영
+	 * @param redirectAttributes
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @return
+	 */
+	@RequestMapping("sendInvitationList.do")
+	public ModelAndView sendInvitationList(String signBoardName, String bossNickName){
+		SignBoardVO svo=new SignBoardVO(signBoardName, bossNickName);
+		System.out.println("sendInvitationList:svo: " + svo);
+		List<HashMap<String, String>> MList=groupService.sendInvitationList(svo);
+		System.out.println("sendInvitationList:MList: " + MList);
+		return new ModelAndView("board/left_template/invite_group_member","MList",MList);
 	}
 	
 	/**
@@ -84,8 +105,6 @@ public class GroupController {
 		
 		return new ModelAndView("board/group_member_list","oList", oList);
 	}
-	
-	
 	
 }//class GroupController
 

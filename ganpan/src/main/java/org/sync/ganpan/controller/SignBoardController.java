@@ -1,10 +1,10 @@
 package org.sync.ganpan.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
-import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
@@ -137,8 +136,14 @@ public class SignBoardController {
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
+		svo = signBoardService.ganpanSettingPage(svo);
+		List<HashMap<String, String>> MList = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> map = new HashMap<>();
+		map.put("signBoardName", signBoardName);
+		map.put("bossNickName", bossNickName);
+		MList.add(map);
+		ModelAndView mv=new ModelAndView("board/left_template/ganpan_setting","MList",MList);
+		return mv;
 	}
 
 	/**

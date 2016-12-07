@@ -287,4 +287,6 @@ SELECT worker_nickname
 		FROM sign_board
 		WHERE sign_board_name = '간판' and boss_nickname = '우주선'
 
-
+SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitationDate
+FROM member m, invitation_management im
+WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
