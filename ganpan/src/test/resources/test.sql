@@ -160,6 +160,8 @@ select * from SIGN_BOARD;
 insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('kosta','우주선','간판');
 insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('민영','우주선','간판2');
 
+insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('kosta','kosta1','ganpan1');
+
 select * from organization;
 
 SELECT sb.sign_board_name, sb.boss_nickname
@@ -183,12 +185,6 @@ SET visibility = 1
 WHERE sign_board_name = '간판1' and boss_nickname = ''
 
 
-
-
-		
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
 		SELECT worker_nickname
 		FROM organization 
 		WHERE boss_nickname='kosta3' and sign_board_name='ganpan3';
@@ -278,19 +274,16 @@ values('111','kosta1',to_date('2016/11/05 12:00','YYYY/MM/DD HH24:MI'),'1','1','
 SELECT worker_nickname
 		FROM organization 
 		WHERE boss_nickname='kosta3' and sign_board_name='ganpan3'
-=======
+
 		SELECT sb.sign_board_name, sb.boss_nickname
 		FROM sign_board sb, organization o 
 		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영'
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
+
 		
 		SELECT sign_board_name, boss_nickname, visibility
 		FROM sign_board
 		WHERE sign_board_name = '간판' and boss_nickname = '우주선'
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
+
 DROP TRIGGER test_trigger;
 
 CREATE OR REPLACE TRIGGER test_trigger
@@ -301,4 +294,4 @@ BEGIN
   WHERE sign_board_name=:OLD.sign_board_name;
 END;
 		
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
