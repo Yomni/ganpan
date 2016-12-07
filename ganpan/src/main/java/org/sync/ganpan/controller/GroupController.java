@@ -69,12 +69,10 @@ public class GroupController {
 	 * @return
 	 */
 	@RequestMapping("sendInvitationList.do")
-	public ModelAndView sendInvitationList(String signBoardName, String bossNickName) {
+	public ModelAndView sendInvitationList(String signBoardName, String bossNickName){
 		ModelAndView mv = new ModelAndView();
-		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("sendInvitationList:svo: " + svo);
+		SignBoardVO svo=new SignBoardVO(signBoardName, bossNickName);
 		List<HashMap<String, String>> MList = groupService.sendInvitationList(svo);
-		System.out.println("sendInvitationList:MList: " + MList);
 		mv.setViewName("board/left_template/invite_group_member");
 		mv.addObject("MList", MList);
 		mv.addObject("svo", svo);
