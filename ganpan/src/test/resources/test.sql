@@ -293,5 +293,8 @@ BEGIN
   SET sign_board_name=:NEW.sign_board_name
   WHERE sign_board_name=:OLD.sign_board_name;
 END;
+
+select * from work;
+select * from organization;
 		
 
