@@ -29,14 +29,14 @@ public class WorkController {
 	 * @param wvo
 	 * @param signBoardName
 	 * @param bossNickName
-	 * @param workerNickName
+	 * @param workerMemberVO
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createWork.do")
-	public ModelAndView createWork(WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
+	public ModelAndView createWork(WorkVO wvo, String signBoardName, String bossNickName, String workerMemberVO) {
 		ModelAndView mv = new ModelAndView();
 		wvo.setOrganizationVO(
-				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
+				new OrganizationVO(new MemberVO(workerMemberVO), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
 		mv.setViewName("redirect:showGanpan.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName);
 		return mv;

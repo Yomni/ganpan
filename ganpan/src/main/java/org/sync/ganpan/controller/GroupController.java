@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.GroupService;
+import org.sync.ganpan.model.service.WorkService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -24,6 +26,8 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class GroupController {
 	@Resource
 	private GroupService groupService;
+	@Resource
+	private WorkService workService;
 	
 	/**
 	 * 
@@ -42,12 +46,18 @@ public class GroupController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("inviteWorker.do")
-	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id,String type){
+	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id, String type){
 		//id는 이메일이나 닉네임
+		System.out.println("inviteWorker:signBoardName: " + signBoardName);
+		System.out.println("inviteWorker:email: " + type);
+		System.out.println("inviteWorker:email: " + type);
+		System.out.println("inviteWorker:email: " + type);
 		if(type.equals("email")){
 			id=groupService.getNickNameByEmail(id);
+			System.out.println("inviteWorker:email: " + type);
 		}
 		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, id);
+		System.out.println("inviteWorker:ivo: " + ivo);
 		groupService.inviteWorker(ivo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
@@ -64,11 +74,13 @@ public class GroupController {
 	 */
 	@RequestMapping("sendInvitationList.do")
 	public ModelAndView sendInvitationList(String signBoardName, String bossNickName){
+		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo=new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("sendInvitationList:svo: " + svo);
-		List<HashMap<String, String>> MList=groupService.sendInvitationList(svo);
-		System.out.println("sendInvitationList:MList: " + MList);
-		return new ModelAndView("board/left_template/invite_group_member","MList",MList);
+		List<HashMap<String, String>> MList = groupService.sendInvitationList(svo);
+		mv.setViewName("board/left_template/invite_group_member");
+		mv.addObject("MList", MList);
+		mv.addObject("svo", svo);
+		return mv;
 	}
 	
 	/**
@@ -80,10 +92,13 @@ public class GroupController {
 	 * @return
 	 */
 	@RequestMapping("cancelInvitation.do")
-	public String cancelInvitation(String signBoardName, String bossNickName, String nickName){
+	public String cancelInvitation(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String nickName){
 		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, nickName);
+		System.out.println("cancelInvitation:ivo: "+ivo);
 		groupService.cancelInvitation(ivo);
-		return "redirect: ";
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:sendInvitationList.do";
 	}
 
 	/**
@@ -95,15 +110,26 @@ public class GroupController {
 		String signBoardName=request.getParameter("signBoardName");
 		String bossNickName=request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
-		System.out.println("GroupController svo : "+svo);
-		
 		List<OrganizationVO> oList = groupService.getGroupList(svo);
-		for(int i=0; i<oList.size(); i++){
-			System.out.println("------GroupController oList값----------------");
-			System.out.println(oList.get(i).toString());
-		}
 		
-		return new ModelAndView("board/group_member_list","oList", oList);
+		return new ModelAndView("board/left_template/group_member_list","oList", oList);
+	}
+	
+	
+	@RequestMapping("banish.do")
+	public String banish(HttpServletRequest request){
+		String workerMemberVO=request.getParameter("workerMemberVO");
+		String signBoardName=request.getParameter("signBoardName");
+		String bossNickName=request.getParameter("bossNickName");
+		MemberVO workerMemberVOVO=new MemberVO(workerMemberVO);
+		SignBoardVO signBoardVO=new SignBoardVO(signBoardName,bossNickName);
+		OrganizationVO ovo=new OrganizationVO(workerMemberVOVO,signBoardVO);
+		System.out.println("GroupController : "+ovo);
+		//그룹에서 강제퇴장!
+		groupService.banish(ovo);
+		
+		//다시 getGroupList로 보내줘야 한다.
+		return "redirect:group_member_list.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
 	}
 	
 }//class GroupController

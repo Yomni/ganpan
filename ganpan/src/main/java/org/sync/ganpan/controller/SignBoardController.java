@@ -1,6 +1,5 @@
 package org.sync.ganpan.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -125,7 +124,7 @@ public class SignBoardController {
 		// String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
 		rsvo = signBoardService.showGanpan(rsvo);
-		System.out.println("showGanpan: " + rsvo);
+		
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
 	/**
@@ -138,13 +137,7 @@ public class SignBoardController {
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
 		svo = signBoardService.ganpanSettingPage(svo);
-		List<HashMap<String, String>> MList = new ArrayList<HashMap<String, String>>();
-		HashMap<String, String> map = new HashMap<>();
-		map.put("signBoardName", signBoardName);
-		map.put("bossNickName", bossNickName);
-		MList.add(map);
-		ModelAndView mv=new ModelAndView("board/left_template/ganpan_setting","MList",MList);
-		return mv;
+		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo);
 	}
 
 	/**

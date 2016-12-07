@@ -28,11 +28,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="organizationVO.signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
 	</resultMap>
 	
+	<!-- showGanpan -->
  	<select id="getWorkList" resultMap="workRM" parameterType="map">
  		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
 		from work
 		where boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName} and board_no=#{boardNo}
  	</select>
+ 	
+ 	<update id="updateWorkerToNull" parameterType="organizationVO">
+ 		update work
+		set worker_nickname=null
+		where worker_nickname=#{workerMemberVO.nickName}
+		and boss_nickname=#{signBoardVO.bossMemberVO.nickName}
+		and sign_board_name=#{signBoardVO.signBoardName}
+ 	</update>
  	
  	<insert id="createWork" parameterType="workVO">
  		INSERT INTO WORK(work_no, work_name, work_details, worker_nickname, sign_board_name, boss_nickname)
@@ -41,6 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		#{organizationVO.signBoardVO.signBoardName},
  		#{organizationVO.signBoardVO.bossMemberVO.nickName})
  	</insert>
+ 	
+ 	
 </mapper>
 
 

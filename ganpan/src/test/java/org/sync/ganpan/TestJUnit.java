@@ -10,7 +10,6 @@ import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
-import org.sync.ganpan.model.vo.WorkVO;
 
 /*
  *    TDD : 테스트 주도 개발(test-driven development, TDD)은 
@@ -36,20 +35,16 @@ import org.sync.ganpan.model.vo.WorkVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class TestJUnit {
+	@Resource
+	private WorkDAO dao;
 
 	@Resource
 	private WorkDAO workDAO;
 	@Test
 	public void test() {
-		WorkVO wvo = new WorkVO();
-		wvo.setWorkName("린캔버스");
-		wvo.setWorkDetails("린캔버스 작성");
-		String workerNickName = "sync";
-		String signBoardName = "test";
-		String bossNickName = "sync";
-		wvo.setOrganizationVO(
-				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
-		workDAO.createWork(wvo);
-	}//method test
+		int result = dao.updateWorkerToNull(new OrganizationVO(new MemberVO("kosta6"), new SignBoardVO("ganpan1", "kosta1")));
+		System.out.println(result);
+	}// method test
+
 	
 }//class TestJUnit

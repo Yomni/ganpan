@@ -8,14 +8,16 @@ import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface GroupDAO {
-
+	
 	void cancelInvitation(InvitationMngVO ivo);
-
+	
 	void inviteWorker(InvitationMngVO ivo);
-
+	
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	String getNickNameByEmail(String id);
+
+	int deleteWorker(OrganizationVO ovo);
 
 	void registerBossNickName(HashMap<String, Object> map);
 

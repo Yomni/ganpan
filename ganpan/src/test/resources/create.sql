@@ -84,15 +84,20 @@ CREATE TABLE WORK(
    work_details clob NOT NULL,
    creation_DATE DATE DEFAULT SYSDATE NOT NULL,
    change_DATE DATE DEFAULT SYSDATE NOT NULL,
+<<<<<<< HEAD
+   board_no NUMBER NOT NULL,
+   worker_nickname VARCHAR2(50),
+=======
    board_no NUMBER default 1 NOT NULL,
    worker_nickname VARCHAR2(50) NOT NULL,
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
    sign_board_name VARCHAR2(50) NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
    
    CONSTRAINT fk_work_HAVE_BOARD FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
    		REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
    CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname, sign_board_name, boss_nickname) 
-   		REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname) ON DELETE CASCADE
+   		REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname)
 );
 
 CREATE TABLE CHANGE_GENRE(

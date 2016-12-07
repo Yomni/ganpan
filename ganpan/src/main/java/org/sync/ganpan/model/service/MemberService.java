@@ -12,5 +12,6 @@ public interface MemberService {
 	void registerMember(MemberVO mvo);
 	MemberVO findMemberByNickName(String nickName);
 	int updateMember(MemberVO mvo);
+	int idCheck(String id);
 
 }
