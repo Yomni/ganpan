@@ -25,6 +25,12 @@ public class SignBoardVO {
 		this.creationDate = creationDate;
 	}
 
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO) {
+		super();
+		this.signBoardName = signBoardName;
+		this.bossMemberVO = bossMemberVO;
+	}
+
 	public SignBoardVO(String signBoardName, String bossNickName) {
 		super();
 		this.signBoardName = signBoardName;

@@ -27,7 +27,7 @@
 					</ul></li> --%>
 			</ul>
 			<span class="pull-right">
-				<form action="findSignBoardListByTitle.do" method="get" class="navbar-form navbar-left" role="search">
+				<form action="${pageContext.request.contextPath}/findSignBoardListByTitle.do" method="get" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
 						<input type="text" class="form-control" name="title" placeholder="간판명으로 검색"> 
 						<span class="input-group-btn">
