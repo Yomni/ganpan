@@ -20,5 +20,7 @@ public interface GroupService {
 	void banish(OrganizationVO ovo);
 
 	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
+
+	void leaveOrganization(OrganizationVO ovo);
 	
 }

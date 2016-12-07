@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,7 +101,18 @@ public class GroupController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:sendInvitationList.do";
 	}
-
+	
+	
+	@RequestMapping("leaveOrganization.do")
+	public String leaveOrganization(String signBoardName, String bossNickName, HttpSession session){
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		String workerNickName= mvo.getNickName();
+		OrganizationVO ovo=new OrganizationVO(workerNickName,signBoardName,bossNickName);
+		groupService.leaveOrganization(ovo);
+		return "redirect:";
+		
+	}
+	
 	/**
 	 * 구성원 보기
 	 * @author 민서, 동혁

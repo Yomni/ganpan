@@ -6,8 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
-
- <mapper namespace="group">
+<mapper namespace="group">
    
    <resultMap id="organizationRM" type="organizationVO">
 	   	<result property="workerMemberVO.nickName" column="worker_nickname"/>
@@ -42,6 +41,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM member m, invitation_management im
 		WHERE m.nickname=im.nickname and boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
    </select>
+   
+   <delete id="leaveOrganization" parameterType="organizationVO">
+   		DELETE organization
+   		WHERE worker_nickname=#{workerMemberVO.nickName} and sign_board_name=#{signBoardVO.signBoardName} and boss_nickname=#{signBoardVO.bossMemberVO.nickName}
+   </delete>
+   
 </mapper>
 
 
