@@ -53,4 +53,3 @@ where sign_board_name='ganpan1' and boss_nickname='kosta1';
 
 
 
-
