@@ -1,8 +1,8 @@
 package org.sync.ganpan.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 <<<<<<< HEAD
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -61,6 +61,13 @@ public interface SignBoardDAO {
 >>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 =======
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
+
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+=======
+	void updateSignBoardName(HashMap<String, String> map);
+
+	void updateVisibility(SignBoardVO signBoardVO);
 
 >>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }

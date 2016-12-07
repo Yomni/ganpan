@@ -18,5 +18,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/signBoard.xml"/>
 		<mapper resource="mybatis/config/work.xml"/>
 		<mapper resource="mybatis/config/invitationMng.xml"/>
+		<mapper resource="mybatis/config/haveBoard.xml"/>
 	</mappers>
 </configuration>

@@ -9,11 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  <mapper namespace="signBoard">
    
-	<resultMap id="signBoardRM" type="signBoardVO">
-		<result property="signBoardName" column="sign_board_name"/>
-		<result property="bossMemberVO.nickName" column="boss_nickname"/>
-		<result property="creationDate" column="creation_date"/>
-	</resultMap>
+   <resultMap id="signBoardRM" type="signBoardVO">
+      <result property="signBoardName" column="sign_board_name"/>
+      <result property="bossMemberVO.nickName" column="boss_nickname"/>
+      <result property="creationDate" column="creation_date"/>
+   </resultMap>
 	
 	<resultMap id="InvitationMngRM" type="InvitationMngVO">
 		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
@@ -29,14 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
  	<select id="findSignBoardListByTitle" parameterType="String" resultMap="signBoardRM">
- 		SELECT sign_board_name, boss_nickname
+ 		SELECT sign_board_name, boss_nickname 
 		FROM sign_board
 		WHERE visibility = 0 and sign_board_name=#{title}
  	</select>
  	
  	<insert id="createNewGanpan" parameterType="map">
- 		insert into sign_board(sign_board_name,boss_nickname,visibility,creation_date) 
- 		values(#{signBoardName},#{bossNickName},#{visibility},sysdate)
+ 		insert into sign_board(sign_board_name,boss_nickname,visibility) 
+ 		values(#{signBoardName},#{bossNickName},#{visibility})
  	</insert>
  	
  	<select id="titleCheck" resultType="int" parameterType="map">
@@ -111,12 +111,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM invitation_management
 		WHERE nickname = #{value}
  	</select>
+<<<<<<< HEAD
 
+=======
+ 	
+ 	<update id="updateSignBoardName" parameterType="map">
+ 		UPDATE sign_board
+ 		SET sign_board_name = #{changeTitle}
+ 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossNickName}
+ 	</update>
+ 	
+ 	<update id="updateVisibility" parameterType="signBoardVO">
+ 		UPDATE sign_board
+ 		SET visibility = #{visibility}
+ 		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
+ 	</update>
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 </mapper>
-
-
-
-
-
-
-

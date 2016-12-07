@@ -1,8 +1,8 @@
 package org.sync.ganpan.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -25,7 +25,6 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public List<SignBoardVO> findSignBoardListByTitle(String title) {
 		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", title);
-		System.out.println("DAOImpl: "+sbList);
 		return sbList;
 	}
 
@@ -36,7 +35,7 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 
 	@Override
 	public void createNewGanpan(HashMap<String, Object> map) {
-		template.insert("signBoard.createNewGanpan",map);
+		template.insert("signBoard.createNewGanpan", map);
 	}
 
 	@Override
@@ -76,27 +75,27 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 
 	@Override
 	public List<WorkVO> showContentList(SignBoardVO svo) {
-		return template.selectList("signBoard.showContentList",svo);
+		return template.selectList("signBoard.showContentList", svo);
 	}
 
 	@Override
 	public SignBoardVO ganpanSetting(SignBoardVO svo) {
-		return template.selectOne("signBoard.ganpanSetting",svo);
+		return template.selectOne("signBoard.ganpanSetting", svo);
 	}
 
 	@Override
 	public List<InvitationMngVO> invitationList(String nickName) {
-		return template.selectList("signBoard.invitationList",nickName);
+		return template.selectList("signBoard.invitationList", nickName);
 	}
 
 	@Override
 	public void deleteInvitationMng(InvitationMngVO ivo) {
-		template.delete("invitationMng.deleteInvitationMng",ivo);
+		template.delete("invitationMng.deleteInvitationMng", ivo);
 	}
 
 	@Override
 	public void addOrganization(InvitationMngVO ivo) {
-		template.insert("invitationMng.addOrganization",ivo);
+		template.insert("invitationMng.addOrganization", ivo);
 	}
 <<<<<<< HEAD
 	
@@ -108,7 +107,17 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 
 	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
-		return template.selectOne("signBoard.ganpanSettingPage",svo);
+		return template.selectOne("signBoard.ganpanSettingPage", svo);
+	}
+
+	@Override
+	public void updateSignBoardName(HashMap<String, String> map) {
+		template.update("signBoard.updateSignBoardName", map);
+	}
+
+	@Override
+	public void updateVisibility(SignBoardVO signBoardVO) {
+		template.update("signBoard.updateVisibility", signBoardVO);
 	}
 
 >>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
