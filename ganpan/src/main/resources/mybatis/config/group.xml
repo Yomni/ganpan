@@ -19,14 +19,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="signBoardVO">
 		select boss_nickname, worker_nickname
 		from organization
-		where
-		sign_board_name=#{signBoardName} and
-		boss_nickname=#{bossMemberVO.nickName}
-	</select>
+		where sign_board_name=#{signBoardName} and boss_nickname=#{bossMemberVO.nickName}
+   </select>
+   
+   <select id="getNickNameByEmail" resultType="String">
+   		SELECT nickName 
+   		FROM member
+   		WHERE e_mail=#{value}
+   </select>
 
 	<insert id="registerBossNickName" parameterType="map">
 		insert into organization(worker_nickname, boss_nickname, sign_board_name)
-		values(#{})
+		values(#{bossNickName}, #{bossNickName},#{signBoardName})
 	</insert>
 </mapper>
 

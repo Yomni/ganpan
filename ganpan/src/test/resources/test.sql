@@ -184,8 +184,9 @@ UPDATE sign_board
 SET visibility = 1
 WHERE sign_board_name = '간판1' and boss_nickname = ''
 
-<<<<<<< HEAD
-=======
+INSERT into invitation_management(sign_board_name, boss_nickname, nickname) 
+VALUES ('ganpan1','kosta1','dja')
+ 		
 
 		SELECT worker_nickname
 		FROM organization 
@@ -286,15 +287,4 @@ SELECT worker_nickname
 		FROM sign_board
 		WHERE sign_board_name = '간판' and boss_nickname = '우주선'
 
-DROP TRIGGER test_trigger;
-
-CREATE OR REPLACE TRIGGER test_trigger
-AFTER UPDATE ON sign_board FOR EACH ROW
-BEGIN
-  UPDATE organization
-  SET sign_board_name=:NEW.sign_board_name
-  WHERE sign_board_name=:OLD.sign_board_name;
-END;
-
-select * from member;
 

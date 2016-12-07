@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -14,15 +15,30 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class GroupDAOImpl implements GroupDAO {
 	@Resource
 	private SqlSessionTemplate template;
+	
+	@Override
+	public void cancelInvitation(InvitationMngVO ivo) {
+		template.delete("invitationMng.deleteInvitationMng",ivo);
+	}
 
 	@Override
-	public void registerBossNickName(HashMap<String, Object> map) {
-		template.insert("group.registerBossNickName", map)
+	public void inviteWorker(InvitationMngVO ivo) {
+		template.insert("invitationMng.inviteWorker",ivo);
 	}
 
 	@Override
 	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
-		return template.selectList("group.getGroupList", svo);
+		return template.selectList("group.getGroupList",svo);
 	}
 
-}// class GroupDAOImpl
+	@Override
+	public String getNickNameByEmail(String id) {
+		return template.selectOne("group.getNickNameByEmail",id);
+	}
+	
+	@Override
+	public void registerBossNickName(HashMap<String, Object> map) {
+		template.insert("group.registerBossNickName", map);
+	}
+
+}//class GroupDAOImpl
