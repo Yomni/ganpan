@@ -45,4 +45,14 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMember(MemberVO mvo) {
 		return memberDAO.updateMember(mvo);
 	}
+
+	@Override
+	public int idCheck(String id) {
+		int emailCount = memberDAO.emailCheck(id);
+		int nickNameCount = memberDAO.nickNameCheck(id);
+		if(emailCount == 0 && nickNameCount == 0)
+			return 0;
+		else
+			return 1;
+	}
 }

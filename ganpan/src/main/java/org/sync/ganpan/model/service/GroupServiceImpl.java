@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class GroupServiceImpl implements GroupService {
 	public void inviteWorker(InvitationMngVO ivo) {
 		groupDAO.inviteWorker(ivo);
 	}
+
 	/**
 	 *  완료 by dhKim,민서
 	 */
@@ -56,6 +58,10 @@ public class GroupServiceImpl implements GroupService {
 		int deleteResult=groupDAO.deleteWorker(ovo);
 		System.out.println("GroupServiceImple의 group에서 deleteResult여부 : "+deleteResult);//1이면 delete
 		
+	}
+	
+	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
+		return groupDAO.sendInvitationList(svo);
 	}
 	
 	

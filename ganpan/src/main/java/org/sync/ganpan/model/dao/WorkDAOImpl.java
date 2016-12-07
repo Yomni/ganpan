@@ -25,6 +25,14 @@ public class WorkDAOImpl implements WorkDAO {
 		return template.update("work.updateWorkerToNull",ovo);
 	}
 	
+	@Override
+	public void createWork(WorkVO wvo) {
+		template.insert("work.createWork", wvo);
+	}
+	
 	
 
 }//class WorkDAOImpl
+
+
+

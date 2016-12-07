@@ -32,9 +32,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where worker_nickname=#{workerNickName.nickName}
    </delete>
    
-   
-   
-   
+	<insert id="registerBossNickName" parameterType="map">
+		insert into organization(worker_nickname, boss_nickname, sign_board_name)
+		values(#{bossNickName}, #{bossNickName},#{signBoardName})
+	</insert>
+	
+   <select id="sendInvitationList" resultType="Map" parameterType="signBoardVO">
+   		SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitationDate
+		FROM member m, invitation_management im
+		WHERE m.nickname=im.nickname and boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
+   </select>
 </mapper>
 
 

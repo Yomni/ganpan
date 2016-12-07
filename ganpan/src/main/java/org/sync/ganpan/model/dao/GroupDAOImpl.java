@@ -1,7 +1,10 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.InvitationMngVO;
@@ -38,8 +41,20 @@ public class GroupDAOImpl implements GroupDAO {
 		return template.delete("group.deleteWorker",ovo);
 	}
 
+	@Override
+	public void registerBossNickName(HashMap<String, Object> map) {
+		template.insert("group.registerBossNickName", map);
+	}
+	
+	@Override
+	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
+		return template.selectList("group.sendInvitationList",svo);
+	}
 
 }//class GroupDAOImpl
 
 
+
+
+	
 

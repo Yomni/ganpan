@@ -121,6 +121,21 @@ public class MemberController {
 	}
 
 	/******************************************************************************************/
+	
+	/**
+	 * 그룹원 초대 시 닉네임, 이메일 확인
+	 * @param id
+	 * @author 주선, 민영
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST, value="idCheckAjax.do")
+	@ResponseBody
+	public boolean idCheckAjax(String id){
+		int count = memberService.idCheck(id);
+		System.out.println(count);
+		// count가 0이면 해당 회원이 없음
+		return (count == 0) ? true : false;
+	}
 
 	/******************************** 주선 **********************************/
 	/**
@@ -144,7 +159,7 @@ public class MemberController {
 			session.setAttribute("slist", slist);
 			return "redirect:homeSignBoardList.do";
 		} else {
-			return "redirect:member/login_fail.do";
+			return "redirect:go_member/login_fail.do";
 		}
 	}
 

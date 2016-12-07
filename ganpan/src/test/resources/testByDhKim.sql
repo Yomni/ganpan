@@ -77,4 +77,3 @@ insert into organization values('kosta6','kosta1','ganpan1');
 
 
 
-

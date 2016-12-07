@@ -12,4 +12,7 @@ public interface WorkDAO {
 
 	int updateWorkerToNull(OrganizationVO ovo);
 
+	void createWork(WorkVO wvo);
+
+	
 }//interface WorkDAO

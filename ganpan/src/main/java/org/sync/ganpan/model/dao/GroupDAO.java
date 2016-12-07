@@ -1,5 +1,6 @@
 package org.sync.ganpan.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
@@ -18,4 +19,7 @@ public interface GroupDAO {
 
 	int deleteWorker(OrganizationVO ovo);
 
-}//interface GroupDAO
+	void registerBossNickName(HashMap<String, Object> map);
+
+	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
+}// interface GroupDAO
