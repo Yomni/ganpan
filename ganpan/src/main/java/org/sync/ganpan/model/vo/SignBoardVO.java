@@ -15,8 +15,8 @@ public class SignBoardVO {
 	}
 
 	// SignBoardVO 강한 has a MemberVO(nickName)
-	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList, int visibility,
-			String creationDate) {
+
+	public SignBoardVO(String signBoardName, MemberVO bossMemberVO, List<HaveBoardVO> boardList, int visibility,String creationDate) {
 		super();
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = bossMemberVO;
@@ -68,6 +68,7 @@ public class SignBoardVO {
 	public void setBoardList(List<HaveBoardVO> boardList) {
 		this.boardList = boardList;
 	}
+
 
 	public int getVisibility() {
 		return visibility;
