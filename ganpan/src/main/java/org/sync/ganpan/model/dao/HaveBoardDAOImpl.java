@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.HaveBoardVO;
+import org.sync.ganpan.model.vo.SignBoardVO;
 
 @Repository
 public class HaveBoardDAOImpl implements HaveBoardDAO {
@@ -15,8 +16,8 @@ public class HaveBoardDAOImpl implements HaveBoardDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<HaveBoardVO> getHaveBoardList() {
-		return template.selectList("haveBoard.getHaveBoardList");
+	public List<HaveBoardVO> getHaveBoardList(SignBoardVO svo) {
+		return template.selectList("haveBoard.getHaveBoardList",svo);
 	}
 	
 	@Override

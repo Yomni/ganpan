@@ -123,9 +123,9 @@ public class SignBoardController {
 		// String signBoardName = request.getParameter("signBoardName");
 		// String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println(rsvo);
-		rsvo = signBoardService.showGanpan(rsvo);
-		return new ModelAndView("board/ganpan", "rsvo", rsvo);
+		SignBoardVO rsvo2 = signBoardService.showGanpan(rsvo);
+		System.out.println("showGanpan: "+rsvo2);
+		return new ModelAndView("board/ganpan", "rsvo", rsvo2);
 	}
 	/**
 	 * 구성원 보기
@@ -184,6 +184,13 @@ public class SignBoardController {
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:ganpanSettingPage.do";
+	}
+	
+
+	@RequestMapping("deleteSignBoard.do")
+	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName){
+		
+		return "";
 	}
 
 	/**
