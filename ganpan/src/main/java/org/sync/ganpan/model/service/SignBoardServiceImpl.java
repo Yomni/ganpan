@@ -102,7 +102,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("signBoardName", svo.getSignBoardName());
 		map.put("bossNickName", svo.getBossMemberVO().getNickName());
-
 		map.put("boardNo", "1");
 		List<WorkVO> toDoWorkList = workDAO.getWorkList(map);
 		map.put("boardNo", "2");
@@ -112,25 +111,13 @@ public class SignBoardServiceImpl implements SignBoardService {
 
 		// boardList의 size는 무조건 3(todo, doing, done)
 		List<HaveBoardVO> boardList = haveBoardDAO.getHaveBoardList(svo);
-		/*for (int i = 0; i < boardList.size(); i++) {
-			// boardName이 null값이 불러짐
-			System.out.println("-------------------------------");
-			System.out.println(boardList.get(i).getBoardGenreVO().getBoardNo());
-			System.out.println(boardList.get(i).getBoardGenreVO().getBoardName());
-		}*/
 
 		// todo work,doing,done 셋팅
 		boardList.get(0).setWorks(toDoWorkList);
 		boardList.get(1).setWorks(doingWorkList);
 		boardList.get(2).setWorks(doneWorkList);
-
 		svo.setBoardList(boardList);
 		return svo;
-	}
-
-	@Override
-	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
-		return signBoardDAO.getGroupList(svo);
 	}
 
 
