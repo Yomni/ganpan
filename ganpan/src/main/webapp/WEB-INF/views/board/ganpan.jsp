@@ -20,24 +20,22 @@
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td id="${boardList.boardGenreVO.boardName}"><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO'}">
+							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO'}">
 									<a class="btn btn-default" href="${pageContext.request.contextPath}/
-									go_board/create_work.do?signBoardName=${rsvo.signBoardName}
-									&bossNickName=${rsvo.bossMemberVO.nickName}"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								go_board/create_work.do?signBoardName=${rsvo.signBoardName}
+								&bossNickName=${rsvo.bossMemberVO.nickName}"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									</a>
-								</c:if> 
-									<ul id="draggablePanelList" class="list-unstyled">
-								<c:forEach items="${boardList.works}" var="works">
-										<li class="panel panel-info">
-											<div class="panel-heading" draggable="true">${works.workName}</div>
+								</c:if>
+								<ul class="list-unstyled connected" id="${boardList.boardGenreVO.boardName}">
+									<c:forEach items="${boardList.works}" var="works">
+										<li class="panel panel-info " id="draggablePanelList" draggable="true">
+											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#test">
-												${works.organizationVO.workerMemberVO.nickName}</a>
+												<a href="#" data-toggle="modal" data-target="#test"> ${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
-								</c:forEach>
-									</ul>
-									</td>
+									</c:forEach>
+								</ul></td>
 						</c:forEach>
 					</tr>
 				</tbody>
@@ -51,50 +49,47 @@
 
 <!-- modal test -->
 <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">제목</h4>
-      </div>
-      <div class="modal-body">
-        <p>컨텐츠</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-warning">Save changes</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-  <!-- 여기까지 뺄 것 -->
-</div><!-- /.modal -->
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">제목</h4>
+			</div>
+			<div class="modal-body">
+				<p>컨텐츠</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-warning">Save changes</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+	<!-- 여기까지 뺄 것 -->
+</div>
+<!-- /.modal -->
 <!-- modal test -->
 
 <!-- 
 	1. sortable
 	2. drag & drop
+	3. ajax변경
  -->
 <script type="text/javascript">
 	$(function() {
-		
-		$(".panel-heading").draggable();
-		$("#DOING").on( "drop", function( event, ui ) {alert();} );
-		var panelList = $('#draggablePanelList');
-
-        panelList.sortable({
-            // Only make the .panel-heading child elements support dragging.
-            // Omit this to make then entire <li>...</li> draggable.
-            handle: '.panel-heading', 
-            update: function() {
-                $('.panel', panelList).each(function(index, elem) {
-                     var $listItem = $(elem),
-                         newIndex = $listItem.index();
-
-                     // Persist the new indices.
-                });
-            }
-        }); // sortable
-	}); //ready
+		$("#TO_DO, #DOING").sortable({
+			connectWith : "#DOING",
+			update:function() {
+				alert();
+			}
+		});
+		$("#DOING, #DONE").sortable({
+			connectWith : "#DONE"
+		});
+	});
 </script>
