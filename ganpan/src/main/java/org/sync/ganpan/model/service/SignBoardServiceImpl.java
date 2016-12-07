@@ -152,4 +152,9 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public void updateVisibility(SignBoardVO signBoardVO) {
 		signBoardDAO.updateVisibility(signBoardVO);
 	}
+
+	@Override
+	public void deleteSignBoard(SignBoardVO svo) {
+		signBoardDAO.deleteSignBoard(svo);
+	}
 }

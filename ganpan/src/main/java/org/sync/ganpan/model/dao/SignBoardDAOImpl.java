@@ -108,5 +108,10 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		template.update("signBoard.updateVisibility", signBoardVO);
 	}
 
+	@Override
+	public void deleteSignBoard(SignBoardVO svo) {
+		template.delete("signBoard.deleteSignBoard",svo);
+	}
+
 }//class
 

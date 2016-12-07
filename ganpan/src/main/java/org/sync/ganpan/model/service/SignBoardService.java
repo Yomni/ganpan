@@ -52,4 +52,6 @@ public interface SignBoardService {
 	// 간판
 	void updateVisibility(SignBoardVO signBoardVO);
 
+	void deleteSignBoard(SignBoardVO svo);
+
 }

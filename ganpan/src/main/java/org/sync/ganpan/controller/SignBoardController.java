@@ -177,8 +177,9 @@ public class SignBoardController {
 
 	@RequestMapping("deleteSignBoard.do")
 	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName){
-		
-		return "";
+		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
+		signBoardService.deleteSignBoard(svo);
+		return "redirect:";
 	}
 
 	/**
