@@ -136,10 +136,7 @@ public class SignBoardController {
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		System.out.println("1" + svo);
-
 		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		System.out.println("2" + svo2);
 		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
 	}
 

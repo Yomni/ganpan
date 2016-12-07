@@ -96,7 +96,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("signBoardName", svo.getSignBoardName());
 		map.put("bossNickName", svo.getBossMemberVO().getNickName());
-
 		map.put("boardNo", "1");
 		List<WorkVO> toDoWorkList = workDAO.getWorkList(map);
 		map.put("boardNo", "2");
@@ -111,7 +110,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 		boardList.get(0).setWorks(toDoWorkList);
 		boardList.get(1).setWorks(doingWorkList);
 		boardList.get(2).setWorks(doneWorkList);
-
 		svo.setBoardList(boardList);
 		return svo;
 	}
