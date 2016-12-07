@@ -1,9 +1,15 @@
 package org.sync.ganpan;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.sync.ganpan.model.dao.GroupDAO;
+import org.sync.ganpan.model.dao.WorkDAO;
+import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /*
@@ -30,12 +36,13 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class TestJUnit {
+	@Resource
+	private WorkDAO dao;
 
 	@Test
 	public void test() {
-		
-	}//method test
-	
-	
-	
-}//class TestJUnit
+		int result = dao.updateWorkerToNull(new OrganizationVO(new MemberVO("kosta6"), new SignBoardVO("ganpan1", "kosta1")));
+		System.out.println(result);
+	}// method test
+
+}// class TestJUnit

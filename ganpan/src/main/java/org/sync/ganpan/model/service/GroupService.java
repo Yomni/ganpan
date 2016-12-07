@@ -15,5 +15,8 @@ public interface GroupService {
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	String getNickNameByEmail(String id);
+
+	void banish(OrganizationVO ovo);
+
 	
 }

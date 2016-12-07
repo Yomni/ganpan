@@ -125,7 +125,7 @@ public class SignBoardController {
 		// String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
 		rsvo = signBoardService.showGanpan(rsvo);
-		System.out.println("showGanpan: " + rsvo);
+		
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
 	/**

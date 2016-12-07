@@ -33,6 +33,12 @@ public class GroupDAOImpl implements GroupDAO {
 		return template.selectOne("group.getNickNameByEmail",id);
 	}
 
+	@Override
+	public int deleteWorker(OrganizationVO ovo) {
+		return template.delete("group.deleteWorker",ovo);
+	}
+
+
 }//class GroupDAOImpl
 
 

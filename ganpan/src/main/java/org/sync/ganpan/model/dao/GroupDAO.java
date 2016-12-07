@@ -15,5 +15,7 @@ public interface GroupDAO {
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
 	String getNickNameByEmail(String id);
-	
+
+	int deleteWorker(OrganizationVO ovo);
+
 }//interface GroupDAO
