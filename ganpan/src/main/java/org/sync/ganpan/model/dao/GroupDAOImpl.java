@@ -51,10 +51,9 @@ public class GroupDAOImpl implements GroupDAO {
 		return template.selectList("group.sendInvitationList",svo);
 	}
 
+	@Override
+	public void leaveOrganization(OrganizationVO ovo) {
+		template.delete("group.leaveOrganization",ovo);
+	}
+
 }//class GroupDAOImpl
-
-
-
-
-	
-
