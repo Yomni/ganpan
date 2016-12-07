@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</insert>
  	
  	<insert id="inviteWorker" parameterType="invitationMngVO">
- 		INSERT into invitation_management(sign_board_name, boss_nickname, nickname) 
- 		VALUES (#{signBoardVO.signBoardName},#{signBoardVO.bossMemberVO.nickName},#{workNickName.nickName})
+ 		INSERT INTO invitation_management(sign_board_name, boss_nickname, nickname) 
+ 		VALUES(#{signBoardVO.signBoardName},#{signBoardVO.bossMemberVO.nickName},#{workNickName.nickName})
  	</insert>
  	
 </mapper>

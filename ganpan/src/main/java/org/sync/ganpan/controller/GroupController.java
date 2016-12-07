@@ -42,12 +42,18 @@ public class GroupController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("inviteWorker.do")
-	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id,String type){
+	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id, String type){
 		//id는 이메일이나 닉네임
+		System.out.println("inviteWorker:signBoardName: " + signBoardName);
+		System.out.println("inviteWorker:email: " + type);
+		System.out.println("inviteWorker:email: " + type);
+		System.out.println("inviteWorker:email: " + type);
 		if(type.equals("email")){
 			id=groupService.getNickNameByEmail(id);
+			System.out.println("inviteWorker:email: " + type);
 		}
 		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, id);
+		System.out.println("inviteWorker:ivo: " + ivo);
 		groupService.inviteWorker(ivo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
@@ -63,12 +69,16 @@ public class GroupController {
 	 * @return
 	 */
 	@RequestMapping("sendInvitationList.do")
-	public ModelAndView sendInvitationList(String signBoardName, String bossNickName){
-		SignBoardVO svo=new SignBoardVO(signBoardName, bossNickName);
+	public ModelAndView sendInvitationList(String signBoardName, String bossNickName) {
+		ModelAndView mv = new ModelAndView();
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
 		System.out.println("sendInvitationList:svo: " + svo);
-		List<HashMap<String, String>> MList=groupService.sendInvitationList(svo);
+		List<HashMap<String, String>> MList = groupService.sendInvitationList(svo);
 		System.out.println("sendInvitationList:MList: " + MList);
-		return new ModelAndView("board/left_template/invite_group_member","MList",MList);
+		mv.setViewName("board/left_template/invite_group_member");
+		mv.addObject("MList", MList);
+		mv.addObject("svo", svo);
+		return mv;
 	}
 	
 	/**
@@ -80,10 +90,13 @@ public class GroupController {
 	 * @return
 	 */
 	@RequestMapping("cancelInvitation.do")
-	public String cancelInvitation(String signBoardName, String bossNickName, String nickName){
+	public String cancelInvitation(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String nickName){
 		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, nickName);
+		System.out.println("cancelInvitation:ivo: "+ivo);
 		groupService.cancelInvitation(ivo);
-		return "redirect: ";
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:sendInvitationList.do";
 	}
 
 	/**
