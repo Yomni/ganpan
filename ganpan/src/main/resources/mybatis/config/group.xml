@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <mapper namespace="group">
    
    <resultMap id="organizationRM" type="organizationVO">
-	   	<result property="workerNickName.nickName" column="worker_nickname"/>
+	   	<result property="workerMemberVO.nickName" column="worker_nickname"/>
    		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
    		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
    </resultMap>
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <delete id="deleteWorker" parameterType="organizationVO">
    		delete from organization
-		where worker_nickname=#{workerNickName.nickName}
+		where worker_nickname=#{workerMemberVO.nickName}
    </delete>
    
 	<insert id="registerBossNickName" parameterType="map">

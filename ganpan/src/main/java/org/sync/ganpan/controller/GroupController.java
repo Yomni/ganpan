@@ -112,9 +112,10 @@ public class GroupController {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
 		List<OrganizationVO> oList = groupService.getGroupList(svo);
 		
-		
 		return new ModelAndView("board/left_template/group_member_list","oList", oList);
 	}
+	
+	
 	@RequestMapping("banish.do")
 	public String banish(HttpServletRequest request){
 		String workerNickName=request.getParameter("workerNickName");
