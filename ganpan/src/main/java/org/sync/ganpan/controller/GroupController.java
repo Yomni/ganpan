@@ -55,6 +55,6 @@ public class GroupController {
 	public String cancelInvitation(String signBoardName, String bossNickName, String nickName){
 		InvitationMngVO ivo=new InvitationMngVO(signBoardName, bossNickName, nickName);
 		groupService.cancelInvitation(ivo);
-		return "redirect:";
+		return "redirect: ";
 	}
 }
