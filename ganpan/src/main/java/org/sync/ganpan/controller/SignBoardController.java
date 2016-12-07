@@ -188,9 +188,11 @@ public class SignBoardController {
 	}
 
 	@RequestMapping("deleteSignBoard.do")
-	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName) {
 
-		return "";
+	public String deleteSignBoard(String signBoardName, String bossNickName){
+		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
+		signBoardService.deleteSignBoard(svo);
+		return "redirect:homeSignBoardList.do";
 	}
 
 	/**

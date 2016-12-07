@@ -49,4 +49,6 @@ public interface SignBoardDAO {
 
 	void updateVisibility(SignBoardVO signBoardVO);
 
+	void deleteSignBoard(SignBoardVO svo);
+
 }
