@@ -71,7 +71,8 @@
 					<c:forEach items="${sessionScope.slist}" var="ganpan">
 					<tr>
 						<td>
-							<a href="#">${ganpan.signBoardName}</a>
+							<a href="${pageContext.request.contextPath}/showGanpan.do?signBoardName=${ganpan.signBoardName}&bossNickName=${mvo.nickName}">
+								${ganpan.signBoardName}</a>
 						</td>
 					</tr>
 					</c:forEach> 

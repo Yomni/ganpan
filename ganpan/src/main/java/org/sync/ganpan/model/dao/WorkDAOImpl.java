@@ -13,12 +13,15 @@ import org.sync.ganpan.model.vo.WorkVO;
 public class WorkDAOImpl implements WorkDAO {
 	@Resource
 	private SqlSessionTemplate template;
-	
+
 	@Override
 	public List<WorkVO> getWorkList(HashMap<String, String> map) {
-		return template.selectList("work.getWorkList",map);
+		return template.selectList("work.getWorkList", map);
 	}
-	
-	
 
-}//class WorkDAOImpl
+	@Override
+	public void createWork(WorkVO wvo) {
+		template.insert("work.createWork", wvo);
+	}
+
+}// class WorkDAOImpl

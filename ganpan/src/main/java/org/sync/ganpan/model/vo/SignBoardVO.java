@@ -13,6 +13,9 @@ public class SignBoardVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public SignBoardVO(String bossNickName) {
+		this.bossMemberVO.setNickName(bossNickName);
+	}
 
 	// SignBoardVO 강한 has a MemberVO(nickName)
 

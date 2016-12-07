@@ -8,11 +8,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.sync.ganpan.model.dao.GroupDAO;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -29,6 +31,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 	private WorkDAO workDAO;
 	@Resource
 	private HaveBoardDAO haveBoardDAO;
+	@Resource
+	private GroupDAO GroupDAO;
 
 	@Override
 	public Map<String, Object> findSignBoardListByTitle(String title) {
@@ -54,6 +58,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 			map.put("boardNo", i);
 			haveBoardDAO.createNewGanpan(map);
 		}
+		GroupDAO.registerBossNickName(map);
 	}
 
 	@Override
