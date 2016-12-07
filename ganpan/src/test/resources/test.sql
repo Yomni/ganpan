@@ -295,4 +295,4 @@ BEGIN
 END;
 
 select * from member;
-
+select * from organization;
