@@ -64,11 +64,15 @@ public class GroupController {
 	 */
 	@RequestMapping("sendInvitationList.do")
 	public ModelAndView sendInvitationList(String signBoardName, String bossNickName){
+		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo=new SignBoardVO(signBoardName, bossNickName);
 		System.out.println("sendInvitationList:svo: " + svo);
 		List<HashMap<String, String>> MList=groupService.sendInvitationList(svo);
 		System.out.println("sendInvitationList:MList: " + MList);
-		return new ModelAndView("board/left_template/invite_group_member","MList",MList);
+		mv.setViewName("board/left_template/invite_group_member");
+		mv.addObject("MList", MList);
+		mv.addObject("svo", svo);
+		return mv;
 	}
 	
 	/**
