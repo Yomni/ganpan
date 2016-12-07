@@ -121,6 +121,21 @@ public class MemberController {
 	}
 
 	/******************************************************************************************/
+	
+	/**
+	 * 그룹원 초대 시 닉네임, 이메일 확인
+	 * @param id
+	 * @author 주선, 민영
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST, value="idCheckAjax.do")
+	@ResponseBody
+	public boolean idCheckAjax(String id){
+		int count = memberService.idCheck(id);
+		System.out.println(count);
+		// count가 0이면 해당 회원이 없음
+		return (count == 0) ? true : false;
+	}
 
 	/******************************** 주선 **********************************/
 	/**
