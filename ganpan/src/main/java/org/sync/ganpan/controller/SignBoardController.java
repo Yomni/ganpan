@@ -174,12 +174,11 @@ public class SignBoardController {
 		return "redirect:ganpanSettingPage.do";
 	}
 	
-
 	@RequestMapping("deleteSignBoard.do")
-	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName){
+	public String deleteSignBoard(String signBoardName, String bossNickName){
 		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
 		signBoardService.deleteSignBoard(svo);
-		return "redirect:";
+		return "redirect:homeSignBoardList.do";
 	}
 
 	/**
