@@ -2,25 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 	<h2>조원으로 초대할 회원의 별명이나 전자우편 주소로 초대해주세요.</h2>
 		<form method="post" action="${pageContext.request.contextPath}/inviteWorker.do" name="inviteForm">
-<<<<<<< HEAD
 			<input type="hidden" value="${svo.signBoardName}" name="signBoardName">
 			<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName">
-			<input type="hidden" id="value" value="email" name="type">
-=======
- 			<input type="hidden" value="${svo.signBoardName}" name="signBoardName">
-			<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName"> 
 			<input type="hidden" id="value" value="nickName" name="type">
-<<<<<<< HEAD
-=======
-			<input type="hidden" name="workNickName.nickName">
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 			<div class="form-group">
 				<h4><span id="memberCheckView"></span></h4>
 				<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required"/>
