@@ -142,7 +142,7 @@ public class MemberController {
 			List<SignBoardVO> slist = signBoardService.allSignBoardList(mvo.getNickName());
 			System.out.println(slist);
 			session.setAttribute("slist", slist);
-			return "redirect:go_home.do";
+			return "redirect:homeSignBoardList.do";
 		} else {
 			return "redirect:member/login_fail.do";
 		}

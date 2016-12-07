@@ -174,9 +174,6 @@ UPDATE sign_board
 SET visibility = 1
 WHERE sign_board_name = '간판1' and boss_nickname = ''
 
-
-
-
 		
 DROP TRIGGER test_trigger;
 
