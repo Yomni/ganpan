@@ -13,11 +13,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  	<delete id="deleteInvitationMng" parameterType="invitationMngVO">
 	 	Delete invitation_management 
-	 	Where sign_board_name=#{signBoardVO.signBoardName} and boss_nickname=#{signBoardVO.bossMemberVO.nickName} and nickname=#{workNickName.nickName}
+	 	WHERE sign_board_name=#{signBoardVO.signBoardName} and boss_nickname=#{signBoardVO.bossMemberVO.nickName} and nickname=#{workNickName.nickName}
  	</delete>
+ 	
  	<insert id="addOrganization" parameterType="invitationMngVO">
- 		insert into organization(worker_nickname,boss_nickname,sign_board_name)
- 		values(#{workNickName.nickName},#{signBoardVO.bossMemberVO.nickName},#{signBoardVO.signBoardName})
+ 		INSERT into organization(worker_nickname,boss_nickname,sign_board_name)
+ 		VALUES (#{workNickName.nickName},#{signBoardVO.bossMemberVO.nickName},#{signBoardVO.signBoardName})
+ 	</insert>
+ 	
+ 	<insert id="inviteWorker" parameterType="invitationMngVO">
+ 		INSERT into invitation_management(sign_board_name, boss_nickname, nickname) 
+ 		VALUES (#{signBoardVO.signBoardName},#{signBoardVO.bossMemberVO.nickName},#{workNickName.nickName})
  	</insert>
  	
 </mapper>

@@ -21,6 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where sign_board_name=#{signBoardName} and boss_nickname=#{bossMemberVO.nickName}
    </select>
    
+   <select id="getNickNameByEmail" resultType="String">
+   		SELECT nickName 
+   		FROM member
+   		WHERE e_mail=#{value}
+   </select>
    
 </mapper>
 
