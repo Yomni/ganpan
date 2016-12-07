@@ -174,10 +174,9 @@ UPDATE sign_board
 SET visibility = 1
 WHERE sign_board_name = '간판1' and boss_nickname = ''
 
-
-
-
-		
+INSERT into invitation_management(sign_board_name, boss_nickname, nickname) 
+VALUES ('ganpan1','kosta1','dja')
+ 		
 DROP TRIGGER test_trigger;
 
 CREATE OR REPLACE TRIGGER test_trigger
