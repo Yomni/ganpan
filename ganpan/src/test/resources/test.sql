@@ -294,7 +294,5 @@ BEGIN
   WHERE sign_board_name=:OLD.sign_board_name;
 END;
 
-select * from work;
-select * from organization;
-		
+select * from member;
 
