@@ -13,7 +13,6 @@
 	</head>
 	<body class="subpage">
 		<div id="page-wrapper">
-
 			<!-- Content -->
 				<div id="content-wrapper">
 					<div id="content">
@@ -28,12 +27,10 @@
 											<ul class="link-list">
 												<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
 												<li><a href="${pageContext.request.contextPath}/board/group_member_list.do">참여 구성원 보기</a></li>
-												<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do">간판 설정</a></li>
+												<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a></li>
 											</ul>
 										</section>
 								</div>
-								
-								
 								<div id="sample">
 									  <h3>GoJS Kanban Board</h3>
 									  <div id="myDiagramDiv" style="border: solid 1px gray; width:100%; height:500px;">
