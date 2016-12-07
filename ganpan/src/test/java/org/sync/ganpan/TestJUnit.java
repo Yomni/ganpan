@@ -6,6 +6,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+<<<<<<< HEAD
+import org.sync.ganpan.model.dao.GroupDAO;
+=======
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -36,11 +40,20 @@ import org.sync.ganpan.model.vo.WorkVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class TestJUnit {
+	@Resource
+	private WorkDAO dao;
 
 	@Resource
 	private WorkDAO workDAO;
 	@Test
 	public void test() {
+<<<<<<< HEAD
+		int result = dao.updateWorkerToNull(new OrganizationVO(new MemberVO("kosta6"), new SignBoardVO("ganpan1", "kosta1")));
+		System.out.println(result);
+	}// method test
+
+}// class TestJUnit
+=======
 		WorkVO wvo = new WorkVO();
 		wvo.setWorkName("린캔버스");
 		wvo.setWorkDetails("린캔버스 작성");
@@ -53,3 +66,4 @@ public class TestJUnit {
 	}//method test
 	
 }//class TestJUnit
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git

@@ -17,6 +17,8 @@ public interface GroupService {
 
 	String getNickNameByEmail(String id);
 
+	void banish(OrganizationVO ovo);
+
 	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
 
 	void leaveOrganization(OrganizationVO ovo);

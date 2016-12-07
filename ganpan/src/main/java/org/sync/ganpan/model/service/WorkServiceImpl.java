@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.WorkDAO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
 /**
@@ -15,9 +16,14 @@ import org.sync.ganpan.model.vo.WorkVO;
 public class WorkServiceImpl implements WorkService {
 	@Resource
 	private WorkDAO workDAO;
-	
+
+	@Override
+	public int updateWorkerToNull(OrganizationVO ovo) {
+		return workDAO.updateWorkerToNull(ovo);
+	}
 	@Override
 	public void createWork(WorkVO wvo) {
 		workDAO.createWork(wvo);
 	}
-}
+
+}//class WorkServiceImpl

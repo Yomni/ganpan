@@ -17,11 +17,6 @@ public class GroupDAOImpl implements GroupDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public void registerBossNickName(HashMap<String, Object> map) {
-		template.insert("group.registerBossNickName", map);
-	}
-	
-	@Override
 	public void cancelInvitation(InvitationMngVO ivo) {
 		template.delete("invitationMng.deleteInvitationMng",ivo);
 	}
@@ -41,6 +36,16 @@ public class GroupDAOImpl implements GroupDAO {
 		return template.selectOne("group.getNickNameByEmail",id);
 	}
 
+	@Override
+	public int deleteWorker(OrganizationVO ovo) {
+		return template.delete("group.deleteWorker",ovo);
+	}
+
+	@Override
+	public void registerBossNickName(HashMap<String, Object> map) {
+		template.insert("group.registerBossNickName", map);
+	}
+	
 	@Override
 	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
 		return template.selectList("group.sendInvitationList",svo);

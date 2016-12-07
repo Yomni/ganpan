@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
-
 <mapper namespace="group">
 
 	<resultMap id="organizationRM" type="organizationVO">
@@ -15,9 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="signBoardVO.signBoardName" column="sign_board_name" />
 	</resultMap>
 
-	<select id="getGroupList" resultMap="organizationRM"
-		parameterType="signBoardVO">
-		select boss_nickname, worker_nickname
+   <select id="getGroupList" resultMap="organizationRM" parameterType="signBoardVO">
+   		select boss_nickname, worker_nickname,sign_board_name
 		from organization
 		where sign_board_name=#{signBoardName} and boss_nickname=#{bossMemberVO.nickName}
    </select>
@@ -27,7 +25,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		FROM member
    		WHERE e_mail=#{value}
    </select>
-
+   
+   <delete id="deleteWorker" parameterType="organizationVO">
+   		delete from organization
+		where worker_nickname=#{workerMemberVO.nickName}
+   </delete>
+   
 	<insert id="registerBossNickName" parameterType="map">
 		insert into organization(worker_nickname, boss_nickname, sign_board_name)
 		values(#{bossNickName}, #{bossNickName},#{signBoardName})

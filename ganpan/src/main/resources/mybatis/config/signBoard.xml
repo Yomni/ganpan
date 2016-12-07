@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="InvitationMngRM" type="InvitationMngVO">
 		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
 		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
-		<result property="workNickName.nickName" column="nickname"/>
+		<result property="invitedMemberVO.nickName" column="nickname"/>
 		<result property="invitationDate" column="invitation_date"/>
 	</resultMap>
 	

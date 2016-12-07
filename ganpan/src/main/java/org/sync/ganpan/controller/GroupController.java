@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.GroupService;
+import org.sync.ganpan.model.service.WorkService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -26,6 +27,8 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class GroupController {
 	@Resource
 	private GroupService groupService;
+	@Resource
+	private WorkService workService;
 	
 	/**
 	 * 
@@ -119,15 +122,25 @@ public class GroupController {
 		String signBoardName=request.getParameter("signBoardName");
 		String bossNickName=request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
-		System.out.println("GroupController svo : "+svo);
-		
 		List<OrganizationVO> oList = groupService.getGroupList(svo);
-		for(int i=0; i<oList.size(); i++){
-			System.out.println("------GroupController oList값----------------");
-			System.out.println(oList.get(i).toString());
-		}
 		
-		return new ModelAndView("board/group_member_list","oList", oList);
+		
+		return new ModelAndView("board/left_template/group_member_list","oList", oList);
+	}
+	@RequestMapping("banish.do")
+	public String banish(HttpServletRequest request){
+		String workerNickName=request.getParameter("workerNickName");
+		String signBoardName=request.getParameter("signBoardName");
+		String bossNickName=request.getParameter("bossNickName");
+		MemberVO workerNickNameVO=new MemberVO(workerNickName);
+		SignBoardVO signBoardVO=new SignBoardVO(signBoardName,bossNickName);
+		OrganizationVO ovo=new OrganizationVO(workerNickNameVO,signBoardVO);
+		System.out.println("GroupController : "+ovo);
+		//그룹에서 강제퇴장!
+		groupService.banish(ovo);
+		
+		//다시 getGroupList로 보내줘야 한다.
+		return "redirect:group_member_list.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
 	}
 	
 }//class GroupController
