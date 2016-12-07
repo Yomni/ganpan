@@ -111,9 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM invitation_management
 		WHERE nickname = #{value}
  	</select>
-<<<<<<< HEAD
 
-=======
  	
  	<update id="updateSignBoardName" parameterType="map">
  		UPDATE sign_board
@@ -126,5 +124,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SET visibility = #{visibility}
  		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
  	</update>
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 </mapper>

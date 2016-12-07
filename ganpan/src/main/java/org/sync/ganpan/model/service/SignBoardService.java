@@ -4,15 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
 import org.sync.ganpan.model.vo.OrganizationVO;
-=======
+
 import org.sync.ganpan.model.vo.HaveBoardVO;
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardService {
@@ -47,9 +44,6 @@ public interface SignBoardService {
 	// 보스닉네임, 간판 타이틀로 보스닉네임, 간판 타이틀, 공개 여부 반환
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
 
-<<<<<<< HEAD
-	
-=======
 	// 닉네임으로 초대받은 이력 정보 반환
 	List<InvitationMngVO> invitationList(String nickName);
 
@@ -58,7 +52,6 @@ public interface SignBoardService {
 
 	// 초대 수락, 거절 시 초대 현황에서 삭제
 	void deleteInvitationMng(InvitationMngVO ivo);
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 
 	// 간판 이름 변경 map[수정하고싶은 간판이름, 수정전 간판이름, 간판 그룹장]
 	void updateSignBoardName(HashMap<String, String> map);

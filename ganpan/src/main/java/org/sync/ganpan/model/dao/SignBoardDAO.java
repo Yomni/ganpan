@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
 import org.sync.ganpan.model.vo.OrganizationVO;
-=======
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -31,25 +30,12 @@ public interface SignBoardDAO {
 	List<SignBoardVO> myPublicJoinSignBoardList(String nickName);
 
 	List<SignBoardVO> myPrivateSignBoardList(String nickName);
-
-	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
-
-	List<SignBoardVO> showContentList(SignBoardVO svo);
 	
 	List<OrganizationVO> getGroupList(SignBoardVO svo);
 
-	List<WorkVO> showContentList(SignBoardVO svo);
-
-	List<SignBoardVO> showContentList(SignBoardVO svo);
-
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
 
-	List<WorkVO> showContentList(SignBoardVO svo);
-
 	SignBoardVO ganpanSetting(SignBoardVO svo);
-<<<<<<< HEAD
-
-=======
 
 	List<InvitationMngVO> invitationList(String nickName);
 
@@ -57,17 +43,10 @@ public interface SignBoardDAO {
 
 	void addOrganization(InvitationMngVO ivo);
 
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
 
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
 	void updateSignBoardName(HashMap<String, String> map);
 
 	void updateVisibility(SignBoardVO signBoardVO);
 
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }

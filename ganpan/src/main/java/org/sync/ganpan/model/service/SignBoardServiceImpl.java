@@ -10,19 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import org.sync.ganpan.model.vo.OrganizationVO;
-=======
-=======
+
 import org.sync.ganpan.model.dao.WorkDAO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 import org.sync.ganpan.model.vo.HaveBoardVO;
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
+
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -143,9 +139,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
 		return signBoardDAO.ganpanSettingPage(svo);
 	}
-<<<<<<< HEAD
-=======
-
 	@Override
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return signBoardDAO.invitationList(nickName);
@@ -161,9 +154,6 @@ public class SignBoardServiceImpl implements SignBoardService {
 		signBoardDAO.deleteInvitationMng(ivo);
 	}
 
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
 	@Override
 	public void updateSignBoardName(HashMap<String, String> map) {
 		signBoardDAO.updateSignBoardName(map);
@@ -174,5 +164,4 @@ public class SignBoardServiceImpl implements SignBoardService {
 		signBoardDAO.updateVisibility(signBoardVO);
 	}
 
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }

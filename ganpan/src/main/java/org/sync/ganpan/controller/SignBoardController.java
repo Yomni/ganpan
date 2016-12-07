@@ -127,7 +127,6 @@ public class SignBoardController {
 		rsvo = signBoardService.showGanpan(rsvo);
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
-<<<<<<< HEAD
 	/**
 	 * 구성원 보기
 	 * @author 민서
@@ -140,9 +139,6 @@ public class SignBoardController {
 		System.out.println("oList"+oList);
 		return new ModelAndView("board/group_member_list","svo", oList);
 	}
-=======
-
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
 	 * @param signBoardName

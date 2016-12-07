@@ -8,12 +8,12 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-<<<<<<< HEAD
+
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
-=======
+
 import org.sync.ganpan.model.vo.InvitationMngVO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -73,10 +73,6 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		return template.selectList("signBoard.myPrivateJoinSignBoardList", nickName);
 	}
 
-	@Override
-	public List<WorkVO> showContentList(SignBoardVO svo) {
-		return template.selectList("signBoard.showContentList", svo);
-	}
 
 	@Override
 	public SignBoardVO ganpanSetting(SignBoardVO svo) {
@@ -97,13 +93,13 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public void addOrganization(InvitationMngVO ivo) {
 		template.insert("invitationMng.addOrganization", ivo);
 	}
-<<<<<<< HEAD
+
 	
 	@Override
 	public List<OrganizationVO> getGroupList(SignBoardVO svo) {
 		return template.selectList("signBoard.getGroupList",svo);
 	}
-=======
+
 
 	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
@@ -120,6 +116,5 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		template.update("signBoard.updateVisibility", signBoardVO);
 	}
 
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 }//class
 
