@@ -1,10 +1,16 @@
 package org.sync.ganpan;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.sync.ganpan.model.dao.WorkDAO;
+import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
+import org.sync.ganpan.model.vo.WorkVO;
 
 /*
  *    TDD : 테스트 주도 개발(test-driven development, TDD)은 
@@ -31,11 +37,19 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class TestJUnit {
 
+	@Resource
+	private WorkDAO workDAO;
 	@Test
 	public void test() {
-		
+		WorkVO wvo = new WorkVO();
+		wvo.setWorkName("린캔버스");
+		wvo.setWorkDetails("린캔버스 작성");
+		String workerNickName = "sync";
+		String signBoardName = "test";
+		String bossNickName = "sync";
+		wvo.setOrganizationVO(
+				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
+		workDAO.createWork(wvo);
 	}//method test
-	
-	
 	
 }//class TestJUnit

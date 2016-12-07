@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -40,7 +41,7 @@ public class SignBoardController {
 	 * 새 간판 생성하기
 	 * @author 민영
 	 */
-	@RequestMapping("createNewGanpan.do")
+	@RequestMapping(method = RequestMethod.POST, value = "createNewGanpan.do")
 	public ModelAndView createNewGanpan(String bossNickName, String title, String ganpanType) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("bossNickName", bossNickName);
