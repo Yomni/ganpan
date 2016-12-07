@@ -163,5 +163,4 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public void updateVisibility(SignBoardVO signBoardVO) {
 		signBoardDAO.updateVisibility(signBoardVO);
 	}
-
 }

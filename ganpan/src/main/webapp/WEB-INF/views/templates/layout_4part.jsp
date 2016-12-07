@@ -18,10 +18,14 @@
 		<tiles:insertAttribute name="header" />
 	</div>
 	<div id="left">
-		<tiles:insertAttribute name="left" />
-	</div>
-	<div id="main">
-		<tiles:insertAttribute name="main" />
+		<div class="container-fluid">
+			<div class="row">
+				<tiles:insertAttribute name="left" />
+			</div>
+			<div id="main">
+				<tiles:insertAttribute name="main" />
+			</div>
+		</div>
 	</div>
 	<div id="footer">
 		<tiles:insertAttribute name="footer" />
