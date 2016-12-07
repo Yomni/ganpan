@@ -105,14 +105,24 @@ public class GroupController {
 	 * 구성원 보기
 	 * @author 민서, 동혁
 	 */
-	@RequestMapping("group_member_list.do")
+	@RequestMapping("goManageGroupMember..do")
 	public ModelAndView getGroupList(HttpServletRequest request) {
 		String signBoardName=request.getParameter("signBoardName");
 		String bossNickName=request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
 		List<OrganizationVO> oList = groupService.getGroupList(svo);
 		
-		return new ModelAndView("board/left_template/group_member_list","oList", oList);
+		return new ModelAndView("board/left_template/manage_group_member","oList", oList);
+	}
+	
+	@RequestMapping("showMemberList.do")
+	public ModelAndView showMemberList(HttpServletRequest request) {
+		String signBoardName=request.getParameter("signBoardName");
+		String bossNickName=request.getParameter("bossNickName");
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);//ganpan1, kosta1
+		List<OrganizationVO> oList = groupService.getGroupList(svo);
+		
+		return new ModelAndView("board/left_template/manage_group_member","oList", oList);
 	}
 	
 	
@@ -129,7 +139,7 @@ public class GroupController {
 		groupService.banish(ovo);
 		
 		//다시 getGroupList로 보내줘야 한다.
-		return "redirect:group_member_list.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
+		return "redirect:manage_group_member.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
 	}
 	
 }//class GroupController
