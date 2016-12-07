@@ -20,4 +20,6 @@ public interface GroupDAO {
 	void registerBossNickName(HashMap<String, Object> map);
 
 	List<HashMap<String, String>> sendInvitationList(SignBoardVO svo);
+
+	void leaveOrganization(OrganizationVO ovo);
 }// interface GroupDAO

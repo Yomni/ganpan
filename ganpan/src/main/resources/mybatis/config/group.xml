@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="group">
 
 	<resultMap id="organizationRM" type="organizationVO">
-		<result property="workerNickName.nickName" column="worker_nickname" />
+		<result property="workerMemberVO.nickName" column="worker_nickname" />
 		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname" />
 		<result property="signBoardVO.signBoardName" column="sign_board_name" />
 	</resultMap>
@@ -38,6 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM member m, invitation_management im
 		WHERE m.nickname=im.nickname and boss_nickname=#{bossMemberVO.nickName} and sign_board_name=#{signBoardName}
    </select>
+   
+   <delete id="leaveOrganization" parameterType="organizationVO">
+   		DELETE organization
+   		WHERE worker_nickname=#{workerMemberVO.nickName} and sign_board_name=#{signBoardVO.signBoardName} and boss_nickname=#{signBoardVO.bossMemberVO.nickName}
+   </delete>
 </mapper>
 
 

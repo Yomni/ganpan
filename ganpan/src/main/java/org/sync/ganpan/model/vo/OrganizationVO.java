@@ -21,6 +21,15 @@ public class OrganizationVO {
 		this.signBoardVO = signBoardVO;
 	}
 
+	public OrganizationVO(String workerNickName, String signBoardName, String bossNickName) {
+		super();
+		this.workerMemberVO = new MemberVO();
+		this.workerMemberVO.setNickName(workerNickName);
+		this.signBoardVO = new SignBoardVO();
+		this.signBoardVO.setSignBoardName(signBoardName);
+		this.signBoardVO.setBossMemberVO(bossNickName);
+	}
+
 	public MemberVO getWorkerMemberVO() {
 		return workerMemberVO;
 	}

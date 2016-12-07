@@ -40,6 +40,10 @@ public class SignBoardVO {
 		this.bossMemberVO = new MemberVO();
 		this.bossMemberVO.setNickName(bossNickName);
 	}
+	
+	public void setBossMemberVO(String bossNickName) {
+		this.bossMemberVO = new MemberVO(bossNickName);
+	}
 
 	public SignBoardVO(String signBoardName, String bossNickName, int visibility) {
 		this.signBoardName = signBoardName;
@@ -94,4 +98,5 @@ public class SignBoardVO {
 		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", boardList="
 				+ boardList + ", visibility=" + visibility + ", creationDate=" + creationDate + "]";
 	}
+
 }// class SignBoardVO

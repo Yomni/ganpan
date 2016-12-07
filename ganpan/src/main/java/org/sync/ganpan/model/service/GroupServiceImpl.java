@@ -46,4 +46,9 @@ public class GroupServiceImpl implements GroupService {
 	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
 		return groupDAO.sendInvitationList(svo);
 	}
+
+	@Override
+	public void leaveOrganization(OrganizationVO ovo) {
+		groupDAO.leaveOrganization(ovo);
+	}
 }

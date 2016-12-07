@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.GroupService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -96,7 +98,18 @@ public class GroupController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:sendInvitationList.do";
 	}
-
+	
+	
+	@RequestMapping("leaveOrganization.do")
+	public String leaveOrganization(String signBoardName, String bossNickName, HttpSession session){
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		String workerNickName= mvo.getNickName();
+		OrganizationVO ovo=new OrganizationVO(workerNickName,signBoardName,bossNickName);
+		groupService.leaveOrganization(ovo);
+		return "redirect:";
+		
+	}
+	
 	/**
 	 * 구성원 보기
 	 * @author 민서, 동혁
