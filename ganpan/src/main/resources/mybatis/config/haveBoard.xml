@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="getHaveBoardList" resultMap="haveBoardRM">
    		select hb.sign_board_name, hb.board_no, hb.boss_nickname, bg.board_name
 		from have_board hb, board_genre bg
-		where hb.board_no=bg.board_no
+		where hb.board_no=bg.board_no and 
    </select>
    
    <insert id="createNewGanpan" parameterType="map">
