@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.sync.ganpan.model.service.WorkService;
 import org.sync.ganpan.model.vo.MemberVO;
@@ -40,4 +41,10 @@ public class WorkController {
 		mv.setViewName("redirect:showGanpan.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName);
 		return mv;
 	}
+
+//	@RequestMapping(method = RequestMethod.POST, value="moveWork.do")
+//	@ResponseBody
+//	public boolean moveWork(String){
+//		
+//	}
 }

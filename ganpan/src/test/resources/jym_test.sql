@@ -14,3 +14,8 @@ from have_board hb, board_genre bg
 where hb.board_no=bg.board_no
 
 select * from organization;
+insert into organization(worker_nickname,boss_nickname,sign_board_name)
+values('java','sync','test');
+
+insert into work(work_no,work_name, work_details, worker_nickname, sign_board_name,boss_nickname)
+values(seq_work_no.nextval, '콘텐츠상세보기','콘텐츠상세보기','java','test','sync');

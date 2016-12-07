@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -31,7 +34,7 @@
 										<li class="panel panel-info " id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#test"> ${works.organizationVO.workerMemberVO.nickName}</a>
+												<a href="#" data-toggle="modal" data-target="#test" id="workerNickName">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
 									</c:forEach>
@@ -40,6 +43,23 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="sideBySide">
+  <div class="left">
+    <ul class="source connected">
+      <li data-stock-symbol="BMW">BMW</li>
+      <li data-stock-symbol="DDFAIF">Daimler</li>
+      <li data-stock-symbol="FIADF">Fiat</li>
+      <li data-stock-symbol="F">Ford</li>
+      <li data-stock-symbol="POAHF">Porsche</li>
+      <li data-stock-symbol="TSLA">Tesla</li>
+      <li data-stock-symbol="VLKAF">Volkswagen</li>
+    </ul>
+  </div>
+  <div class="right">
+    <ul class="target connected">
+    </ul>
+  </div>
+</div>
 		</div>
 		<!-- col-md-10 col-md-offset-1 -->
 	</div>
@@ -82,12 +102,33 @@
  -->
 <script type="text/javascript">
 	$(function() {
+					if("${mvo.nickName}" == "${rsvo.bossMemberVO.nickName}" || "${mvo.nickName}" == $("#DOING li div #workerNickName").text()){
 		$("#TO_DO, #DOING").sortable({
 			connectWith : "#DOING",
-			update:function() {
-				alert();
-			}
-		});
+			update : function() {
+				if($(this).attr("id") == "DOING"){
+						alert();
+					$.ajax({
+						type:"POST",
+						url:"${pageContext.request.contextPath}/moveWork.do",				
+						data:"eMail="+eMail,
+						success:function(data){						
+							if(data=="fail"){
+								$("#eMailCheckView").html(
+									"<div class='alert alert-danger' role='alert'>"
+									+ "사용중인 전자우편입니다."
+									+ "</div>");
+								checkResultEMail=false;
+							}else{
+								$("#eMailCheckView").html("");	
+								checkResultEMail=true;
+							}					
+						}//callback			
+					});//ajax
+					}
+				} // if
+		}); // sortable
+			} // update
 		$("#DOING, #DONE").sortable({
 			connectWith : "#DONE"
 		});
