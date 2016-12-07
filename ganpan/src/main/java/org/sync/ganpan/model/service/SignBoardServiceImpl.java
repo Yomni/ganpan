@@ -72,6 +72,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return signBoardDAO.myJoinSignBoardList(nickName);
 	}
 
+	@Override
+	@Transactional
 	public HashMap<String, List> homeSignBoardList(String nickName) {
 		HashMap<String, List> sbMap = new HashMap<String, List>();
 		List<SignBoardVO> allList = signBoardDAO.mySignBoardList(nickName);
@@ -90,6 +92,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 	@Override
+	@Transactional
 	public SignBoardVO showGanpan(SignBoardVO svo) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("signBoardName", svo.getSignBoardName());
