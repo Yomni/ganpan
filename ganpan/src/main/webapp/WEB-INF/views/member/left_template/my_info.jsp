@@ -7,4 +7,3 @@
 		<a href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=간판&bossNickName=우주선">간판설정</a>
 </div>
 
-

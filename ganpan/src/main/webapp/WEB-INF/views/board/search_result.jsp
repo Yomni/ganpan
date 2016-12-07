@@ -12,14 +12,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
 				<c:forEach items="${sbList}" var="svo">
+				<tr>
 					<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 					<td>${svo.bossMemberVO.nickName}</td>
 					<td><a href="${pageContext.request.contextPath}/showGanpan.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}">
 						${svo.signBoardName}</a></td>
-				</c:forEach>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="bg-danger">
