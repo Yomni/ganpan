@@ -8,7 +8,6 @@
  			<input type="hidden" value="${svo.signBoardName}" name="signBoardName">
 			<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName"> 
 			<input type="hidden" id="value" value="nickName" name="type">
-			<input type="hidden" name="workNickName.nickName">
 			<div class="form-group">
 				<h4><span id="memberCheckView"></span></h4>
 				<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required"/>
