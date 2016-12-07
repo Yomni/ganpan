@@ -17,7 +17,7 @@ public class HaveBoardDAOImpl implements HaveBoardDAO {
 
 	@Override
 	public List<HaveBoardVO> getHaveBoardList(SignBoardVO svo) {
-		return template.selectList("haveBoard.getHaveBoardList");
+		return template.selectList("haveBoard.getHaveBoardList",svo);
 	}
 	
 	@Override
