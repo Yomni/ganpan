@@ -42,4 +42,8 @@ public interface SignBoardDAO {
 
 	SignBoardVO ganpanSettingPage(SignBoardVO svo);
 
+	void updateSignBoardName(HashMap<String, String> map);
+
+	void updateVisibility(SignBoardVO signBoardVO);
+
 }

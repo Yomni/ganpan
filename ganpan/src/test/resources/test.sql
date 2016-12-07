@@ -40,7 +40,7 @@ create table organization (
    constraint pk_organization primary key(worker_nickname ,boss_nickname ,sign_board_name)
 )
 
-select * from SIGN_BOARD;
+select * from sign_board;
 insert into organization values('엄민영', '우주선', '간판2');
 insert into organization values('엄민영', '우주선', '1234');
 select * from organization;
@@ -154,14 +154,37 @@ insert into ORGANIZATION(worker_nickname,boss_nickname,sign_board_name) values('
 
 select * from organization;
 
- 		SELECT sb.sign_board_name, sb.boss_nickname
-		FROM sign_board sb, organization o 
-		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영';
+SELECT sb.sign_board_name, sb.boss_nickname
+FROM sign_board sb, organization o 
+WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영';
+	
+SELECT sb.sign_board_name, sb.boss_nickname
+FROM sign_board sb, organization o 
+WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영'
+	
+SELECT sign_board_name, boss_nickname, visibility
+FROM sign_board
+WHERE sign_board_name = 'test' and boss_nickname = '우주선'
+				
+UPDATE sign_board
+SET sign_board_name = '간판1'
+WHERE sign_board_name = '간판' and boss_nickname = '우주선'
+
+UPDATE sign_board
+SET visibility = 1
+WHERE sign_board_name = '간판1' and boss_nickname = ''
+
+
+
+
 		
-		SELECT sb.sign_board_name, sb.boss_nickname
-		FROM sign_board sb, organization o 
-		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = '민영'
+DROP TRIGGER test_trigger;
+
+CREATE OR REPLACE TRIGGER test_trigger
+AFTER UPDATE ON sign_board FOR EACH ROW
+BEGIN
+  UPDATE organization
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+END;
 		
-		SELECT sign_board_name, boss_nickname, visibility
-		FROM sign_board
-		WHERE sign_board_name = '간판' and boss_nickname = '우주선'

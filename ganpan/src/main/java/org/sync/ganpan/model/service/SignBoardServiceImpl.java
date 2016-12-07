@@ -3,7 +3,6 @@ package org.sync.ganpan.model.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.SynchronousQueue;
 
 import javax.annotation.Resource;
 
@@ -74,8 +73,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 
 	@Override
 	@Transactional
-	public HashMap<String, List> homeSignBoardList(String nickName) {
-		HashMap<String, List> sbMap = new HashMap<String, List>();
+	public HashMap<String, List<SignBoardVO>> homeSignBoardList(String nickName) {
+		HashMap<String, List<SignBoardVO>> sbMap = new HashMap<String, List<SignBoardVO>>();
 		List<SignBoardVO> allList = signBoardDAO.mySignBoardList(nickName);
 		List<SignBoardVO> allList2 = signBoardDAO.myJoinSignBoardList(nickName);
 		allList.addAll(allList2);
@@ -142,6 +141,16 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public void deleteInvitationMng(InvitationMngVO ivo) {
 		signBoardDAO.deleteInvitationMng(ivo);
+	}
+
+	@Override
+	public void updateSignBoardName(HashMap<String, String> map) {
+		signBoardDAO.updateSignBoardName(map);
+	}
+
+	@Override
+	public void updateVisibility(SignBoardVO signBoardVO) {
+		signBoardDAO.updateVisibility(signBoardVO);
 	}
 
 }

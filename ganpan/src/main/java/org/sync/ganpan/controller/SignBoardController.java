@@ -2,18 +2,16 @@ package org.sync.ganpan.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.SignBoardService;
-import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -109,7 +107,7 @@ public class SignBoardController {
 	public ModelAndView homeSignBoardList(HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String nickName = mvo.getNickName();
-		HashMap<String, List> sbMap = signBoardService.homeSignBoardList(nickName);
+		HashMap<String, List<SignBoardVO>> sbMap = signBoardService.homeSignBoardList(nickName);
 		return new ModelAndView("home", "sbMap", sbMap);
 	}
 
@@ -151,14 +149,29 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("updateSignBoardName.do")
-	public ModelAndView updateSignBoardName(String changeTitle, String signBoardName, String bossNickName) {
+	public String updateSignBoardName(RedirectAttributes redirectAttributes, String changeTitle, String signBoardName, String bossNickName) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("changeTitle", changeTitle);
 		map.put("signBoardName", signBoardName);
 		map.put("bossNickName", bossNickName);
-		// signBoardService.updateSignBoardName(map);
-
-		return new ModelAndView("");
+		signBoardService.updateSignBoardName(map);
+		redirectAttributes.addAttribute("signBoardName", changeTitle);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:ganpanSettingPage.do";
+	}
+	
+	
+	@RequestMapping("updateVisibility.do")
+	public String updateVisibility(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String visibility) {
+		int visibility2 = 0;
+		if(visibility.equals("private")){
+			visibility2 = 1;
+		}
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName, visibility2);
+		signBoardService.updateVisibility(svo);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:ganpanSettingPage.do";
 	}
 
 	/**
