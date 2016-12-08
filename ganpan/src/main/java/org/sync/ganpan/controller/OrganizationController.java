@@ -163,18 +163,18 @@ public class OrganizationController {
 
 	@RequestMapping("banish.do")
 	public String banish(HttpServletRequest request) {
-		String workerMemberVO = request.getParameter("workerMemberVO");
+		String workerNickName = request.getParameter("workerNickName");
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
-		MemberVO workerMemberVOVO = new MemberVO(workerMemberVO);
+		MemberVO workerMemberVO = new MemberVO(workerNickName);
 		SignBoardVO signBoardVO = new SignBoardVO(signBoardName, bossNickName);
-		OrganizationVO ovo = new OrganizationVO(workerMemberVOVO, signBoardVO);
+		OrganizationVO ovo = new OrganizationVO(workerMemberVO, signBoardVO);
 		System.out.println("OrganizationController : " + ovo);
 		// 그룹에서 강제퇴장!
 		organizationService.banish(ovo);
 
 		// 다시 getOrganizationList로 보내줘야 한다.
-		return "redirect:manage_group_member.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
+		return "redirect:goManageSignBoardMember.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
 	}
 
 }// class OrganizationController
