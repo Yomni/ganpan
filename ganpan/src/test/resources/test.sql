@@ -286,16 +286,10 @@ SELECT worker_nickname
 		FROM sign_board
 		WHERE sign_board_name = '간판' and boss_nickname = '우주선'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-DROP TRIGGER test_trigger;
-=======
 SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitationDate
 FROM member m, invitation_management im
 WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 
-<<<<<<< HEAD
 CREATE OR REPLACE TRIGGER test_trigger
 AFTER UPDATE ON sign_board FOR EACH ROW
 BEGIN
@@ -306,14 +300,9 @@ END;
 
 select * from member;
 select * from organization;
-=======
-
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-=======
 
 insert into member values('dja','bubjalsdud@naver.com','1');
 
 SELECT * FROM member
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git

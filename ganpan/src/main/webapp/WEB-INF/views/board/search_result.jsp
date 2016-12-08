@@ -16,14 +16,11 @@
 				<tr>
 					<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 					<td>${svo.bossMemberVO.nickName}</td>
-					<td><a href="${pageContext.request.contextPath}/showGanpan.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}">
+					<td><a href="${pageContext.request.contextPath}/showSignBoard.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}">
 						${svo.signBoardName}</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="bg-danger">
-			페이징 예정
-		</div>
 	</div>
 </div>
