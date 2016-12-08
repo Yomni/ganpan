@@ -47,4 +47,6 @@ public interface SignBoardDAO {
 
 	void deleteSignBoard(SignBoardVO svo);
 
+	void updateSignBoardBoss(OrganizationVO ovo);
+
 }

@@ -124,4 +124,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		DELETE sign_board 
  		WHERE sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
  	</delete>
+ 	
+ 	<update id="updateSignBoardBoss" parameterType="organizationVO">
+ 		UPDATE sign_board
+ 		SET boss_nickname = #{workerMemberVO.nickName}
+ 		WHERE sign_board_name = #{signBoardVO.signBoardName} and boss_nickname = #{signBoardVO.bossMemberVO.nickName}
+ 	</update>
 </mapper>

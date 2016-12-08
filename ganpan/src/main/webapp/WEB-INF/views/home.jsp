@@ -33,8 +33,58 @@
 				<!-- container-fluid -->
 			</div>
 			<!-- jumbotron -->
-			<div class="container">
-				<p>우리거 다 구현하면 채울 예정</p>
+			
+			<!-- <div class="container"> -->
+			<div class="container-fluid">
+
+				<!-- div. row -->
+				<div class="row">
+					<div class="col-sm-8">
+						<h2>우리는 간판입니다!</h2>
+						<p>간판을 즐겨보세요</p>
+						<p>놀랄수 없을만큼 똑똑한 계획이 가능합니다.</p>
+						<p>집단작업의 첨단에서 당신을 지원합니다.</p>
+						<p>
+							<a class="btn btn-default btn-lg" href="${pageContext.request.contextPath}/go_board/guide.do">간판 탐색하기 &raquo;</a>
+						</p>
+					</div>
+				</div>
+				<!-- /.row -->
+				
+				<hr>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<img class="img1"
+							src="${pageContext.request.contextPath}/resources/img/schedule.jpg" alt="">
+						<h2>개인 일정관리</h2>
+						<p>무거운 수첩은 이제 그만!</p>
+						<p>간판은 일정을 관리하는데 놀랄만큼 효과적입니다!</p>
+					</div>
+					<div class="col-sm-4">
+						<img class="img1"
+							src="${pageContext.request.contextPath}/resources/img/team_project.jpg" alt="">
+						<h2>팀프로젝트</h2>
+						<p>언제, 어디서나 모두!</p>
+						<p>팀원간 일정을 공유하세요!</p>
+					</div>
+					<div class="col-sm-4">
+						<img class="img1"
+							src="${pageContext.request.contextPath}/resources/img/conference.jpg" alt="">
+						<h2>회사 내 똑똑한 도구</h2>
+						<p>최고의 시각화 도구</p>
+						<p>간판은 당신의 회사생활을 도와줍니다.</p>
+					</div>
+				</div>
+				<!-- /.row -->
+
+
+
+
+
+
+
+
 				<!-- 		<a href="gomember/my_info.do">내 정보 보기</a> -->
 			</div>
 			<!-- main container-fluid -->
