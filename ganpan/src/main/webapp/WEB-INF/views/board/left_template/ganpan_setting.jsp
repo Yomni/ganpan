@@ -21,9 +21,15 @@
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
 									<h2>이름 바꾸기</h2>
-									<input type="text" name="changeTitle" id="changeTitle" placeholder="새로운 간판 이름 작성" />
-									<span id="titleCheckView"></span><br>
-									<input type="submit" id="changeTitleBtn" value="이름바꾸기" /><br>
+									<div class="form-group">
+										<input type="text"  class="form-control" name="changeTitle" id="changeTitle" placeholder="새로운 간판 이름 작성" required="required"/>
+									</div>
+									<h4>
+										<span id="titleCheckView"></span>
+									</h4>
+									<div class="form-group">
+										<button type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn"  >수정</button>
+									</div>
 								</form><br>
 								
 								<form id="updateSignBoardVisibilityForm" action="${pageContext.request.contextPath}/updateVisibility.do">
@@ -34,16 +40,16 @@
 									누구나 간판을 볼 수 있습니다.<br>
 									간판 비공개<br><input type="radio" name="visibility" value="private"/>
 									그룹원만 볼 수 있습니다.<br>
-									<input type="submit" id="changeVisibilityBtn" value="설정 완료" />
+									<input type="submit" class="btn btn-default btn-success btn-block" id="changeVisibilityBtn" value="설정 완료" />
 								</form><br>
 								
 								<form id="updateSignBoardBossForm" action="${pageContext.request.contextPath}/updateSignBoardBoss.do">
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
 									<h2>그룹장 위임</h2>
-									<input type="text" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" />
-									<span id="groupCheckView"></span><br>
-									<input type="submit" id="changeTitleBtn" value="위임하기" /><br>
+									<input type="text" class="form-control" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
+									<h4><span id="groupCheckView"></span><br></h4>
+									<input type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn" value="위임하기" /><br>
 								</form><br>
 								
 								<form id="deleteSignBoardForm" action="${pageContext.request.contextPath}/deleteSignBoard.do">
@@ -51,7 +57,7 @@
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
 									<h2>간판 삭제</h2>
 									*주의) 간판을 삭제합니다! 해당 이력과 모든 정보가 사라집니다.
-									<input type="submit" id="deleteGanpanBtn" value="간판 삭제" />
+									<input type="submit" class="btn btn-primary btn-lg" id="deleteGanpanBtn" value="간판 삭제" />
 								</form>
 							</section>
 						</div>
