@@ -5254,6 +5254,10 @@ a.badge:focus, a.badge:hover {
 	background-image: url("/ganpan/resources/img/kanban_background.jpg");
 	background-size: 100% 100%;
 }
+#jumbotron-guide{
+	background-image: url("/ganpan/resources/img/ganpan_background.jpg");
+	background-size: 100% 100%;
+}
 .jumbotron {
 	padding: 30px 15px;
 	margin-bottom: 30px;
