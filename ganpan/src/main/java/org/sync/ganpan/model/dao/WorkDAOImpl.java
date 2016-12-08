@@ -30,6 +30,10 @@ public class WorkDAOImpl implements WorkDAO {
 		template.insert("work.createWork", wvo);
 	}
 	
+	@Override
+	public void deleteWork(int workNo) {
+		template.insert("work.deleteWork",workNo);
+	}
 	
 
 }//class WorkDAOImpl

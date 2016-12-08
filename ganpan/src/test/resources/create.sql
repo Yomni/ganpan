@@ -28,7 +28,7 @@ CREATE TABLE SIGN_BOARD(
    sign_board_name VARCHAR2(50) NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
    visibility NUMBER DEFAULT 0 NOT NULL,
-   -- visibility : 0 공개, 1 비공개  	
+      -- visibility : 0 공개, 1 비공개  	
    creation_date DATE DEFAULT SYSDATE NOT NULL,
    
    CONSTRAINT fk_boss_nickname FOREIGN KEY(boss_nickname) 
