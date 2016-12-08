@@ -22,3 +22,6 @@ values(seq_work_no.nextval, '콘텐츠상세보기','콘텐츠상세보기','jav
 
 select * 
 from HAVE_BOARD;
+
+select * from work;
+update work set board_no = 2 where work_no = 3;

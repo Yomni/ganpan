@@ -25,9 +25,11 @@
 										<td><a href="${pageContext.request.contextPath}/showSignBoard.do?bossNickName=${signBoardVO.bossMemberVO.nickName}&signBoardName=${signBoardVO.signBoardName}">${signBoardVO.signBoardName} </a></td>
 										<td>${signBoardVO.bossMemberVO.nickName}</td>
 										<td>
-											<button type="button" class="btn btn-sm btn-danger" id="leave${status.count}" aria-label="Left Align">
+											<a class="btn btn-sm btn-danger" id="leave${status.count}" aria-label="Left Align"
+											href="${pageContext.request.contextPath}/leaveOrganization.do
+											?signBoardName=${signBoardVO.signBoardName}&bossNickName=${signBoardVO.bossMemberVO.nickName}">
 												<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
-											</button>
+											</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -44,26 +46,13 @@
 
 </div>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						<c:forEach items="${sbList}" varStatus="status">
-						$("#leave${status.count}")
-								.click(
-										function() {
-											if (confirm("정말 간판을 나가시겠습니까?")) {
-												var signBoardName = $(
-														"#myJoinGanpanTable tr:eq(${status.count}) td:eq(0)")
-														.text();
-												var bossNickName = $(
-														"#myJoinGanpanTable tr:eq(${status.count}) td:eq(1)")
-														.text();
-												location.href = "${pageContext.request.contextPath}/leaveOrganization.do?signBoardName="
-														+ signBoardName
-														+ "&bossNickName="
-														+ bossNickName;
-											} // if
-										}); // function
-						</c:forEach> // forEach
-					});//ready
+	$(document).ready(function() {
+		<c:forEach items="${sbList}" varStatus="status">
+		$("#leave${status.count}").click(function() {
+			if (confirm("정말 간판을 나가시겠습니까?") == false) {
+				return false;
+			} // if
+		}); // function
+		</c:forEach> // forEach
+	});//ready
 </script>

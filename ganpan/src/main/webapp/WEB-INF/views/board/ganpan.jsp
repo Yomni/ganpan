@@ -43,16 +43,16 @@
 									goCreateWork.do?signBoardName=${rsvo.signBoardName}
 									&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>
-								<ul class="list-unstyled connected" id="${boardList.boardGenreVO.boardName}">
+								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
-										<li class="panel panel-info " id="draggablePanelList" draggable="true">
+										<li class="panel panel-info" id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
+												<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
 
-										<div class="modal fade" id="${works.workNo}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -97,18 +97,23 @@
 <c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
 	$(function(){
+		var workNo = 0;
+		$("ul li").mouseover(function() {
+			workNo = $(this).find("a").attr("id");
+		});
 		$("#TO_DO").sortable({
-			connectWith: "#DOING",
-			update:function() {
-				alert($("#TO_DO li a").attr("id"));
-			} // update
+			connectWith:"#DOING",
+			update:function(){
+				// ajax 사용 예정
+			}
 		}); // sortable
 		$("#DOING").sortable({
-			connectWith: "#DONE"
+			connectWith:"#DONE",
+			update:function(){
+				// ajax 사용 예정
+			}
 		}); // sortable
-		$("#DONE").sortable({
-			connectWith: "#DONE"
-		}); // sortable
+		$("#DONE").sortable(); // sortable
 	}); //ready
 </script>
 </c:if>
