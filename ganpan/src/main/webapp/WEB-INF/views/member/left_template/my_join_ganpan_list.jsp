@@ -41,7 +41,7 @@
 	$(document).ready(function() {
 		<c:forEach items="${sbList}" varStatus="status">
 		$("#leave${status.count}").click(function() {
-			if(confirm("정말 이 조직을 탈퇴하시겠습니까?")){
+			if(confirm("정말 간판을 나가시겠습니까?")){
 				var signBoardName = $("#myJoinGanpanTable tr:eq(${status.count}) td:eq(0)").text();
 				var bossNickName = $("#myJoinGanpanTable tr:eq(${status.count}) td:eq(1)").text();
 				location.href = "${pageContext.request.contextPath}/leaveOrganization.do?signBoardName="
