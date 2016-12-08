@@ -42,7 +42,7 @@ public class SignBoardController {
 	 * @author 민영
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createNewSignBoard.do")
-	public ModelAndView createNewSignBoard(String bossNickName, String title, String signBoardType) {
+	public String createNewSignBoard(RedirectAttributes redirectAttributes,String bossNickName, String title, String signBoardType) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("bossNickName", bossNickName);
 		map.put("signBoardName", title);
@@ -53,7 +53,9 @@ public class SignBoardController {
 			map.put("visibility", 1);
 			signBoardService.createNewGanpan(map);
 		}
-		return new ModelAndView("board/search_result");
+		redirectAttributes.addAttribute("signBoardName", title);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
 	}
 
 	/**

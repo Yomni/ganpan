@@ -3,15 +3,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
-<script src="//code.jquery.com/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-    	$("#deleteImg").click(function(){ 
-    		if(confirm("게시물을 삭제하시겠습니까?"))
-    		location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-    	});
-    });	
-</script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">

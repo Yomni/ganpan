@@ -10,6 +10,7 @@ DROP TRIGGER hb_sbname_work_trigger;
 DROP TRIGGER org_bossnickname_work_trigger;
 DROP TRIGGER org_sbname_work_trigger;
 
+
 CREATE OR REPLACE TRIGGER sb_sbname_org_trigger
 AFTER UPDATE ON sign_board FOR EACH ROW
 BEGIN
@@ -95,3 +96,5 @@ BEGIN
   SET sign_board_name=:NEW.sign_board_name
   WHERE sign_board_name=:OLD.sign_board_name;
 END;
+
+commit

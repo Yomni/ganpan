@@ -1,5 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<h3>새 간판 생성하기</h3>
+새로운 간판을 생성합니다
+<hr>
+<form name="createForm" action="${pageContext.request.contextPath}/createNewSignBoard.do" method="post">
+	<div class="form-group">
+		<label for="nickName">소유자</label>
+		<input type="text" class="form-control" id="nickName" name="bossNickName" value="${sessionScope.mvo.nickName}" readonly/>
+	</div>
+	<div class="form-group">
+		<label for="title">간판명</label>
+		<input type="text" class="form-control" id="title" name="title" required="required"/>
+		<span id="titleCheckView"></span>
+	</div>
+	<div class="form-group">
+		<label for="signBoardType">공개여부</label><br>
+		<span class="glyphicon glyphicon-globe" aria-hidden="true">공개</span>
+		<input type="radio" id="signBoardType" name="signBoardType" value="public" required="required"><br>
+		<span class="glyphicon glyphicon-lock" aria-hidden="true">비공개</span>
+		<input type="radio" id="signBoardType" name="signBoardType" value="private" required="required" >
+	</div>
+	<button type="submit" class="btn btn-primary">간판 생성</button>
+</form> 
+</div>
+</div>
+</div>
 <script type="text/javascript">
    $(document).ready(function(){   
 	  var checkResultTitle="";		
@@ -37,15 +66,3 @@
 		});//keyup
    });
 </script>
-
-<h3>새 간판 생성하기</h3>
-새로운 간판을 생성합니다
-<hr>
-<form name="createForm" action="${pageContext.request.contextPath}/createNewSignBoard.do" method="post">
-	<input type="hidden" name="bossNickName" value="${sessionScope.mvo.nickName}" />
-	소유자 : ${sessionScope.mvo.nickName} <br>
-	간판명: <input type="text" name="title" required="required"/><span id="titleCheckView"></span><br>
-	간판공개<input type="radio" name="signBoardType" value="public" required="required"> <br>
-	간판잠금<input type="radio" name="signBoardType" value="private" required="required" > <br>
-	<input type="submit" value="새 간판 생성하기" />
-</form> 
