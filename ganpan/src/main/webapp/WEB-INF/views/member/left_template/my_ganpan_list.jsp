@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<c:choose>
-		<c:when test="${empty sbList}">
-			<h3>소유하신 간판이 없습니다</h3>
-		</c:when>
-		<c:otherwise>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-md-offset-3 text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 col-md-offset-3 text-center">
+				<c:choose>
+					<c:when test="${empty sbList}">
+						<h3>소유하신 간판이 없습니다</h3>
+					</c:when>
+					<c:otherwise>
 						<h2>나의 간판 목록</h2>
 						<br>
 						<table class="table table-bordered table-hover">
@@ -26,12 +26,13 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</div>
-					<!-- col -->
-				</div>
-				<!-- row -->
+					</c:otherwise>
+				</c:choose>
 			</div>
-		</c:otherwise>
-	</c:choose>
+			<!-- col -->
+		</div>
+		<!-- row -->
+	</div>
+
 	<!-- container -->
 </div>
