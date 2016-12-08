@@ -37,7 +37,7 @@
 										<li class="panel panel-info " id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="workerNickName">${works.organizationVO.workerMemberVO.nickName}</a>
+												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
 
@@ -70,26 +70,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="sideBySide">
-  <div class="left">
-    <ul class="source connected">
-      <li>Alfa Romeo</li>
-      <li>Audi</li>
-      <li>BMW</li>
-      <li>Ford</li>
-      <li>Jaguar</li>
-      <li>Mercedes</li>
-      <li>Porsche</li>
-      <li>Tesla</li>
-      <li>Volkswagen</li>
-      <li>Volvo</li>
-    </ul>
-  </div>
-  <div class="right">
-    <ul class="target connected">
-    </ul>
-  </div>
-</div>
 		</div>
 		<!-- col-md-10 col-md-offset-1 -->
 	</div>
@@ -104,41 +84,19 @@
  -->
 <c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
-	$(function() {
-		    $(".source li").draggable({
-		    	  addClasses: false,
-		    	  appendTo: "body",
-		    	  helper: "clone"
-		    	});
-		    	 
-		    	$(".target").droppable({
-		    	  addClasses: false,
-		    	  activeClass: "listActive",
-		    	  accept: ":not(.ui-sortable-helper)",
-		    	  drop: function(event, ui) {
-		    	    $(this).find(".placeholder").remove();
-		    	    var link = $("<a href='#' class='dismiss'>x</a>");
-		    	    var list = $("<li></li>").text(ui.draggable.text());
-		    	    $(list).append(link);
-		    	    $(list).appendTo(this);
-		    	    updateValues();
-		    	  }
-		    	}).sortable({
-		    	  items: "li:not(.placeholder)",
-		    	  sort: function() {
-		    	    $(this).removeClass("listActive");
-		    	  },
-		    	  update: function() {
-		    	    updateValues();
-		    	  }
-		    	}).on("click", ".dismiss", function(event) {
-		    	  event.preventDefault();
-		    	  $(this).parent().remove();
-		    	  updateValues();
-		    	});	
-	});
-	function updateValues() {
-	    alert();
-	  };
+	$(function(){
+		$("#TO_DO").sortable({
+			connectWith: "#DOING",
+			update:function() {
+				alert($("#TO_DO li a").attr("id"));
+			} // update
+		}); // sortable
+		$("#DOING").sortable({
+			connectWith: "#DONE"
+		}); // sortable
+		$("#DONE").sortable({
+			connectWith: "#DONE"
+		}); // sortable
+	}); //ready
 </script>
 </c:if>
