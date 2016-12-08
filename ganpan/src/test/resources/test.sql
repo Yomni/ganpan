@@ -9,7 +9,9 @@ drop table organization;
 drop table sign_board;
 drop table member;
 
+delete from work where work_no='1';
 
+select * from work;
 
 SELECT worker_nickname
 		FROM organization 
@@ -288,9 +290,29 @@ SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitat
 FROM member m, invitation_management im
 WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
 
+delete member;
+insert into member values('ㅈㅅ','bubjalsdud@naver.com','1');
+CREATE OR REPLACE TRIGGER test_trigger
+AFTER UPDATE ON sign_board FOR EACH ROW
+BEGIN
+  UPDATE organization
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+END;
 
-insert into member values('dja','bubjalsdud@naver.com','1');
+select * from member;
+select * from organization;
 
-SELECT * FROM member
+ UPDATE sign_board
+ SET boss_nickname = 'kosta1'
+ WHERE sign_board_name = 'kosta1꺼' and boss_nickname = 'ㅈㅅ'
+ 
+SELECT count(*)
+FROM organization
+WHERE boss_nickname = 'ㅈㅅ' and sign_board_name = 'kosta1꺼' and worker_nickname = 'kosta1'
+ 
+SELECT * FROM member;
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;
+SELECT * FROM organization;
+SELECT * FROM HAVE_BOARD;

@@ -28,5 +28,9 @@ public interface OrganizationDAO {
 	List<OrganizationVO> getOrganizationList(SignBoardVO svo);
 
 	int getJoinedSignBoardCount(String nickName);
+
+	int groupCheck(OrganizationVO ovo);
+
+	int groupBossCheck(OrganizationVO ovo);
 	
 }// interface GroupDAO

@@ -3,6 +3,15 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
+<script src="//code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$("#deleteImg").click(function(){ 
+    		if(confirm("게시물을 삭제하시겠습니까?"))
+    		location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
+    	});
+    });	
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -10,30 +19,36 @@
 			<ul class="link-list">
 				<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
 				<li><a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a></li>
-				<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a></li>
+				<c:if test="${rsvo.bossMemberVO.nickName}==${sessionScope.nickName}">
+					<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a></li>
+				</c:if>
 			</ul>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="rsvo">
-							<th>${rsvo.boardGenreVO.boardName}</th>
+						<th>
+							<c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if>
+							<c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if>
+							<c:if test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if>
+						</th>
 						</c:forEach>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td><c:if test="${boardList.boardGenreVO.boardName == '해야 할 작업'}">
+							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
 									<a class="btn btn-default" href="${pageContext.request.contextPath}/
-								goCreateWork.do?signBoardName=${rsvo.signBoardName}
-								&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a>
+									goCreateWork.do?signBoardName=${rsvo.signBoardName}
+									&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>
 								<ul class="list-unstyled connected" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
 										<li class="panel panel-info " id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="workerNickName">${works.organizationVO.workerMemberVO.nickName}</a>
+												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
 
@@ -52,7 +67,8 @@
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default">닫기</button>
 														<button type="button" class="btn btn-primary">수정</button>
-														<button type="button" class="btn btn-danger">삭제</button>
+														<button id="deleteImg" type="button" class="btn btn-danger"  onclick="deleteBoard()" >삭제</button>
+														<%-- <button id="deleteImg" class="action"  onclick="deleteBoard()" src="${pageContext.request.contextPath}/img/delete_btn.jpg" >  --%>
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -66,25 +82,6 @@
 					</tr>
 				</tbody>
 			</table>
-			
-			<!-- test용도 -->
-			<div class="sideBySide">
-				<div class="left">
-					<ul class="source connected">
-						<li data-stock-symbol="BMW">BMW</li>
-						<li data-stock-symbol="DDFAIF">Daimler</li>
-						<li data-stock-symbol="FIADF">Fiat</li>
-						<li data-stock-symbol="F">Ford</li>
-						<li data-stock-symbol="POAHF">Porsche</li>
-						<li data-stock-symbol="TSLA">Tesla</li>
-						<li data-stock-symbol="VLKAF">Volkswagen</li>
-					</ul>
-				</div>
-				<div class="right">
-					<ul class="target connected">
-					</ul>
-				</div>
-			</div>
 		</div>
 		<!-- col-md-10 col-md-offset-1 -->
 	</div>
@@ -97,13 +94,21 @@
 	2. drag & drop
 	3. ajax변경
  -->
+<c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
-	$(function() {
-		$("#해야 할 작업, #하고있는 작업").sortable({
-			connectWith : "#하고있는 작업"
-		}); // sortable todo->doing
-		$("#하고있는 작업, #끝난 작업").sortable({
-			connectWith : "#끝난 작업"
-		}); // sortable doing->done
-	}); // ready 
+	$(function(){
+		$("#TO_DO").sortable({
+			connectWith: "#DOING",
+			update:function() {
+				alert($("#TO_DO li a").attr("id"));
+			} // update
+		}); // sortable
+		$("#DOING").sortable({
+			connectWith: "#DONE"
+		}); // sortable
+		$("#DONE").sortable({
+			connectWith: "#DONE"
+		}); // sortable
+	}); //ready
 </script>
+</c:if>

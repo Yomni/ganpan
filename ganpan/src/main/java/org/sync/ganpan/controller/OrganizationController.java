@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.OrganizationService;
@@ -119,14 +121,21 @@ public class OrganizationController {
 		return "redirect:sendInvitationList.do";
 	}
 
+	/**
+	 * 참여한 그룹에서 탈퇴 
+	 * @author 민영,주선
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("leaveOrganization.do")
 	public String leaveOrganization(String signBoardName, String bossNickName, HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String workerNickName = mvo.getNickName();
 		OrganizationVO ovo = new OrganizationVO(workerNickName, signBoardName, bossNickName);
 		organizationService.leaveOrganization(ovo);
-		return "redirect:";
-
+		return "redirect:myJoinSignBoardList.do";
 	}
 
 	/**
@@ -175,6 +184,25 @@ public class OrganizationController {
 
 		// 다시 getOrganizationList로 보내줘야 한다.
 		return "redirect:goManageSignBoardMember.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "groupCheckAjax.do")
+	@ResponseBody
+	public String groupCheckAjax(String signBoardName, String bossNickName, String changeBossNickName) {
+		OrganizationVO ovo = new OrganizationVO(changeBossNickName, signBoardName, bossNickName);
+		System.out.println("groupCheckAjax: ");
+		System.out.println(changeBossNickName);
+		System.out.println(signBoardName);
+		System.out.println(bossNickName);
+		int count = organizationService.groupCheck(ovo);
+		if(count == 0){
+			return "idfail";
+		}else if(count == -1){
+			return "groupfail";
+		}else if(count == -2){
+			return "groupbossfail";
+		}else
+			return "ok";
 	}
 
 }// class OrganizationController
