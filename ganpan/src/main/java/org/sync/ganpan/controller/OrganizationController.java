@@ -121,14 +121,21 @@ public class OrganizationController {
 		return "redirect:sendInvitationList.do";
 	}
 
+	/**
+	 * 참여한 그룹에서 탈퇴 
+	 * @author 민영,주선
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("leaveOrganization.do")
 	public String leaveOrganization(String signBoardName, String bossNickName, HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String workerNickName = mvo.getNickName();
 		OrganizationVO ovo = new OrganizationVO(workerNickName, signBoardName, bossNickName);
 		organizationService.leaveOrganization(ovo);
-		return "redirect:";
-
+		return "redirect:myJoinSignBoardList.do";
 	}
 
 	/**
@@ -165,18 +172,18 @@ public class OrganizationController {
 
 	@RequestMapping("banish.do")
 	public String banish(HttpServletRequest request) {
-		String workerMemberVO = request.getParameter("workerMemberVO");
+		String workerNickName = request.getParameter("workerNickName");
 		String signBoardName = request.getParameter("signBoardName");
 		String bossNickName = request.getParameter("bossNickName");
-		MemberVO workerMemberVOVO = new MemberVO(workerMemberVO);
+		MemberVO workerMemberVO = new MemberVO(workerNickName);
 		SignBoardVO signBoardVO = new SignBoardVO(signBoardName, bossNickName);
-		OrganizationVO ovo = new OrganizationVO(workerMemberVOVO, signBoardVO);
+		OrganizationVO ovo = new OrganizationVO(workerMemberVO, signBoardVO);
 		System.out.println("OrganizationController : " + ovo);
 		// 그룹에서 강제퇴장!
 		organizationService.banish(ovo);
 
 		// 다시 getOrganizationList로 보내줘야 한다.
-		return "redirect:manage_group_member.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
+		return "redirect:goManageSignBoardMember.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "groupCheckAjax.do")

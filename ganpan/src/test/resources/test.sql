@@ -9,7 +9,9 @@ drop table organization;
 drop table sign_board;
 drop table member;
 
+delete from work where work_no='1';
 
+select * from work;
 
 SELECT worker_nickname
 		FROM organization 
@@ -290,6 +292,16 @@ WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
 
 delete member;
 insert into member values('ㅈㅅ','bubjalsdud@naver.com','1');
+CREATE OR REPLACE TRIGGER test_trigger
+AFTER UPDATE ON sign_board FOR EACH ROW
+BEGIN
+  UPDATE organization
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+END;
+
+select * from member;
+select * from organization;
 
  UPDATE sign_board
  SET boss_nickname = 'kosta1'

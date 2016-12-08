@@ -25,7 +25,7 @@
 			<span class="pull-right">
 				<form action="${pageContext.request.contextPath}/findSignBoardListByTitle.do" method="get" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
-						<input type="text" class="form-control" name="title" placeholder="간판명으로 검색"> 
+						<input type="text" class="form-control" name="title" placeholder="간판명으로 검색" required="required"> 
 						<span class="input-group-btn">
 						<button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

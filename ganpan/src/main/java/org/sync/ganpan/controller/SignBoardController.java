@@ -94,10 +94,7 @@ public class SignBoardController {
 	public ModelAndView myJoinSignBoardList(HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		List<SignBoardVO> sbList = signBoardService.myJoinSignBoardList(mvo.getNickName());
-		if (sbList.isEmpty())
-			return new ModelAndView("member/left_template/my_join_ganpan_list_fail");
-		else
-			return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
+		return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
 	}
 
 	/**
