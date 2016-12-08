@@ -2,9 +2,12 @@ package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.sync.ganpan.model.dao.MemberDAO;
 import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
@@ -21,6 +24,8 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class OrganizationServiceImpl implements OrganizationService {
 	@Resource
 	private OrganizationDAO organizationDAO;
+	@Resource
+	private MemberDAO memberDAO;
 	@Resource
 	private WorkDAO workDAO;
 
@@ -79,5 +84,23 @@ public class OrganizationServiceImpl implements OrganizationService {
 	@Override
 	public void leaveOrganization(OrganizationVO ovo) {
 		organizationDAO.leaveOrganization(ovo);
+	}
+
+	@Override
+	public int groupCheck(OrganizationVO ovo) {
+		int emailCount = memberDAO.emailCheck(ovo.getWorkerMemberVO().getNickName());
+		int nickNameCount = memberDAO.nickNameCheck(ovo.getWorkerMemberVO().getNickName());
+		if(emailCount == 0 && nickNameCount == 0){
+			return 0;
+		}else{
+			int groupCheck = organizationDAO.groupCheck(ovo);
+			int groupBossCheck = organizationDAO.groupBossCheck(ovo);
+			if(groupCheck == 0){
+				return -1;
+			}else if(groupBossCheck == 1){
+				return -2;
+			}
+		}
+		return 1;
 	}
 }

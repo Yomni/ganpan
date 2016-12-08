@@ -14,6 +14,7 @@ import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -146,5 +147,10 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public void deleteSignBoard(SignBoardVO svo) {
 		signBoardDAO.deleteSignBoard(svo);
+	}
+
+	@Override
+	public void updateSignBoardBoss(OrganizationVO ovo) {
+		signBoardDAO.updateSignBoardBoss(ovo);
 	}
 }

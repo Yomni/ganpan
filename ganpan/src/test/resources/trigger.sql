@@ -7,9 +7,11 @@ SQL -> SQL명령에서 실행해 주세요
 DROP TRIGGER sign_board_org_trigger;
 DROP TRIGGER sb_sbname_invite_trigger;
 DROP TRIGGER sb_sbname_have_trigger;
-DROP TRIGGER sb_bossnickname_org_trigger;
 DROP TRIGGER sb_bossnickname_invite_trigger;
+DROP TRIGGER sb_bossnickname_org_trigger;
 DROP TRIGGER sb_bossnickname_have_trigger;
+DROP TRIGGER hb_bossnickname_work_trigger;
+DROP TRIGGER org_bossnickname_work_trigger
 
 
 CREATE OR REPLACE TRIGGER sb_sbname_org_trigger
@@ -39,15 +41,6 @@ BEGIN
 END;
 
 
-CREATE OR REPLACE TRIGGER sb_bossnickname_org_trigger
-AFTER UPDATE ON sign_board FOR EACH ROW
-BEGIN
-  UPDATE organization
-  SET boss_nickname=:NEW.boss_nickname
-  WHERE boss_nickname=:OLD.boss_nickname;
-END;
-
-
 CREATE OR REPLACE TRIGGER sb_bossnickname_invite_trigger
 AFTER UPDATE ON sign_board FOR EACH ROW
 BEGIN
@@ -57,10 +50,38 @@ BEGIN
 END;
 
 
-CREATE OR REPLACE TRIGGER sb_bossnickname_have_trigger
+CREATE OR REPLACE TRIGGER sb_bossnickname_org_trigger
 AFTER UPDATE ON sign_board FOR EACH ROW
 BEGIN
-  UPDATE HAVE_BOARD
+  UPDATE organization
   SET boss_nickname=:NEW.boss_nickname
   WHERE boss_nickname=:OLD.boss_nickname;
 END;
+
+
+CREATE OR REPLACE TRIGGER sb_bossnickname_have_trigger
+AFTER UPDATE ON sign_board FOR EACH ROW
+BEGIN
+  UPDATE have_board
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+END;
+
+
+CREATE OR REPLACE TRIGGER hb_bossnickname_work_trigger
+AFTER UPDATE ON have_board FOR EACH ROW
+BEGIN
+  UPDATE work
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+END;
+
+
+CREATE OR REPLACE TRIGGER org_bossnickname_work_trigger
+AFTER UPDATE ON organization FOR EACH ROW
+BEGIN
+  UPDATE work
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+END;
+

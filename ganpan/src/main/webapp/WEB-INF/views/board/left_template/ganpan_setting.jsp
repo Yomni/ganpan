@@ -44,9 +44,11 @@
 								</form><br>
 								
 								<form id="updateSignBoardBossForm" action="${pageContext.request.contextPath}/updateSignBoardBoss.do">
+									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
+									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
 									<h2>그룹장 위임</h2>
-									<input type="text" class="form-control" name="changeBoss" id="changeBoss" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
-									<h4></h4>
+									<input type="text" class="form-control" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
+									<h4><span id="groupCheckView"></span><br></h4>
 									<input type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn" value="위임하기" /><br>
 								</form><br>
 								
@@ -94,8 +96,12 @@
 			}); // submit
 			
 			$("#updateSignBoardBossForm").submit(function(){
-				if($(":input[name=changeBoss]").val().trim()==""){
+				if($(":input[name=changeBossNickName]").val().trim()==""){
 					alert("위임하실 그룹원을 입력하세요!");
+					return false;
+				}
+				if(checkResultGroup == ""){
+					alert("닉네임을 다시 확인하세요!");
 					return false;
 				}
 			}); // submit
@@ -119,7 +125,32 @@
 							checkResultTitle="";
 						}else{
 							$("#titleCheckView").html(title+" 사용가능!").css("color","green");		
-							checkResultTitle=title;
+							checkResultTitle="title";
+						}					
+					}//callback			
+				});//ajax
+			});//keyup
+
+			var checkResultGroup="";
+	      $(":input[name=changeBossNickName]").keyup(function(){
+				var changeBossNickName=$(this).val().trim();
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/groupCheckAjax.do",				
+					data:"changeBossNickName="+changeBossNickName+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
+					success:function(data){	
+						if(data=="idfail"){
+							$("#groupCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");
+							checkResultGroup="";
+						}else if(data=="groupfail"){
+							$("#groupCheckView").html("그룹원이 아니면 위임할 수 없습니다!").css("color", "red");
+							checkResultGroup="";
+						}else if(data=="groupbossfail"){
+							$("#groupCheckView").html("자신에게 위임할 수는 없습니다!").css("color", "red");
+							checkResultGroup="";
+						}else{
+							checkResultGroup="group";
+							$("#groupCheckView").html("위임가능!").css("color","green");		
 						}					
 					}//callback			
 				});//ajax
