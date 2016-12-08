@@ -4,9 +4,8 @@
 	<!-- Main Content -->
 	<h2>구성원 보기</h2>
 	그룹 구성원 명단 <br> 그룹장 : ${oList[0].signBoardVO.bossMemberVO.nickName} <br>
-	<c:forEach items="${oList}" var="list">
-		${list.workerMemberVO.nickName}<br>
-		그룹원 : ${list.workerMemberVO.nickName } | 
+	<c:forEach items="${oList}" var="list" begin="1">
+		그룹원 : ${list.workerMemberVO.nickName} | 
 		<a href="${pageContext.request.contextPath}/banish.do?signBoardName=
 		${list.signBoardVO.signBoardName}&bossNickName=
 		${list.signBoardVO.bossMemberVO.nickName}&workerNickName=
