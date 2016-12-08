@@ -135,6 +135,7 @@ public class OrganizationController {
 		String workerNickName = mvo.getNickName();
 		OrganizationVO ovo = new OrganizationVO(workerNickName, signBoardName, bossNickName);
 		organizationService.leaveOrganization(ovo);
+		System.out.println(ovo);
 		return "redirect:myJoinSignBoardList.do";
 	}
 
