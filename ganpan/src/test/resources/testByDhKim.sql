@@ -55,15 +55,15 @@ select * from work;
 
 -- null로 업데이트
 update work
-set worker_nickname=null
-where worker_nickname='kosta6'
-and boss_nickname='kosta1'
-and sign_board_name='ganpan1';
+		set worker_nickname=null
+		where worker_nickname='kosta3'
+		and boss_nickname='kosta1'
+		and sign_board_name='ganpan1';
 
 --다시 업데이트
 update work
-set worker_nickname='kosta6'
-where work_no=4
+set worker_nickname='kosta3'
+where work_no=3
 and boss_nickname='kosta1'
 and sign_board_name='ganpan1';
 
