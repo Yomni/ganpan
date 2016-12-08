@@ -59,7 +59,7 @@
 							src="${pageContext.request.contextPath}/resources/img/schedule.jpg" alt="">
 						<h2>개인 일정관리</h2>
 						<p>무거운 수첩은 이제 그만!</p>
-						<p>간판은 일정을 관리하는데 놀랄만큼 효과적입니다!</p>
+						<p>일정을 관리하는데 놀랄만큼 효과적입니다!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
