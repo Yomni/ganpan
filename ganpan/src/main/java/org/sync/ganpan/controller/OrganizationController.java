@@ -179,7 +179,6 @@ public class OrganizationController {
 		MemberVO workerMemberVO = new MemberVO(workerNickName);
 		SignBoardVO signBoardVO = new SignBoardVO(signBoardName, bossNickName);
 		OrganizationVO ovo = new OrganizationVO(workerMemberVO, signBoardVO);
-		System.out.println("OrganizationController : " + ovo);
 		// 그룹에서 강제퇴장!
 		organizationService.banish(ovo);
 
@@ -191,10 +190,6 @@ public class OrganizationController {
 	@ResponseBody
 	public String groupCheckAjax(String signBoardName, String bossNickName, String changeBossNickName) {
 		OrganizationVO ovo = new OrganizationVO(changeBossNickName, signBoardName, bossNickName);
-		System.out.println("groupCheckAjax: ");
-		System.out.println(changeBossNickName);
-		System.out.println(signBoardName);
-		System.out.println(bossNickName);
 		int count = organizationService.groupCheck(ovo);
 		if(count == 0){
 			return "idfail";
