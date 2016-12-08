@@ -64,5 +64,13 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public void leaveOrganization(OrganizationVO ovo) {
 		template.delete("organization.leaveOrganization", ovo);
 	}
+	@Override
+	public int groupCheck(OrganizationVO ovo) {
+		return template.selectOne("organization.groupCheck", ovo);
+	}
+	@Override
+	public int groupBossCheck(OrganizationVO ovo) {
+		return template.selectOne("organization.groupBossCheck", ovo);
+	}
 
 }// class organizationDAOImpl

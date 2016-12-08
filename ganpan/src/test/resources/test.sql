@@ -288,9 +288,19 @@ SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitat
 FROM member m, invitation_management im
 WHERE m.nickname=im.nickname and boss_nickname='dja' and sign_board_name='ggg'
 
+delete member;
+insert into member values('ㅈㅅ','bubjalsdud@naver.com','1');
 
-insert into member values('dja','bubjalsdud@naver.com','1');
-
-SELECT * FROM member
+ UPDATE sign_board
+ SET boss_nickname = 'kosta1'
+ WHERE sign_board_name = 'kosta1꺼' and boss_nickname = 'ㅈㅅ'
+ 
+SELECT count(*)
+FROM organization
+WHERE boss_nickname = 'ㅈㅅ' and sign_board_name = 'kosta1꺼' and worker_nickname = 'kosta1'
+ 
+SELECT * FROM member;
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;
+SELECT * FROM organization;
+SELECT * FROM HAVE_BOARD;

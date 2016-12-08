@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.OrganizationService;
@@ -175,6 +177,25 @@ public class OrganizationController {
 
 		// 다시 getOrganizationList로 보내줘야 한다.
 		return "redirect:manage_group_member.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "groupCheckAjax.do")
+	@ResponseBody
+	public String groupCheckAjax(String signBoardName, String bossNickName, String changeBossNickName) {
+		OrganizationVO ovo = new OrganizationVO(changeBossNickName, signBoardName, bossNickName);
+		System.out.println("groupCheckAjax: ");
+		System.out.println(changeBossNickName);
+		System.out.println(signBoardName);
+		System.out.println(bossNickName);
+		int count = organizationService.groupCheck(ovo);
+		if(count == 0){
+			return "idfail";
+		}else if(count == -1){
+			return "groupfail";
+		}else if(count == -2){
+			return "groupbossfail";
+		}else
+			return "ok";
 	}
 
 }// class OrganizationController
