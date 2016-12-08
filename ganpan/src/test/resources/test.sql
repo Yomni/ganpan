@@ -294,3 +294,4 @@ insert into member values('dja','bubjalsdud@naver.com','1');
 SELECT * FROM member
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;
+

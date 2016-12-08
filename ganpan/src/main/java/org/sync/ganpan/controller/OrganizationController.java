@@ -119,14 +119,21 @@ public class OrganizationController {
 		return "redirect:sendInvitationList.do";
 	}
 
+	/**
+	 * 참여한 그룹에서 탈퇴 
+	 * @author 민영,주선
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("leaveOrganization.do")
 	public String leaveOrganization(String signBoardName, String bossNickName, HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String workerNickName = mvo.getNickName();
 		OrganizationVO ovo = new OrganizationVO(workerNickName, signBoardName, bossNickName);
 		organizationService.leaveOrganization(ovo);
-		return "redirect:";
-
+		return "redirect:myJoinSignBoardList.do";
 	}
 
 	/**
