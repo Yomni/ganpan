@@ -8,8 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.WorkService;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -67,4 +67,13 @@ public class WorkController {
 	// public boolean moveWork(String){
 	//
 	// }
+	
+	@RequestMapping("deleteWork.do")
+	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
+		System.out.println("deleteWork.do :" + workNo + bossNickName + signBoardName);
+		workService.deleteWork(workNo);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
+	}
 }

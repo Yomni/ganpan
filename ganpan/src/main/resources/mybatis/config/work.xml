@@ -51,5 +51,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		#{organizationVO.signBoardVO.bossMemberVO.nickName})
  	</insert>
  	
+ 	<delete id="deleteWork">
+		delete from work where work_no=#{value}
+	</delete>
  	
 </mapper>
