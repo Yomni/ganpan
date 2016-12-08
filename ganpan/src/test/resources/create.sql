@@ -84,15 +84,15 @@ CREATE TABLE WORK(
    work_details clob NOT NULL,
    creation_DATE DATE DEFAULT SYSDATE NOT NULL,
    change_DATE DATE DEFAULT SYSDATE NOT NULL,
-   board_no NUMBER NOT NULL,
-   worker_nickname VARCHAR2(50) NOT NULL,
+   board_no NUMBER default 1 NOT NULL,
+   worker_nickname VARCHAR2(50),
    sign_board_name VARCHAR2(50) NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
    
    CONSTRAINT fk_work_HAVE_BOARD FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
    		REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
    CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname, sign_board_name, boss_nickname) 
-   		REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname) ON DELETE CASCADE
+   		REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname)
 );
 
 CREATE TABLE CHANGE_GENRE(
@@ -118,9 +118,9 @@ CREATE TABLE CHANGE_MANAGEMENT(
 INSERT INTO MEMBER VALUES('sync','kosta@naver.com', '1234');
 
 -- INSERT BOARD_GENRE
-INSERT INTO BOARD_GENRE VALUES(1, 'TO_DO');
-INSERT INTO BOARD_GENRE VALUES(2, 'DOING');
-INSERT INTO BOARD_GENRE VALUES(3, 'DONE');
+INSERT INTO BOARD_GENRE VALUES(1, '해야 할 작업');
+INSERT INTO BOARD_GENRE VALUES(2, '하고있는 작업');
+INSERT INTO BOARD_GENRE VALUES(3, '끝난 작업');
 
 -- INSERT CHANGE_GENRE(추가 수정 삭제 이동)
 INSERT INTO CHANGE_GENRE VALUES(0, '추가');

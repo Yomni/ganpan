@@ -18,15 +18,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="InvitationMngRM" type="InvitationMngVO">
 		<result property="signBoardVO.signBoardName" column="sign_board_name"/>
 		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
-		<result property="workNickName.nickName" column="nickname"/>
+		<result property="invitedMemberVO.nickName" column="nickname"/>
 		<result property="invitationDate" column="invitation_date"/>
 	</resultMap>
-	
-	<select id="allSignBoardList" parameterType="String" resultMap="signBoardRM">
-		SELECT sign_board_name
-		FROM sign_board
-		WHERE boss_nickname=#{value}
-	</select>
 	
  	<select id="findSignBoardListByTitle" parameterType="String" resultMap="signBoardRM">
  		SELECT sign_board_name, boss_nickname 
@@ -51,9 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<select id="myJoinSignBoardList" resultMap="signBoardRM">
- 		SELECT sb.sign_board_name, sb.boss_nickname
-		FROM sign_board sb, organization o 
-		WHERE sb.sign_board_name = o.sign_board_name and sb.boss_nickname = o.boss_nickname and worker_nickname = #{value}
+ 		<![CDATA[
+ 		SELECT sign_board_name, boss_nickname
+		FROM organization
+		WHERE worker_nickname = #{value} and boss_nickname<>#{value}
+		]]>
  	</select>
  	
  	<select id="myPublicSignBoardList" resultMap="signBoardRM">
@@ -93,12 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		signBoardName, boss_nick_name
  	</select> -->
  	
- 	
- 	 	<select id="getGroupList" resultMap="signBoardRM" parameterType="signBoardVO">
+ 	 <select id="getGroupList" resultMap="signBoardRM" parameterType="signBoardVO">
  		SELECT worker_nickname, boss_nickname
 		FROM organization 
 		WHERE boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName}
-</select>
+	</select>
 
  	<select id="showContentList" resultMap="signBoardRM" parameterType="signBoardVO">
  		SELECT  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname

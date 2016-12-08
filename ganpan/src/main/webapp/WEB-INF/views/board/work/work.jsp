@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	viewGanpan.jsp입니다.
+
 </body>
 </html>

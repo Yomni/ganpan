@@ -8,17 +8,12 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
-import org.sync.ganpan.model.vo.OrganizationVO;
-
 import org.sync.ganpan.model.dao.WorkDAO;
-
 import org.sync.ganpan.model.vo.HaveBoardVO;
-
-
 import org.sync.ganpan.model.vo.InvitationMngVO;
-
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -35,6 +30,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 	private WorkDAO workDAO;
 	@Resource
 	private HaveBoardDAO haveBoardDAO;
+	@Resource
+	private OrganizationDAO organizationDAO;
 
 	@Override
 	public Map<String, Object> findSignBoardListByTitle(String title) {
@@ -60,11 +57,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 			map.put("boardNo", i);
 			haveBoardDAO.createNewGanpan(map);
 		}
-	}
-
-	@Override
-	public List<SignBoardVO> allSignBoardList(String nickName) {
-		return signBoardDAO.allSignBoardList(nickName);
+		organizationDAO.registerBossNickName(map);
 	}
 
 	@Override
@@ -98,7 +91,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 
 	@Override
 	@Transactional
-	public SignBoardVO showGanpan(SignBoardVO svo) {
+	public SignBoardVO showSignBoard(SignBoardVO svo) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("signBoardName", svo.getSignBoardName());
 		map.put("bossNickName", svo.getBossMemberVO().getNickName());
@@ -120,11 +113,11 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return svo;
 	}
 
-
 	@Override
 	public SignBoardVO ganpanSettingPage(SignBoardVO svo) {
 		return signBoardDAO.ganpanSettingPage(svo);
 	}
+
 	@Override
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return signBoardDAO.invitationList(nickName);

@@ -4,18 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
-import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
@@ -41,12 +40,12 @@ public class SignBoardController {
 	 * 새 간판 생성하기
 	 * @author 민영
 	 */
-	@RequestMapping("createNewGanpan.do")
-	public ModelAndView createNewGanpan(String bossNickName, String title, String ganpanType) {
+	@RequestMapping(method = RequestMethod.POST, value = "createNewSignBoard.do")
+	public ModelAndView createNewSignBoard(String bossNickName, String title, String signBoardType) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("bossNickName", bossNickName);
 		map.put("signBoardName", title);
-		if (ganpanType.equals("public")) {// 간판 공개시 visibility default 0
+		if (signBoardType.equals("public")) {// 간판 공개시 visibility default 0
 			map.put("visibility", 0);
 			signBoardService.createNewGanpan(map);
 		} else {
@@ -119,15 +118,14 @@ public class SignBoardController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("showGanpan.do")
-	public ModelAndView showGanpan(String signBoardName, String bossNickName) {
-		// String signBoardName = request.getParameter("signBoardName");
-		// String bossNickName = request.getParameter("bossNickName");
+	@RequestMapping("showSignBoard.do")
+	public ModelAndView showSignBoard(String signBoardName, String bossNickName) {
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
-		rsvo = signBoardService.showGanpan(rsvo);
-		System.out.println("showGanpan: " + rsvo);
+		rsvo = signBoardService.showSignBoard(rsvo);
+
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
+
 	/**
 	 * ganpan_setting 페이지로 해당 간판 정보를 가지고 이동
 	 * @param signBoardName
@@ -137,8 +135,8 @@ public class SignBoardController {
 	@RequestMapping("ganpanSettingPage.do")
 	public ModelAndView ganpanSettingPage(String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		SignBoardVO svo2 = signBoardService.ganpanSettingPage(svo);
-		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo2);
+		svo = signBoardService.ganpanSettingPage(svo);
+		return new ModelAndView("board/left_template/ganpan_setting", "svo", svo);
 	}
 
 	/**
@@ -175,8 +173,8 @@ public class SignBoardController {
 
 	@RequestMapping("deleteSignBoard.do")
 
-	public String deleteSignBoard(String signBoardName, String bossNickName){
-		SignBoardVO svo=new SignBoardVO(signBoardName,bossNickName);
+	public String deleteSignBoard(String signBoardName, String bossNickName) {
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
 		signBoardService.deleteSignBoard(svo);
 		return "redirect:homeSignBoardList.do";
 	}

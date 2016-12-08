@@ -44,6 +44,7 @@
 			<!-- login, 홈화면, 소개글, 간판검색, 간판보기 이외의 경우 -->
 			<mvc:exclude-mapping path="/*Ajax.do" />
 			<mvc:exclude-mapping path="/login.do" />
+			<mvc:exclude-mapping path="/go_member/login_fail.do" />
 			<mvc:exclude-mapping path="/register.do" />
 			<mvc:exclude-mapping path="/register_main.do" />
 			<mvc:exclude-mapping path="/showGanpan.do" />

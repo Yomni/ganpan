@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	alert("아이디 비밀번호를 확인하세요!");
-	location.href="${pageContext.request.contextPath}/member/loginForm.do";
+	location.href="${pageContext.request.contextPath}/go_member/login_form.do";
 </script>

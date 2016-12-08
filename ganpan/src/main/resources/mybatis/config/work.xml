@@ -22,23 +22,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="creationDate" column="creation_DATE"/>
 		<result property="changeDate" column="change_DATE"/>
 		<result property="boardNo" column="board_no"/>
-		<result property="organizationVO.workerNickName.nickName" column="worker_nickname"/>
+		<result property="organizationVO.workerMemberVO.nickName" column="worker_nickname"/>
 		
 		<result property="organizationVO.signBoardVO.signBoardName" column="sign_board_name"/>
 		<result property="organizationVO.signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
 	</resultMap>
 	
+	<!-- showGanpan -->
  	<select id="getWorkList" resultMap="workRM" parameterType="map">
- 		select  work_no, work_name, worker_nickname, board_no, sign_board_name, boss_nickname
+ 		select work_no, work_name, work_details, worker_nickname, board_no, sign_board_name, boss_nickname
 		from work
 		where boss_nickname=#{bossNickName} and sign_board_name=#{signBoardName} and board_no=#{boardNo}
  	</select>
  	
+ 	<update id="updateWorkerToNull" parameterType="organizationVO">
+ 		update work
+		set worker_nickname=null
+		where worker_nickname=#{workerMemberVO.nickName}
+		and boss_nickname=#{signBoardVO.bossMemberVO.nickName}
+		and sign_board_name=#{signBoardVO.signBoardName}
+ 	</update>
+ 	
+ 	<insert id="createWork" parameterType="workVO">
+ 		INSERT INTO WORK(work_no, work_name, work_details, worker_nickname, sign_board_name, boss_nickname)
+ 		VALUES(seq_work_no.nextval, #{workName}, #{workDetails},
+ 		#{organizationVO.workerMemberVO.nickName}, 
+ 		#{organizationVO.signBoardVO.signBoardName},
+ 		#{organizationVO.signBoardVO.bossMemberVO.nickName})
+ 	</insert>
+ 	
+ 	
 </mapper>
-
-
-
-
-
-
-

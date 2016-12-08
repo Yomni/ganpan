@@ -13,6 +13,9 @@ public class SignBoardVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public SignBoardVO(String bossNickName) {
+		this.bossMemberVO.setNickName(bossNickName);
+	}
 
 	// SignBoardVO 강한 has a MemberVO(nickName)
 
@@ -36,6 +39,10 @@ public class SignBoardVO {
 		this.signBoardName = signBoardName;
 		this.bossMemberVO = new MemberVO();
 		this.bossMemberVO.setNickName(bossNickName);
+	}
+	
+	public void setBossMemberVO(String bossNickName) {
+		this.bossMemberVO = new MemberVO(bossNickName);
 	}
 
 	public SignBoardVO(String signBoardName, String bossNickName, int visibility) {
@@ -91,4 +98,5 @@ public class SignBoardVO {
 		return "SignBoardVO [signBoardName=" + signBoardName + ", bossMemberVO=" + bossMemberVO + ", boardList="
 				+ boardList + ", visibility=" + visibility + ", creationDate=" + creationDate + "]";
 	}
+
 }// class SignBoardVO

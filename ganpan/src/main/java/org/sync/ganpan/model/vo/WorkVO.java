@@ -8,7 +8,7 @@ public class WorkVO {
 	private String changeDate;
 	private int boardNo;
 	private OrganizationVO organizationVO;
-	
+
 	public WorkVO() {
 		super();
 	}
@@ -87,5 +87,4 @@ public class WorkVO {
 				+ ", creationDate=" + creationDate + ", changeDate=" + changeDate + ", boardNo=" + boardNo
 				+ ", organizationVO=" + organizationVO + "]";
 	}
-	
 }

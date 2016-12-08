@@ -1,0 +1,2 @@
+1. redirect시 한글 깨지던 문제 --> 해결
+2. works numbering 이슈 --> 모든 work들이 seq공유

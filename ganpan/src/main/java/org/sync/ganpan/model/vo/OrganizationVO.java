@@ -7,42 +7,45 @@ package org.sync.ganpan.model.vo;
  *
  */
 public class OrganizationVO {
-	private MemberVO workerNickName;// workerNickName
+	private MemberVO workerMemberVO;// workerNickName
 	private SignBoardVO signBoardVO;// bossNickName, signBoardName
-	
+
 	public OrganizationVO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	//Organization 강한 has a signBoardVO & 강한 has a signBoardVO
-	public OrganizationVO(MemberVO workerNickName, SignBoardVO signBoardVO) {
+
+	public OrganizationVO(MemberVO workerMemberVO, SignBoardVO signBoardVO) {
 		super();
-		this.workerNickName = workerNickName;
+		this.workerMemberVO = workerMemberVO;
 		this.signBoardVO = signBoardVO;
 	}
-	
-	/*//추가 at 16.12.06 15:39 - 필요없음
-	public OrganizationVO(String nickName,String signBoardName,String bossNickName){
+
+	public OrganizationVO(String workerNickName, String signBoardName, String bossNickName) {
 		super();
-		this.workerNickName=new MemberVO(nickName);
-		this.signBoardVO=new SignBoardVO(signBoardName, bossNickName);
-	}*/
-	
-	public MemberVO getWorkerNickName() {
-		return workerNickName;
+		this.workerMemberVO = new MemberVO(workerNickName);
+		this.signBoardVO = new SignBoardVO(signBoardName, bossNickName);
 	}
-	public void setWorkerNickName(MemberVO workerNickName) {
-		this.workerNickName = workerNickName;
+
+	public MemberVO getWorkerMemberVO() {
+		return workerMemberVO;
 	}
+
+	public void setWorkerMemberVO(MemberVO workerMemberVO) {
+		this.workerMemberVO = workerMemberVO;
+	}
+
 	public SignBoardVO getSignBoardVO() {
 		return signBoardVO;
 	}
+
 	public void setSignBoardVO(SignBoardVO signBoardVO) {
 		this.signBoardVO = signBoardVO;
 	}
+
 	@Override
 	public String toString() {
-		return "OrganizationVO [workerNickName=" + workerNickName + ", signBoardVO=" + signBoardVO + "]";
+		return "OrganizationVO [workerMemberVO=" + workerMemberVO + ", signBoardVO=" + signBoardVO + "]";
 	}
-	
 
 }// class OrganizationVO

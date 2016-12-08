@@ -21,7 +21,7 @@ import org.sync.ganpan.model.vo.WorkVO;
 public class SignBoardDAOImpl implements SignBoardDAO {
 	@Resource
 	private SqlSessionTemplate template;
-	
+
 	@Override
 	public List<SignBoardVO> findSignBoardListByTitle(String title) {
 		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", title);
@@ -30,17 +30,12 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 
 	@Override
 	public int titleCheck(HashMap<String, String> map) {
-		return template.selectOne("signBoard.titleCheck",map);
+		return template.selectOne("signBoard.titleCheck", map);
 	}
 
 	@Override
 	public void createNewGanpan(HashMap<String, Object> map) {
 		template.insert("signBoard.createNewGanpan", map);
-	}
-
-	@Override
-	public List<SignBoardVO> allSignBoardList(String nickName) {
-		return template.selectList("signBoard.allSignBoardList", nickName);
 	}
 
 	@Override
@@ -72,7 +67,6 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<SignBoardVO> myPrivateJoinSignBoardList(String nickName) {
 		return template.selectList("signBoard.myPrivateJoinSignBoardList", nickName);
 	}
-
 
 	@Override
 	public SignBoardVO ganpanSetting(SignBoardVO svo) {
@@ -111,8 +105,7 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 
 	@Override
 	public void deleteSignBoard(SignBoardVO svo) {
-		template.delete("signBoard.deleteSignBoard",svo);
+		template.delete("signBoard.deleteSignBoard", svo);
 	}
 
-}//class
-
+}// class
