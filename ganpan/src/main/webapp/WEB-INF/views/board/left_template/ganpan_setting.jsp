@@ -4,60 +4,84 @@
 
 <body class="subpage">
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-md-8 col-md-offset-2 main">
 	<div id="page-wrapper">
 		<!-- Content -->
 		<div id="content-wrapper">
 			<div id="content">
 				<div class="container">
 					<div class="row">
-						<div class="3u 12u(mobile)">
-
-						</div>
+						<div class="3u 12u(mobile)"></div>
 						<div class="9u 12u(mobile) important(mobile)">
 							<!-- Main Content -->
 							<section>
 								<form id="updateSignBoardNameForm" action="${pageContext.request.contextPath}/updateSignBoardName.do">
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
-									<h2>이름 바꾸기</h2>
-									<div class="form-group">
-										<input type="text"  class="form-control" name="changeTitle" id="changeTitle" placeholder="새로운 간판 이름 작성" required="required"/>
-									</div>
-									<h4>
-										<span id="titleCheckView"></span>
-									</h4>
-									<div class="form-group">
-										<button type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn"  >수정</button>
+									<div class="panel panel-default">
+								  		<div class="panel-heading">
+								  		  <h3 class="panel-title">간판의 이름을 변경합니다</h3>
+								 		 </div>
+								  		<div class="panel-body">
+											<div class="form-group">
+												<input type="text"  class="form-control" name="changeTitle" id="changeTitle" placeholder="새로운 간판 이름 작성" required="required"/>
+											</div>
+											<h4>
+												<span id="titleCheckView"></span>
+											</h4>
+											<div class="form-group">
+												<button type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn"  >수정</button>
+											</div>
+										</div>
 									</div>
 								</form><br>
 								
 								<form id="updateSignBoardVisibilityForm" action="${pageContext.request.contextPath}/updateVisibility.do">
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
-									<h2>공개 범위 설정</h2>
-									간판 공개<br><input type="radio" name="visibility" value="public" />
-									누구나 간판을 볼 수 있습니다.<br>
-									간판 비공개<br><input type="radio" name="visibility" value="private"/>
-									그룹원만 볼 수 있습니다.<br>
-									<input type="submit" class="btn btn-default btn-success btn-block" id="changeVisibilityBtn" value="설정 완료" />
+									<div class="panel panel-default">
+								  		<div class="panel-heading">
+								  		  <h3 class="panel-title">간판의 공개 범위를 설정합니다</h3>
+								 		 </div>
+								  		<div class="panel-body">
+											간판 공개<br><input type="radio" name="visibility" value="public" />
+											누구나 간판을 볼 수 있습니다.<br>
+											간판 비공개<br><input type="radio" name="visibility" value="private"/>
+											그룹원만 볼 수 있습니다.<br>
+											<input type="submit" class="btn btn-default btn-success btn-block" id="changeVisibilityBtn" value="설정 완료" />
+										</div>
+									</div>
 								</form><br>
 								
 								<form id="updateSignBoardBossForm" action="${pageContext.request.contextPath}/updateSignBoardBoss.do">
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
-									<h2>그룹장 위임</h2>
-									<input type="text" class="form-control" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
-									<h4><span id="groupCheckView"></span><br></h4>
-									<input type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn" value="위임하기" /><br>
+									<div class="panel panel-default">
+								  		<div class="panel-heading">
+								  		  <h3 class="panel-title">간판의 조장을 위임합니다</h3>
+								 		 </div>
+								  		<div class="panel-body">
+											<input type="text" class="form-control" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
+											<h4><span id="groupCheckView"></span><br></h4>
+											<input type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn" value="위임하기" /><br>
+										</div>
+									</div>
 								</form><br>
 								
 								<form id="deleteSignBoardForm" action="${pageContext.request.contextPath}/deleteSignBoard.do">
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
-									<h2>간판 삭제</h2>
-									*주의) 간판을 삭제합니다! 해당 이력과 모든 정보가 사라집니다.
-									<input type="submit" class="btn btn-primary btn-lg" id="deleteGanpanBtn" value="간판 삭제" />
+										<div class="panel panel-danger">
+								  		<div class="panel-heading">
+								  		  <h3 class="panel-title">간판을 삭제합니다!</h3>
+								 		 </div>
+								  		<div class="panel-body">
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											주의)  해당 이력과 모든 정보가 사라집니다
+											
+											<input type="submit" class="btn btn-danger btn-default" id="deleteGanpanBtn" value="간판 삭제" />
+										</div>
+									</div>
 								</form>
 							</section>
 						</div>
