@@ -25,10 +25,6 @@ public class WorkVO {
 		this.organizationVO = organizationVO;
 	}
 
-	public WorkVO(int workNo) {
-		super();
-	}
-
 	public int getWorkNo() {
 		return workNo;
 	}

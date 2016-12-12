@@ -10,7 +10,6 @@ drop table sign_board;
 drop table member;
 
 delete from work where work_no='1';
-
 select * from work;
 
 SELECT worker_nickname
