@@ -4,7 +4,7 @@
 	<ul class="nav nav-sidebar">
 		<li><a href="${pageContext.request.contextPath}/go_member/left_template/my_info.do">내 정보 보기<!-- <span class="sr-only">(current)</span> --></a></li>
 		<li><a href="${pageContext.request.contextPath}/go_member/left_template/my_info_update.do">내 정보 수정</a></li>
-		<li><a href="${pageContext.request.contextPath}/member/leave.do">회원 탈퇴</a></li>
+		<li><a href="${pageContext.request.contextPath}/go_member/left_template/leave.do">회원 탈퇴</a></li>
 	</ul>
 	<ul class="nav nav-sidebar">
 		<li><a href="${pageContext.request.contextPath}/mySignBoardList.do">소유 작업</a></li>

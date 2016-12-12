@@ -187,4 +187,15 @@ public class MemberController {
 		session.setAttribute("mvo", mvo);
 		return "redirect:go_member/left_template/my_info.do";
 	}
+	
+	/**
+	 * @author 주선
+	 */
+//	@RequestMapping(value = "leave.do", method = RequestMethod.POST)
+//	public ModelAndView leave(HttpSession session, String bossNickName, String password) {
+//		session.invalidate();
+//		MemberVO mvo = new MemberVO(bossNickName, password);
+//		memberService.leave(mvo);
+//		return "redirect:go_member/left_template/my_info.do";
+//	}
 }
