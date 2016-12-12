@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getNickNameByEmail" resultType="String">
-		SELECT nick_name
+		SELECT nickname
 		FROM member
 		WHERE e_mail=#{value}
 	</select>
@@ -81,6 +81,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE boss_nickname = #{workerMemberVO.nickName} and sign_board_name = #{signBoardVO.signBoardName} and worker_nickname = #{workerMemberVO.nickName}
 	</select>
 
+	<select id="inviteCheck" parameterType="organizationVO" resultType="int">
+		SELECT count(*) 
+		FROM invitation_management
+		WHERE boss_nickname = #{signBoardVO.bossMemberVO.nickName} and sign_board_name = #{signBoardVO.signBoardName} and nickname = #{workerMemberVO.nickName}
+	</select>
 </mapper>
 
 

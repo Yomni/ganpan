@@ -33,6 +33,8 @@ public interface OrganizationService {
 
 	int getJoinedSignBoardCount(String nickName);
 
-	String groupCheck(OrganizationVO ovo);
+	String groupCheck(String id, String signBoardName, String bossNickName);
+
+	String inviteCheck(String id, String signBoardName, String bossNickName);
 
 }

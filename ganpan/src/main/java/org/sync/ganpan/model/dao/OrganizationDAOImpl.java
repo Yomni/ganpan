@@ -76,4 +76,9 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 		return template.selectOne("organization.groupBossCheck", ovo);
 	}
 
+	@Override
+	public int inviteCheck(OrganizationVO ovo) {
+		return template.selectOne("organization.inviteCheck",ovo);
+	}
+
 }// class organizationDAOImpl
