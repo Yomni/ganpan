@@ -87,20 +87,20 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
-	public int groupCheck(OrganizationVO ovo) {
+	public String groupCheck(OrganizationVO ovo) {
 		int emailCount = memberDAO.emailCheck(ovo.getWorkerMemberVO().getNickName());
 		int nickNameCount = memberDAO.nickNameCheck(ovo.getWorkerMemberVO().getNickName());
 		if(emailCount == 0 && nickNameCount == 0){
-			return 0;
+			return "idfail";
 		}else{
 			int groupCheck = organizationDAO.groupCheck(ovo);
 			int groupBossCheck = organizationDAO.groupBossCheck(ovo);
 			if(groupCheck == 0){
-				return -1;
+				return "groupfail";
 			}else if(groupBossCheck == 1){
-				return -2;
+				return "groupbossfail";
 			}
 		}
-		return 1;
+		return "ok";
 	}
 }

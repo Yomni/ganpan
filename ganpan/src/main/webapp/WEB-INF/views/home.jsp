@@ -77,15 +77,6 @@
 					</div>
 				</div>
 				<!-- /.row -->
-
-
-
-
-
-
-
-
-				<!-- 		<a href="gomember/my_info.do">내 정보 보기</a> -->
 			</div>
 			<!-- main container-fluid -->
 		</c:when>

@@ -314,4 +314,5 @@ SELECT * FROM member;
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;
 SELECT * FROM organization;
-SELECT * FROM HAVE_BOARD;
+SELECT * FROM have_board;
+SELECT * FROM work;

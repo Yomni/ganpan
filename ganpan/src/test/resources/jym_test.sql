@@ -1,3 +1,5 @@
+show triggers;
+
 select * from member;
 
 SELECT count(*), sign_board_name as singBoardName, boss_nickname as bossNickName
@@ -5,7 +7,8 @@ FROM sign_board
 
 WHERE visibility = 0 and sign_board_name='test'
 
-
+insert into SIGN_BOARD(boss_nickname,sign_board_name,visibility)
+values('sync','test','1')
 select nickname,e_mail,password from member
 WHERE (nickname='' or e_mail='kosta@naver.com') and password ='123123';
 
@@ -22,3 +25,6 @@ values(seq_work_no.nextval, '콘텐츠상세보기','콘텐츠상세보기','jav
 
 select * 
 from HAVE_BOARD;
+
+select * from work;
+update work set board_no = 2 where work_no = 3;

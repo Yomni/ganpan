@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,12 +16,10 @@ import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
-import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
  * Member의 제어를 위한 Controller
  * @author JYM
- *
  */
 @Controller
 public class MemberController {
@@ -83,7 +79,6 @@ public class MemberController {
 			mv.setViewName("member/register_form");
 			mv.addAllObjects(modelMap);
 			mv.addObject("mvo", mvo);
-			System.out.println(mv);
 		} else {
 			session.setAttribute("mvo", mvo); // login
 			// 성공 시 db 반영
@@ -139,7 +134,6 @@ public class MemberController {
 	@ResponseBody
 	public boolean idCheckAjax(String id){
 		int count = memberService.idCheck(id);
-		System.out.println(count);
 		// count가 0이면 해당 회원이 없음
 		return (count == 0) ? true : false;
 	}

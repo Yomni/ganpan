@@ -3,6 +3,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
+<<<<<<< HEAD
 <!--     <script type="text/javascript">
 	    $(document).ready(function(){
 	    	$("#deleteWork").click(function(){ 
@@ -11,6 +12,8 @@
 	    	});
 	    });	
 	</script> -->
+=======
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -42,16 +45,20 @@
 									goCreateWork.do?signBoardName=${rsvo.signBoardName}
 									&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>
-								<ul class="list-unstyled connected" id="${boardList.boardGenreVO.boardName}">
+								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
-										<li class="panel panel-info " id="draggablePanelList" draggable="true">
+										<li class="panel panel-info" id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
+<<<<<<< HEAD
 												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a>
+=======
+												<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 											</div>
 										</li>
 
-										<div class="modal fade" id="${works.workNo}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -96,15 +103,23 @@
 <c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
 	$(function(){
+		var workNo = 0;
+		$("ul li").mouseover(function() {
+			workNo = $(this).find("a").attr("id");
+		});
 		$("#TO_DO").sortable({
-			connectWith: "#DOING",
-			update:function() {
-				alert($("#TO_DO li a").attr("id"));
-			} // update
+			connectWith:"#DOING",
+			update:function(){
+				// ajax 사용 예정
+			}
 		}); // sortable
 		$("#DOING").sortable({
-			connectWith: "#DONE"
+			connectWith:"#DONE",
+			update:function(){
+				// ajax 사용 예정
+			}
 		}); // sortable
+<<<<<<< HEAD
 		$("#DONE").sortable({
 			connectWith: "#DONE"
 		}); // sortable
@@ -121,6 +136,9 @@
 		
 		
 		
+=======
+		$("#DONE").sortable(); // sortable
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 	}); //ready
 </script>
 </c:if>

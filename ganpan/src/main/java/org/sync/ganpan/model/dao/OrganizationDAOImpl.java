@@ -20,6 +20,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public int getJoinedSignBoardCount(String nickName) {
 		return template.selectOne("organization.getJoinedSignBoardCount", nickName);
 	}
+
 	@Override
 	public List<OrganizationVO> getOrganizationSignBoardList(String nickName) {
 		return template.selectList("organization.getOrganizationSignBoardList", nickName);
@@ -64,10 +65,12 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public void leaveOrganization(OrganizationVO ovo) {
 		template.delete("organization.leaveOrganization", ovo);
 	}
+
 	@Override
 	public int groupCheck(OrganizationVO ovo) {
 		return template.selectOne("organization.groupCheck", ovo);
 	}
+
 	@Override
 	public int groupBossCheck(OrganizationVO ovo) {
 		return template.selectOne("organization.groupBossCheck", ovo);
