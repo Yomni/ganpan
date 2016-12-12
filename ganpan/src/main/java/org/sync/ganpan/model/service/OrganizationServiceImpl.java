@@ -113,8 +113,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 			id=organizationDAO.getNickNameByEmail(id);
 		}
 		OrganizationVO ovo=new OrganizationVO(id,signBoardName,bossNickName);
-		System.out.println(ovo);
-		System.out.println(organizationDAO.inviteCheck(ovo));
 		if(organizationDAO.inviteCheck(ovo)==0){//해당 정보의 초대 이력이 초대테이블에 없음(초대 가능)
 			return "ok";
 		}else
