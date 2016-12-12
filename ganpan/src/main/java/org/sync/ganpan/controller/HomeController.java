@@ -3,7 +3,6 @@ package org.sync.ganpan.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -16,8 +15,6 @@ public class HomeController {
 	 * 없으면 
 	 * @PathVariable 적용 메서드가 실행된다 
 	 */
-
-	
 	@RequestMapping("go_{viewName}.do")
 	public String showView(@PathVariable String viewName) {
 		System.out.println("@PathVariable:" + viewName);

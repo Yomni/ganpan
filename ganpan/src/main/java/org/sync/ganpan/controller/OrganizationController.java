@@ -179,7 +179,6 @@ public class OrganizationController {
 		MemberVO workerMemberVO = new MemberVO(workerNickName);
 		SignBoardVO signBoardVO = new SignBoardVO(signBoardName, bossNickName);
 		OrganizationVO ovo = new OrganizationVO(workerMemberVO, signBoardVO);
-		System.out.println("OrganizationController : " + ovo);
 		// 그룹에서 강제퇴장!
 		organizationService.banish(ovo);
 
