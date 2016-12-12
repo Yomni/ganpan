@@ -32,5 +32,7 @@ public interface OrganizationDAO {
 	int groupCheck(OrganizationVO ovo);
 
 	int groupBossCheck(OrganizationVO ovo);
+
+	int inviteCheck(OrganizationVO ovo);
 	
 }// interface GroupDAO

@@ -87,10 +87,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
-	public String groupCheck(OrganizationVO ovo) {
-		int emailCount = memberDAO.emailCheck(ovo.getWorkerMemberVO().getNickName());
+	public String groupCheck(String id, String signBoardName, String bossNickName) {
+		if(id.contains("@")==true){
+			id=organizationDAO.getNickNameByEmail(id);
+		}
+		OrganizationVO ovo=new OrganizationVO(id,signBoardName,bossNickName);
 		int nickNameCount = memberDAO.nickNameCheck(ovo.getWorkerMemberVO().getNickName());
-		if(emailCount == 0 && nickNameCount == 0){
+		if( nickNameCount == 0){
 			return "idfail";
 		}else{
 			int groupCheck = organizationDAO.groupCheck(ovo);
@@ -102,5 +105,17 @@ public class OrganizationServiceImpl implements OrganizationService {
 			}
 		}
 		return "ok";
+	}
+
+	@Override
+	public String inviteCheck(String id, String signBoardName, String bossNickName) {
+		if(id.contains("@")==true){
+			id=organizationDAO.getNickNameByEmail(id);
+		}
+		OrganizationVO ovo=new OrganizationVO(id,signBoardName,bossNickName);
+		if(organizationDAO.inviteCheck(ovo)==0){//해당 정보의 초대 이력이 초대테이블에 없음(초대 가능)
+			return "ok";
+		}else
+			return "fail";
 	}
 }
