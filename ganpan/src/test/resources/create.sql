@@ -89,10 +89,10 @@ CREATE TABLE WORK(
    sign_board_name VARCHAR2(50) NOT NULL,
    boss_nickname VARCHAR2(50) NOT NULL,
    
-   CONSTRAINT fk_work_HAVE_BOARD FOREIGN KEY(board_no, sign_board_name, boss_nickname) 
-   		REFERENCES HAVE_BOARD(board_no, sign_board_name, boss_nickname) ON DELETE CASCADE,
-   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname, sign_board_name, boss_nickname) 
-   		REFERENCES ORGANIZATION(worker_nickname, sign_board_name, boss_nickname)
+   CONSTRAINT fk_work_BOARD_GENRE FOREIGN KEY(board_no) 
+   		REFERENCES BOARD_GENRE(board_no) ON DELETE CASCADE,
+   CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname,sign_board_name, boss_nickname) 
+   		REFERENCES ORGANIZATION(worker_nickname,sign_board_name, boss_nickname)
 );
 
 CREATE TABLE CHANGE_GENRE(
@@ -115,7 +115,9 @@ CREATE TABLE CHANGE_MANAGEMENT(
 );
 
 -- INSERT MEMBER(테스트용 입니다.)
-INSERT INTO MEMBER VALUES('sync','kosta@naver.com', '1234');
+INSERT INTO MEMBER VALUES('sync','test1', '1');
+INSERT INTO MEMBER VALUES('java','test2', '1');
+INSERT INTO MEMBER VALUES('test','test3', '1');
 
 -- INSERT BOARD_GENRE
 INSERT INTO BOARD_GENRE VALUES(1, 'TO_DO');
@@ -127,7 +129,3 @@ INSERT INTO CHANGE_GENRE VALUES(0, '추가');
 INSERT INTO CHANGE_GENRE VALUES(1, '수정');
 INSERT INTO CHANGE_GENRE VALUES(2, '삭제');
 INSERT INTO CHANGE_GENRE VALUES(3, '이동');
-
--- TEST SELECT
-SELECT * FROM MEMBER;
-SELECT * FROM BOARD_GENRE;

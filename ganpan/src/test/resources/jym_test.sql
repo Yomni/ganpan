@@ -1,6 +1,9 @@
 show triggers;
 
 select * from member;
+select * from SIGN_BOARD;
+select * from ORGANIZATION;
+select * from INVITATION_MANAGEMENT;
 
 SELECT count(*), sign_board_name as singBoardName, boss_nickname as bossNickName
 FROM sign_board
@@ -28,3 +31,79 @@ from HAVE_BOARD;
 
 select * from work;
 update work set board_no = 2 where work_no = 3;
+
+DROP TRIGGER sb_signboardname_trigger;
+DROP TRIGGER org_signboardname_trigger;
+DROP TRIGGER sb_bossnickname_trigger;
+DROP TRIGGER org_bossnickname_trigger;
+DROP TRIGGER org_delete_member_trigger;
+
+CREATE OR REPLACE TRIGGER sb_signboardname_trigger
+AFTER UPDATE OF sign_board_name ON sign_board 
+FOR EACH ROW
+BEGIN
+  UPDATE ORGANIZATION
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+  UPDATE INVITATION_MANAGEMENT
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+  UPDATE HAVE_BOARD
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+END;
+
+CREATE OR REPLACE TRIGGER org_signboardname_trigger
+AFTER UPDATE OF sign_board_name ON ORGANIZATION
+FOR EACH ROW
+BEGIN
+  UPDATE WORK
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name;
+END;
+
+CREATE OR REPLACE TRIGGER sb_bossnickname_trigger
+AFTER UPDATE OF boss_nickname ON SIGN_BOARD FOR EACH ROW
+BEGIN
+  UPDATE INVITATION_MANAGEMENT
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+  UPDATE ORGANIZATION
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+  UPDATE HAVE_BOARD
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+END;
+
+CREATE OR REPLACE TRIGGER org_bossnickname_trigger
+AFTER UPDATE OF boss_nickname ON ORGANIZATION FOR EACH ROW
+BEGIN
+  UPDATE WORK
+  SET boss_nickname=:NEW.boss_nickname
+  WHERE boss_nickname=:OLD.boss_nickname;
+END;
+
+-- 회원 탈퇴 시 해당 회원이 가진 간판 삭제 시 work들도 같이 삭제되어야 한다.
+CREATE OR REPLACE TRIGGER org_delete_member_trigger
+AFTER DELETE ON SIGN_BOARD
+FOR EACH ROW
+BEGIN
+	DELETE FROM WORK
+	WHERE sign_board_name = :OLD.sign_board_name
+			and boss_nickname = :OLD.boss_nickname;
+END;
+
+DELETE FROM MEMBER WHERE NICKNAME = 'sync';
+
+update work set worker_nickname = null where boss_nickname = 'sync' and sign_board_name = 'test' and worker_nickname = '1';
+delete from organization where boss_nickname = 'sync' and sign_board_name = 'test' and worker_nickname = '1';
+
+select * from SIGN_BOARD;
+select * from ORGANIZATION;
+select * from HAVE_BOARD;
+select * from work;
+delete from work;
+select  *  from user_triggers;
+
+DELETE FROM WORK;
