@@ -3,6 +3,15 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
+<!--     <script type="text/javascript">
+	    $(document).ready(function(){
+	    	$("#deleteWork").click(function(){ 
+	    		if(confirm("게시물을 삭제하시겠습니까?"))
+	    		location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
+	    	});
+	    });	
+	</script> -->
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -39,6 +48,7 @@
 										<li class="panel panel-info" id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
+												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a>
 												<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
@@ -56,16 +66,17 @@
 														<p>${works.workDetails}</p>
 													</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-default">닫기</button>
+														<button type="button" class="btn btn-default" id="btn btn-default">닫기</button>
+														
 														<button type="button" class="btn btn-primary">수정</button>
-														<button id="deleteImg" type="button" class="btn btn-danger"  onclick="deleteBoard()" >삭제</button>
-														<%-- <button id="deleteImg" class="action"  onclick="deleteBoard()" src="${pageContext.request.contextPath}/img/delete_btn.jpg" >  --%>
+														<button type="button" class="btn btn-danger" id="deleteWork">삭제</button>
 													</div>
 												</div>
 												<!-- /.modal-content -->
 											</div>
 											<!-- /.modal-dialog -->
 											<!-- 여기까지 뺄 것 -->
+						
 										</div>
 									</c:forEach>
 								</ul></td>
@@ -86,34 +97,38 @@
 	3. ajax변경
  -->
 <c:if test="${sessionScope.mvo != null}">
-	<script type="text/javascript">
-		$(function(){
-			var workNo = 0;
-			$("ul li").mouseover(function() {
-				workNo = $(this).find("a").attr("id");
-			});
-			$("#TO_DO").sortable({
-				connectWith:"#DOING",
-				update:function(){
-					// ajax 사용 예정
-				}
-			}); // sortable
-			$("#DOING").sortable({
-				connectWith:"#DONE",
-				update:function(){
-					// ajax 사용 예정
-				}
-			}); // sortable
-			$("#DONE").sortable(); // sortable
+<script type="text/javascript">
+	$(function(){
+		var workNo = 0;
+		$("ul li").mouseover(function() {
+			workNo = $(this).find("a").attr("id");
+		});
+		$("#TO_DO").sortable({
+			connectWith:"#DOING",
+			update:function(){
+				// ajax 사용 예정
+			}
+		}); // sortable
+		$("#DOING").sortable({
+			connectWith:"#DONE",
+			update:function(){
+				// ajax 사용 예정
+			}
+		}); // sortable
+
+		$("#DONE").sortable({
+			connectWith: "#DONE"
+		}); // sortable
+		
+		$("#deleteWork").click(function(){
+			if(confirm("게시물을 삭제하시겠습니까?"))
+				
+	    		/* location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}"; */
+			/* window.location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}"; */
 			
-			$('#${works.workNo}modal').on('shown.bs.modal', function () {
-				alert("test");
-				$('#myInput').focus()
-			});
-			
-			
-			
-			
-		}); //ready
-	</script>
+		});
+		
+		$("#DONE").sortable(); // sortable
+	}); //ready
+</script>
 </c:if>
