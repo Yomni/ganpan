@@ -3,7 +3,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
-<<<<<<< HEAD
 <!--     <script type="text/javascript">
 	    $(document).ready(function(){
 	    	$("#deleteWork").click(function(){ 
@@ -12,8 +11,7 @@
 	    	});
 	    });	
 	</script> -->
-=======
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -50,11 +48,8 @@
 										<li class="panel panel-info" id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-<<<<<<< HEAD
 												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a>
-=======
 												<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 											</div>
 										</li>
 
@@ -72,6 +67,7 @@
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default" id="btn btn-default">닫기</button>
+														
 														<button type="button" class="btn btn-primary">수정</button>
 														<button type="button" class="btn btn-danger" id="deleteWork">삭제</button>
 													</div>
@@ -119,7 +115,7 @@
 				// ajax 사용 예정
 			}
 		}); // sortable
-<<<<<<< HEAD
+
 		$("#DONE").sortable({
 			connectWith: "#DONE"
 		}); // sortable
@@ -132,13 +128,7 @@
 			
 		});
 		
-
-		
-		
-		
-=======
 		$("#DONE").sortable(); // sortable
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 	}); //ready
 </script>
 </c:if>
