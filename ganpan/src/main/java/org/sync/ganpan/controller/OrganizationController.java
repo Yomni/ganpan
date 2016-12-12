@@ -201,6 +201,13 @@ public class OrganizationController {
 		return organizationService.groupCheck(id, signBoardName, bossNickName);
 	}
 
+	/**
+	 * @author 민영,주선
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, value = "inviteCheckAjax.do")
 	@ResponseBody
 	public String inviteCheckAjax(String signBoardName, String bossNickName, String id){
