@@ -86,25 +86,34 @@
 	3. ajax변경
  -->
 <c:if test="${sessionScope.mvo != null}">
-<script type="text/javascript">
-	$(function(){
-		var workNo = 0;
-		$("ul li").mouseover(function() {
-			workNo = $(this).find("a").attr("id");
-		});
-		$("#TO_DO").sortable({
-			connectWith:"#DOING",
-			update:function(){
-				// ajax 사용 예정
-			}
-		}); // sortable
-		$("#DOING").sortable({
-			connectWith:"#DONE",
-			update:function(){
-				// ajax 사용 예정
-			}
-		}); // sortable
-		$("#DONE").sortable(); // sortable
-	}); //ready
-</script>
+	<script type="text/javascript">
+		$(function(){
+			var workNo = 0;
+			$("ul li").mouseover(function() {
+				workNo = $(this).find("a").attr("id");
+			});
+			$("#TO_DO").sortable({
+				connectWith:"#DOING",
+				update:function(){
+					// ajax 사용 예정
+				}
+			}); // sortable
+			$("#DOING").sortable({
+				connectWith:"#DONE",
+				update:function(){
+					// ajax 사용 예정
+				}
+			}); // sortable
+			$("#DONE").sortable(); // sortable
+			
+			$('#${works.workNo}modal').on('shown.bs.modal', function () {
+				alert("test");
+				$('#myInput').focus()
+			});
+			
+			
+			
+			
+		}); //ready
+	</script>
 </c:if>
