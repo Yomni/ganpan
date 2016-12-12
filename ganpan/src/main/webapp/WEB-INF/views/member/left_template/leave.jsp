@@ -7,7 +7,8 @@
 	    <h2 class="panel-title">회원 탈퇴</h2>
 	  </div>
 	  <div class="panel-body" style="text-align: center;">
-	  	<form action="leave.do" class="form-inline" method="post">
+	  	<form action="${pageContext.request.contextPath}/leave.do" class="form-inline" method="post">
+	  		<input type="hidden" value="" />
 	  		<label for="exampleInputName2">비밀번호</label>
 	    	<input type="password" class="form-control" id="password" name="password"/>
  			<button type="submit" class="btn btn-danger">탈퇴하기</button><br>

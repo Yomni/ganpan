@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap> 
  
  	<delete id="deleteInvitationMng" parameterType="invitationMngVO">
-	 	Delete invitation_management 
+	 	DELETE invitation_management 
 	 	WHERE sign_board_name=#{signBoardVO.signBoardName} and boss_nickname=#{signBoardVO.bossMemberVO.nickName} and nickname=#{invitedMemberVO.nickName}
  	</delete>
  	

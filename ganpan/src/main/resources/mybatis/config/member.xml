@@ -40,6 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET e_mail = #{eMail}, password=#{password}
 		WHERE nickname=#{nickName}
 	</update>
+	
+	<delete id="leave">
+		DELETE member
+		WHERE nickname = #{nickName} and password = #{password}
+	</delete>
 </mapper>
 
 
