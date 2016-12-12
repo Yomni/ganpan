@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,13 +68,28 @@ public class WorkController {
 	// public boolean moveWork(String){
 	//
 	// }
-	
+	/**
+	 * 콘텐츠 삭제
+	 * @author 민서
+	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
 		System.out.println("deleteWork.do :" + workNo + bossNickName + signBoardName);
 		workService.deleteWork(workNo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
+	}
+	/**
+	 * 콘텐츠 수정
+	 * @author 민서
+	 */
+	@RequestMapping("updateWork.do")
+	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails){
+		System.out.println("updateWork.do :"  + workNo + workName + workDetails);
+		workService.updateWork(workNo);
+		redirectAttributes.addAttribute("workName", workName);
+		redirectAttributes.addAttribute("workDetails", workDetails);
 		return "redirect:showSignBoard.do";
 	}
 }

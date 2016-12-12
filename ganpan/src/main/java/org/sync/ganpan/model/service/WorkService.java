@@ -8,5 +8,6 @@ public interface WorkService {
 	int updateWorkerToNull(OrganizationVO ovo);
 	void createWork(WorkVO wvo);
 	void deleteWork(int workNo);
+	void updateWork(int workNo);
 
 }

@@ -34,7 +34,10 @@ public class WorkDAOImpl implements WorkDAO {
 	public void deleteWork(int workNo) {
 		template.insert("work.deleteWork",workNo);
 	}
-	
+	@Override
+	public void updateWork(int workNo) {
+		template.insert("work.updateWork",workNo);
+	}
 
 }//class WorkDAOImpl
 

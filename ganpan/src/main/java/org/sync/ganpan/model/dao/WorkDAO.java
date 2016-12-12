@@ -16,5 +16,7 @@ public interface WorkDAO {
 
 	void deleteWork(int workNo);
 
+	void updateWork(int workNo);
+
 	
 }//interface WorkDAO

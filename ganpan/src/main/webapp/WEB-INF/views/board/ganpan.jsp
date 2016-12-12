@@ -48,7 +48,7 @@
 										<li class="panel panel-info" id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
-												<a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a>
+												<%-- <a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a> --%>
 												<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
 											</div>
 										</li>
@@ -66,10 +66,10 @@
 														<p>${works.workDetails}</p>
 													</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-default" id="btn btn-default">닫기</button>
+														<button type="button" class="btn btn-default" id="btn btn-default" data-dismiss="modal">닫기</button>
 														
-														<button type="button" class="btn btn-primary">수정</button>
-														<button type="button" class="btn btn-danger" id="deleteWork">삭제</button>
+														<button type="button" class="btn btn-primary" id="updateWork">수정</button>
+														<button type="button" class="btn btn-danger" id="deleteWork" >삭제</button>
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -119,15 +119,22 @@
 		$("#DONE").sortable({
 			connectWith: "#DONE"
 		}); // sortable
+		$("#${works.workNo}modal").modal('toggle');
 		
-		$("#deleteWork").click(function(){
+		 $("#deleteWork").click(function(){ 
+			/* $('#myModal').modal(options){ */
 			if(confirm("게시물을 삭제하시겠습니까?"))
-				
-	    		/* location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}"; */
-			/* window.location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}"; */
+	    	 location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}"; 
+			/*  window.location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}"; */ 
 			
 		});
-		
+	 $("#updateWork").click(function(){ 
+
+			if(confirm("게시물을 수정하시겠습니까?"))
+	    	 location.href="${pageContext.request.contextPath}/updateWork.do?command=update&workNo=${requestScope.wvo.workNo}"; 
+
+			
+		});
 		$("#DONE").sortable(); // sortable
 	}); //ready
 </script>

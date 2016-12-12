@@ -29,5 +29,8 @@ public class WorkServiceImpl implements WorkService {
 	public void deleteWork(int workNo) {
 		workDAO.deleteWork(workNo);
 	}
-
+	@Override
+	public void updateWork(int workNo) {
+		workDAO.updateWork(workNo);
+	}
 }//class WorkServiceImpl
