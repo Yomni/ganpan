@@ -4,7 +4,7 @@
 
 <body class="subpage">
 
-<div class="col-md-8 col-md-offset-2 main">
+<div class="col-md-8 col-md-offset-4">
 	<div id="page-wrapper">
 		<!-- Content -->
 		<div id="content-wrapper">
@@ -14,7 +14,7 @@
 						<div class="3u 12u(mobile)"></div>
 						<div class="9u 12u(mobile) important(mobile)">
 							<!-- Main Content -->
-							<section>
+							<section  class="col-md-6">
 								<form id="updateSignBoardNameForm" action="${pageContext.request.contextPath}/updateSignBoardName.do">
 									<input type="hidden" name="signBoardName" value="${svo.signBoardName}" />
 									<input type="hidden" name="bossNickName" value="${svo.bossMemberVO.nickName}" />
@@ -44,9 +44,11 @@
 								  		  <h3 class="panel-title">간판의 공개 범위를 설정합니다</h3>
 								 		 </div>
 								  		<div class="panel-body">
-											간판 공개<br><input type="radio" name="visibility" value="public" />
+								  			<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+											<input type="radio" name="visibility" value="public" /> 간판 공개 :
 											누구나 간판을 볼 수 있습니다.<br>
-											간판 비공개<br><input type="radio" name="visibility" value="private"/>
+											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+											<input type="radio" name="visibility" value="private"/> 간판 비공개 : 
 											그룹원만 볼 수 있습니다.<br>
 											<input type="submit" class="btn btn-default btn-success btn-block" id="changeVisibilityBtn" value="설정 완료" />
 										</div>
@@ -63,7 +65,7 @@
 								  		<div class="panel-body">
 											<input type="text" class="form-control" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
 											<h4><span id="groupCheckView"></span><br></h4>
-											<input type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn" value="위임하기" /><br>
+											<input type="submit" class="btn btn-success btn-block" id="changeTitleBtn" value="위임" /><br>
 										</div>
 									</div>
 								</form><br>
@@ -76,10 +78,12 @@
 								  		  <h3 class="panel-title">간판을 삭제합니다!</h3>
 								 		 </div>
 								  		<div class="panel-body">
-											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-											주의)  해당 이력과 모든 정보가 사라집니다
 											
-											<input type="submit" class="btn btn-danger btn-default" id="deleteGanpanBtn" value="간판 삭제" />
+											주의)  해당 이력과 모든 정보가 사라집니다
+											&nbsp;
+											<button type="submit" class="btn btn-sm btn-danger" id="deleteGanpanBtn" value="간판 삭제" >
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											</button>
 										</div>
 									</div>
 								</form>
