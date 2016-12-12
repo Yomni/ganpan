@@ -67,10 +67,7 @@ public class OrganizationController {
 	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
 			String id, String type) {
 		// id는 이메일이나 닉네임
-		System.out.println("inviteWorker:signBoardName: " + signBoardName);
-		System.out.println("inviteWorker:email: " + type);
-		System.out.println("inviteWorker:email: " + type);
-		System.out.println("inviteWorker:email: " + type);
+		System.out.println("inviteWorker: " + type);
 		if (type.equals("email")) {
 			id = organizationService.getNickNameByEmail(id);
 			System.out.println("inviteWorker:email: " + type);
@@ -171,6 +168,11 @@ public class OrganizationController {
 		return mv;
 	}
 
+	/**
+	 * @author 동혁
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("banish.do")
 	public String banish(HttpServletRequest request) {
 		String workerNickName = request.getParameter("workerNickName");
@@ -186,11 +188,24 @@ public class OrganizationController {
 		return "redirect:goManageSignBoardMember.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
 	}
 	
+	/**
+	 * @author 주선
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, value = "groupCheckAjax.do")
 	@ResponseBody
-	public String groupCheckAjax(String signBoardName, String bossNickName, String changeBossNickName) {
-		OrganizationVO ovo = new OrganizationVO(changeBossNickName, signBoardName, bossNickName);
-		return organizationService.groupCheck(ovo);
+	public String groupCheckAjax(String signBoardName, String bossNickName, String id) {
+		return organizationService.groupCheck(id, signBoardName, bossNickName);
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = "inviteCheckAjax.do")
+	@ResponseBody
+	public String inviteCheckAjax(String signBoardName, String bossNickName, String id){
+		return organizationService.inviteCheck(id, signBoardName, bossNickName);
+	}
+	
+	
 }// class OrganizationController

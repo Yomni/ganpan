@@ -5,12 +5,11 @@
 		<div class="row">
 			<h2>조원으로 초대할 회원의 별명이나 전자우편 주소로 초대해주세요.</h2>
 			<form method="post" action="${pageContext.request.contextPath}/inviteWorker.do" name="inviteForm">
-				<input type="hidden" value="${svo.signBoardName}" name="signBoardName"> <input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName"> <input type="hidden" id="value" value="nickName" name="type">
+				<input type="hidden" value="${svo.signBoardName}" name="signBoardName"> 
+				<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName"> 
+				<input type="hidden" id="value" value="email" name="type">
 				<div class="form-group">
-					<h4>
-						<span id="memberCheckView"></span>
-					</h4>
-						<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required" />
+					<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required" />
 					<h4>
 						<span id="idCheckView"></span>
 					</h4>
@@ -35,7 +34,8 @@
 							<td>${MList.NICKNAME}</td>
 							<td>${MList.EMAIL}</td>
 							<td>${MList.INVITATIONDATE}</td>
-							<td><%-- <input type="button" id="cancel${status.count}" value="초대 취소" /> --%>
+							<td>
+								<%-- <input type="button" id="cancel${status.count}" value="초대 취소" /> --%>
 								<button type="button" class="btn btn-sm btn-danger" id="cancel${status.count}" value="초대 취소" aria-label="Left Align">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</button>
@@ -49,58 +49,62 @@
 </div>
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#invitationBtn").click(function() {
-							//email형식일때와 닉네임일 때 구분해서 hidden값으로 controller에 넘겨줌
-							var id = document.inviteForm.id;
-							if (id.value.indexOf('@') == -1) {
-								$("#value").val("nickName");
-							}
-						});
-						<c:forEach items="${MList}" varStatus="status">
-						$("#cancel${status.count}")
-								.click(
-										function() {
-											var workerNickName = $(
-													"#inviteTable tr:eq(${status.count}) td:eq(0)")
-													.text();
-											location.href = "${pageContext.request.contextPath}/cancelInvitation.do?signBoardName=${svo.signBoardName}&nickName="
-													+ workerNickName
-													+ "&bossNickName=${svo.bossMemberVO.nickName}";
-										});
-						</c:forEach>
+	$(document).ready(function(){
+		$("#invitationBtn").click(function() {
+		//email형식일때와 닉네임일 때 구분해서 hidden값으로 controller에 넘겨줌
+			var id = document.inviteForm.id;
+			if (id.value.indexOf('@') == -1) {
+				$("#value").val("nickName");
+			}
+			if(checkResultGroup=="")
+				return false;
+		});
+		<c:forEach items="${MList}" varStatus="status">
+			$("#cancel${status.count}").click(function(){
+				var workerNickName = $("#inviteTable tr:eq(${status.count}) td:eq(0)").text();
+				location.href = "${pageContext.request.contextPath}/cancelInvitation.do?signBoardName=${svo.signBoardName}&nickName="
+								+ workerNickName+ "&bossNickName=${svo.bossMemberVO.nickName}"					
+			});
+		</c:forEach>
 
-						var checkResultId = false;
-						$("#id")
-								.keyup(
-										function() {
-											var id = $(this).val().trim();
-											$
-													.ajax({
-														type : "POST",
-														url : "${pageContext.request.contextPath}/idCheckAjax.do",
-														data : "id=" + id,
-														success : function(flag) {
-															if (flag == false) {
-																// 중복된 사람이 있다.
-																checkResultId = true;
-																$(
-																		"#idCheckView")
-																		.html(
-																				"");
-															} else {
-																checkResultId = false;
-																$(
-																		"#idCheckView")
-																		.html(
-																				"<div class='alert alert-danger' role='alert'>"
-																						+ "존재하지 않는 사용자입니다."
-																						+ "</div>");
-															}
-														}//callback			
-													});//ajax
-										});//keyup
-					});//ready
+        var checkResultGroup="";
+        $("#id").keyup(function(){
+        	var id = $(this).val().trim();
+           $.ajax({
+              type:"POST",
+              url:"${pageContext.request.contextPath}/groupCheckAjax.do",            
+              data:"id="+id+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
+              success:function(data){   
+                 if(data=="idfail"){//회원 테이블에 존재하지 않는 경우
+                    $("#idCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");
+                    checkResultGroup="";
+                 }else if(data=="groupfail"){//그룹에 있는 회원이 아닌 경우
+                    $("#idCheckView").html("초대 가능합니다").css("color","green"); 
+                    checkResultGroup="group";
+                 }else if(data=="groupbossfail"){//그룹장이 자신을 초대한 경우
+                    $("#idCheckView").html("자신에게 초대할 수 없습니다!").css("color", "red");
+                    checkResultGroup="";
+                 }else{
+                    checkResultGroup="";
+                    $("#idCheckView").html("이미 조에 속해있는 회원입니다!").css("color", "red");     
+                 }               
+              }//callback         
+           });//ajax
+           $.ajax({
+        	   // 이미 초대 된 회원인지 확인(invitation table)
+               type:"POST",
+               url:"${pageContext.request.contextPath}/inviteCheckAjax.do",            
+               data:"id="+id+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
+               success:function(data){   
+                  if(data=="fail"){
+                     $("#idCheckView").html("이미 초대 된 회원입니다!").css("color", "red");
+                     checkResultGroup="";
+                  }else{
+                	  $("#idCheckView").html("초대 가능합니다!").css("color", "green");
+                  }         
+               }//callback         
+            });//ajax
+        });//keyup
+        
+	});//ready
 </script>
