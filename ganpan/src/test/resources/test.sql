@@ -310,6 +310,11 @@ SELECT count(*)
 FROM organization
 WHERE boss_nickname = 'ㅈㅅ' and sign_board_name = 'kosta1꺼' and worker_nickname = 'kosta1'
  
+
+UPDATE sign_board
+SET boss_nickname = 'sync'
+WHERE sign_board_name = 'test' and boss_nickname = 'test'
+
 SELECT * FROM member;
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;

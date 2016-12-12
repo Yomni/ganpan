@@ -61,7 +61,7 @@
 								  		  <h3 class="panel-title">간판의 조장을 위임합니다</h3>
 								 		 </div>
 								  		<div class="panel-body">
-											<input type="text" class="form-control" name="changeBossNickName" id="changeBossNickName" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
+											<input type="text" class="form-control" name="id" id="id" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
 											<h4><span id="groupCheckView"></span><br></h4>
 											<input type="submit" class="btn btn-default btn-success btn-block" id="changeTitleBtn" value="위임하기" /><br>
 										</div>
@@ -120,7 +120,7 @@
 			}); // submit
 			
 			$("#updateSignBoardBossForm").submit(function(){
-				if($(":input[name=changeBossNickName]").val().trim()==""){
+				if($(":input[name=id]").val().trim()==""){
 					alert("위임하실 그룹원을 입력하세요!");
 					return false;
 				}
@@ -156,12 +156,12 @@
 			});//keyup
 
 			var checkResultGroup="";
-	      $(":input[name=changeBossNickName]").keyup(function(){
-				var changeBossNickName=$(this).val().trim();
+	      $(":input[name=id]").keyup(function(){
+				var id=$(this).val().trim();
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/groupCheckAjax.do",				
-					data:"changeBossNickName="+changeBossNickName+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
+					data:"id="+id+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
 					success:function(data){	
 						if(data=="idfail"){
 							$("#groupCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.MemberVO;
@@ -27,6 +28,8 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class SignBoardController {
 	@Resource
 	SignBoardService signBoardService;
+	@Resource
+	OrganizationService organizationService;
 
 	/**
 	 * 칸반 검색
@@ -227,11 +230,14 @@ public class SignBoardController {
 	}
 	
 	@RequestMapping("updateSignBoardBoss.do")
-	public String updateSignBoardBoss(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String changeBossNickName){
-		OrganizationVO ovo = new OrganizationVO(changeBossNickName, signBoardName, bossNickName);
+	public String updateSignBoardBoss(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id){
+		if(id.contains("@")==true){
+			id=organizationService.getNickNameByEmail(id);
+		}
+		OrganizationVO ovo = new OrganizationVO(id, signBoardName, bossNickName);
 		signBoardService.updateSignBoardBoss(ovo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
-		redirectAttributes.addAttribute("bossNickName", changeBossNickName);
+		redirectAttributes.addAttribute("bossNickName", id);
 		return "redirect:showSignBoard.do";
 	}
 	

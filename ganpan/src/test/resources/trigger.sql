@@ -18,7 +18,6 @@ BEGIN
   UPDATE HAVE_BOARD
   SET sign_board_name=:NEW.sign_board_name
   WHERE sign_board_name=:OLD.sign_board_name;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 END;
 
 -- WORK는 직접적으로 SIGN_BOARD와는 관계 맺지 않기 때문에 따로 트리거 생성
