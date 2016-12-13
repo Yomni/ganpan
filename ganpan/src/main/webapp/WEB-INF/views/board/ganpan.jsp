@@ -66,22 +66,16 @@
 														<p>${works.workDetails}</p>
 													</div>
 													<div class="modal-footer">
-<<<<<<< HEAD
-														<button type="button" class="btn btn-default" id="btn btn-default" data-dismiss="modal">닫기</button>
-=======
 														<button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-														
-<<<<<<< HEAD
+
 														<button type="button" class="btn btn-primary" id="updateWork">수정</button>
-														<button type="button" class="btn btn-danger" id="deleteWork" >삭제</button>
-=======
-														<button type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+														<!-- <button type="button" class="btn btn-danger" id="deleteWork" >삭제</button> -->
+
 														<!-- <button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteWork">삭제</button> -->
 														<button type="button" class="btn btn-danger" data-dismiss="modal"  
 														onclick="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}
 														&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}">삭제</button>
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -133,19 +127,20 @@
 		}); // sortable
 		$("#${works.workNo}modal").modal('toggle');
 		
-<<<<<<< HEAD
+
 		 $("#deleteWork").click(function(){ 
 			/* $('#myModal').modal(options){ */
 			if(confirm("게시물을 삭제하시겠습니까?"))
-	    	 location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}"; 
-			/*  window.location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}"; */ 
-=======
+	    	 /* location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";  */
+	    	 alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}");
+			 window.location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
+
 		//$("#${works.workNo}modal").modal('toggle');
 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 			
 		});
-<<<<<<< HEAD
+
 	 $("#updateWork").click(function(){ 
 
 			if(confirm("게시물을 수정하시겠습니까?"))
@@ -153,7 +148,7 @@
 
 			
 		});
-=======
+
 		
 		/* $("#deleteWork").click(function(){
 			if(confirm("게시물을 삭제하시겠습니까?"))
@@ -161,9 +156,7 @@
 				window.location="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
 		}); */
 		
-		
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-		$("#DONE").sortable(); // sortable
+		$("#DONE").sortable() // sortable
 	}); //ready
 </script>
 </c:if>

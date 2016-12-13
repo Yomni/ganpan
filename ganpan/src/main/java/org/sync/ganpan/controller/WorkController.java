@@ -70,7 +70,7 @@ public class WorkController {
 	// }
 	/**
 	 * 콘텐츠 삭제
-	 * @author 민서
+	 * @author 민서,동혁
 	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
@@ -82,7 +82,7 @@ public class WorkController {
 	}
 	/**
 	 * 콘텐츠 수정
-	 * @author 민서
+	 * @author 민서,동혁
 	 */
 	@RequestMapping("updateWork.do")
 	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails){
@@ -92,4 +92,9 @@ public class WorkController {
 		redirectAttributes.addAttribute("workDetails", workDetails);
 		return "redirect:showSignBoard.do";
 	}
+	/**
+	 * 콘텐츠 작업자로 참여
+	 * @author 민서
+	 */
+
 }
