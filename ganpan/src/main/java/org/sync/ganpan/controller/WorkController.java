@@ -51,7 +51,6 @@ public class WorkController {
 		wvo.setOrganizationVO(
 				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
-		System.out.println(wvo);
 		// 한글 적용 ... redirect는 별도의 인코딩 작업이 필요하다.
 		try {
 			signBoardName = URLEncoder.encode(signBoardName, "utf-8");
