@@ -4,13 +4,13 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
 <!--     <script type="text/javascript">
-	    $(document).ready(function(){
-	    	$("#deleteWork").click(function(){ 
-	    		if(confirm("게시물을 삭제하시겠습니까?"))
-	    		location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-	    	});
-	    });	
-	</script> -->
+       $(document).ready(function(){
+          $("#deleteWork").click(function(){ 
+             if(confirm("게시물을 삭제하시겠습니까?"))
+             location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
+          });
+       });   
+   </script> -->
 
 <div class="container">
 	<div class="row">
@@ -49,10 +49,18 @@
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
 												<%-- <a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a> --%>
-												<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
+												<c:choose>
+												<c:when test="${works.organizationVO.workerMemberVO.nickName == null}">
+													<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
+												</c:when>
+												<c:otherwise>
+													<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
+												</c:otherwise>
+												</c:choose>
 											</div>
 										</li>
 
+<<<<<<< HEAD
 										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -92,16 +100,60 @@
 		<!-- col-md-10 col-md-offset-1 -->
 	</div>
 	<!-- row -->
+=======
+                              <div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                          </button>
+                                          <h4 class="modal-title">${works.workName}</h4>
+                                       </div>
+                                       <div class="modal-body">
+                                          <p>${works.workDetails}</p>
+                                       </div>
+                                       <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
+                                          
+                                          <button type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+                                          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteWork">삭제</button> -->
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal"  
+                                          onclick="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}
+                                          &bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}">삭제</button>
+                                       </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                 </div>
+                                 <!-- /.modal-dialog -->
+                                 <!-- 여기까지 뺄 것 -->
+                  
+                              </div>
+                           </c:forEach>
+                        </ul></td>
+                  </c:forEach>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <!-- col-md-10 col-md-offset-1 -->
+   </div>
+   <!-- row -->
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 </div>
 <!-- container -->
 
 <!-- 
-	1. sortable
-	2. drag & drop
-	3. ajax변경
+   1. sortable
+   2. drag & drop
+   3. ajax변경
  -->
 <c:if test="${sessionScope.mvo != null}">
+<<<<<<< HEAD
    <script type="text/javascript">
+=======
+<script type="text/javascript">
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
    $(function(){
       var workNo = 0;
       $("ul li").mouseover(function() {
@@ -126,6 +178,7 @@
       
       //$("#${works.workNo}modal").modal('toggle');
       $("#${works.workNo}modal").on("hidden.bs.modal", function(event){
+<<<<<<< HEAD
          $(this).removeData();
       });
       
@@ -142,6 +195,24 @@
        });  */
       
       $("#DONE").sortable(); // sortable
+=======
+         
+      });
+      
+      /* $("#deleteWork").click(function(){
+         if(confirm("게시물을 삭제하시겠습니까?"))
+             //location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
+            window.location="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
+      }); */
+      
+      
+      $("#DONE").sortable(); // sortable
+      
+      
+      $("ul li div.panel-body button").click(function(){
+         location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
+      });
+>>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
    }); //ready
 </script>
 </c:if>

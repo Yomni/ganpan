@@ -312,8 +312,8 @@ WHERE boss_nickname = 'ㅈㅅ' and sign_board_name = 'kosta1꺼' and worker_nick
  
 
 UPDATE sign_board
-SET boss_nickname = 'sync'
-WHERE sign_board_name = 'test' and boss_nickname = 'test'
+SET boss_nickname = '주선'
+WHERE sign_board_name = 'java꺼' and boss_nickname = 'sync'
 
 SELECT * FROM member;
 SELECT * FROM sign_board;

@@ -97,11 +97,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 			return "idfail";
 		}else{
 			int groupCheck = organizationDAO.groupCheck(ovo);
-			int groupBossCheck = organizationDAO.groupBossCheck(ovo);
-			if(groupCheck == 0){
+			int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
+			if(groupCheck == 0){ // 그룹에 속한 회원이 없을 때
 				return "groupfail";
-			}else if(groupBossCheck == 1){
+			}else if(id.equals(bossNickName)){ // 그룹장 별명과 입력받은 아이디가 같을 때
 				return "groupbossfail";
+			}else if(workerSignBoardNameCheck == 1){ // 그룹원 중에 해당 칸반 이름과 동일한 칸반을 가지고 있을 때
+				return "workersignboardfail";
 			}
 		}
 		return "ok";

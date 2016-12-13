@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.MemberService;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
@@ -37,10 +38,11 @@ public class MemberController {
 	 * @param mvo
 	 */
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	public String registerMember(MemberVO mvo, HttpSession session) {
+	public String registerMember(RedirectAttributes redirectAttributes, MemberVO mvo, HttpSession session) {
 		memberService.registerMember(mvo);
 		session.setAttribute("mvo", mvo);
-		return "redirect:registerResultView.do?nickName=" + mvo.getNickName();
+		redirectAttributes.addAttribute("nickName", mvo.getNickName());
+		return "redirect:registerResultView.do";
 	}
 
 	/**
@@ -195,8 +197,7 @@ public class MemberController {
 	public String leave(HttpSession session, String password) {
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		String nickName = mvo.getNickName();
-		int count = memberService.leave(nickName, password);
-		if(count == 0){
+		if(memberService.leave(nickName, password) == 0){
 			return "redirect:go_member/left_template/leave_fail.do";
 		}else{
 			session.invalidate();

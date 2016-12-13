@@ -75,15 +75,18 @@
               url:"${pageContext.request.contextPath}/groupCheckAjax.do",            
               data:"id="+id+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
               success:function(data){   
-                 if(data=="idfail"){//회원 테이블에 존재하지 않는 경우
+                 if(data=="idfail"){// 회원 테이블에 존재하지 않는 경우
                     $("#idCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");
                     checkResultGroup="";
-                 }else if(data=="groupfail"){//그룹에 있는 회원이 아닌 경우
+                 }else if(data=="groupfail"){// 그룹에 있는 회원이 아닌 경우
                     $("#idCheckView").html("초대 가능합니다").css("color","green"); 
                     checkResultGroup="group";
-                 }else if(data=="groupbossfail"){//그룹장이 자신을 초대한 경우
+                 }else if(data=="groupbossfail"){// 그룹장이 자신을 초대한 경우
                     $("#idCheckView").html("자신에게 초대할 수 없습니다!").css("color", "red");
                     checkResultGroup="";
+                 }else if(data=="workersignboardfail"){ 
+                     $("#idCheckView").html("초대 가능합니다").css("color", "green");
+                     checkResultGroup="";
                  }else{
                     checkResultGroup="";
                     $("#idCheckView").html("이미 조에 속해있는 회원입니다!").css("color", "red");     
@@ -99,9 +102,7 @@
                   if(data=="fail"){
                      $("#idCheckView").html("이미 초대 된 회원입니다!").css("color", "red");
                      checkResultGroup="";
-                  }else{
-                	  $("#idCheckView").html("초대 가능합니다!").css("color", "green");
-                  }         
+                  }       
                }//callback         
             });//ajax
         });//keyup

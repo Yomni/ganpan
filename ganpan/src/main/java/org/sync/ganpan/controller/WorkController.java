@@ -1,8 +1,5 @@
 package org.sync.ganpan.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -47,20 +44,14 @@ public class WorkController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createWork.do")
-	public ModelAndView createWork(WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
-		ModelAndView mv = new ModelAndView();
+	public String createWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
 		wvo.setOrganizationVO(
 				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
-		System.out.println(wvo);
-		// 한글 적용 ... redirect는 별도의 인코딩 작업이 필요하다.
-		try {
-			signBoardName = URLEncoder.encode(signBoardName, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		mv.setViewName("redirect:showSignBoard.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName);
-		return mv;
+
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
 	}
 
 	// @RequestMapping(method = RequestMethod.POST, value="moveWork.do")
@@ -68,9 +59,10 @@ public class WorkController {
 	// public boolean moveWork(String){
 	//
 	// }
+	
 	/**
-	 * 콘텐츠 삭제
-	 * @author 민서,동혁
+	 * 회원 탈퇴
+	 * @author 주선
 	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
@@ -93,7 +85,13 @@ public class WorkController {
 	}
 	/**
 	 * 콘텐츠 작업자로 참여
-	 * @author 민서
+	 * @author 주선, 민영
 	 */
-
+	@RequestMapping("joinAsWorkerByWorkNo.do")
+	public String joinAsWorkerByWorkNo(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String workNo, String nickName){
+		workService.joinAsWorkerByWorkNo(workNo, nickName);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
+	}
 }
