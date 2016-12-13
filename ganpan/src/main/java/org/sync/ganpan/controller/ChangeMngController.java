@@ -16,11 +16,6 @@ public class ChangeMngController {
 		System.out.println("ChangeMngController의 signBaordName 값 : "+signBoardName);
 		System.out.println("ChangeMngController의 bossNickName 값 : "+bossNickName);
 		
-		
 		return "board/change_mng";
 	}
-	
-	
-	
-	
 }//class ChangeMngController
