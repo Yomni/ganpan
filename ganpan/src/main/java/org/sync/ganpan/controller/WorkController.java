@@ -74,7 +74,6 @@ public class WorkController {
 	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
-		System.out.println("deleteWork.do :" + workNo + bossNickName + signBoardName);
 		workService.deleteWork(workNo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);

@@ -72,9 +72,7 @@
 														<!-- <button type="button" class="btn btn-danger" id="deleteWork" >삭제</button> -->
 
 														<!-- <button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteWork">삭제</button> -->
-														<button type="button" class="btn btn-danger" data-dismiss="modal"  
-														onclick="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}
-														&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}">삭제</button>
+														<button type="button" class="btn btn-danger" data-dismiss="modal"  id="deleteBtn">삭제</button>
 
 													</div>
 												</div>
@@ -103,60 +101,47 @@
 	3. ajax변경
  -->
 <c:if test="${sessionScope.mvo != null}">
-<script type="text/javascript">
-	$(function(){
-		var workNo = 0;
-		$("ul li").mouseover(function() {
-			workNo = $(this).find("a").attr("id");
-		});
-		$("#TO_DO").sortable({
-			connectWith:"#DOING",
-			update:function(){
-				// ajax 사용 예정
-			}
-		}); // sortable
-		$("#DOING").sortable({
-			connectWith:"#DONE",
-			update:function(){
-				// ajax 사용 예정
-			}
-		}); // sortable
+   <script type="text/javascript">
+   $(function(){
+      var workNo = 0;
+      $("ul li").mouseover(function() {
+         workNo = $(this).find("a").attr("id");
+      });
+      $("#TO_DO").sortable({
+         connectWith:"#DOING",
+         update:function(){
+            // ajax 사용 예정
+         }
+      }); // sortable
+      $("#DOING").sortable({
+         connectWith:"#DONE",
+         update:function(){
+            // ajax 사용 예정
+         }
+      }); // sortable
 
-		$("#DONE").sortable({
-			connectWith: "#DONE"
-		}); // sortable
-		$("#${works.workNo}modal").modal('toggle');
-		
-
-		 $("#deleteWork").click(function(){ 
-			/* $('#myModal').modal(options){ */
-			if(confirm("게시물을 삭제하시겠습니까?"))
-	    	 /* location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";  */
-	    	 alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}");
-			 window.location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
-
-		//$("#${works.workNo}modal").modal('toggle');
-		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-
-			
-		});
-
-	 $("#updateWork").click(function(){ 
-
-			if(confirm("게시물을 수정하시겠습니까?"))
-	    	 location.href="${pageContext.request.contextPath}/updateWork.do?command=update&workNo=${requestScope.wvo.workNo}"; 
-
-			
-		});
-
-		
-		/* $("#deleteWork").click(function(){
-			if(confirm("게시물을 삭제하시겠습니까?"))
-	    		//location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-				window.location="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
-		}); */
-		
-		$("#DONE").sortable() // sortable
-	}); //ready
+      $("#DONE").sortable({
+         connectWith: "#DONE"
+      }); // sortable
+      
+      //$("#${works.workNo}modal").modal('toggle');
+      $("#${works.workNo}modal").on("hidden.bs.modal", function(event){
+         $(this).removeData();
+      });
+      
+      $("#deleteBtn").click(function(){
+         if(confirm("게시물을 삭제하시겠습니까?"))
+             /* alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo); */
+             location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
+      }); 
+      
+/*       $("#updateWork").click(function(){
+          if(confirm("게시물을 수정하시겠습니까?"))
+      
+              location.href="${pageContext.request.contextPath}/updateWork.do?workName=${rsvo.workName}&workDetails=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
+       });  */
+      
+      $("#DONE").sortable(); // sortable
+   }); //ready
 </script>
 </c:if>
