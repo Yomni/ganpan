@@ -51,7 +51,7 @@
 												<%-- <a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a> --%>
 												<c:choose>
 												<c:when test="${works.organizationVO.workerMemberVO.nickName == null}">
-													<button class="btn btn-danger btn-sm" id="${works.workNo}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"/>작업자로 참여</button>
+													<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
 												</c:when>
 												<c:otherwise>
 													<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>

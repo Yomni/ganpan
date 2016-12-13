@@ -46,20 +46,13 @@ public class WorkController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createWork.do")
-	public ModelAndView createWork(WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
-		ModelAndView mv = new ModelAndView();
+	public String createWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
 		wvo.setOrganizationVO(
 				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
-		System.out.println(wvo);
-		// 한글 적용 ... redirect는 별도의 인코딩 작업이 필요하다.
-		try {
-			signBoardName = URLEncoder.encode(signBoardName, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		mv.setViewName("redirect:showSignBoard.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName);
-		return mv;
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
 	}
 
 	// @RequestMapping(method = RequestMethod.POST, value="moveWork.do")
