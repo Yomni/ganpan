@@ -76,4 +76,4 @@ insert into organization values('kosta6','kosta1','ganpan1');
 
 select * from change_genre;
 select * from member;
-
+select * from sign_board;

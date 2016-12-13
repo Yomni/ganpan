@@ -1,8 +1,5 @@
 package org.sync.ganpan.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
