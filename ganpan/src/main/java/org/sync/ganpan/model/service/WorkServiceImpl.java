@@ -29,5 +29,11 @@ public class WorkServiceImpl implements WorkService {
 	public void deleteWork(int workNo) {
 		workDAO.deleteWork(workNo);
 	}
+	@Override
+	public void joinAsWorkerByWorkNo(String workNo, String nickName) {
+		int workNo2 = Integer.parseInt(workNo);
+		WorkVO wvo = new WorkVO(workNo2, nickName);
+		workDAO.joinAsWorkerByWorkNo(wvo);
+	}
 
 }//class WorkServiceImpl

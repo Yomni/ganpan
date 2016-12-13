@@ -68,10 +68,26 @@ public class WorkController {
 	//
 	// }
 	
+	/**
+	 * 회원 탈퇴
+	 * @author 주선
+	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
 		System.out.println("deleteWork.do :" + workNo + bossNickName + signBoardName);
 		workService.deleteWork(workNo);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
+		return "redirect:showSignBoard.do";
+	}
+	
+	/**
+	 * 콘텐츠 작업자로 참여
+	 * @author 주선, 민영
+	 */
+	@RequestMapping("joinAsWorkerByWorkNo.do")
+	public String joinAsWorkerByWorkNo(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String workNo, String nickName){
+		workService.joinAsWorkerByWorkNo(workNo, nickName);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";

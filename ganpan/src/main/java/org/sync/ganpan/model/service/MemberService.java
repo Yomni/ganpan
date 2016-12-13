@@ -13,5 +13,6 @@ public interface MemberService {
 	MemberVO findMemberByNickName(String nickName);
 	int updateMember(MemberVO mvo);
 	int idCheck(String id);
+	int leave(String nickName, String password);
 
 }

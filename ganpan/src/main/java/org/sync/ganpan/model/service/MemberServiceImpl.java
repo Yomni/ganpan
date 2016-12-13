@@ -1,16 +1,22 @@
 package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 //github.com/Yomni/ganpan.git
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.sync.ganpan.model.dao.MemberDAO;
+import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 
 /**
  * Member의 Business layer를 위한 ServiceClass
+ * 
  * @author JYM
  *
  */
@@ -18,6 +24,8 @@ import org.sync.ganpan.model.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 	@Resource
 	private MemberDAO memberDAO;
+	@Resource
+	private WorkDAO workDAO;
 
 	public void registerMember(MemberVO mvo) {
 		memberDAO.registerMember(mvo);
@@ -50,9 +58,20 @@ public class MemberServiceImpl implements MemberService {
 	public int idCheck(String id) {
 		int emailCount = memberDAO.emailCheck(id);
 		int nickNameCount = memberDAO.nickNameCheck(id);
-		if(emailCount == 0 && nickNameCount == 0)
+		if (emailCount == 0 && nickNameCount == 0)
 			return 0;
 		else
 			return 1;
+	}
+
+	@Override
+	@Transactional
+	public int leave(String nickName, String password) {
+		MemberVO mvo = new MemberVO(nickName, password);
+		// 1. 닉네임을 받아서 work table에서 닉네임과 일치하는 것들 모두 수정
+		// 2. member table에서 닉네임 delete
+		// 3. transaction 처리
+		workDAO.updateWorkerToNullByNickName(nickName);
+		return memberDAO.leave(mvo);
 	}
 }

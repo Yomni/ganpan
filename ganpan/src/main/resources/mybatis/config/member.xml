@@ -12,6 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="eMail" column="e_mail"/>
 		<result property="password" column="password"/>
 	</resultMap>
+
+	<resultMap id="organizationRM" type="organizationVO">
+		<result property="workerMemberVO.nickName" column="worker_nickname" />
+		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname" />
+		<result property="signBoardVO.signBoardName" column="sign_board_name" />
+	</resultMap>
 	
 	<select id="login" parameterType="map" resultMap="memberRM">
 		<include refid="selectMember" />
@@ -40,6 +46,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET e_mail = #{eMail}, password=#{password}
 		WHERE nickname=#{nickName}
 	</update>
+	
+	<delete id="leave">
+		DELETE member
+		WHERE nickname = #{nickName} and password = #{password}
+	</delete>
+	
+	<select id="findAllOrgByMember" parameterType="memberVO" resultMap="organizationRM">
+		SELECT worker_nickname, boss_nickname, sign_board_name
+		FROM organization
+		WHERE worker_nickname = #{nickName}
+	</select>
 </mapper>
 
 
