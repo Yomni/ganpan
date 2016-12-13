@@ -25,6 +25,11 @@ public class WorkVO {
 		this.organizationVO = organizationVO;
 	}
 
+	public WorkVO(int workNo, String nickName) {
+		this.workNo = workNo;
+		this.organizationVO = new OrganizationVO(nickName);
+	}
+
 	public int getWorkNo() {
 		return workNo;
 	}

@@ -97,11 +97,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 			return "idfail";
 		}else{
 			int groupCheck = organizationDAO.groupCheck(ovo);
-			int groupBossCheck = organizationDAO.groupBossCheck(ovo);
+			int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
 			if(groupCheck == 0){
 				return "groupfail";
-			}else if(groupBossCheck == 1){
+			}else if(id.equals(bossNickName)){
 				return "groupbossfail";
+			}else if(workerSignBoardNameCheck == 1){
+				return "workersignboardfail";
 			}
 		}
 		return "ok";

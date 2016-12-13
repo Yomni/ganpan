@@ -27,6 +27,10 @@ public class OrganizationVO {
 		this.signBoardVO = new SignBoardVO(signBoardName, bossNickName);
 	}
 
+	public OrganizationVO(String nickName) {
+		this.workerMemberVO = new MemberVO(nickName);
+	}
+
 	public MemberVO getWorkerMemberVO() {
 		return workerMemberVO;
 	}

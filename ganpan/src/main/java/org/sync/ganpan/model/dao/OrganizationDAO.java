@@ -31,7 +31,7 @@ public interface OrganizationDAO {
 
 	int groupCheck(OrganizationVO ovo);
 
-	int groupBossCheck(OrganizationVO ovo);
+	int workerSignBoardNameCheck(OrganizationVO ovo);
 
 	int inviteCheck(OrganizationVO ovo);
 	

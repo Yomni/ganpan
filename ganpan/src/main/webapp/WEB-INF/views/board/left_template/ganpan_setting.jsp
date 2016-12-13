@@ -161,12 +161,16 @@
 						$("#groupCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");
 						checkResultGroup="";
 					}else if(data=="groupfail"){
-						$("#groupCheckView").html("그룹원이 아니면 위임할 수 없습니다!").css("color", "red");
+						$("#groupCheckView").html("조원이 아니면 위임할 수 없습니다!").css("color", "red");
 						checkResultGroup="";
 					}else if(data=="groupbossfail"){
 						$("#groupCheckView").html("자신에게 위임할 수는 없습니다!").css("color", "red");
 						checkResultGroup="";
-					}else{
+					}else if(data=="workersignboardfail"){
+						$("#groupCheckView").html("같은 이름의 간판을 소유한 조원입니다!").css("color", "red");
+						checkResultGroup="";
+					}
+					else{
 						checkResultGroup="group";
 						$("#groupCheckView").html("위임가능!").css("color","green");		
 					}					
