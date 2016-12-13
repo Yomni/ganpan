@@ -22,7 +22,7 @@
 			<h2 class="text-center">${rsvo.signBoardName}</h2>
 			<ul class="link-list">
 				<li><a
-					href="${pageContext.request.contextPath}/board/change_record.do">변경
+					href="${pageContext.request.contextPath}/change_mng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경
 						이력 보기</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여
@@ -30,8 +30,7 @@
 				<c:if
 					test="${rsvo.bossMemberVO.nickName==sessionScope.mvo.nickName}">
 					<li><a
-						href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판
-							설정</a></li>
+						href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판설정</a></li>
 				</c:if>
 			</ul>
 			<table class="table table-bordered">
@@ -47,20 +46,17 @@
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td><c:if
-									test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
-									<a class="btn btn-default"
-										href="${pageContext.request.contextPath}/
-									goCreateWork.do?signBoardName=${rsvo.signBoardName}
-									&bossNickName=${rsvo.bossMemberVO.nickName}"><span
-										class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span>
+							<td>
+								<c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
+									<a class="btn btn-default" href="${pageContext.request.contextPath}/
+										goCreateWork.do?signBoardName=${rsvo.signBoardName}
+										&bossNickName=${rsvo.bossMemberVO.nickName}">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span>
 									</a>
 								</c:if>
-								<ul class="list-unstyled ui-widget-header ui-widget-content"
-									id="${boardList.boardGenreVO.boardName}">
+								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
-										<li class="panel panel-info" id="draggablePanelList"
-											draggable="true">
+										<li class="panel panel-info" id="draggablePanelList" draggable="true">
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
 												<%-- <a href="#" data-toggle="modal" data-target="#${works.workNo}" id="${works.organizationVO.workerMemberVO.nickName}">${works.organizationVO.workerMemberVO.nickName}</a> --%>
@@ -145,13 +141,13 @@
 		
 		//$("#${works.workNo}modal").modal('toggle');
 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-			
+			$(this).removeData();
 		});
 		
 		$("#deleteBtn").click(function(){
 			if(confirm("게시물을 삭제하시겠습니까?"))
 	    		//location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-	    		alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}");
+	    		alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo);
 	    		//location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
 		}); 
 		

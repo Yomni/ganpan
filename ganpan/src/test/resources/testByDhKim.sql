@@ -74,6 +74,6 @@ where worker_nickname='kosta6'
 
 insert into organization values('kosta6','kosta1','ganpan1');
 
-
+select * from change_genre;
 
 
