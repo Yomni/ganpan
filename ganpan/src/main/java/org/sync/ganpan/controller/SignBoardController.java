@@ -122,7 +122,6 @@ public class SignBoardController {
 	public ModelAndView showSignBoard(String signBoardName, String bossNickName) {
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
 		rsvo = signBoardService.showSignBoard(rsvo);
-
 		return new ModelAndView("board/ganpan", "rsvo", rsvo);
 	}
 

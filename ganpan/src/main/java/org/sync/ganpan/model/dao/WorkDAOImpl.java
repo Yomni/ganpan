@@ -27,12 +27,17 @@ public class WorkDAOImpl implements WorkDAO {
 	
 	@Override
 	public void createWork(WorkVO wvo) {
+		System.out.println(wvo);
 		template.insert("work.createWork", wvo);
 	}
 	
 	@Override
 	public void deleteWork(int workNo) {
 		template.insert("work.deleteWork",workNo);
+	}
+	@Override
+	public void updateWork(int workNo) {
+		template.insert("work.updateWork",workNo);
 	}
 
 	@Override

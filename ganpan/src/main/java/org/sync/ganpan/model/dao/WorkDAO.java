@@ -16,6 +16,7 @@ public interface WorkDAO {
 
 	void deleteWork(int workNo);
 
+	void updateWork(int workNo);
 	void updateWorkerToNullByNickName(String nickName);
 
 	void joinAsWorkerByWorkNo(WorkVO wvo);
