@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE boss_nickname = #{signBoardVO.bossMemberVO.nickName} and sign_board_name = #{signBoardVO.signBoardName} and worker_nickname = #{workerMemberVO.nickName}
 	</select>
 
-	<select id="groupBossCheck" parameterType="organizationVO" resultType="int">
+	<select id="workerSignBoardNameCheck" parameterType="organizationVO" resultType="int">
 		SELECT count(*)
 		FROM organization
 		WHERE boss_nickname = #{workerMemberVO.nickName} and sign_board_name = #{signBoardVO.signBoardName} and worker_nickname = #{workerMemberVO.nickName}

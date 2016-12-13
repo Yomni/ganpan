@@ -42,6 +42,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and sign_board_name=#{signBoardVO.signBoardName}
  	</update>
  	
+ 	<update id="updateWorkerToNullByNickName">
+ 		update work
+		set worker_nickname = null
+		where worker_nickname = #{value}
+ 	</update>
+ 	
  	<insert id="createWork" parameterType="workVO">
  		INSERT INTO WORK(work_no, work_name, work_details, worker_nickname, sign_board_name, boss_nickname)
  		VALUES(seq_work_no.nextval, #{workName}, #{workDetails},
@@ -54,4 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from work where work_no=#{workNo}
 	</delete>
  	
+ 	<update id="joinAsWorkerByWorkNo" parameterType="workVO">
+ 		UPDATE work
+		SET worker_nickname = #{organizationVO.workerMemberVO.nickName}
+		WHERE work_no = #{workNo}
+ 	</update>
 </mapper>

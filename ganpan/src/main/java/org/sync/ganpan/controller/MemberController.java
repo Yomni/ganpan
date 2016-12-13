@@ -195,8 +195,7 @@ public class MemberController {
 	public String leave(HttpSession session, String password) {
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		String nickName = mvo.getNickName();
-		int count = memberService.leave(nickName, password);
-		if(count == 0){
+		if(memberService.leave(nickName, password) == 0){
 			return "redirect:go_member/left_template/leave_fail.do";
 		}else{
 			session.invalidate();

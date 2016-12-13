@@ -1,6 +1,7 @@
 package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 //github.com/Yomni/ganpan.git
 import javax.annotation.Resource;
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.MemberVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -47,6 +49,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int leave(MemberVO mvo) {
 		return template.delete("member.leave", mvo);
+	}
+
+	@Override
+	public List<OrganizationVO> findAllOrgByMember(MemberVO mvo) {
+		return template.selectList("member.findAllOrgByMember", mvo);
 	}
 
 }
