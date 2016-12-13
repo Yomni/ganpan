@@ -44,4 +44,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return template.update("member.updateMember", mvo);
 	}
 
+	@Override
+	public int leave(MemberVO mvo) {
+		return template.delete("member.leave", mvo);
+	}
+
 }

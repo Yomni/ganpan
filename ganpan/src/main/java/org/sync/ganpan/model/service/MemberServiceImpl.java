@@ -55,4 +55,10 @@ public class MemberServiceImpl implements MemberService {
 		else
 			return 1;
 	}
+
+	@Override
+	public int leave(String nickName, String password) {
+		MemberVO mvo = new MemberVO(nickName, password);
+		return memberDAO.leave(mvo);
+	}
 }

@@ -19,4 +19,6 @@ public interface MemberDAO {
 
 	int updateMember(MemberVO mvo);
 
+	int leave(MemberVO mvo);
+
 }
