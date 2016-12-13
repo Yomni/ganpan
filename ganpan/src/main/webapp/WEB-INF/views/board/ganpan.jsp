@@ -104,11 +104,8 @@
 		$("ul li").mouseover(function() {
 			workNo = $(this).find("a").attr("id");
 		});
-		$("#TO_DO, #DOING").sortable({
-			connectWith:"#DOING",
-			receive:function() {
-				alert();
-			}
+		$("#TO_DO").sortable({
+			connectWith:"#DOING"
 		}); // sortable
 		$("#DOING").sortable({
 			connectWith:"#DONE",
@@ -118,7 +115,9 @@
 		}); // sortable
 
 		$("#DONE").sortable({
-			connectWith: "#DONE"
+			receive:function() {
+				alert("3");
+			}
 		}); // sortable
 		
 		//$("#${works.workNo}modal").modal('toggle');

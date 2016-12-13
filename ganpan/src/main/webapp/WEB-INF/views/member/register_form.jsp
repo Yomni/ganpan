@@ -50,6 +50,7 @@
 		var checkResultNickName = false;	
 		var checkResultEMail = false;
 		var checkResultPassword = false;
+		var checkDuplicatePassword = false;
 		<c:if test="${mvo != null}">		
 		if(${requestScope.nickNameLengthFlag} == true){
 			$("#nickNameCheckView").html(
@@ -100,6 +101,12 @@
 				$("#password").val("").focus();
 				return false;
 			}
+			if(checkDuplicatePassword == false) {
+				alert("비밀번호를 확인하세요!");
+				$("#passwordCheck").val("");
+				$("#password").val("").focus();
+				return false;
+			}
 		});//submit
 		
 		$("#password").keyup(function(){
@@ -120,18 +127,19 @@
 				return;
 			} else {
 				$("#passwordView").html("");
+				checkResultPassword = true;
 			}
 			if(password != passwordCheck) {
 				$("#passwordCheckView").html(
 					"<div class='alert alert-danger' role='alert'>"
 					+ "입력하신 비밀번호와 일치하지 않습니다."
 					+ "</div>");
-				checkResultPassword = false;
+				checkDuplicatePassword = false;
 				return;
 			}
 			else {
 				$("#passwordCheckView").html("");
-				checkResultPassword = true;
+				checkDuplicatePassword = true;
 			}
 		}); //password key up
 		
@@ -140,7 +148,7 @@
 			var password = $("#password").val().trim();
 			if(passwordCheck == "") {
 				$("#passwordCheckView").html("");
-				checkResultPassword = false;
+				checkDuplicatePassword = false;
 				return;
 			} 
 			if(password != passwordCheck) {
@@ -148,11 +156,11 @@
 					"<div class='alert alert-danger' role='alert'>"
 					+ "입력하신 비밀번호와 일치하지 않습니다."
 					+ "</div>");
-				checkResultPassword = false;
+				checkDuplicatePassword = false;
 				return;
 			} else {
 				$("#passwordCheckView").html("");
-				checkResultPassword = true;
+				checkDuplicatePassword = true;
 			}
 		}); //passwordCheck key up
 		
