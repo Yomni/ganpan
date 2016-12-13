@@ -7,11 +7,11 @@
 			<form name="loginForm" action="${pageContext.request.contextPath}/login.do" method="post">
 				<div class="form-group">
 					<label for="id">전자우편 또는 별명</label>
-					<input type="text" name="id" class="form-control" id="id"/>
+					<input type="text" name="id" class="form-control" id="id" required="required"/>
 				</div>
 				<div class="form-group">
 					<label for="password">비밀번호</label>
-					<input type="password" name="password" class="form-control" id="password"/><br>
+					<input type="password" name="password" class="form-control" id="password" required="required"/><br>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-default btn-success btn-block" id="loginBtn">들어가기</button>

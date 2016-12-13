@@ -3,26 +3,17 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
-<!--     <script type="text/javascript">
-	    $(document).ready(function(){
-	    	$("#deleteWork").click(function(){ 
-	    		if(confirm("게시물을 삭제하시겠습니까?"))
-	    		location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-	    	});
-	    });	
-	</script> -->
-
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<h2 class="text-center">${rsvo.signBoardName}</h2>
-			<ul class="link-list">
-				<li><a href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a></li>
-				<li><a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a></li>
+		<div class="col-md-12">
+			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
+			<div class="pull-right">
+				<a class="btn btn-info" href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a>
+				<a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
 				<c:if test="${rsvo.bossMemberVO.nickName==sessionScope.mvo.nickName}">
-					<li><a href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a></li>
+					<a class="btn btn-primary" href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a>
 				</c:if>
-			</ul>
+			</div><br><br>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -106,16 +97,16 @@
 		$("ul li").mouseover(function() {
 			workNo = $(this).find("a").attr("id");
 		});
-		$("#TO_DO").sortable({
+		$("#TO_DO, #DOING").sortable({
 			connectWith:"#DOING",
-			update:function(){
-				// ajax 사용 예정
+			receive:function() {
+				alert();
 			}
 		}); // sortable
 		$("#DOING").sortable({
 			connectWith:"#DONE",
-			update:function(){
-				// ajax 사용 예정
+			receive:function() {
+				alert("2");
 			}
 		}); // sortable
 
@@ -133,7 +124,6 @@
 	    		//location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
 				window.location="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
 		}); */
-		
 		
 		$("#DONE").sortable(); // sortable
 	}); //ready
