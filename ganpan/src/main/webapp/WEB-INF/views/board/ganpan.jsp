@@ -4,6 +4,14 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
 <c:set var="memberNickName" value="${sessionScope.mvo.nickName}" />
+<c:set value="false" var="rightMoveWork"></c:set>
+<c:forEach items="${orgList}" var="olist">
+	<c:if test="${olist.workerMemberVO.nickName == memberNickName}">
+		<c:set value="true" var="rightMoveWork"></c:set>
+	</c:if>
+</c:forEach>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -64,8 +72,10 @@
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
+														<c:if test="${rightMoveWork}">
 														<button type="button" class="btn btn-primary" id="updateWork">수정</button>
-														<button type="button" class="btn btn-danger" data-dismiss="modal"  id="deleteBtn">삭제</button>
+														<button type="button" class="btn btn-danger" data-dismiss="modal"  id="${works.workNo}">삭제</button>
+														</c:if>
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -93,13 +103,8 @@
  -->
 <c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
-	var workControlRight = false;
-	<c:forEach items="${orgList}" var="olist">
-		<c:if test="${olist.workerMemberVO.nickName == memberNickName}">
-			workControlRight = true;
-		</c:if>
-	</c:forEach>
-	if(workControlRight) {
+
+	if(${rightMoveWork}) {
 		$(function(){
 			var workNo = 0;
 			$("ul li").mouseover(function() {
@@ -132,13 +137,13 @@
 				} // receive
 			}); // sortable
 		     
-	// 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-	// 			$(this).removeData();
-	// 		}); // on
+			$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
+				$(this).removeData();
+			}); // on
 		     
-			$("#deleteBtn").click(function(){
-				if(confirm("게시물을 삭제하시겠습니까?"))
-					location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
+			$(".modal-footer .btn-danger").click(function(){
+				if(confirm("작업을 삭제하시겠습니까?\n주의) 다른 조원에게도 영향을 줍니다."))
+					location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+$(this).attr("id");
 			}); // click
 		     
 			$("ul li div.panel-body button").click(function(){
