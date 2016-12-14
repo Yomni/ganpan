@@ -157,6 +157,7 @@ public class OrganizationController {
 
 	/**
 	 * 그룹원 보기 
+	 * @author 민영
 	 * @param request
 	 * @return
 	 */
