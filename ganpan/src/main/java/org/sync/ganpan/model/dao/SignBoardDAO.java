@@ -49,5 +49,8 @@ public interface SignBoardDAO {
 
 	void updateSignBoardBoss(OrganizationVO ovo);
 
+	List<InvitationMngVO> invitationList(Map<String, Object> map);
+
+	int getTotalInvitationCount(String nickName);
 
 }

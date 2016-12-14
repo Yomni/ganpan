@@ -41,7 +41,12 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public List<OrganizationVO> getOrganizationList(SignBoardVO svo) {
 		return template.selectList("organization.getOrganizationList", svo);
 	}
-
+	
+	@Override
+	public List<OrganizationVO> getOrganizationList(Map<String, Object> map) {
+		return template.selectList("organization.getOrganizationListPaging",map);
+	}
+	
 	@Override
 	public String getNickNameByEmail(String id) {
 		return template.selectOne("organization.getNickNameByEmail", id);
@@ -87,9 +92,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 		return template.selectOne("organization.getTotalJoinMemberCount",svo);
 	}
 
-	@Override
-	public List<OrganizationVO> getOrganizationList(Map<String, Object> map) {
-		return template.selectList("organization.getOrganizationListPaging",map);
-	}
+
+
 
 }// class organizationDAOImpl

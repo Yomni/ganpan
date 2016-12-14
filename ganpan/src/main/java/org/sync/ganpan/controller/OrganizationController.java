@@ -68,13 +68,11 @@ public class OrganizationController {
 	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
 			String id, String type) {
 		// id는 이메일이나 닉네임
-		System.out.println("inviteWorker: " + type);
 		if (type.equals("email")) {
 			id = organizationService.getNickNameByEmail(id);
 			System.out.println("inviteWorker:email: " + type);
 		}
 		InvitationMngVO ivo = new InvitationMngVO(signBoardName, bossNickName, id);
-		System.out.println("inviteWorker:ivo: " + ivo);
 		organizationService.inviteWorker(ivo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);

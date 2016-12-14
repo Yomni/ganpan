@@ -28,8 +28,6 @@ public interface OrganizationDAO {
 
 	List<OrganizationVO> getOrganizationList(SignBoardVO svo);
 	
-	List<OrganizationVO> getOrganizationList(Map<String, Object> map);
-
 	int getJoinedSignBoardCount(String nickName);
 
 	int groupCheck(OrganizationVO ovo);
@@ -39,6 +37,8 @@ public interface OrganizationDAO {
 	int inviteCheck(OrganizationVO ovo);
 
 	int getTotalJoinMemberCount(SignBoardVO svo);
+
+	List<OrganizationVO> getOrganizationList(Map<String, Object> map);
 
 
 	

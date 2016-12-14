@@ -14,6 +14,7 @@ import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -141,6 +142,23 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return signBoardDAO.invitationList(nickName);
 	}
+	
+
+	@Override
+	public ListVO<InvitationMngVO> invitationList(String nickName, String pageNo) {
+		PagingBean pb=null;
+		int TotalInvitationCount = signBoardDAO.getTotalInvitationCount(nickName);
+		if(pageNo==null)
+			pb=new PagingBean(TotalInvitationCount);
+		else
+			pb=new PagingBean(TotalInvitationCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		map.put("nickName", nickName);
+		List<InvitationMngVO> list=signBoardDAO.invitationList(map);
+		return new ListVO<InvitationMngVO>(list,pb);
+	}
 
 	@Override
 	public void addOrganization(InvitationMngVO ivo) {
@@ -171,4 +189,5 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public void updateSignBoardBoss(OrganizationVO ovo) {
 		signBoardDAO.updateSignBoardBoss(ovo);
 	}
+
 }

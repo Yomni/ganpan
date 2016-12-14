@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -55,5 +56,7 @@ public interface SignBoardService {
 	void deleteSignBoard(SignBoardVO svo);
 
 	void updateSignBoardBoss(OrganizationVO ovo);
+
+	ListVO<InvitationMngVO> invitationList(String nickName, String pageNo);
 
 }

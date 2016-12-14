@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -184,13 +185,14 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("invitationList.do")
-	public ModelAndView invitationList(HttpSession session) {
+	public ModelAndView invitationList(HttpSession session,String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
-		if (inviteList.size() == 0)
+		ListVO<InvitationMngVO> iListVO = signBoardService.invitationList(mvo.getNickName(),pageNo);
+		//List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
+		if (iListVO.getList().size() == 0)
 			return new ModelAndView("member/left_template/invitation_list_fail");
 		else
-			return new ModelAndView("member/left_template/invitation_list", "inviteList", inviteList);
+			return new ModelAndView("member/left_template/invitation_list", "iListVO", iListVO);
 	}
 
 	/**

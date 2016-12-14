@@ -76,6 +76,16 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return template.selectList("signBoard.invitationList", nickName);
 	}
+	
+	@Override
+	public List<InvitationMngVO> invitationList(Map<String, Object> map) {
+		return template.selectList("signBoard.invitationListPaging", map);
+	}
+
+	@Override
+	public int getTotalInvitationCount(String nickName) {
+		return template.selectOne("signBoard.getTotalInvitationCount",nickName);
+	}
 
 	@Override
 	public void deleteInvitationMng(InvitationMngVO ivo) {
@@ -111,5 +121,7 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public void updateSignBoardBoss(OrganizationVO ovo) {
 		template.update("signBoard.updateSignBoardBoss", ovo);
 	}
+
+
 
 }// class

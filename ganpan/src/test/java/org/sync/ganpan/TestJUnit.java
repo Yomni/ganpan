@@ -12,11 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
-<<<<<<< HEAD
-=======
+
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -47,32 +45,13 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class TestJUnit {
 	@Resource
 	private WorkDAO dao;
-<<<<<<< HEAD
 
 	@Resource
 	private OrganizationDAO oDAO;
-	@Resource
-	private WorkDAO workDAO;
-=======
-	
-	@Autowired
-	private SignBoardService signBoardService;
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
-	
+
 	@Test
 	public void test() {
-<<<<<<< HEAD
-		Map<String, Object> map = new HashMap<String,Object>();
-		SignBoardVO svo=new SignBoardVO("엄","kosta1");
-		PagingBean pb=null;
-		map.put("svo", svo);
-		map.put("getStartRowNumber", 1);
-		map.put("getEndRowNumber", 5);
-		List<OrganizationVO> oList=oDAO.getOrganizationList(map);
-		System.out.println(oList);
-=======
-		signBoardService.findSignBoardListByTitle("1", null);
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 	}// method test
 
 }//class TestJUnit

@@ -139,4 +139,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SET boss_nickname = #{workerMemberVO.nickName}
  		WHERE sign_board_name = #{signBoardVO.signBoardName} and boss_nickname = #{signBoardVO.bossMemberVO.nickName}
  	</update>
+ 	
+ 	<select id="getTotalInvitationCount" resultType="int">
+ 		SELECT count(*) 
+ 		FROM invitation_management
+ 		WHERE nickname = #{value} 		
+ 	</select>
+ 	
+ 	<select id="invitationListPaging">
+ 		SELECT sign_board_name, boss_nickname, nickname, to_char(invitation_date, 'YYYY.MM.DD HH:mm:ss') as invitation_date
+		FROM (SELECT row_number() over(order by invitation_date desc) as rnum,
+				sign_board_name, boss_nickname, nickname, to_char(invitation_date, 'YYYY.MM.DD HH:mm:ss') as invitation_date
+		 		FROM invitation_management
+		 		WHERE nickname = #{nickName} 	
+		WHERE rnum between #{getStartRowNumber} and #{getEndRowNumber}
+ 	</select>
+ 	
 </mapper>
