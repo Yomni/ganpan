@@ -28,7 +28,8 @@ public class WorkServiceImpl implements WorkService {
 	@Override
 	public void createWork(WorkVO wvo) {
 		workDAO.createWork(wvo);
-		// changeMngDAO.insertLog(wvo);
+		System.out.println(wvo);
+		changeMngDAO.insertLogForCreateWork(wvo);
 
 	}
 

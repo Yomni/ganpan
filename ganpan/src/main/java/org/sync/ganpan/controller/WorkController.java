@@ -68,8 +68,8 @@ public class WorkController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
-	
-	@RequestMapping("updateWork.do")
+	//민서거
+	/*@RequestMapping("updateWork.do")
 	public String updateWork(HttpSession session, MemberVO mvo) {
 		WorkVO wvo=new WorkVO(workNo,workName,workDetails);
 		workService.updateWork(workNo);
@@ -80,7 +80,7 @@ public class WorkController {
 		memberService.updateMember(mvo);
 		session.setAttribute("mvo", mvo);
 		return "redirect:go_member/left_template/my_info.do";
-	}
+	}*/
 /*	@RequestMapping("updateWork.do")
 	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails) {
 		System.out.println("updateWork.do :" + workNo + workName + workDetails);
