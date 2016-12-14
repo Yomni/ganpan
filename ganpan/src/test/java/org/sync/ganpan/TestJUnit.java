@@ -1,13 +1,10 @@
 package org.sync.ganpan;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.sync.ganpan.model.dao.OrganizationDAO;
@@ -18,6 +15,7 @@ import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
+
 
 /*
  *    TDD : 테스트 주도 개발(test-driven development, TDD)은 
@@ -49,9 +47,16 @@ public class TestJUnit {
 	@Resource
 	private OrganizationDAO oDAO;
 
+	@Resource
+	private WorkDAO workDAO;
+	
+	@Autowired
+	private SignBoardService signBoardService;
+	
 	@Test
 	public void test() {
 
+		signBoardService.findSignBoardListByTitle("1", null);
 	}// method test
 
 }//class TestJUnit

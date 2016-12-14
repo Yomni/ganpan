@@ -18,8 +18,13 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public int getTotalSignBoardCount(String title) {
-		return template.selectOne("signBoard.getTotalSignBoardCount", title);
+	public int getTotalSignBoardCountByTitle(String title) {
+		return template.selectOne("signBoard.getTotalSignBoardCountByTitle", title);
+	}
+
+	@Override
+	public int getTotalSignBoardCountByNickName(String nickName) {
+		return template.selectOne("signBoard.getTotalSignBoardCountByNickName", nickName);
 	}
 
 	@Override
@@ -41,6 +46,12 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public List<SignBoardVO> mySignBoardList(String nickName) {
 		return template.selectList("signBoard.mySignBoardList", nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> mySignBoardList(Map<String, Object> tempMap) {
+		List<SignBoardVO> sbList = template.selectList("signBoard.mySignBoardListPaging", tempMap);
+		return sbList;
 	}
 	@Override
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
