@@ -59,9 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
 	
  	<select id="mySignBoardListPaging" parameterType="map" resultMap="signBoardRM">
- 		SELECT sign_board_name 
+ 		SELECT sign_board_name, boss_nickname
 		FROM (
-			SELECT row_number() over(order by sign_board_name desc) as rnum, sign_board_name
+			SELECT row_number() over(order by sign_board_name desc) as rnum, sign_board_name, boss_nickname
 			FROM sign_board
 			WHERE boss_nickname = #{nickName}
 		)
