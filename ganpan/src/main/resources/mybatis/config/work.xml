@@ -60,10 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from work where work_no=#{workNo}
 	</delete>
 	
- 		<update id="updateWork" parameterType="workVO">
+ 		<update id="updateWork" parameterType="workVO">	
 		update work
-		set
-		workName=#{workName},workDetails=#{workDetails}
+		set workName=#{workVO.workName},workDetails=#{workVO.workDetails}
 		where workNo=#{workNo}
 	</update>
  	
