@@ -58,13 +58,7 @@ public class WorkController {
 	// @RequestMapping(method = RequestMethod.POST, value="moveWork.do")
 	// @ResponseBody
 	// public boolean moveWork(String){
-	//
-	// }
 
-	/**
-	 * 회원 탈퇴
-	 * @author 주선
-	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName,
 			String signBoardName) {
@@ -73,19 +67,27 @@ public class WorkController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
-
-	/**
-	 * 콘텐츠 수정
-	 * @author 민서,동혁
-	 */
+	
 	@RequestMapping("updateWork.do")
+	public String updateWork(HttpSession session, MemberVO mvo) {
+		WorkVO wvo=new WorkVO(workNo,workName,workDetails);
+		workService.updateWork(workNo);
+		return "redirect:showSignBoard.do";
+	}
+	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
+	public String updateMember(HttpSession session, MemberVO mvo) {
+		memberService.updateMember(mvo);
+		session.setAttribute("mvo", mvo);
+		return "redirect:go_member/left_template/my_info.do";
+	}
+/*	@RequestMapping("updateWork.do")
 	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails) {
 		System.out.println("updateWork.do :" + workNo + workName + workDetails);
 		workService.updateWork(workNo);
 		redirectAttributes.addAttribute("workName", workName);
 		redirectAttributes.addAttribute("workDetails", workDetails);
 		return "redirect:showSignBoard.do";
-	}
+	}*/
 
 	/**
 	 * 콘텐츠 작업자로 참여

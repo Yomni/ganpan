@@ -29,6 +29,9 @@ public class WorkVO {
 		this.workNo = workNo;
 		this.organizationVO = new OrganizationVO(nickName);
 	}
+	
+	//updateWork에 필요한 생성자 추가할것
+	
 
 	public int getWorkNo() {
 		return workNo;
