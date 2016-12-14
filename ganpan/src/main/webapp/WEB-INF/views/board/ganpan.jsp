@@ -20,16 +20,20 @@
 				<thead>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="rsvo">
-							<th><c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if> <c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if> <c:if test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if></th>
+							<th>
+								<c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if> 
+								<c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if> 
+								<c:if test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if>
+							</th>
 						</c:forEach>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td>
-								<c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
-									<a class="btn btn-default" href="${pageContext.request.contextPath}/goCreateWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
+							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
+									<a class="btn btn-default" href="${pageContext.request.contextPath}/
+									goCreateWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>
 								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
@@ -47,39 +51,45 @@
 											</div>
 										</li>
 
-										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-														<h4 class="modal-title">${works.workName}</h4>
-													</div>
-													<div class="modal-body">
-														<p>${works.workDetails}</p>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
-														<button type="button" class="btn btn-primary" id="updateWork">수정</button>
-														<button type="button" class="btn btn-danger" data-dismiss="modal"  id="deleteBtn">삭제</button>
-													</div>
-												</div>
-												<!-- /.modal-content -->
-											</div>
-											<!-- /.modal-dialog -->
-											<!-- 여기까지 뺄 것 -->
-										</div>
-									</c:forEach>
-								</ul></td>
-						</c:forEach>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!-- col-md-10 col-md-offset-1 -->
-	</div>
-	<!-- row -->
+                              <div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    
+                                    
+	                                  	<!-- <form name="updateForm" action="post">  -->
+	                                       <div class="modal-header">
+	                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                                             <span aria-hidden="true">&times;</span>
+	                                          </button>
+	                                          <h4 class="modal-title"><input type="text" value="${works.workName}"></h4>
+	                                       </div>
+	                                       <div class="modal-body">
+	                                          <p><textarea rows="" cols="">${works.workDetails}</textarea></p>
+	                                       </div>
+	                                       <div class="modal-footer">
+	                                          <button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
+	                                          <button type="submit" class="btn btn-primary" data-dismiss="modal"  id="updateBtn">수정</button>
+	                                          <button type="button" class="btn btn-danger" data-dismiss="modal"  id="deleteBtn">삭제</button>
+	                                       </div>
+	                                   <!-- </form> -->
+	                                   
+	                                   
+                                    </div>
+                                    <!-- /.modal-content -->
+                                 </div>
+                                 <!-- /.modal-dialog -->
+                                 <!-- 여기까지 뺄 것 -->
+                              </div>
+                           </c:forEach>
+                        </ul></td>
+                  </c:forEach>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <!-- col-md-10 col-md-offset-1 -->
+   </div>
+   <!-- row -->
 </div>
 <!-- container -->
 
@@ -88,6 +98,7 @@
    2. drag & drop
    3. ajax변경
  -->
+ 
 <c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
 	$(function(){
@@ -103,20 +114,28 @@
 		$("#DOING").sortable({
 			connectWith:"#DONE",
 			receive:function() {
-				alert("2");
-			}
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+					data:"workNo=" + workNo
+				}); // ajax
+			} // receive
 		}); // sortable
 		
 		$("#DONE").sortable({
 			connectWith: "#DONE",
 			receive:function() {
-				alert("3");
-			}
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+					data:"workNo=" + workNo
+				}); // ajax
+			} // receive
 		}); // sortable
 	     
-		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-			$(this).removeData();
-		}); // on
+// 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
+// 			$(this).removeData();
+// 		}); // on
 	     
 		$("#deleteBtn").click(function(){
 			if(confirm("게시물을 삭제하시겠습니까?"))

@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -40,7 +41,12 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public List<OrganizationVO> getOrganizationList(SignBoardVO svo) {
 		return template.selectList("organization.getOrganizationList", svo);
 	}
-
+	
+	@Override
+	public List<OrganizationVO> getOrganizationList(Map<String, Object> map) {
+		return template.selectList("organization.getOrganizationListPaging",map);
+	}
+	
 	@Override
 	public String getNickNameByEmail(String id) {
 		return template.selectOne("organization.getNickNameByEmail", id);
@@ -80,5 +86,13 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public int inviteCheck(OrganizationVO ovo) {
 		return template.selectOne("organization.inviteCheck",ovo);
 	}
+
+	@Override
+	public int getTotalJoinMemberCount(SignBoardVO svo) {
+		return template.selectOne("organization.getTotalJoinMemberCount",svo);
+	}
+
+
+
 
 }// class organizationDAOImpl

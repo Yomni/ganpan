@@ -1,10 +1,12 @@
 package org.sync.ganpan.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.WorkService;
@@ -57,13 +59,7 @@ public class WorkController {
 	// @RequestMapping(method = RequestMethod.POST, value="moveWork.do")
 	// @ResponseBody
 	// public boolean moveWork(String){
-	//
-	// }
 
-	/**
-	 * 회원 탈퇴
-	 * @author 주선
-	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName,
 			String signBoardName) {
@@ -72,19 +68,27 @@ public class WorkController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
-
-	/**
-	 * 콘텐츠 수정
-	 * @author 민서,동혁
-	 */
-	@RequestMapping("updateWork.do")
+	//민서거
+	/*@RequestMapping("updateWork.do")
+	public String updateWork(HttpSession session, MemberVO mvo) {
+		WorkVO wvo=new WorkVO(workNo,workName,workDetails);
+		workService.updateWork(workNo);
+		return "redirect:showSignBoard.do";
+	}
+	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
+	public String updateMember(HttpSession session, MemberVO mvo) {
+		memberService.updateMember(mvo);
+		session.setAttribute("mvo", mvo);
+		return "redirect:go_member/left_template/my_info.do";
+	}*/
+/*	@RequestMapping("updateWork.do")
 	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails) {
 		System.out.println("updateWork.do :" + workNo + workName + workDetails);
 		workService.updateWork(workNo);
 		redirectAttributes.addAttribute("workName", workName);
 		redirectAttributes.addAttribute("workDetails", workDetails);
 		return "redirect:showSignBoard.do";
-	}
+	}*/
 
 	/**
 	 * 콘텐츠 작업자로 참여
@@ -97,5 +101,17 @@ public class WorkController {
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
+	}
+
+	/**
+	 * Ajax를 이용하여 작업 이동 시 DB에 반영
+	 * @author 용민
+	 * @param workNo
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST, value = "moveWorkAjax.do")
+	@ResponseBody
+	public boolean moveWorkAjax(int workNo) {
+		return workService.moveWork(workNo);
 	}
 }

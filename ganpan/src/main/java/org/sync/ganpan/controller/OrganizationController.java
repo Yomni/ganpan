@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.WorkService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -67,13 +68,11 @@ public class OrganizationController {
 	public String inviteWorker(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
 			String id, String type) {
 		// id는 이메일이나 닉네임
-		System.out.println("inviteWorker: " + type);
 		if (type.equals("email")) {
 			id = organizationService.getNickNameByEmail(id);
 			System.out.println("inviteWorker:email: " + type);
 		}
 		InvitationMngVO ivo = new InvitationMngVO(signBoardName, bossNickName, id);
-		System.out.println("inviteWorker:ivo: " + ivo);
 		organizationService.inviteWorker(ivo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
@@ -154,16 +153,19 @@ public class OrganizationController {
 		return mv;
 	}
 
+	/**
+	 * 그룹원 보기 
+	 * @author 민영
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("showMemberList.do")
-	public ModelAndView showMemberList(HttpServletRequest request) {
+	public ModelAndView showMemberList(String signBoardName, String bossNickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
-		String signBoardName = request.getParameter("signBoardName");
-		String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);// ganpan1, kosta1
-		List<OrganizationVO> oList = organizationService.getOrganizationList(svo);
-
+		ListVO<OrganizationVO> oListVO=organizationService.getOrganizationList(svo,pageNo);
 		mv.addObject("svo", svo);
-		mv.addObject("oList", oList);
+		mv.addObject("oListVO", oListVO);
 		mv.setViewName("board/organization_member_list");
 		return mv;
 	}

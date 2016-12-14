@@ -63,10 +63,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from work where work_no=#{workNo}
 	</delete>
 	
- 		<update id="updateWork" parameterType="workVO">
+ 		<update id="updateWork" parameterType="workVO">	
 		update work
-		set
-		workName=#{workName},workDetails=#{workDetails}
+		set workName=#{workVO.workName},workDetails=#{workVO.workDetails}
 		where workNo=#{workNo}
 	</update>
  	
@@ -74,5 +73,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		UPDATE work
 		SET worker_nickname = #{organizationVO.workerMemberVO.nickName}
 		WHERE work_no = #{workNo}
+ 	</update>
+ 	
+ 	<update id="moveWork" parameterType="int">
+ 		update work
+ 		set board_no = board_no + 1
+ 		where work_no = #{value}
  	</update>
 </mapper>

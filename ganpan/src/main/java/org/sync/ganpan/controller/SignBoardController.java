@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -36,8 +37,8 @@ public class SignBoardController {
 	 * @author 주선
 	 */
 	@RequestMapping("findSignBoardListByTitle.do")
-	public ModelAndView findSignBoardListByTitle(String title) {
-		return new ModelAndView("board/search_result", signBoardService.findSignBoardListByTitle(title));
+	public ModelAndView findSignBoardListByTitle(String title, String pageNo) {
+		return new ModelAndView("board/search_result", signBoardService.findSignBoardListByTitle(title, pageNo));
 	}
 
 	/**
@@ -82,10 +83,10 @@ public class SignBoardController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("mySignBoardList.do")
-	public ModelAndView mySignBoardList(HttpSession session) {
+	public ModelAndView mySignBoardList(HttpSession session, String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName());
-		return new ModelAndView("member/left_template/my_ganpan_list", "sbList", sbList);
+		ListVO<SignBoardVO> sbListVO = signBoardService.mySignBoardList(mvo.getNickName(), pageNo);
+		return new ModelAndView("member/left_template/my_ganpan_list", "sbListVO", sbListVO);
 	}
 
 	/**
@@ -184,13 +185,14 @@ public class SignBoardController {
 	 * @return
 	 */
 	@RequestMapping("invitationList.do")
-	public ModelAndView invitationList(HttpSession session) {
+	public ModelAndView invitationList(HttpSession session,String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
-		if (inviteList.size() == 0)
+		ListVO<InvitationMngVO> iListVO = signBoardService.invitationList(mvo.getNickName(),pageNo);
+		//List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
+		if (iListVO.getList().size() == 0)
 			return new ModelAndView("member/left_template/invitation_list_fail");
 		else
-			return new ModelAndView("member/left_template/invitation_list", "inviteList", inviteList);
+			return new ModelAndView("member/left_template/invitation_list", "iListVO", iListVO);
 	}
 
 	/**
