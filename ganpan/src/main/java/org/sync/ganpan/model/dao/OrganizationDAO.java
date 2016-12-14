@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -26,7 +27,7 @@ public interface OrganizationDAO {
 	List<OrganizationVO> getOrganizationSignBoardList(String nickName);
 
 	List<OrganizationVO> getOrganizationList(SignBoardVO svo);
-
+	
 	int getJoinedSignBoardCount(String nickName);
 
 	int groupCheck(OrganizationVO ovo);
@@ -34,5 +35,11 @@ public interface OrganizationDAO {
 	int workerSignBoardNameCheck(OrganizationVO ovo);
 
 	int inviteCheck(OrganizationVO ovo);
+
+	int getTotalJoinMemberCount(SignBoardVO svo);
+
+	List<OrganizationVO> getOrganizationList(Map<String, Object> map);
+
+
 	
 }// interface GroupDAO

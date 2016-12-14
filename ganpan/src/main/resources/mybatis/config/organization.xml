@@ -13,6 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="signBoardVO.bossMemberVO.nickName" column="boss_nickname" />
 		<result property="signBoardVO.signBoardName" column="sign_board_name" />
 	</resultMap>
+	
+   <resultMap id="signBoardRM" type="signBoardVO">
+      <result property="signBoardName" column="sign_board_name"/>
+      <result property="bossMemberVO.nickName" column="boss_nickname"/>
+      <result property="creationDate" column="creation_date"/>
+   </resultMap>
 
 	<select id="getOrganizationSignBoardList" parameterType="string"
 		resultMap="organizationRM">
@@ -34,6 +40,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		sign_board_name=#{signBoardName} and
 		boss_nickname=#{bossMemberVO.nickName}
+	</select>
+
+	<select id="getOrganizationListPaging" resultMap="organizationRM" parameterType="map">
+		SELECT boss_nickname, worker_nickname, sign_board_name
+		FROM (SELECT row_number() over(order by sign_board_name desc) as rnum,boss_nickname, worker_nickname, sign_board_name
+		 		 FROM organization
+		 		 WHERE sign_board_name=#{signBoardName} and boss_nickname=#{bossNickName})
+		WHERE rnum between #{getStartRowNumber} and #{getEndRowNumber}
 	</select>
 
 	<select id="getNickNameByEmail" resultType="String">
@@ -85,6 +99,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(*) 
 		FROM invitation_management
 		WHERE boss_nickname = #{signBoardVO.bossMemberVO.nickName} and sign_board_name = #{signBoardVO.signBoardName} and nickname = #{workerMemberVO.nickName}
+	</select>
+	
+	<select id="getTotalJoinMemberCount" parameterType="signBoardVO" resultType="int">
+		SELECT count(*) 
+		FROM organization
+		WHERE boss_nickname = #{bossMemberVO.nickName} and sign_board_name = #{signBoardName}
 	</select>
 </mapper>
 

@@ -8,13 +8,15 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
+import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
+import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -35,12 +37,24 @@ public class SignBoardServiceImpl implements SignBoardService {
 	private OrganizationDAO organizationDAO;
 
 	@Override
-	public Map<String, Object> findSignBoardListByTitle(String title) {
-		List<SignBoardVO> tempList = signBoardDAO.findSignBoardListByTitle(title);
-		int signBoardCount = tempList.size();
+	public Map<String, Object> findSignBoardListByTitle(String title, String pageNo) {
+		PagingBean pb = null;
+		int signBoardCount = signBoardDAO.getTotalSignBoardCountByTitle(title);
+		if (pageNo == null){
+			pb = new PagingBean(signBoardCount);
+		}else{
+			pb = new PagingBean(signBoardCount, Integer.parseInt(pageNo));
+		}
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		tempMap.put("title", title);
+		tempMap.put("getStartRowNumber", pb.getStartRowNumber());
+		tempMap.put("getEndRowNumber", pb.getEndRowNumber());
+		List<SignBoardVO> tempList = signBoardDAO.findSignBoardListByTitle(tempMap);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sbList", tempList);
 		map.put("signBoardCount", signBoardCount);
+		map.put("pb", pb);
+		map.put("title", title);
 		return map;
 	}
 
@@ -64,6 +78,24 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public List<SignBoardVO> mySignBoardList(String nickName) {
 		return signBoardDAO.mySignBoardList(nickName);
+	}
+
+	@Override
+	public ListVO<SignBoardVO> mySignBoardList(String nickName, String pageNo) {
+		PagingBean pb = null;
+		int signBoardCount = signBoardDAO.getTotalSignBoardCountByNickName(nickName);
+		if (pageNo == null){
+			pb = new PagingBean(signBoardCount);
+		}else{
+			pb = new PagingBean(signBoardCount, Integer.parseInt(pageNo));
+		}
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		tempMap.put("nickName", nickName);
+		tempMap.put("getStartRowNumber", pb.getStartRowNumber());
+		tempMap.put("getEndRowNumber", pb.getEndRowNumber());
+		List<SignBoardVO> sbList = signBoardDAO.mySignBoardList(tempMap);
+		ListVO<SignBoardVO> sblistVO = new ListVO<SignBoardVO>(sbList, pb);
+		return sblistVO;
 	}
 
 	@Override
@@ -123,6 +155,23 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return signBoardDAO.invitationList(nickName);
 	}
+	
+
+	@Override
+	public ListVO<InvitationMngVO> invitationList(String nickName, String pageNo) {
+		PagingBean pb=null;
+		int TotalInvitationCount = signBoardDAO.getTotalInvitationCount(nickName);
+		if(pageNo==null)
+			pb=new PagingBean(TotalInvitationCount);
+		else
+			pb=new PagingBean(TotalInvitationCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		map.put("nickName", nickName);
+		List<InvitationMngVO> list=signBoardDAO.invitationList(map);
+		return new ListVO<InvitationMngVO>(list,pb);
+	}
 
 	@Override
 	public void addOrganization(InvitationMngVO ivo) {
@@ -153,4 +202,5 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public void updateSignBoardBoss(OrganizationVO ovo) {
 		signBoardDAO.updateSignBoardBoss(ovo);
 	}
+
 }

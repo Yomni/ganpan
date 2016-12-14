@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,8 +18,18 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<SignBoardVO> findSignBoardListByTitle(String title) {
-		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", title);
+	public int getTotalSignBoardCountByTitle(String title) {
+		return template.selectOne("signBoard.getTotalSignBoardCountByTitle", title);
+	}
+
+	@Override
+	public int getTotalSignBoardCountByNickName(String nickName) {
+		return template.selectOne("signBoard.getTotalSignBoardCountByNickName", nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> findSignBoardListByTitle(Map<String, Object> tempMap) {
+		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", tempMap);
 		return sbList;
 	}
 
@@ -37,6 +48,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 		return template.selectList("signBoard.mySignBoardList", nickName);
 	}
 
+	@Override
+	public List<SignBoardVO> mySignBoardList(Map<String, Object> tempMap) {
+		List<SignBoardVO> sbList = template.selectList("signBoard.mySignBoardListPaging", tempMap);
+		return sbList;
+	}
 	@Override
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
 		return template.selectList("signBoard.myJoinSignBoardList", nickName);
@@ -70,6 +86,16 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public List<InvitationMngVO> invitationList(String nickName) {
 		return template.selectList("signBoard.invitationList", nickName);
+	}
+	
+	@Override
+	public List<InvitationMngVO> invitationList(Map<String, Object> map) {
+		return template.selectList("signBoard.invitationListPaging", map);
+	}
+
+	@Override
+	public int getTotalInvitationCount(String nickName) {
+		return template.selectOne("signBoard.getTotalInvitationCount",nickName);
 	}
 
 	@Override
@@ -106,5 +132,7 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public void updateSignBoardBoss(OrganizationVO ovo) {
 		template.update("signBoard.updateSignBoardBoss", ovo);
 	}
+
+
 
 }// class

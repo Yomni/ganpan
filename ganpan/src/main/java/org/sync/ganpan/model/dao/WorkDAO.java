@@ -21,5 +21,7 @@ public interface WorkDAO {
 
 	void joinAsWorkerByWorkNo(WorkVO wvo);
 
+	int moveWork(int workNo);
+
 	
 }//interface WorkDAO

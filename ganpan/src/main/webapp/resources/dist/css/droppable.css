@@ -6,6 +6,7 @@
 
 #TO_DO, #DOING, #DONE {
 	min-height: 400px;
+	min-width: 300px;
 	margin: auto;
 	padding: 2px;
 	border-width: 1px;

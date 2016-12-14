@@ -2,6 +2,7 @@ package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,7 +12,9 @@ import org.sync.ganpan.model.dao.MemberDAO;
 import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
+import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /**
@@ -56,6 +59,24 @@ public class OrganizationServiceImpl implements OrganizationService {
 	public List<OrganizationVO> getOrganizationList(SignBoardVO svo) {
 		return organizationDAO.getOrganizationList(svo);
 	}
+	
+	@Override
+	public ListVO<OrganizationVO> getOrganizationList(SignBoardVO svo, String pageNo) {
+		PagingBean pb=null;
+		int joinMemberTotalCount = organizationDAO.getTotalJoinMemberCount(svo);
+		if(pageNo==null)
+			pb=new PagingBean(joinMemberTotalCount);
+		else
+			pb=new PagingBean(joinMemberTotalCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		map.put("signBoardName", svo.getSignBoardName());
+		map.put("bossNickName", svo.getBossMemberVO().getNickName());
+		List<OrganizationVO> list=organizationDAO.getOrganizationList(map);
+		return new ListVO<OrganizationVO>(list,pb);
+	}	
+	
 
 	@Override
 	public String getNickNameByEmail(String id) {

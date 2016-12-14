@@ -49,4 +49,13 @@ public class WorkServiceImpl implements WorkService {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public boolean moveWork(int workNo) {
+		boolean returnFlag = false;
+		int result = workDAO.moveWork(workNo);
+		if (result == 1)
+			returnFlag = true;
+		return returnFlag;
+	}
 }// class WorkServiceImpl
