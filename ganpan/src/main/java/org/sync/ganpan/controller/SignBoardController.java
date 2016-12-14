@@ -114,15 +114,20 @@ public class SignBoardController {
 
 	/**
 	 * 간판 내용 보기(작업들)
-	 * @author 동혁
+	 * @author 동혁, 용민(수정)
 	 * @param session
 	 * @return
 	 */
 	@RequestMapping("showSignBoard.do")
 	public ModelAndView showSignBoard(String signBoardName, String bossNickName) {
+		ModelAndView mv = new ModelAndView();
 		SignBoardVO rsvo = new SignBoardVO(signBoardName, bossNickName);
 		rsvo = signBoardService.showSignBoard(rsvo);
-		return new ModelAndView("board/ganpan", "rsvo", rsvo);
+		List<OrganizationVO> orgList = organizationService.getOrganizationList(rsvo);
+		mv.addObject("rsvo", rsvo);
+		mv.addObject("orgList", orgList);
+		mv.setViewName("board/ganpan");
+		return mv;
 	}
 
 	/**

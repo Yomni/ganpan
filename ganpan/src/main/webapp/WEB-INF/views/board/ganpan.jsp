@@ -6,6 +6,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<c:set var="memberNickName" value="${sessionScope.mvo.nickName}" />
 			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a> <a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
@@ -92,50 +93,58 @@
  -->
 <c:if test="${sessionScope.mvo != null}">
 <script type="text/javascript">
-	$(function(){
-		var workNo = 0;
-		$("ul li").mouseover(function() {
-			workNo = $(this).find("a").attr("id");
-		}); // mouseover
-		
-		$("#TO_DO").sortable({
-			connectWith:"#DOING"
-		}); // sortable
-		
-		$("#DOING").sortable({
-			connectWith:"#DONE",
-			receive:function() {
-				$.ajax({
-					type:"POST",
-					url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
-					data:"workNo=" + workNo
-				}); // ajax
-			} // receive
-		}); // sortable
-		
-		$("#DONE").sortable({
-			connectWith: "#DONE",
-			receive:function() {
-				$.ajax({
-					type:"POST",
-					url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
-					data:"workNo=" + workNo
-				}); // ajax
-			} // receive
-		}); // sortable
-	     
-// 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-// 			$(this).removeData();
-// 		}); // on
-	     
-		$("#deleteBtn").click(function(){
-			if(confirm("게시물을 삭제하시겠습니까?"))
-				location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
-		}); // click
-	     
-		$("ul li div.panel-body button").click(function(){
-			location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
-		}); // clilck
-	}); //ready
+	var workControlRight = false;
+	<c:forEach items="${orgList}" var="olist">
+		<c:if test="${olist.workerMemberVO.nickName == memberNickName}">
+			workControlRight = true;
+		</c:if>
+	</c:forEach>
+	if(workControlRight) {
+		$(function(){
+			var workNo = 0;
+			$("ul li").mouseover(function() {
+				workNo = $(this).find("a").attr("id");
+			}); // mouseover
+			
+			$("#TO_DO").sortable({
+				connectWith:"#DOING"
+			}); // sortable
+			
+			$("#DOING").sortable({
+				connectWith:"#DONE",
+				receive:function() {
+					$.ajax({
+						type:"POST",
+						url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+						data:"workNo=" + workNo
+					}); // ajax
+				} // receive
+			}); // sortable
+			
+			$("#DONE").sortable({
+				connectWith: "#DONE",
+				receive:function() {
+					$.ajax({
+						type:"POST",
+						url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+						data:"workNo=" + workNo
+					}); // ajax
+				} // receive
+			}); // sortable
+		     
+	// 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
+	// 			$(this).removeData();
+	// 		}); // on
+		     
+			$("#deleteBtn").click(function(){
+				if(confirm("게시물을 삭제하시겠습니까?"))
+					location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
+			}); // click
+		     
+			$("ul li div.panel-body button").click(function(){
+				location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
+			}); // clilck
+		}); //ready
+	}
 </script>
 </c:if>
