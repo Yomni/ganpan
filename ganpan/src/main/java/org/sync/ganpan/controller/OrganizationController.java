@@ -35,7 +35,7 @@ public class OrganizationController {
 
 	/**
 	 * 로그인 되었을 때 홈화면 가면 간판리스트 새로 갱신되어야 합니다.
-	 * @author JYM
+	 * @author 용민
 	 * @param nickName
 	 * @return
 	 */

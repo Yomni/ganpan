@@ -10,8 +10,6 @@
 		<c:set value="true" var="rightMoveWork"></c:set>
 	</c:if>
 </c:forEach>
-
-
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -38,7 +36,7 @@
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
+							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && rightMoveWork}">
 									<a class="btn btn-default" href="${pageContext.request.contextPath}/
 									goCreateWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>

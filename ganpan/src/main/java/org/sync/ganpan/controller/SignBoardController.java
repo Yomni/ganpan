@@ -45,7 +45,8 @@ public class SignBoardController {
 	 * @author 민영
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createNewSignBoard.do")
-	public String createNewSignBoard(RedirectAttributes redirectAttributes,String bossNickName, String title, String signBoardType) {
+	public String createNewSignBoard(RedirectAttributes redirectAttributes, String bossNickName, String title,
+			String signBoardType) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("bossNickName", bossNickName);
 		map.put("signBoardName", title);
@@ -84,7 +85,7 @@ public class SignBoardController {
 	@RequestMapping("mySignBoardList.do")
 	public ModelAndView mySignBoardList(HttpSession session, String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		//List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName(), pageNo);
+		// List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName(), pageNo);
 		return new ModelAndView("member/left_template/my_ganpan_list", "sbList", sbList);
 	}
 
@@ -176,10 +177,11 @@ public class SignBoardController {
 	}
 
 	@RequestMapping("deleteSignBoard.do")
-	public String deleteSignBoard(String signBoardName, String bossNickName) {
+	public String deleteSignBoard(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName) {
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
 		signBoardService.deleteSignBoard(svo);
-		return "redirect:homeSignBoardList.do";
+		redirectAttributes.addAttribute("nickName", bossNickName);
+		return "redirect:getLoginHome.do";
 	}
 
 	/**
@@ -232,11 +234,12 @@ public class SignBoardController {
 		signBoardService.deleteInvitationMng(ivo);
 		return "redirect:invitationList.do";
 	}
-	
+
 	@RequestMapping("updateSignBoardBoss.do")
-	public String updateSignBoardBoss(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String id){
-		if(id.contains("@")==true){
-			id=organizationService.getNickNameByEmail(id);
+	public String updateSignBoardBoss(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
+			String id) {
+		if (id.contains("@") == true) {
+			id = organizationService.getNickNameByEmail(id);
 		}
 		OrganizationVO ovo = new OrganizationVO(id, signBoardName, bossNickName);
 		signBoardService.updateSignBoardBoss(ovo);
@@ -244,6 +247,5 @@ public class SignBoardController {
 		redirectAttributes.addAttribute("bossNickName", id);
 		return "redirect:showSignBoard.do";
 	}
-	
-	
+
 }// class
