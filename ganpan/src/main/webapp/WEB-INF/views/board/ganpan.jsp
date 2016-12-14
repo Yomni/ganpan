@@ -4,10 +4,10 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
 <c:set var="memberNickName" value="${sessionScope.mvo.nickName}" />
-<c:set value="false" var="rightMoveWork"></c:set>
+<c:set value="false" var="rightMoveWork" />
 <c:forEach items="${orgList}" var="olist">
 	<c:if test="${olist.workerMemberVO.nickName == memberNickName}">
-		<c:set value="true" var="rightMoveWork"></c:set>
+		<c:set value="true" var="rightMoveWork" />
 	</c:if>
 </c:forEach>
 <div class="container">
