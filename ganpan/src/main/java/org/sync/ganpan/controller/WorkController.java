@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.WorkService;
@@ -98,5 +99,11 @@ public class WorkController {
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "moveWorkAjax.do")
+	@ResponseBody
+	public boolean moveWork(int workNo) {
+		return workService.moveWork(workNo);
 	}
 }

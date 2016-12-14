@@ -18,7 +18,11 @@
 				<thead>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="rsvo">
-							<th><c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if> <c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if> <c:if test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if></th>
+							<th>
+								<c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if> 
+								<c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if> 
+								<c:if test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if>
+							</th>
 						</c:forEach>
 					</tr>
 				</thead>
@@ -27,8 +31,7 @@
 						<c:forEach items="${rsvo.boardList}" var="boardList">
 							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
 									<a class="btn btn-default" href="${pageContext.request.contextPath}/
-									goCreateWork.do?signBoardName=${rsvo.signBoardName}
-									&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
+									goCreateWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>
 								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
@@ -102,20 +105,28 @@
 		$("#DOING").sortable({
 			connectWith:"#DONE",
 			receive:function() {
-				alert("2");
-			}
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+					data:"workNo=" + workNo
+				}); // ajax
+			} // receive
 		}); // sortable
 		
 		$("#DONE").sortable({
 			connectWith: "#DONE",
 			receive:function() {
-				alert("3");
-			}
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+					data:"workNo=" + workNo
+				}); // ajax
+			} // receive
 		}); // sortable
 	     
-		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-			$(this).removeData();
-		}); // on
+// 		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
+// 			$(this).removeData();
+// 		}); // on
 	     
 		$("#deleteBtn").click(function(){
 			if(confirm("게시물을 삭제하시겠습니까?"))

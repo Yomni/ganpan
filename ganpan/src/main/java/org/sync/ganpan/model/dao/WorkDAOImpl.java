@@ -50,6 +50,10 @@ public class WorkDAOImpl implements WorkDAO {
 		template.update("work.joinAsWorkerByWorkNo", wvo);
 	}
 	
+	@Override
+	public int moveWork(int workNo) {
+		return template.update("work.moveWork",workNo);
+	}
 
 }//class WorkDAOImpl
 
