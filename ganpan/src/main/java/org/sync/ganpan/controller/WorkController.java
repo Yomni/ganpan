@@ -101,9 +101,15 @@ public class WorkController {
 		return "redirect:showSignBoard.do";
 	}
 
+	/**
+	 * Ajax를 이용하여 작업 이동 시 DB에 반영
+	 * @author 용민
+	 * @param workNo
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, value = "moveWorkAjax.do")
 	@ResponseBody
-	public boolean moveWork(int workNo) {
+	public boolean moveWorkAjax(int workNo) {
 		return workService.moveWork(workNo);
 	}
 }
