@@ -14,6 +14,7 @@ import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -38,7 +39,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public Map<String, Object> findSignBoardListByTitle(String title, String pageNo) {
 		PagingBean pb = null;
-		int signBoardCount = signBoardDAO.getTotalSignBoardCount(title);
+		int signBoardCount = signBoardDAO.getTotalSignBoardCountByTitle(title);
 		if (pageNo == null){
 			pb = new PagingBean(signBoardCount);
 		}else{
@@ -79,10 +80,23 @@ public class SignBoardServiceImpl implements SignBoardService {
 		return signBoardDAO.mySignBoardList(nickName);
 	}
 
-//	@Override
-//	public List<SignBoardVO> mySignBoardList(String nickName, String pageNo) {
-//		return signBoardDAO.mySignBoardList(nickName, pageNo);
-//	}
+	@Override
+	public ListVO<SignBoardVO> mySignBoardList(String nickName, String pageNo) {
+		PagingBean pb = null;
+		int signBoardCount = signBoardDAO.getTotalSignBoardCountByNickName(nickName);
+		if (pageNo == null){
+			pb = new PagingBean(signBoardCount);
+		}else{
+			pb = new PagingBean(signBoardCount, Integer.parseInt(pageNo));
+		}
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		tempMap.put("nickName", nickName);
+		tempMap.put("getStartRowNumber", pb.getStartRowNumber());
+		tempMap.put("getEndRowNumber", pb.getEndRowNumber());
+		List<SignBoardVO> sbList = signBoardDAO.mySignBoardList(tempMap);
+		ListVO<SignBoardVO> sblistVO = new ListVO<SignBoardVO>(sbList, pb);
+		return sblistVO;
+	}
 
 	@Override
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {

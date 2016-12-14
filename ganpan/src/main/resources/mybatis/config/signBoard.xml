@@ -22,9 +22,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="invitationDate" column="invitation_date"/>
 	</resultMap>
 	
- 	<select id="getTotalSignBoardCount" resultType="int">
+ 	<select id="getTotalSignBoardCountByTitle" resultType="int">
  		select count(*) from sign_board 
  		where sign_board_name=#{value}
+ 	</select>
+	
+ 	<select id="getTotalSignBoardCountByNickName" resultType="int">
+ 		select count(*) from sign_board 
+ 		where boss_nickname=#{value}
  	</select>
 	
  	<select id="findSignBoardListByTitle" parameterType="map" resultMap="signBoardRM">
@@ -51,6 +56,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT sign_board_name, boss_nickname
 		FROM sign_board
 		WHERE boss_nickname = #{value}
+ 	</select>
+	
+ 	<select id="mySignBoardListPaging" parameterType="map" resultMap="signBoardRM">
+ 		SELECT sign_board_name 
+		FROM (
+			SELECT row_number() over(order by sign_board_name desc) as rnum, sign_board_name
+			FROM sign_board
+			WHERE boss_nickname = #{nickName}
+		)
+		WHERE rnum between #{getStartRowNumber} and #{getEndRowNumber}
  	</select>
  	
  	<select id="myJoinSignBoardList" resultMap="signBoardRM">
