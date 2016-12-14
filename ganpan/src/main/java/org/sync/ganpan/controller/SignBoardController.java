@@ -36,8 +36,8 @@ public class SignBoardController {
 	 * @author 주선
 	 */
 	@RequestMapping("findSignBoardListByTitle.do")
-	public ModelAndView findSignBoardListByTitle(String title) {
-		return new ModelAndView("board/search_result", signBoardService.findSignBoardListByTitle(title));
+	public ModelAndView findSignBoardListByTitle(String title, String pageNo) {
+		return new ModelAndView("board/search_result", signBoardService.findSignBoardListByTitle(title, pageNo));
 	}
 
 	/**
@@ -82,9 +82,9 @@ public class SignBoardController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("mySignBoardList.do")
-	public ModelAndView mySignBoardList(HttpSession session) {
+	public ModelAndView mySignBoardList(HttpSession session, String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName());
+		//List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName(), pageNo);
 		return new ModelAndView("member/left_template/my_ganpan_list", "sbList", sbList);
 	}
 

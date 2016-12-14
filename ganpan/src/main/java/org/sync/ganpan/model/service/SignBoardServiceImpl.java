@@ -8,13 +8,14 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
+import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.HaveBoardVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
+import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -35,12 +36,24 @@ public class SignBoardServiceImpl implements SignBoardService {
 	private OrganizationDAO organizationDAO;
 
 	@Override
-	public Map<String, Object> findSignBoardListByTitle(String title) {
-		List<SignBoardVO> tempList = signBoardDAO.findSignBoardListByTitle(title);
-		int signBoardCount = tempList.size();
+	public Map<String, Object> findSignBoardListByTitle(String title, String pageNo) {
+		PagingBean pb = null;
+		int signBoardCount = signBoardDAO.getTotalSignBoardCount(title);
+		if (pageNo == null){
+			pb = new PagingBean(signBoardCount);
+		}else{
+			pb = new PagingBean(signBoardCount, Integer.parseInt(pageNo));
+		}
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		tempMap.put("title", title);
+		tempMap.put("getStartRowNumber", pb.getStartRowNumber());
+		tempMap.put("getEndRowNumber", pb.getEndRowNumber());
+		List<SignBoardVO> tempList = signBoardDAO.findSignBoardListByTitle(tempMap);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sbList", tempList);
 		map.put("signBoardCount", signBoardCount);
+		map.put("pb", pb);
+		map.put("title", title);
 		return map;
 	}
 
@@ -65,6 +78,11 @@ public class SignBoardServiceImpl implements SignBoardService {
 	public List<SignBoardVO> mySignBoardList(String nickName) {
 		return signBoardDAO.mySignBoardList(nickName);
 	}
+
+//	@Override
+//	public List<SignBoardVO> mySignBoardList(String nickName, String pageNo) {
+//		return signBoardDAO.mySignBoardList(nickName, pageNo);
+//	}
 
 	@Override
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {

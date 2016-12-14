@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,8 +18,13 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<SignBoardVO> findSignBoardListByTitle(String title) {
-		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", title);
+	public int getTotalSignBoardCount(String title) {
+		return template.selectOne("signBoard.getTotalSignBoardCount", title);
+	}
+
+	@Override
+	public List<SignBoardVO> findSignBoardListByTitle(Map<String, Object> tempMap) {
+		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", tempMap);
 		return sbList;
 	}
 
@@ -36,7 +42,6 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	public List<SignBoardVO> mySignBoardList(String nickName) {
 		return template.selectList("signBoard.mySignBoardList", nickName);
 	}
-
 	@Override
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
 		return template.selectList("signBoard.myJoinSignBoardList", nickName);
