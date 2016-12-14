@@ -315,9 +315,28 @@ UPDATE sign_board
 SET boss_nickname = '주선'
 WHERE sign_board_name = 'java꺼' and boss_nickname = 'sync'
 
+delete member;
+delete sign_board;
+delete invitation_management;
+delete organization;
+delete have_board;
+delete work;
+
 SELECT * FROM member;
 SELECT * FROM sign_board;
 SELECT * FROM invitation_management;
 SELECT * FROM organization;
 SELECT * FROM have_board;
 SELECT * FROM work;
+
+
+INSERT INTO MEMBER VALUES('java','test2', '1');
+INSERT INTO MEMBER VALUES('test','test3', '1');
+
+
+select no,title,writer,hits,time_posted
+from (select row_number() over(order by no desc)
+as rnum,no,title,writer,hits,to_char(time_posted,'YYYY.MM.DD')
+as time_posted from board_inst)
+where rnum between ? and ?
+

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -30,6 +31,8 @@ public interface OrganizationService {
 	List<OrganizationVO> getOrganizationSignBoardList(String nickName);
 
 	List<OrganizationVO> getOrganizationList(SignBoardVO svo);
+	
+	ListVO<OrganizationVO> getOrganizationList(SignBoardVO svo,String pageNo);
 
 	int getJoinedSignBoardCount(String nickName);
 

@@ -2,6 +2,7 @@ package org.sync.ganpan.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -79,6 +80,16 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	@Override
 	public int inviteCheck(OrganizationVO ovo) {
 		return template.selectOne("organization.inviteCheck",ovo);
+	}
+
+	@Override
+	public int getTotalJoinMemberCount(SignBoardVO svo) {
+		return template.selectOne("organization.getTotalJoinMemberCount",svo);
+	}
+
+	@Override
+	public List<OrganizationVO> getOrganizationList(Map<String, Object> map) {
+		return template.selectList("organization.getOrganizationListPaging",map);
 	}
 
 }// class organizationDAOImpl

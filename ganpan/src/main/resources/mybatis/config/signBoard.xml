@@ -22,10 +22,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="invitationDate" column="invitation_date"/>
 	</resultMap>
 	
- 	<select id="findSignBoardListByTitle" parameterType="String" resultMap="signBoardRM">
+ 	<select id="getTotalSignBoardCount" resultType="int">
+ 		select count(*) from sign_board 
+ 		where sign_board_name=#{value}
+ 	</select>
+	
+ 	<select id="findSignBoardListByTitle" parameterType="map" resultMap="signBoardRM">
  		SELECT sign_board_name, boss_nickname 
-		FROM sign_board
-		WHERE visibility = 0 and sign_board_name=#{title}
+		FROM (
+			SELECT row_number() over(order by sign_board_name desc) as rnum, sign_board_name, boss_nickname
+			FROM sign_board
+			WHERE visibility = 0 and sign_board_name = #{title}
+		)
+		WHERE rnum between #{getStartRowNumber} and #{getEndRowNumber}
  	</select>
  	
  	<insert id="createNewGanpan" parameterType="map">
