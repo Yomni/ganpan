@@ -3,10 +3,10 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sortable.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/droppable.css" />
+<c:set var="memberNickName" value="${sessionScope.mvo.nickName}" />
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<c:set var="memberNickName" value="${sessionScope.mvo.nickName}" />
 			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a> <a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
