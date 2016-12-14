@@ -68,12 +68,26 @@ and boss_nickname='kosta1'
 and sign_board_name='ganpan1';
 
 -- organization 에서 delete
-select * from organization;
-delete from organization
-where worker_nickname='kosta6'
+select * from CHANGE_MANAGEMENT;
+select * from ORGANIZATION;
 
-insert into organization values('kosta6','kosta1','ganpan1');
+select * from work order by work_no desc;
 
-select * from change_genre;
-select * from member;
-select * from sign_board;
+select * from board_genre;
+select * from CHANGE_GENRE;
+select seq_work_no.nextval as workNo from dual
+select * from work;
+
+select * from change_management;
+select c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
+from change_management c, work w
+where c.work_no=w.work_no;
+
+select change_worker, change_management_date, board_no,work_no,change_no
+from change_management
+
+
+insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
+values(seq_change_management_no.nextval,'kosta1',sysdate,1,1,0);
+
+

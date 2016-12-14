@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+
+ <mapper namespace="changeMng">
+   
+   <resultMap id="ChangeMngRM" type="ChangeMngVO">
+		<result property="changeMngNo" column="change_management_no"/>
+		<result property="changeWorker" column="change_worker"/>
+		<result property="changeMngDate" column="change_management_DATE"/>
+		<result property="boardNo" column="board_no"/>
+		<result property="workVO.workNo" column="work_no"/>
+		<result property="changeGenreVO.changeNo" column="change_no"/>
+   </resultMap>
+   
+   <insert id="insertLogForCreateWork" parameterType="workVO">
+   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
+		values(seq_change_management_no.nextval,#{organizationVO.workerMemberVO.nickName},sysdate,#{boardNo},#{workNo},0)
+   </insert>
+   
+   <select id="showChangeMngList" parameterType="signBoardVO">
+   		select c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
+		from change_management c, work w
+		where c.work_no=w.work_no
+   </select>
+   
+   
+   
+</mapper>
+
+
+
+
+
+
+

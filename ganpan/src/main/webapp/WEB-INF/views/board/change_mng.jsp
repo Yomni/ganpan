@@ -26,26 +26,34 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<c:forEach items="${rsvo.boardList}" var="rsvo">
-							<th><c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if>
-								<c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if> <c:if
-									test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if></th>
-						</c:forEach>
+						<%-- <c:forEach items="${rsvo.boardList}" var="rsvo">
+							<th>
+								<c:if test="${rsvo.boardGenreVO.boardNo == 1}">해야 할 작업</c:if>
+								<c:if test="${rsvo.boardGenreVO.boardNo == 2}">하고 있는 작업</c:if> 
+								<c:if test="${rsvo.boardGenreVO.boardNo == 3}">끝난 작업</c:if>
+							</th>
+						</c:forEach> --%>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>todo</td><td>doing</td><td>done</td>
+						<td>todo의 변경이력</td><td>doing의 변경이력</td><td>done의 변경이력</td>
 					</tr>
 					<tr>
 						<td>
-							todo의 변경이력<br>
+							<div>로그1</div>
+							<div>로그2</div>
+							<div>로그3</div>
 						</td>
 						<td>
-							doing의 변경이력<br>
+							<div>로그1</div>
+							<div>로그1</div>
+							<div>로그1</div>
 						</td>
 						<td>
-							done의 변경이력<br>
+							<div>로그1</div>
+							<div>로그1</div>
+							<div>로그1</div>
 						</td>
 					</tr>
 				</tbody>
@@ -64,42 +72,5 @@
  -->
 <c:if test="${sessionScope.mvo != null}">
 	<script type="text/javascript">
-	$(function(){
-		var workNo = 0;
-		$("ul li").mouseover(function() {
-			workNo = $(this).find("a").attr("id");
-		});
-		$("#TO_DO").sortable({
-			connectWith:"#DOING",
-			update:function(){
-				// ajax 사용 예정
-			}
-		}); // sortable
-		$("#DOING").sortable({
-			connectWith:"#DONE",
-			update:function(){
-				// ajax 사용 예정
-			}
-		}); // sortable
-
-		$("#DONE").sortable({
-			connectWith: "#DONE"
-		}); // sortable
-		
-		//$("#${works.workNo}modal").modal('toggle');
-		$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-			$(this).removeData();
-		});
-		
-		$("#deleteBtn").click(function(){
-			if(confirm("게시물을 삭제하시겠습니까?"))
-	    		//location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-	    		alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo);
-	    		//location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
-		}); 
-		
-		
-		$("#DONE").sortable(); // sortable
-	}); //ready
-</script>
+	</script>
 </c:if>

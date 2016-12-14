@@ -8,7 +8,9 @@
 		<div class="col-md-12">
 			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
-				<a class="btn btn-info" href="${pageContext.request.contextPath}/board/change_record.do">변경 이력 보기</a> <a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
+				<a class="btn btn-info" href="${pageContext.request.contextPath}/change_mng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경 이력 보기</a> 
+				<a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">
+						참여 구성원 보기</a>
 				<c:if test="${rsvo.bossMemberVO.nickName==sessionScope.mvo.nickName}">
 					<a class="btn btn-primary" href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a>
 				</c:if>
@@ -25,10 +27,9 @@
 				<tbody>
 					<tr>
 						<c:forEach items="${rsvo.boardList}" var="boardList">
-							<td><c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
-									<a class="btn btn-default" href="${pageContext.request.contextPath}/
-									goCreateWork.do?signBoardName=${rsvo.signBoardName}
-									&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
+							<td>
+								<c:if test="${boardList.boardGenreVO.boardName == 'TO_DO' && sessionScope.mvo != null}">
+									<a class="btn btn-default" href="${pageContext.request.contextPath}/goCreateWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}"><span class="glyphicon glyphicon-plus" aria-hidden="true">작업추가</span> </a>
 								</c:if>
 								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
