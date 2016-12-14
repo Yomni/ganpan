@@ -340,3 +340,19 @@ as rnum,no,title,writer,hits,to_char(time_posted,'YYYY.MM.DD')
 as time_posted from board_inst)
 where rnum between ? and ?
 
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('1','kosta3','kosta1');
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('2','kosta6','kosta1');
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('간판3','kosta7','kosta1');
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('간판','kosta8','kosta1');
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('간판2','kosta9','kosta1');
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('간판3','kosta10','kosta1');
+insert into INVITATION_MANAGEMENT(sign_board_name, boss_nickname, nickname, invitation_date) values('간판4','kosta11','kosta1');
+
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('1','kosta3','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('2','kosta6','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판3','kosta7','1');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판','kosta8','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판2','kosta9','1');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판3','kosta10','0');
+insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판4','kosta11','1');
+
