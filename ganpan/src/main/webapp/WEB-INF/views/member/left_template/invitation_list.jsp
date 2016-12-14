@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${inviteList}" var="invitationMngVO" varStatus="status">			
+			<c:forEach items="${iListVO.list}" var="invitationMngVO" varStatus="status">			
 				<tr>	
 					<td>${invitationMngVO.signBoardVO.signBoardName}</td>
 					<td>${invitationMngVO.signBoardVO.bossMemberVO.nickName}</td>
@@ -43,7 +43,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		<c:forEach items="${inviteList}" varStatus="status">
+		<c:forEach items="${iListVO.list}" varStatus="status">
 			$("#accept${status.count}").click(function(){
 				var signBoardName = $("#inviteTable tr:eq(${status.count}) td:eq(0)").text();
 				var bossNickName = $("#inviteTable tr:eq(${status.count}) td:eq(1)").text();

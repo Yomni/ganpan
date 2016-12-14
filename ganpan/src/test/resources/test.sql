@@ -321,3 +321,47 @@ SELECT * FROM invitation_management;
 SELECT * FROM organization;
 SELECT * FROM have_board;
 SELECT * FROM work;
+
+INSERT INTO MEMBER VALUES('java','test2', '1');
+INSERT INTO MEMBER VALUES('test','test3', '1');
+
+
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta16@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta17@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta18@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta19@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta20@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta21@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta22@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta23@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta24@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta25@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta26@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta27@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta28@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta29@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta30@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta31@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta32@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta33@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta34@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta35@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta36@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta37@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta38@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta39@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta40@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta41@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta42@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta43@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta44@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta45@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta46@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta47@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta48@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta49@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta50@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta51@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta52@naver.com','kosta1','엄');
+insert into organization(worker_nickname,boss_nickname,sign_board_name) values('kosta53@naver.com','kosta1','엄');
+

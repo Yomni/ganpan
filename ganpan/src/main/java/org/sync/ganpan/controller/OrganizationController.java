@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.WorkService;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -154,16 +155,18 @@ public class OrganizationController {
 		return mv;
 	}
 
+	/**
+	 * 그룹원 보기 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("showMemberList.do")
-	public ModelAndView showMemberList(HttpServletRequest request) {
+	public ModelAndView showMemberList(String signBoardName, String bossNickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
-		String signBoardName = request.getParameter("signBoardName");
-		String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);// ganpan1, kosta1
-		List<OrganizationVO> oList = organizationService.getOrganizationList(svo);
-
+		ListVO<OrganizationVO> oListVO=organizationService.getOrganizationList(svo,pageNo);
 		mv.addObject("svo", svo);
-		mv.addObject("oList", oList);
+		mv.addObject("oListVO", oListVO);
 		mv.setViewName("board/organization_member_list");
 		return mv;
 	}

@@ -1,14 +1,17 @@
 package org.sync.ganpan;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
-import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
+import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 /*
@@ -39,12 +42,20 @@ public class TestJUnit {
 	private WorkDAO dao;
 
 	@Resource
+	private OrganizationDAO oDAO;
+	@Resource
 	private WorkDAO workDAO;
+	
 	@Test
 	public void test() {
-		int result = dao.updateWorkerToNull(new OrganizationVO(new MemberVO("kosta6"), new SignBoardVO("ganpan1", "kosta1")));
-		System.out.println(result);
+		Map<String, Object> map = new HashMap<String,Object>();
+		SignBoardVO svo=new SignBoardVO("엄","kosta1");
+		PagingBean pb=null;
+		map.put("svo", svo);
+		map.put("getStartRowNumber", 1);
+		map.put("getEndRowNumber", 5);
+		List<OrganizationVO> oList=oDAO.getOrganizationList(map);
+		System.out.println(oList);
 	}// method test
 
-	
 }//class TestJUnit
