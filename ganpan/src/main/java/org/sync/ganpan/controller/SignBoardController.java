@@ -84,7 +84,7 @@ public class SignBoardController {
 	@RequestMapping("mySignBoardList.do")
 	public ModelAndView mySignBoardList(HttpSession session, String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		//List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName(), pageNo);
+		List<SignBoardVO> sbList = signBoardService.mySignBoardList(mvo.getNickName(), pageNo);
 		return new ModelAndView("member/left_template/my_ganpan_list", "sbList", sbList);
 	}
 
