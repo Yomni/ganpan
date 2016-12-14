@@ -11,15 +11,19 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 
 public interface SignBoardDAO {
 
-	int getTotalSignBoardCount(String title);
+	int getTotalSignBoardCountByTitle(String title);
+	
+	int getTotalSignBoardCountByNickName(String nickName);
 
 	List<SignBoardVO> findSignBoardListByTitle(Map<String, Object> tempMap);
-
+	
 	int titleCheck(HashMap<String, String> map);
 
 	void createNewGanpan(HashMap<String, Object> map);
 
 	List<SignBoardVO> mySignBoardList(String nickName);
+	
+	List<SignBoardVO> mySignBoardList(Map<String, Object> tempMap);
 
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
 
@@ -48,6 +52,11 @@ public interface SignBoardDAO {
 	void deleteSignBoard(SignBoardVO svo);
 
 	void updateSignBoardBoss(OrganizationVO ovo);
+
+	List<InvitationMngVO> invitationList(Map<String, Object> map);
+
+	int getTotalInvitationCount(String nickName);
+
 
 
 }

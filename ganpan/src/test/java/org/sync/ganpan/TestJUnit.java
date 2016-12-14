@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
-import org.sync.ganpan.model.service.SignBoardService;
+
 
 /*
  *    TDD : 테스트 주도 개발(test-driven development, TDD)은 
@@ -38,12 +38,13 @@ public class TestJUnit {
 	private WorkDAO wDAO;
 	@Resource
 	private OrganizationDAO oDAO;
+
 	@Resource
-	private SignBoardService signBoardService;
+	private WorkDAO workDAO;
 	
 	@Test
 	public void test() {
-		signBoardService.findSignBoardListByTitle("1", null);
+		
 	}// method test
 
 }//class TestJUnit

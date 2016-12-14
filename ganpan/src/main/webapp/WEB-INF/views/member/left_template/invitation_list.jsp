@@ -36,9 +36,24 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
-</div>
-</div>
+	  <c:choose>
+	      <c:when test="${iListVO.pagingBean.isPreviousPageGroup()}">
+	 		<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${iListVO.pagingBean.getStartPageOfPageGroup()-1}">◀</a>
+	      </c:when>
+	  </c:choose>
+	      	<c:forEach begin="${iListVO.pagingBean.getStartPageOfPageGroup()}" end="${iListVO.pagingBean.nowPage-1}" varStatus="order">
+	      		[<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">${order.index}</a>]
+	      	</c:forEach>[${iListVO.pagingBean.nowPage}]<c:forEach begin="${iListVO.pagingBean.nowPage+1}" end="${iListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+	      		[<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">${order.index}</a>]
+	      	</c:forEach> 
+	    <c:choose>
+	       <c:when test="${iListVO.pagingBean.isNextPageGroup()}">
+	    	   <a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${iListVO.pagingBean.getEndPageOfPageGroup()+1}">▶</a>
+	       </c:when>
+		  </c:choose>
+		</div>
+	 </div>
+  </div>
 </div>
 
 <script type="text/javascript">
