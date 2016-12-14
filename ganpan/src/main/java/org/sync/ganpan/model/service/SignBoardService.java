@@ -11,7 +11,7 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public interface SignBoardService {
 
 	// 제목으로 간판 리스트 검색
-	Map<String, Object> findSignBoardListByTitle(String title);
+	Map<String, Object> findSignBoardListByTitle(String title, String pageNo);
 
 	// 세션 아이디, 간판 타이틀로 존재 유무 반환
 	int titleCheck(HashMap<String, String> map);
@@ -21,6 +21,9 @@ public interface SignBoardService {
 
 	// 닉네임으로 내가 보스닉네임인 보스닉네임, 간판 타이틀 반환
 	List<SignBoardVO> mySignBoardList(String nickName);
+
+	// 닉네임으로 내가 보스닉네임인 보스닉네임, 간판 타이틀 반환 + 페이징 추가
+	List<SignBoardVO> mySignBoardList(String nickName, String pageNo);
 
 	// 닉네임으로 내가 그룹원인 보스닉네임, 간판 타이블 반환
 	List<SignBoardVO> myJoinSignBoardList(String nickName);

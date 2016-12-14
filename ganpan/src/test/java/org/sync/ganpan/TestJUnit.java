@@ -4,9 +4,12 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.sync.ganpan.model.dao.WorkDAO;
+import org.sync.ganpan.model.service.SignBoardService;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -37,13 +40,13 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class TestJUnit {
 	@Resource
 	private WorkDAO dao;
-
-	@Resource
-	private WorkDAO workDAO;
+	
+	@Autowired
+	private SignBoardService signBoardService;
+	
 	@Test
 	public void test() {
-		int result = dao.updateWorkerToNull(new OrganizationVO(new MemberVO("kosta6"), new SignBoardVO("ganpan1", "kosta1")));
-		System.out.println(result);
+		signBoardService.findSignBoardListByTitle("1", null);
 	}// method test
 
 	
