@@ -59,8 +59,6 @@
 												</c:choose>
 											</div>
 										</li>
-
-<<<<<<< HEAD
 										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -100,7 +98,7 @@
 		<!-- col-md-10 col-md-offset-1 -->
 	</div>
 	<!-- row -->
-=======
+
                               <div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                  <div class="modal-dialog">
                                     <div class="modal-content">
@@ -139,7 +137,7 @@
       <!-- col-md-10 col-md-offset-1 -->
    </div>
    <!-- row -->
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
 </div>
 <!-- container -->
 
@@ -149,11 +147,11 @@
    3. ajax변경
  -->
 <c:if test="${sessionScope.mvo != null}">
-<<<<<<< HEAD
+
    <script type="text/javascript">
 =======
 <script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
+
    $(function(){
       var workNo = 0;
       $("ul li").mouseover(function() {
@@ -178,13 +176,12 @@
       
       //$("#${works.workNo}modal").modal('toggle');
       $("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-<<<<<<< HEAD
+
          $(this).removeData();
       });
       
       $("#deleteBtn").click(function(){
          if(confirm("게시물을 삭제하시겠습니까?"))
-             /* alert("signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo); */
              location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
       }); 
       
@@ -195,15 +192,8 @@
        });  */
       
       $("#DONE").sortable(); // sortable
-=======
          
       });
-      
-      /* $("#deleteWork").click(function(){
-         if(confirm("게시물을 삭제하시겠습니까?"))
-             //location.href="${pageContext.request.contextPath}/deleteWork.do?command=delete&workNo=${requestScope.wvo.workNo}";
-            window.location="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo=${works.workNo}";
-      }); */
       
       
       $("#DONE").sortable(); // sortable
@@ -212,7 +202,6 @@
       $("ul li div.panel-body button").click(function(){
          location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
       });
->>>>>>> branch 'master' of https://github.com/Yomni/ganpan.git
    }); //ready
 </script>
 </c:if>
