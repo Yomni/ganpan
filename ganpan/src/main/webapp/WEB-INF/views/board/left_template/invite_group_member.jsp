@@ -29,7 +29,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${MList}" var="MList" varStatus="status">
+					<c:forEach items="${iListVO.list}" var="MList" varStatus="status">
 						<tr>
 							<td>${MList.NICKNAME}</td>
 							<td>${MList.EMAIL}</td>
