@@ -43,7 +43,9 @@
 	  </c:choose>
 	      	<c:forEach begin="${iListVO.pagingBean.getStartPageOfPageGroup()}" end="${iListVO.pagingBean.nowPage-1}" varStatus="order">
 	      		[<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">${order.index}</a>]
-	      	</c:forEach>[${iListVO.pagingBean.nowPage}]<c:forEach begin="${iListVO.pagingBean.nowPage+1}" end="${iListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+	      	</c:forEach>
+	      	[${iListVO.pagingBean.nowPage}]
+	      	<c:forEach begin="${iListVO.pagingBean.nowPage+1}" end="${iListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
 	      		[<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">${order.index}</a>]
 	      	</c:forEach> 
 	    <c:choose>
