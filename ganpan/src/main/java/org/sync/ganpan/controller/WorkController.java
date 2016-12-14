@@ -44,7 +44,8 @@ public class WorkController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "createWork.do")
-	public String createWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName, String bossNickName, String workerNickName) {
+	public String createWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName,
+			String bossNickName, String workerNickName) {
 		wvo.setOrganizationVO(
 				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
@@ -59,36 +60,40 @@ public class WorkController {
 	// public boolean moveWork(String){
 	//
 	// }
-	
+
 	/**
 	 * 회원 탈퇴
 	 * @author 주선
 	 */
 	@RequestMapping("deleteWork.do")
-	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName, String signBoardName) {	
+	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName,
+			String signBoardName) {
 		workService.deleteWork(workNo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
+
 	/**
 	 * 콘텐츠 수정
 	 * @author 민서,동혁
 	 */
 	@RequestMapping("updateWork.do")
-	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails){
-		System.out.println("updateWork.do :"  + workNo + workName + workDetails);
+	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails) {
+		System.out.println("updateWork.do :" + workNo + workName + workDetails);
 		workService.updateWork(workNo);
 		redirectAttributes.addAttribute("workName", workName);
 		redirectAttributes.addAttribute("workDetails", workDetails);
 		return "redirect:showSignBoard.do";
 	}
+
 	/**
 	 * 콘텐츠 작업자로 참여
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("joinAsWorkerByWorkNo.do")
-	public String joinAsWorkerByWorkNo(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName, String workNo, String nickName){
+	public String joinAsWorkerByWorkNo(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
+			String workNo, String nickName) {
 		workService.joinAsWorkerByWorkNo(workNo, nickName);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);

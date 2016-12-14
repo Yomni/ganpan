@@ -1,3 +1,4 @@
+
 package org.sync.ganpan.model.service;
 
 import javax.annotation.Resource;
