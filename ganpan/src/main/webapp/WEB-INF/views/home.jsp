@@ -9,7 +9,7 @@
 						<h1>
 							간판에 <br> 가입하세요!
 						</h1>
-						<p>공동작업에 대한 계획과 진행 상황을 한눈에 확인하세요!</p>
+						<p>작업에 대한 계획을 한눈에 확인하세요!</p>
 						<p>놀라울 만큼 간단합니다!</p>
 					</div>
 					<!-- col-md-6 -->
@@ -42,9 +42,9 @@
 				<div class="row">
 					<div class="col-sm-8">
 						<h2>우리는 간판입니다!</h2>
+						<p>놀랄만큼 똑똑하게 일정을 관리합니다</p>
+						<p>공동 작업을 함께 계획합니다</p>
 						<p>간판을 즐겨보세요</p>
-						<p>놀랄수 없을만큼 똑똑한 계획이 가능합니다.</p>
-						<p>집단작업의 첨단에서 당신을 지원합니다.</p>
 						<p>
 							<a class="btn btn-hovernavy btn-lg" href="${pageContext.request.contextPath}/go_board/guide.do">간판 탐색하기 &raquo;</a>
 						</p>
@@ -58,23 +58,23 @@
 					<div class="col-sm-4">
 						<img class="img1"
 							src="${pageContext.request.contextPath}/resources/img/analytics.png" alt="">
-						<h2>개인 일정관리</h2>
+						<h2>개인 일정 관리</h2>
 						<p>무거운 수첩은 이제 그만!</p>
 						<p>일정을 관리하는데 놀랄만큼 효과적입니다!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
 							src="${pageContext.request.contextPath}/resources/img/reunion.png" alt="">
-						<h2>팀프로젝트</h2>
+						<h2>공동 작업</h2>
 						<p>언제, 어디서나 모두!</p>
-						<p>팀원간 일정을 공유하세요!</p>
+						<p>조원간의 계획을 공유하세요!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
 							src="${pageContext.request.contextPath}/resources/img/businessmen.png" alt="">
 						<h2>회사 내 똑똑한 도구</h2>
 						<p>최고의 시각화 도구</p>
-						<p>간판은 당신의 회사생활을 도와줍니다.</p>
+						<p>간판은 당신의 회사 생활을 도와줍니다.</p>
 					</div>
 				</div>
 				<!-- /.row -->
@@ -94,14 +94,14 @@
 			<hr>
 			<div class="row">
 				<div class="col-md-8">
-					<div class="jumbotron">변경이력들 공개</div>
+					<div class="jumbotron">변경 이력들 공개</div>
 					<!-- jumbotron -->
 				</div>
 				<!-- col-md-6 -->
 
 				<div class="col-md-4">
 					<div class="well">
-						<h3>${mvo.nickName}님 간판 현황 | 총${signBoardCount}개</h3>
+						<h3>${mvo.nickName}님 간판 현황 | 총&nbsp;${signBoardCount}개</h3>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -119,9 +119,8 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						
-				        <nav>
-				             <ul class="pagination">
+				        <nav class="text-center">
+				             <ul class="pagination pagination-sm">
 				               <c:choose>
 				                  <c:when test="${sListVO.pagingBean.isPreviousPageGroup()}">
 				                   <li>

@@ -34,7 +34,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-					<nav>
+					<nav class="text-center">
 	  					<ul class="pagination">
 							 <c:choose>
 							       <c:when test="${oListVO.pagingBean.isPreviousPageGroup()}">

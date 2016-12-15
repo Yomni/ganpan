@@ -200,6 +200,7 @@
 #jumbotron-main {
 	background-image: url("/ganpan/resources/img/ccc.jpg");
 	background-size: 100% 100%;
+	color: #ffffff;
 }
 #jumbotron-guide{
 	background-image: url("/ganpan/resources/img/ganpan_background.jpg");
@@ -208,7 +209,6 @@
 .jumbotron {
 	padding: 30px 15px;
 	margin-bottom: 30px;
-	color: #ffffff;
 	background-color: #eee;
 }
 
@@ -247,6 +247,7 @@ div.loginhome {
 
 #grad3 {
     height: 100px;
+    border-radius: 10px;
     background: red; /* For browsers that do not support gradients */        
     background: -webkit-linear-gradient(180deg, #716b7b, white); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(180deg, #716b7b, white); /* For Opera 11.1 to 12.0 */

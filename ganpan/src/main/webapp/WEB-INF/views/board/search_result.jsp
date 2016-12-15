@@ -22,7 +22,7 @@
 				</c:forEach>
 			</tbody>
 		</table><br>
-        <nav>
+        <nav class="text-center">
              <ul class="pagination">
                <c:choose>
                   <c:when test="${pb.isPreviousPageGroup()}">

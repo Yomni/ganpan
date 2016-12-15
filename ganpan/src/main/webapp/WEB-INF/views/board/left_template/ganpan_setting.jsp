@@ -38,7 +38,7 @@
 							<input type="radio" name="visibility" value="public" />
 							간판 공개 : 누구나 간판을 볼 수 있습니다.<br> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
 							<input type="radio" name="visibility" value="private" />
-							간판 비공개 : 그룹원만 볼 수 있습니다.<br>
+							간판 비공개 : 조원만 볼 수 있습니다.<br>
 							<input type="submit" class="btn btn-success pull-right" id="changeVisibilityBtn" value="설정 완료" />
 						</div>
 					</div>
@@ -56,7 +56,7 @@
 							<h4>
 								<span id="groupCheckView"></span>
 							</h4>
-							<input type="text" class="form-control" name="id" id="id" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
+							<input type="text" class="form-control" name="id" id="id" placeholder="위임할 조원의 전자우편 혹은 별명 작성" required="required" />
 							<input type="submit" class="btn btn-success pull-right" id="changeTitleBtn" value="위임" />
 							<br>
 						</div>
@@ -113,7 +113,7 @@
 		
 		$("#updateSignBoardBossForm").submit(function(){
 			if($(":input[name=id]").val().trim()==""){
-				alert("위임하실 그룹원을 입력하세요!");
+				alert("위임하실 조원을 입력하세요!");
 				return false;
 			}
 			if(checkResultGroup == ""){
