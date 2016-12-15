@@ -45,4 +45,10 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 		template.insert("changeMng.insertLogForUpdateWork", wvo);
 	}
 
+	@Override//여기 할것 20161215_19:03
+	public Object showTotalChangeMngList(Map<String, Object> argMap) {
+		template.selectList("showTotalChangeMngList", argMap);
+		return null;
+	}
+
 }// class ChangeMngDAOImpl

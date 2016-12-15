@@ -18,4 +18,6 @@ public interface ChangeMngDAO {
 	void insertLogForCreateWork(int workNo);
 
 	void insertLogForUpdateWork(WorkVO wvo);
+
+	Object showTotalChangeMngList(Map<String, Object> argMap);
 }

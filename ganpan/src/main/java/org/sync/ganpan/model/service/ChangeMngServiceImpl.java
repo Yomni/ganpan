@@ -34,11 +34,16 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		System.out.println("doing 값 : "+map.get("doingChangeMngList"));
 		
 		
-		
 		// 3. done의 변경이력들만 뽑아온다.
 		// 3-1 map에 추가
+		argMap.put("boardNo", 3);
+		map.put("doneChangeMngList", changeMngDAO.showChangeMngList(argMap));
+		System.out.println("done 값 : "+map.get("doneChangeMngList"));
+		
 		// 4. 총 변경이력을 뽑아온다.
 		// 4 - 1 map에 추가
+		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(argMap));
+		
 		return map;
 	}
 	
