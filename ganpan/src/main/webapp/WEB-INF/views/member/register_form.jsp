@@ -22,7 +22,7 @@
 					<h4>
 						<span id="nickNameCheckView"></span>
 					</h4>
-					<label for="nickName">별명</label> <input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명" value="${mvo.nickName}" required="required" />
+					<label for="nickName">별명&nbsp;(*특수문자는 사용하실 수 없습니다)</label> <input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명" value="${mvo.nickName}" required="required" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;"/>
 				</div>
 				<div class="form-group">
 					<h4>
@@ -187,6 +187,7 @@
 		
 		$("#nickName").keyup(function(){
 			var nickName=$(this).val().trim();
+			
 			if(nickName == "") {
 				$("#nickNameCheckView").html("");		
 				checkResultNickName = false;
@@ -199,7 +200,8 @@
 					+ "</div>");
 				checkResultNickName = false;
 				return;
-			} else {						
+			}
+			else {		
 				$("#nickNameCheckView").html("");		
 			}
 			$.ajax({

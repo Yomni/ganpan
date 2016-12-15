@@ -16,7 +16,8 @@
 
 					<div class="col-md-6">
 						<form action="register_main.do" method="post" id="registerForm">
-							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명" required="required">
+							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명 (*특수문자 사용불가)" required="required" 
+							onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;">
 							<br>
 							<br>
 							<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편" required="required">
