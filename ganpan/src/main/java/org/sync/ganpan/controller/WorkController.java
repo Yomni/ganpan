@@ -93,8 +93,6 @@ public class WorkController {
 	@RequestMapping(value = "updateWork.do", method = RequestMethod.POST)
 	public String updateWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName,
 			String bossNickName) {
-		System.out.println(wvo);
-		System.out.println(signBoardName + "  " + bossNickName);
 		workService.updateWork(wvo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);

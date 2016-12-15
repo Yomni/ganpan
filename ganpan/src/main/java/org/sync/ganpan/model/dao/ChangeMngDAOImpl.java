@@ -30,4 +30,10 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 		return template.selectList("changeMng.showChangeMngList", svo);
 	}
 
+	@Override
+	public void insertLogForUpdateWork(WorkVO wvo) {
+		System.out.println("ChangeMngDAOImpl의 wvo : "+wvo);
+		template.insert("changeMng.insertLogForUpdateWork",wvo);
+	}
+
 }// class ChangeMngDAOImpl

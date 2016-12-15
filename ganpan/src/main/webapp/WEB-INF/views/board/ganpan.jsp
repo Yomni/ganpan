@@ -68,6 +68,7 @@
 															<input type="hidden" name="bossNickName" value="${rsvo.bossMemberVO.nickName}"/>
 															<input type="hidden" name="boardNo" value="${works.boardNo}"/>
 															<input type="hidden" name="workNo" value="${works.workNo}"/>
+															<input type="hidden" name="organizationVO.workerMemberVO.nickName" value="${works.organizationVO.workerMemberVO.nickName}"/>
 															<h4 class="modal-title"><input type="text" name="workName" value="${works.workName}" required="required"/></h4>
 														</div>
 														<div class="modal-body">
