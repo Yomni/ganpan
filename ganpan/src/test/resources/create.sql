@@ -109,9 +109,9 @@ CREATE TABLE CHANGE_MANAGEMENT(
    change_no NUMBER NOT NULL,
    
    CONSTRAINT fk_change_management_change FOREIGN KEY(change_no) 
-         REFERENCES CHANGE_GENRE(change_no) ON DELETE CASCADE,
-   CONSTRAINT fk_change_management_work FOREIGN KEY(work_no) 
-         REFERENCES WORK(work_no)
+         REFERENCES CHANGE_GENRE(change_no) ON DELETE CASCADE
+--   CONSTRAINT fk_change_management_work FOREIGN KEY(work_no) 
+--         REFERENCES WORK(work_no)
 );
 
 -- INSERT MEMBER(테스트용 입니다.)

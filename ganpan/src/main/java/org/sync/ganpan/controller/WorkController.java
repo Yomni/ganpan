@@ -60,6 +60,14 @@ public class WorkController {
 	// @ResponseBody
 	// public boolean moveWork(String){
 
+	/**
+	 * @author 민서,용민
+	 * @param redirectAttributes
+	 * @param workNo
+	 * @param bossNickName
+	 * @param signBoardName
+	 * @return
+	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName,
 			String signBoardName) {
@@ -68,27 +76,26 @@ public class WorkController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
-	//민서거
-	/*@RequestMapping("updateWork.do")
-	public String updateWork(HttpSession session, MemberVO mvo) {
-		WorkVO wvo=new WorkVO(workNo,workName,workDetails);
-		workService.updateWork(workNo);
+
+	/**
+	 * 작업들의 상세 내용을 수정하는 method
+	 * @author 민서,용민
+	 * @param redirectAttributes
+	 * @param wvo
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @return
+	 */
+	@RequestMapping(value = "updateWork.do", method = RequestMethod.POST)
+	public String updateWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName,
+			String bossNickName) {
+		System.out.println(wvo);
+		System.out.println(signBoardName + "  " + bossNickName);
+		workService.updateWork(wvo);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
-	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
-	public String updateMember(HttpSession session, MemberVO mvo) {
-		memberService.updateMember(mvo);
-		session.setAttribute("mvo", mvo);
-		return "redirect:go_member/left_template/my_info.do";
-	}*/
-/*	@RequestMapping("updateWork.do")
-	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails) {
-		System.out.println("updateWork.do :" + workNo + workName + workDetails);
-		workService.updateWork(workNo);
-		redirectAttributes.addAttribute("workName", workName);
-		redirectAttributes.addAttribute("workDetails", workDetails);
-		return "redirect:showSignBoard.do";
-	}*/
 
 	/**
 	 * 콘텐츠 작업자로 참여

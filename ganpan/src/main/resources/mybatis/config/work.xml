@@ -63,10 +63,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from work where work_no=#{workNo}
 	</delete>
 	
- 		<update id="updateWork" parameterType="workVO">	
+	<update id="updateWork" parameterType="workVO">	
 		update work
-		set workName=#{workVO.workName},workDetails=#{workVO.workDetails}
-		where workNo=#{workNo}
+		set work_name=#{workName},
+			work_details=#{workDetails},
+			change_date = sysdate 
+		where work_no = #{workNo}
 	</update>
  	
  	<update id="joinAsWorkerByWorkNo" parameterType="workVO">
