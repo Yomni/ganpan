@@ -1,6 +1,7 @@
 package org.sync.ganpan.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -26,14 +27,15 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 	}
 
 	@Override
-	public List<ChangeMngVO> showChangeMngList(SignBoardVO svo) {
-		System.out.println("ChangeMngDAOImpl의 svo : "+svo);
-		return template.selectList("changeMng.showChangeMngList", svo);
+	public List<ChangeMngVO> showChangeMngList(Map<String, Object> argMap) {
+		return template.selectList("changeMng.showChangeMngList", argMap);
 	}
 
 	@Override
 	public void insertLogForUpdateWork(WorkVO wvo) {
 		template.insert("changeMng.insertLogForUpdateWork",wvo);
 	}
+
+
 
 }// class ChangeMngDAOImpl

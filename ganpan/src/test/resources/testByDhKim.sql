@@ -89,7 +89,16 @@ from change_management
 select * from CHANGE_MANAGEMENT;
 
 select c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
-		from change_management c, work w
-		where c.work_no=w.work_no;
+from change_management c, work w
+where c.work_no=w.work_no;
+
+
+select c.change_management_no, c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
+from change_management c, work w
+where w.sign_board_name='ganpan1' and w.boss_nickname='java' and c.board_no=1 and c.work_no=w.work_no
+
+
+
+
 
 
