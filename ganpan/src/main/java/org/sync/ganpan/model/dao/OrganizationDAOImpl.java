@@ -28,6 +28,11 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	}
 
 	@Override
+	public List<OrganizationVO> getOrganizationSignBoardList(Map<String, Object> map) {
+		return template.selectList("organization.getOrganizationSignBoardListPaging", map);
+	}
+
+	@Override
 	public void cancelInvitation(InvitationMngVO ivo) {
 		template.delete("invitationMng.deleteInvitationMng", ivo);
 	}
@@ -46,7 +51,6 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	public List<OrganizationVO> getOrganizationList(Map<String, Object> map) {
 		return template.selectList("organization.getOrganizationListPaging",map);
 	}
-	
 	@Override
 	public String getNickNameByEmail(String id) {
 		return template.selectOne("organization.getNickNameByEmail", id);

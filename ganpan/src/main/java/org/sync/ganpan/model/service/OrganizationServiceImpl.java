@@ -43,6 +43,22 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
+	public ListVO<OrganizationVO> getOrganizationSignBoardList(String nickName, String pageNo) {
+		PagingBean pb=null;
+		int totalCount = organizationDAO.getJoinedSignBoardCount(nickName);
+		if(pageNo==null)
+			pb=new PagingBean(totalCount);
+		else
+			pb=new PagingBean(totalCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("nickName", nickName);
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		List<OrganizationVO> list = organizationDAO.getOrganizationSignBoardList(map);
+		return new ListVO<OrganizationVO>(list, pb);
+	}
+
+	@Override
 	public void cancelInvitation(InvitationMngVO ivo) {
 		organizationDAO.cancelInvitation(ivo);
 	}

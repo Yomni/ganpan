@@ -40,10 +40,10 @@ public class OrganizationController {
 	 * @return
 	 */
 	@RequestMapping("getLoginHome.do")
-	public ModelAndView getLoginHomeSignBoardList(String nickName) {
+	public ModelAndView getLoginHomeSignBoardList(String nickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
-		mv.addObject("slist", organizationService.getOrganizationSignBoardList(nickName));
+		mv.addObject("sListVO", organizationService.getOrganizationSignBoardList(nickName, pageNo));
 		mv.addObject("signBoardCount", organizationService.getJoinedSignBoardCount(nickName));
 		return mv;
 	}

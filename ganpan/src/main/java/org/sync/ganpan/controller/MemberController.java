@@ -1,7 +1,6 @@
 package org.sync.ganpan.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.sync.ganpan.model.service.MemberService;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 
@@ -156,10 +156,10 @@ public class MemberController {
 		MemberVO mvo = memberService.login(map);
 		if (mvo != null) {
 			session.setAttribute("mvo", mvo);
-			List<OrganizationVO> slist = organizationService.getOrganizationSignBoardList(mvo.getNickName());
+			ListVO<OrganizationVO> sListVO = organizationService.getOrganizationSignBoardList(mvo.getNickName(), null);
 			int signBoardCount = organizationService.getJoinedSignBoardCount(mvo.getNickName());
 			session.setAttribute("signBoardCount", signBoardCount);
-			session.setAttribute("slist", slist);
+			session.setAttribute("sListVO", sListVO);
 			return "redirect:go_home.do";
 		} else {
 			return "redirect:go_member/login_fail.do";
