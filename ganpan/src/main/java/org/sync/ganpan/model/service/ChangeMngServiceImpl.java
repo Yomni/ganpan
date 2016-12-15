@@ -1,4 +1,3 @@
-
 package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
@@ -8,6 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.ChangeMngDAO;
+import org.sync.ganpan.model.vo.ChangeMngVO;
+import org.sync.ganpan.model.vo.ListVO;
+import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
 @Service
@@ -16,36 +18,59 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 	private ChangeMngDAO changeMngDAO;
 
 	@Override
-	public Map<String,Object> showChangeMngList(SignBoardVO svo) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		Map<String,Object> argMap = new HashMap<String,Object>();
+	public Map<String, Object> showChangeMngList(SignBoardVO svo, String toDoPageNo, String doingPageNo,
+			String donePageNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> argMap = new HashMap<String, Object>();
 		argMap.put("svo", svo);
-		argMap.put("boardNo", 1);
-		// 1.  to_do의 변경이력들만 뽑아온다.
+		
+		// 1. to_do의 변경이력들만 뽑아온다.
 		// 1 -1. map에 추가.
-		map.put("todoChangeMngList", changeMngDAO.showChangeMngList(argMap));
-		System.out.println("todoLog 값 : "+map.get("todoChangeMngList"));
-		
-		
+		// ListVO형태로 넣어줘야함.
+		argMap.put("boardNo", 1);
+		PagingBean toDoPb = createPagingBean(argMap, toDoPageNo);
+		argMap.put("pb", toDoPb);
+		ListVO<ChangeMngVO> toDoListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), toDoPb);
+		System.out.println(toDoListVO);
+		map.put("toDoListVO", toDoListVO);
+
 		// 2. doing의 변경이력들만 뽑아온다.
 		// 2-1 map에 추가
+		// ListVO형태로 넣어줘야함.
 		argMap.put("boardNo", 2);
-		map.put("doingChangeMngList", changeMngDAO.showChangeMngList(argMap));
-		System.out.println("doing 값 : "+map.get("doingChangeMngList"));
-		
-		
+		PagingBean doingPb = createPagingBean(argMap, doingPageNo);
+		argMap.put("pb", doingPb);
+		ListVO<ChangeMngVO> doingListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), doingPb);
+		System.out.println(doingListVO);
+		map.put("doingListVO", doingListVO);
+
 		// 3. done의 변경이력들만 뽑아온다.
 		// 3-1 map에 추가
+		// ListVO형태로 넣어줘야함.
 		argMap.put("boardNo", 3);
-		map.put("doneChangeMngList", changeMngDAO.showChangeMngList(argMap));
-		System.out.println("done 값 : "+map.get("doneChangeMngList"));
-		
+		PagingBean donePb = createPagingBean(argMap, donePageNo);
+		argMap.put("pb", donePb);
+		ListVO<ChangeMngVO> doneListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), donePb);
+		System.out.println(doneListVO);
+		map.put("doneListVO", doneListVO);
+
 		// 4. 총 변경이력을 뽑아온다.
 		// 4 - 1 map에 추가
 		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(svo));
+		System.out.println(changeMngDAO.showTotalChangeMngList(svo));
 		
 		return map;
 	}
-	
 
+	public PagingBean createPagingBean(Map<String, Object> argMap, String pageNo) {
+		int totalCount = changeMngDAO.getTotalChangeMngCountEachBoard(argMap);
+		System.out.println(totalCount);
+		PagingBean pb = null;
+		if (pageNo == null) {
+			pb = new PagingBean(totalCount);
+		} else {
+			pb = new PagingBean(totalCount, Integer.parseInt(pageNo));
+		}
+		return pb;
+	}
 }

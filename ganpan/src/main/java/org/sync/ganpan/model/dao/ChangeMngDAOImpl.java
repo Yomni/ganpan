@@ -51,4 +51,8 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 		return template.selectList("changeMng.showTotalChangeMngList", svo);
 	}
 
+	@Override
+	public int getTotalChangeMngCountEachBoard(Map<String, Object> argMap) {
+		return template.selectOne("changeMng.getTotalChangeMngCount", argMap);
+	}
 }// class ChangeMngDAOImpl

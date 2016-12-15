@@ -12,15 +12,14 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 public class ChangeMngController {
 	@Resource
 	private ChangeMngService changeMngService;
-	
-	@RequestMapping("change_mng.do")
-	public ModelAndView showChangeMng(String signBoardName, String bossNickName){
+
+	@RequestMapping("changeMng.do")
+	public ModelAndView showChangeMng(String signBoardName, String bossNickName, String toDoPageNo, String doingPageNo,
+			String donePageNo) {
 		ModelAndView mv = new ModelAndView();
-		SignBoardVO svo= new SignBoardVO(signBoardName, bossNickName);
-		mv.addObject("changeMngMap", changeMngService.showChangeMngList(svo));
+		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
+		mv.setViewName("board/change_mng");
+		mv.addObject("changeMngMap", changeMngService.showChangeMngList(svo, toDoPageNo, doingPageNo, donePageNo));
 		return mv;
 	}
-}//class ChangeMngController
-
-
-
+}// class ChangeMngController

@@ -41,6 +41,9 @@
 					</tr>
 					<tr>
 						<td>
+						<c:forEach items="${changeMngMap.todoChangeMngList }" var="todoList">
+							${todoList. }
+						</c:forEach>
 							<div>로그1</div>
 							<div>로그2</div>
 							<div>로그3</div>

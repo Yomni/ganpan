@@ -21,4 +21,6 @@ public interface ChangeMngDAO {
 	void insertLogForUpdateWork(WorkVO wvo);
 
 	List<ChangeMngVO> showTotalChangeMngList(SignBoardVO svo);
+
+	int getTotalChangeMngCountEachBoard(Map<String, Object> argMap);
 }

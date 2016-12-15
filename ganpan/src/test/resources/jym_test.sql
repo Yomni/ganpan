@@ -119,7 +119,12 @@ update work
 			work_details='상세내용',
 			change_date = sysdate 
 		where work_no = 45
-		
+select rnum as change_management_no, change_worker, change_management_date, board_no, work_name, change_name
+   		from (select row_number() over(order by c.change_management_date desc) as rnum, c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, c.board_no, w.work_name, ch.change_name
+		from change_management c, work w, change_genre ch
+		where w.sign_board_name='test' and w.boss_nickname='sync' 
+			and c.work_no=w.work_no
+			and ch.change_no = c.change_no)		
 		
 		select c.change_worker,  to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI'), ch.change_name, w.work_name
 		from change_management c, work w, change_genre ch
