@@ -13,6 +13,13 @@ public class WorkVO {
 		super();
 	}
 
+	public WorkVO(int workNo, String workName, String workDetails) {
+		super();
+		this.workNo = workNo;
+		this.workName = workName;
+		this.workDetails = workDetails;
+	}
+
 	public WorkVO(int workNo, String workName, String workDetails, String creationDate, String changeDate, int boardNo,
 			OrganizationVO organizationVO) {
 		super();

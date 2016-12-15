@@ -7,7 +7,10 @@
 		 <br><br>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">내 정보 보기</h3>
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+						내 정보 보기<br>
+					</h3>
 				</div>
 				<div class="panel-body">
 					<table class="table table-hover" id="myJoinGanpanTable">

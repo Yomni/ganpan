@@ -54,7 +54,6 @@ public class WorkDAOImpl implements WorkDAO {
 	public int moveWork(int workNo) {
 		return template.update("work.moveWork",workNo);
 	}
-
 }//class WorkDAOImpl
 
 

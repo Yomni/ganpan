@@ -26,7 +26,7 @@
 							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required">
 							<br>
 							<br>
-							<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
+							<button type="submit" class="btn btn-default btn-black btn-block" id="registerBtn">가입하기</button>
 						</form>
 					</div>
 					<!-- col-md-6 -->
