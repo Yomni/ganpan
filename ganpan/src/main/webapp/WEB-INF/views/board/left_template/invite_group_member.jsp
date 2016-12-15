@@ -54,23 +54,33 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						 <c:choose>
-					       <c:when test="${mListVO.pagingBean.isPreviousPageGroup()}">
-				   				 <a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${mListVO.pagingBean.getStartPageOfPageGroup()-1}">◀</a>
-					       </c:when>
-					 	 </c:choose>
-			        	<c:forEach begin="${mListVO.pagingBean.getStartPageOfPageGroup()}" end="${mListVO.pagingBean.nowPage-1}" varStatus="order">
-			        		[<a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">${order.index}</a>]
-			        	</c:forEach>[${mListVO.pagingBean.nowPage}]<c:forEach begin="${mListVO.pagingBean.nowPage+1}" end="${mListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
-			        		[<a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">${order.index}</a>]
-			        	</c:forEach> 
-				       <c:choose>
-				        <c:when test="${oListVO.pagingBean.isNextPageGroup()}">
-				     	   <a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${oListVO.pagingBean.getEndPageOfPageGroup()+1}">▶</a>
-				        </c:when>
-			 		  </c:choose>
+						<nav>
+  							<ul class="pagination">
+								 <c:choose>
+							       <c:when test="${mListVO.pagingBean.isPreviousPageGroup()}">
+							        <li>
+					   				 <a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${mListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
+					   				 <span aria-hidden="true">&laquo;</span></a>
+						            </li>
+							       </c:when>
+							 	 </c:choose>
+					        	<c:forEach begin="${mListVO.pagingBean.getStartPageOfPageGroup()}" end="${mListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+					        		<li><a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">
+					        			${order.index}</a>
+					        		</li>
+					        	</c:forEach> 
+						       <c:choose>
+						        <c:when test="${mListVO.pagingBean.isNextPageGroup()}">
+						          <li>
+						     	    <a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${mListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
+						     	     <span aria-hidden="true">&raquo;</span></a>
+						     	  </li>
+						        </c:when>
+					 		  </c:choose>
+					       </ul>
+					   </nav>
 					</div>
-				</div>
+			  </div>
 		</div>
 	</div>
 </div>
