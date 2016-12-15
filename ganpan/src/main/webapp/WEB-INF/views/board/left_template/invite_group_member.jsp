@@ -29,7 +29,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${iListVO.list}" var="MList" varStatus="status">
+					<c:forEach items="${mListVO.list}" var="MList" varStatus="status">
 						<tr>
 							<td>${MList.NICKNAME}</td>
 							<td>${MList.EMAIL}</td>
@@ -44,6 +44,21 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			 <c:choose>
+		       <c:when test="${mListVO.pagingBean.isPreviousPageGroup()}">
+	   				 <a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${mListVO.pagingBean.getStartPageOfPageGroup()-1}">◀</a>
+		       </c:when>
+		 	 </c:choose>
+        	<c:forEach begin="${mListVO.pagingBean.getStartPageOfPageGroup()}" end="${mListVO.pagingBean.nowPage-1}" varStatus="order">
+        		[<a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">${order.index}</a>]
+        	</c:forEach>[${mListVO.pagingBean.nowPage}]<c:forEach begin="${mListVO.pagingBean.nowPage+1}" end="${mListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+        		[<a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">${order.index}</a>]
+        	</c:forEach> 
+	       <c:choose>
+	        <c:when test="${oListVO.pagingBean.isNextPageGroup()}">
+	     	   <a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${oListVO.pagingBean.getEndPageOfPageGroup()+1}">▶</a>
+	        </c:when>
+ 		  </c:choose>
 		</div>
 	</div>
 </div>
@@ -59,7 +74,7 @@
 			if(checkResultGroup=="")
 				return false;
 		});
-		<c:forEach items="${MList}" varStatus="status">
+		<c:forEach items="${mListVO.list}" varStatus="status">
 			$("#cancel${status.count}").click(function(){
 				var workerNickName = $("#inviteTable tr:eq(${status.count}) td:eq(0)").text();
 				location.href = "${pageContext.request.contextPath}/cancelInvitation.do?signBoardName=${svo.signBoardName}&nickName="

@@ -68,12 +68,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="sendInvitationList" resultType="Map" parameterType="signBoardVO">
-		SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date
-		as invitationDate
+		SELECT im.nickname as nickName, m.e_mail as eMail, im.invitation_date as invitationDate
 		FROM member m, invitation_management im
 		WHERE
-		m.nickname=im.nickname and boss_nickname=#{bossMemberVO.nickName} and
-		sign_board_name=#{signBoardName}
+				m.nickname=im.nickname and boss_nickname=#{bossMemberVO.nickName} and
+				sign_board_name=#{signBoardName}
+	</select>
+	
+	<select id="sendInvitationListPaging" parameterType="map" resultType="Map">
+		SELECT nickName, eMail as eMail, invitationDate
+		FROM (SELECT row_number() over(order by im.invitation_date desc) as rnum, im.nickname as nickName, 
+						 m.e_mail as eMail, im.invitation_date as invitationDate 
+				FROM member m, invitation_management im
+		 		WHERE m.nickname=im.nickname and boss_nickname = #{bossNickName} and sign_board_name = #{signBoardName})
+		WHERE rnum between #{getStartRowNumber} and #{getEndRowNumber}
 	</select>
 
 	<delete id="leaveOrganization" parameterType="organizationVO">
@@ -106,6 +114,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM organization
 		WHERE boss_nickname = #{bossMemberVO.nickName} and sign_board_name = #{signBoardName}
 	</select>
+	
+	<select id="getTotalsendInvitationCount" parameterType="signBoardVO" resultType="int">
+		SELECT count(*)
+		FROM invitation_management
+		WHERE boss_nickname = #{bossMemberVO.nickName} and sign_board_name = #{signBoardName}
+	</select>
+
 </mapper>
 
 

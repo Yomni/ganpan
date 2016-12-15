@@ -40,6 +40,8 @@ public interface OrganizationDAO {
 
 	List<OrganizationVO> getOrganizationList(Map<String, Object> map);
 
+	int getTotalsendInvitationCount(SignBoardVO svo);
 
-	
+	List<HashMap<String, String>> sendInvitationList(Map<String, Object> map);
+
 }// interface GroupDAO
