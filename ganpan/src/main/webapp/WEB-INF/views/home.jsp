@@ -26,7 +26,7 @@
 							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required">
 							<br>
 							<br>
-							<button type="submit" class="btn-purple btn-block" id="registerBtn">가입하기</button>
+							<button type="submit" class="btn btn-purple btn-block" id="registerBtn">가입하기</button>
 						</form>
 					</div>
 					<!-- col-md-6 -->
@@ -158,11 +158,11 @@
 </div>
 <!-- /container -->
 <c:if test="${invitationFlag && sessionScope.mvo != null}">
-<script type="text/javascript">
-	$(window).load(function() {
-		if(confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")){
-			location.href="${pageContext.request.contextPath}/invitationList.do";
-		}
-	});
-</script>
+<!-- <script type="text/javascript"> -->
+// 	$(window).load(function() {
+// 		if(confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")){
+// 			location.href="${pageContext.request.contextPath}/invitationList.do";
+// 		}
+// 	});
+<!-- </script> -->
 </c:if>
