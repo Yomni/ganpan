@@ -71,7 +71,6 @@ public class OrganizationController {
 		// id는 이메일이나 닉네임
 		if (type.equals("email")) {
 			id = organizationService.getNickNameByEmail(id);
-			System.out.println("inviteWorker:email: " + type);
 		}
 		InvitationMngVO ivo = new InvitationMngVO(signBoardName, bossNickName, id);
 		organizationService.inviteWorker(ivo);
@@ -111,7 +110,6 @@ public class OrganizationController {
 	public String cancelInvitation(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
 			String nickName) {
 		InvitationMngVO ivo = new InvitationMngVO(signBoardName, bossNickName, nickName);
-		System.out.println("cancelInvitation:ivo: " + ivo);
 		organizationService.cancelInvitation(ivo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
@@ -132,7 +130,6 @@ public class OrganizationController {
 		String workerNickName = mvo.getNickName();
 		OrganizationVO ovo = new OrganizationVO(workerNickName, signBoardName, bossNickName);
 		organizationService.leaveOrganization(ovo);
-		System.out.println(ovo);
 		return "redirect:myJoinSignBoardList.do";
 	}
 
@@ -148,7 +145,6 @@ public class OrganizationController {
 		mv.addObject("svo", svo);
 		mv.addObject("oListVO", oListVO);
 		mv.setViewName("board/left_template/manage_organization_member");
-		System.out.println(oListVO);
 		return mv;
 	}
 

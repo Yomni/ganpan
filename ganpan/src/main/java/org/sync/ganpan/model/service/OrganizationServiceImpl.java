@@ -104,13 +104,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 	public void banish(OrganizationVO ovo) {
 		// work table에서 worker_nickName -> null로 update
 		int updateResult = workDAO.updateWorkerToNull(ovo);
-		System.out.println("GroupServiceImple의 work에서 updateResult여부 : " + updateResult);// 1이면
 																							// update
 
 		// Organization worker_nickName을 삭제
 		int deleteResult = organizationDAO.deleteWorker(ovo);
-		System.out.println("GroupServiceImple의 group에서 deleteResult여부 : " + deleteResult);// 1이면
-																							// delete
 
 	}
 
@@ -152,19 +149,14 @@ public class OrganizationServiceImpl implements OrganizationService {
 		int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
 		int inviteCheck = organizationDAO.inviteCheck(ovo);
 		if( nickNameCount == 0){
-			System.out.println("nickNameCount");
 			return "idfail";
 		}else if(id.equals(bossNickName)){ // 그룹장 별명과 입력받은 아이디가 같을 때
-			System.out.println("bossNickName");
 			return "groupbossfail";
 		}else if(inviteCheck == 1){ //이미 초대된 회원을 초대 했을 경우
-			System.out.println("inviteCheck");
 			return "alreadyinvitefail";
 		}else if(groupCheck == 0){ // 그룹에 속한 회원이 없을 때
-			System.out.println("groupCheck");
 			return "groupfail";
 		}else if(workerSignBoardNameCheck == 1){ // 그룹원 중에 해당 칸반 이름과 동일한 칸반을 가지고 있을 때
-			System.out.println("workerSignBoardNameCheck");
 			return "workersignboardfail";
 		}
 		return "ok";
