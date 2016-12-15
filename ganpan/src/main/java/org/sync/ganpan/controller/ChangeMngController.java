@@ -1,8 +1,5 @@
 package org.sync.ganpan.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -21,6 +18,7 @@ public class ChangeMngController {
 	public ModelAndView showChangeMng(String signBoardName, String bossNickName){
 		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo= new SignBoardVO(signBoardName, bossNickName);
+		mv.setViewName("board/change_mng");
 		mv.addObject("changeMngMap", changeMngService.showChangeMngList(svo));
 		
 		return mv;

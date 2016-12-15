@@ -47,8 +47,8 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 
 	@Override//여기 할것 20161215_19:03
 	public Object showTotalChangeMngList(Map<String, Object> argMap) {
-		template.selectList("showTotalChangeMngList", argMap);
-		return null;
+		
+		return template.selectList("changeMng.showTotalChangeMngList", argMap);
 	}
 
 }// class ChangeMngDAOImpl
