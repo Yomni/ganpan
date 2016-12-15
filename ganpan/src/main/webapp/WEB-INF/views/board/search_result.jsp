@@ -22,16 +22,30 @@
 				</c:forEach>
 			</tbody>
 		</table><br>
-		<c:choose>
-			<c:when test="${pb.isPreviousPageGroup()}">
-				<a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getStartPageOfPageGroup()-1}">◀</a>
-			</c:when>
-		</c:choose>
-			<c:forEach begin="${pb.getStartPageOfPageGroup()}" end="${pb.nowPage-1}" varStatus="order">[<a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${order.index}">${order.index}</a>]</c:forEach>[${pb.nowPage}]<c:forEach begin="${pb.nowPage+1}" end="${pb.getEndPageOfPageGroup()}" varStatus="order">[<a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${order.index}">${order.index}</a>]</c:forEach> 
-		<c:choose>
-			<c:when test="${pb.isNextPageGroup()}">
-				<a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getEndPageOfPageGroup()+1}">▶</a>
-			</c:when>
-		</c:choose>
+        <nav>
+             <ul class="pagination">
+               <c:choose>
+                  <c:when test="${pb.isPreviousPageGroup()}">
+                   <li>
+                     <a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getStartPageOfPageGroup()-1}" aria-label="Previous">
+                     <span aria-hidden="true">&laquo;</span></a>
+                    </li>
+                  </c:when>
+                </c:choose>
+                <c:forEach begin="${pb.getStartPageOfPageGroup()}" end="${pb.getEndPageOfPageGroup()}" varStatus="order">
+                   <li><a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${order.index}">
+                      ${order.index}</a>
+                   </li>
+                </c:forEach> 
+               <c:choose>
+                <c:when test="${pb.isNextPageGroup()}">
+                  <li>
+                    <a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getEndPageOfPageGroup()+1}">${order.index}
+                     <span aria-hidden="true">&raquo;</span></a>
+                  </li>
+                </c:when>
+              </c:choose>
+            </ul>
+        </nav>
 	</div>
 </div>
