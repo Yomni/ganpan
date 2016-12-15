@@ -40,11 +40,13 @@ public interface OrganizationDAO {
 
 	List<OrganizationVO> getOrganizationList(Map<String, Object> map);
 
-	int getTotalsendInvitationCount(SignBoardVO svo);
+	int getTotalSendInvitationCount(SignBoardVO svo);
 
 	List<HashMap<String, String>> sendInvitationList(Map<String, Object> map);
 
 	List<OrganizationVO> getOrganizationSignBoardList(Map<String, Object> map);
+
+	int getInvitedCountByNickName(String nickName);
 
 
 }// interface GroupDAO

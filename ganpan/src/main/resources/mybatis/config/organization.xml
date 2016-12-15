@@ -123,12 +123,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE boss_nickname = #{bossMemberVO.nickName} and sign_board_name = #{signBoardName}
 	</select>
 	
-	<select id="getTotalsendInvitationCount" parameterType="signBoardVO" resultType="int">
+	<select id="getTotalSendInvitationCount" parameterType="signBoardVO" resultType="int">
 		SELECT count(*)
 		FROM invitation_management
 		WHERE boss_nickname = #{bossMemberVO.nickName} and sign_board_name = #{signBoardName}
 	</select>
-
+	
+	<select id="getInvitedCountByNickName" parameterType="string" resultType="int">
+		SELECT count(*)
+		FROM invitation_management
+		WHERE nickname = #{value}
+	</select>
 </mapper>
 
 

@@ -38,10 +38,10 @@ public interface OrganizationService {
 
 	String groupCheck(String id, String signBoardName, String bossNickName);
 
-	String inviteCheck(String id, String signBoardName, String bossNickName);
-
 	ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo);
 
 	ListVO<OrganizationVO> getOrganizationSignBoardList(String nickName, String pageNo);
+
+	boolean isInvitedOrganization(String nickName);
 
 }

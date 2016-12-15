@@ -42,7 +42,6 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 
 	@Override
 	public List<ChangeMngVO> showChangeMngList(SignBoardVO svo) {
-		System.out.println("ChangeMngDAOImpl의 svo : " + svo);
 		return template.selectList("changeMng.showChangeMngList", svo);
 	}
 

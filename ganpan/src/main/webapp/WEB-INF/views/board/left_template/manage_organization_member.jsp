@@ -24,10 +24,10 @@
 									<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 									<td> ${list.workerMemberVO.nickName}</td>
 									<td> 
-										<button href="${pageContext.request.contextPath}/banish.do?signBoardName=
+										<a class="btn btn-sm btn-default" href="${pageContext.request.contextPath}/banish.do?signBoardName=
 										${list.signBoardVO.signBoardName}&bossNickName=
 										${list.signBoardVO.bossMemberVO.nickName}&workerNickName=
-										${list.workerMemberVO.nickName}">그룹에서 추방</button>
+										${list.workerMemberVO.nickName}">그룹에서 추방</a>
 									</td>
 								</c:if>
 							</tr>
