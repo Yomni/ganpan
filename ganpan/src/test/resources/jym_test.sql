@@ -110,7 +110,10 @@ select  *  from user_triggers;
 
 DELETE FROM WORK;
 
+SELECT worker_nickname from work where work_no = 1
 
+insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,work_no,change_no)
+		values(seq_change_management_no.nextval,(SELECT worker_nickname from work where work_no = 1),sysdate,1,2)
 update work
 		set work_name='업데이트',
 			work_details='상세내용',

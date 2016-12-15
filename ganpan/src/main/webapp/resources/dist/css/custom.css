@@ -1,0 +1,123 @@
+
+
+
+
+
+/* 들어가기 버튼 */
+.btn-primary2 {
+	color: #000000;
+	background-color: #ffffff;
+	border-color: #808080
+}
+
+.btn-primary.active, .btn-primary.focus, .btn-primary:active,
+	.btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary
+	{
+	color: #fff;
+	background-color: #000000;
+	border-color: #808080
+}
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary
+	{
+	background-image: none
+}
+
+.btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus,
+	.btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover,
+	.btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled].focus,
+	.btn-primary[disabled]:active, .btn-primary[disabled]:focus,
+	.btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active,
+	fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active,
+	fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover
+	{
+	background-color: #000000;
+	border-color: #000000
+}
+
+.btn-primary .badge {
+	color: #000000;
+	background-color: #fff
+}
+
+
+
+
+
+/* 메인화면- 가입하기,회원가입 버튼 */
+
+.btn-black {
+	color: #fff;
+	background-color: #000000;
+	border-color: #000000
+}
+
+.btn-black.active, .btn-black.focus, .btn-black:active,
+	.btn-black:focus, .btn-black:hover, .open>.dropdown-toggle.btn-black
+	{
+	color: #fff;
+	background-color: #000000;
+	border-color: #000000
+}
+
+.btn-black.active, .btn-black:active, .open>.dropdown-toggle.btn-black
+	{
+	background-image: none
+}
+
+.btn-black.disabled, .btn-black.disabled.active, .btn-black.disabled.focus,
+	.btn-black.disabled:active, .btn-black.disabled:focus, .btn-black.disabled:hover,
+	.btn-black[disabled], .btn-black[disabled].active, .btn-black[disabled].focus,
+	.btn-black[disabled]:active, .btn-black[disabled]:focus,
+	.btn-black[disabled]:hover, fieldset[disabled] .btn-black, fieldset[disabled] .btn-black.active,
+	fieldset[disabled] .btn-black.focus, fieldset[disabled] .btn-black:active,
+	fieldset[disabled] .btn-black:focus, fieldset[disabled] .btn-black:hover
+	{
+	background-color: #000000;
+	border-color: #000000
+}
+
+.btn-black .badge {
+	color: #000000;
+	background-color: #ffffff
+}
+
+
+
+
+#jumbotron-main {
+	background-image: url("/ganpan/resources/img/ccc.jpg");
+	background-size: 100% 100%;
+}
+#jumbotron-guide{
+	background-image: url("/ganpan/resources/img/ganpan_background.jpg");
+	background-size: 100% 100%;
+}
+.jumbotron {
+	padding: 30px 15px;
+	margin-bottom: 30px;
+	color: #ffffff;
+	background-color: #eee;
+}
+
+.jumbotron .h1, .jumbotron h1 {
+	color: inherit
+}
+
+.jumbotron p {
+	margin-bottom: 15px;
+	font-size: 21px;
+	font-weight: 200
+}
+
+.jumbotron>hr {
+	border-top-color: #d5d5d5
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+	border-radius: 6px
+}
+
+.jumbotron .container {
+	max-width: 100%
+}

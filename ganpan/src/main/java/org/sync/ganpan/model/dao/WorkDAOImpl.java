@@ -27,7 +27,6 @@ public class WorkDAOImpl implements WorkDAO {
 	
 	@Override
 	public void createWork(WorkVO wvo) {
-		System.out.println(wvo);
 		template.insert("work.createWork", wvo);
 	}
 	
@@ -54,7 +53,6 @@ public class WorkDAOImpl implements WorkDAO {
 	public int moveWork(int workNo) {
 		return template.update("work.moveWork",workNo);
 	}
-
 }//class WorkDAOImpl
 
 

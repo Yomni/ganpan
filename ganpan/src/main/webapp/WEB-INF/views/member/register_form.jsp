@@ -5,41 +5,44 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<p>
-			<h1>간판에 가입하기</h1>
-			</p>
-			<p>
-			<h4>작업을 계획하고, 진행상황을 한번에 확인하세요</h4>
-			</p>
-			<form method="post" action="${pageContext.request.contextPath}/register.do">
-				<div class="form-group">
-					<h4>
-						<span id="eMailCheckView"></span>
-					</h4>
-					<label for="eMail">전자우편</label> <input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편" value="${mvo.eMail}" required="required" />
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					간판에 가입합니다&nbsp; </h3>
 				</div>
-				<div class="form-group">
-					<h4>
-						<span id="nickNameCheckView"></span>
-					</h4>
-					<label for="nickName">별명</label> <input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명" value="${mvo.nickName}" required="required" />
+				<div class="panel-body">
+					<form method="post" action="${pageContext.request.contextPath}/register.do">
+						<div class="form-group">
+							<h4>
+								<span id="eMailCheckView"></span>
+							</h4>
+							<label for="eMail">전자우편</label> <input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편" value="${mvo.eMail}" required="required" />
+						</div>
+						<div class="form-group">
+							<h4>
+								<span id="nickNameCheckView"></span>
+							</h4>
+							<label for="nickName">별명&nbsp;(*특수문자는 사용하실 수 없습니다)</label> <input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명" value="${mvo.nickName}" required="required" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;"/>
+						</div>
+						<div class="form-group">
+							<h4>
+								<span id="passwordView"></span>
+							</h4>
+							<label for="password">비밀번호</label> <input type="password" class="form-control" id="password" value="${mvo.password}" name="password" placeholder="비밀번호" required="required" />
+						</div>
+						<div class="form-group">
+							<h4>
+								<span id="passwordCheckView"></span>
+							</h4>
+							<label for="passwordCheck">비밀번호 확인</label> <input type="password" class="form-control" id="passwordCheck" value="${mvo.password}" placeholder="비밀번호 확인" required="required" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
+						</div>
+					</form>
 				</div>
-				<div class="form-group">
-					<h4>
-						<span id="passwordView"></span>
-					</h4>
-					<label for="password">비밀번호</label> <input type="password" class="form-control" id="password" value="${mvo.password}" name="password" placeholder="비밀번호" required="required" />
-				</div>
-				<div class="form-group">
-					<h4>
-						<span id="passwordCheckView"></span>
-					</h4>
-					<label for="passwordCheck">비밀번호 확인</label> <input type="password" class="form-control" id="passwordCheck" value="${mvo.password}" placeholder="비밀번호 확인" required="required" />
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
-				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 </div>
@@ -187,6 +190,7 @@
 		
 		$("#nickName").keyup(function(){
 			var nickName=$(this).val().trim();
+			
 			if(nickName == "") {
 				$("#nickNameCheckView").html("");		
 				checkResultNickName = false;
@@ -199,7 +203,8 @@
 					+ "</div>");
 				checkResultNickName = false;
 				return;
-			} else {						
+			}
+			else {		
 				$("#nickNameCheckView").html("");		
 			}
 			$.ajax({

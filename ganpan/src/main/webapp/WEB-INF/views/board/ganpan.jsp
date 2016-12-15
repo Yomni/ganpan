@@ -46,7 +46,7 @@
 											<div class="panel-heading">${works.workName}</div>
 											<div class="panel-body">
 												<c:choose>
-													<c:when test="${works.organizationVO.workerMemberVO.nickName == null}">
+													<c:when test="${works.organizationVO.workerMemberVO.nickName == null && boardList.boardGenreVO.boardNo != 3}">
 														<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
 													</c:when>
 													<c:otherwise>
@@ -127,7 +127,10 @@
 					$.ajax({
 						type:"POST",
 						url:"${pageContext.request.contextPath}/moveWorkAjax.do",
-						data:"workNo=" + workNo
+						data:"workNo=" + workNo,
+						success:function(data) {
+							alert(data);
+						}
 					}); // ajax
 				} // receive
 			}); // sortable
@@ -138,7 +141,10 @@
 					$.ajax({
 						type:"POST",
 						url:"${pageContext.request.contextPath}/moveWorkAjax.do",
-						data:"workNo=" + workNo
+						data:"workNo=" + workNo,
+						success:function(data) {
+							alert(data);
+						}
 					}); // ajax
 				} // receive
 			}); // sortable

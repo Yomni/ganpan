@@ -16,7 +16,8 @@
 
 					<div class="col-md-6">
 						<form action="register_main.do" method="post" id="registerForm">
-							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명" required="required">
+							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명 (*특수문자 사용불가)" required="required" 
+							onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;">
 							<br>
 							<br>
 							<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편" required="required">
@@ -25,7 +26,7 @@
 							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required">
 							<br>
 							<br>
-							<button type="submit" class="btn btn-default btn-success btn-block" id="registerBtn">가입하기</button>
+							<button type="submit" class="btn btn-default btn-black btn-block" id="registerBtn">가입하기</button>
 						</form>
 					</div>
 					<!-- col-md-6 -->
@@ -155,3 +156,12 @@
 	</c:choose>
 </div>
 <!-- /container -->
+<c:if test="${invitationFlag && sessionScope.mvo != null}">
+<script type="text/javascript">
+	$(window).load(function() {
+		if(confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")){
+			location.href="${pageContext.request.contextPath}/invitationList.do";
+		}
+	});
+</script>
+</c:if>
