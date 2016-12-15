@@ -3,6 +3,7 @@ package org.sync.ganpan.model.service;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.sync.ganpan.model.dao.ChangeMngDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -26,22 +27,17 @@ public class WorkServiceImpl implements WorkService {
 	}
 
 	@Override
+	@Transactional
 	public void createWork(WorkVO wvo) {
 		workDAO.createWork(wvo);
 		changeMngDAO.insertLogForCreateWork(wvo);
-
 	}
 
 	@Override
+	@Transactional
 	public void deleteWork(int workNo) {
 		workDAO.deleteWork(workNo);
-	}
-
-	@Override
-	public void joinAsWorkerByWorkNo(String workNo, String nickName) {
-		int workNo2 = Integer.parseInt(workNo);
-		WorkVO wvo = new WorkVO(workNo2, nickName);
-		workDAO.joinAsWorkerByWorkNo(wvo);
+		changeMngDAO.insertLogForDeleteWork(workNo);
 	}
 
 	@Override
@@ -57,4 +53,12 @@ public class WorkServiceImpl implements WorkService {
 			returnFlag = true;
 		return returnFlag;
 	}
+
+	@Override
+	public void joinAsWorkerByWorkNo(String workNo, String nickName) {
+		int workNo2 = Integer.parseInt(workNo);
+		WorkVO wvo = new WorkVO(workNo2, nickName);
+		workDAO.joinAsWorkerByWorkNo(wvo);
+	}
+
 }// class WorkServiceImpl

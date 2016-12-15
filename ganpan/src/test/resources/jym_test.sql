@@ -99,6 +99,7 @@ DELETE FROM MEMBER WHERE NICKNAME = 'sync';
 update work set worker_nickname = null where boss_nickname = 'sync' and sign_board_name = 'test' and worker_nickname = '1';
 delete from organization where boss_nickname = 'sync' and sign_board_name = 'test' and worker_nickname = '1';
 
+select * from BOARD_GENRE;
 select * from SIGN_BOARD;
 select * from ORGANIZATION;
 select * from HAVE_BOARD;

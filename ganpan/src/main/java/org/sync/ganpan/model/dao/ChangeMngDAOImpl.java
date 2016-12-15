@@ -17,16 +17,17 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 
 	@Override
 	public void insertLogForCreateWork(WorkVO wvo) {
-		template.insert("changeMng.insertLogForCreateWork",wvo);
+		template.insert("changeMng.insertLogForCreateWork", wvo);
+	}
+
+	@Override
+	public void insertLogForDeleteWork(int workNo) {
+		template.delete("changeMng.insertLogForDeleteWork", workNo);
 	}
 
 	@Override
 	public List<ChangeMngVO> showChangeMngList(SignBoardVO svo) {
-		return template.selectList("changeMng.showChangeMngList",svo);
+		return template.selectList("changeMng.showChangeMngList", svo);
 	}
-	
-	
-	
-	
 
-}//class ChangeMngDAOImpl
+}// class ChangeMngDAOImpl

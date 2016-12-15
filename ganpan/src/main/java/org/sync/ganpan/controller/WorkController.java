@@ -26,6 +26,10 @@ public class WorkController {
 	private WorkService workService;
 
 	/**
+	 * createWork로 갈 때 signBoardVO도 넣어줘서 보내준다.
+	 * @author 용민
+	 * @param signBoardName
+	 * @param bossNickName
 	 * @return
 	 */
 	@RequestMapping("goCreateWork.do")
@@ -36,7 +40,7 @@ public class WorkController {
 	}
 
 	/**
-	 * 작업 추가
+	 * 간판에 작업 추가
 	 * @author 용민
 	 * @param wvo
 	 * @param signBoardName
@@ -111,7 +115,7 @@ public class WorkController {
 	}
 
 	/**
-	 * Ajax를 이용하여 작업 이동 시 DB에 반영
+	 * Ajax를 이용하여 작업 이동(TO_DO -> DOING, DOING -> DONE) 시 DB에 반영
 	 * @author 용민
 	 * @param workNo
 	 * @return
