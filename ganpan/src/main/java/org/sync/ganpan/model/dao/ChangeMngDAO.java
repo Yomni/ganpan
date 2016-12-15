@@ -16,4 +16,6 @@ public interface ChangeMngDAO {
 	void insertLogForMoveWork(int workNo);
 
 	void insertLogForCreateWork(int workNo);
+
+	void insertLogForUpdateWork(WorkVO wvo);
 }

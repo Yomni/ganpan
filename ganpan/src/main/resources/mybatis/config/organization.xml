@@ -26,6 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from organization
 		where worker_nickname = #{value}
 	</select>
+
+	<select id="getOrganizationSignBoardListPaging" parameterType="map" resultMap="organizationRM">
+		select boss_nickname, sign_board_name
+		from (SELECT row_number() over(order by sign_board_name desc) as rnum, boss_nickname, sign_board_name 
+		 	  FROM organization
+		 	  WHERE worker_nickname = #{nickName})
+		where rnum between #{getStartRowNumber} and #{getEndRowNumber}
+	</select>
 	
 	<select id="getJoinedSignBoardCount" parameterType="string" resultType="int">
 		select count(*)

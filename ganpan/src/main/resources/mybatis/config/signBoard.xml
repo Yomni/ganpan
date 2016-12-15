@@ -23,13 +23,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
  	<select id="getTotalSignBoardCountByTitle" resultType="int">
- 		select count(*) from sign_board 
- 		where sign_board_name=#{value}
+ 		SELECT count(*)
+ 		FROM sign_board 
+ 		WHERE sign_board_name=#{value}
  	</select>
 	
  	<select id="getTotalSignBoardCountByNickName" resultType="int">
- 		select count(*) from sign_board 
- 		where boss_nickname=#{value}
+ 		SELECT count(*)
+ 		FROM sign_board 
+ 		WHERE boss_nickname=#{value}
+ 	</select>
+	
+ 	<select id="getTotalJoinSignBoardCountByNickName" resultType="int">
+ 		<![CDATA[
+ 		SELECT count(*)
+		FROM organization
+		WHERE worker_nickname = #{nickName} and boss_nickname<>#{nickName}
+		]]>
  	</select>
 	
  	<select id="findSignBoardListByTitle" parameterType="map" resultMap="signBoardRM">

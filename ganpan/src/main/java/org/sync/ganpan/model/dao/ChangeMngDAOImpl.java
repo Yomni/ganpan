@@ -29,12 +29,20 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 	public void insertLogForMoveWork(int workNo) {
 		template.insert("changeMng.insertLogForMoveWork", workNo);
 	}
+
 	@Override
 	public void insertLogForCreateWork(int workNo) {
 		template.insert("changeMng.insertLogForCreateWorkByMove", workNo);
 	}
+
+	@Override
+	public void insertLogForUpdateWork(WorkVO wvo) {
+		template.insert("changeMng.insertLogForUpdateWork", wvo);
+	}
+
 	@Override
 	public List<ChangeMngVO> showChangeMngList(SignBoardVO svo) {
+		System.out.println("ChangeMngDAOImpl의 svo : " + svo);
 		return template.selectList("changeMng.showChangeMngList", svo);
 	}
 

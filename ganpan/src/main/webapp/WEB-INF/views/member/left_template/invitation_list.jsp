@@ -36,23 +36,31 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	  <c:choose>
-	      <c:when test="${iListVO.pagingBean.isPreviousPageGroup()}">
-	 		<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${iListVO.pagingBean.getStartPageOfPageGroup()-1}">◀</a>
-	      </c:when>
-	  </c:choose>
-	      	<c:forEach begin="${iListVO.pagingBean.getStartPageOfPageGroup()}" end="${iListVO.pagingBean.nowPage-1}" varStatus="order">
-	      		[<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">${order.index}</a>]
-	      	</c:forEach>
-	      	[${iListVO.pagingBean.nowPage}]
-	      	<c:forEach begin="${iListVO.pagingBean.nowPage+1}" end="${iListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
-	      		[<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">${order.index}</a>]
-	      	</c:forEach> 
-	    <c:choose>
-	       <c:when test="${iListVO.pagingBean.isNextPageGroup()}">
-	    	   <a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${iListVO.pagingBean.getEndPageOfPageGroup()+1}">▶</a>
-	       </c:when>
-		  </c:choose>
+			<nav>
+				<ul class="pagination">
+					 <c:choose>
+				       <c:when test="${iListVO.pagingBean.isPreviousPageGroup()}">
+				        <li>
+		   				 <a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${iListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
+		   				 <span aria-hidden="true">&laquo;</span></a>
+			            </li>
+				       </c:when>
+				 	 </c:choose>
+		        	<c:forEach begin="${iListVO.pagingBean.getStartPageOfPageGroup()}" end="${iListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+		        		<li><a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">
+		        			${order.index}</a>
+		        		</li>
+		        	</c:forEach> 
+			       <c:choose>
+			        <c:when test="${iListVO.pagingBean.isNextPageGroup()}">
+			          <li>
+			     	    <a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${iListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
+			     	     <span aria-hidden="true">&raquo;</span></a>
+			     	  </li>
+			        </c:when>
+		 		  </c:choose>
+		       </ul>
+		   </nav>
 		</div>
 	 </div>
   </div>

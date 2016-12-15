@@ -16,6 +16,8 @@ public interface SignBoardDAO {
 	
 	int getTotalSignBoardCountByNickName(String nickName);
 
+	int getTotalJoinSignBoardCountByNickName(String nickName);
+
 	List<SignBoardVO> findSignBoardListByTitle(Map<String, Object> tempMap);
 	
 	int titleCheck(HashMap<String, String> map);

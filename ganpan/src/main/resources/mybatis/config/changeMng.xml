@@ -41,11 +41,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    			,change_worker
    			,change_management_date
    			,work_no
+   			,board_no
    			,change_no)
 		values(seq_change_management_no.nextval
 			,(SELECT worker_nickname as change_worker from work where work_no = #{value})
 			,sysdate
 			,#{value}
+			,(SELECT board_no from work where work_no = #{value})
 			,2)
    </insert>
    
@@ -82,4 +84,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from change_management c, work w
 		where c.work_no=w.work_no
    </select>
+   
+   <insert id="insertLogForUpdateWork" parameterType="workVO">
+   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
+		values(seq_change_management_no.nextval,#{organizationVO.workerMemberVO.nickName},sysdate,#{boardNo},#{workNo},1)
+   </insert>
+   
 </mapper>
