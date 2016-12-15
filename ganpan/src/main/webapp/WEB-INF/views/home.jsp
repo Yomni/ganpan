@@ -9,7 +9,7 @@
 						<h1>
 							간판에 <br> 가입하세요!
 						</h1>
-						<p>공동작업에 대한 계획과 진행 상황을 한눈에 확인하세요!</p>
+						<p>작업에 대한 계획을 한눈에 확인하세요!</p>
 						<p>놀라울 만큼 간단합니다!</p>
 					</div>
 					<!-- col-md-6 -->
@@ -26,7 +26,7 @@
 							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required">
 							<br>
 							<br>
-							<button type="submit" class="btn btn-default btn-black btn-block" id="registerBtn">가입하기</button>
+							<button type="submit" class="btn btn-default btn-purple btn-block" id="registerBtn">가입하기</button>
 						</form>
 					</div>
 					<!-- col-md-6 -->
@@ -42,11 +42,11 @@
 				<div class="row">
 					<div class="col-sm-8">
 						<h2>우리는 간판입니다!</h2>
+						<p>놀랄만큼 똑똑하게 일정을 관리합니다</p>
+						<p>공동 작업을 함께 계획합니다</p>
 						<p>간판을 즐겨보세요</p>
-						<p>놀랄수 없을만큼 똑똑한 계획이 가능합니다.</p>
-						<p>집단작업의 첨단에서 당신을 지원합니다.</p>
 						<p>
-							<a class="btn btn-default btn-lg" href="${pageContext.request.contextPath}/go_board/guide.do">간판 탐색하기 &raquo;</a>
+							<a class="btn btn-hovernavy btn-lg" href="${pageContext.request.contextPath}/go_board/guide.do">간판 탐색하기 &raquo;</a>
 						</p>
 					</div>
 				</div>
@@ -57,24 +57,24 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<img class="img1"
-							src="${pageContext.request.contextPath}/resources/img/schedule.jpg" alt="">
-						<h2>개인 일정관리</h2>
+							src="${pageContext.request.contextPath}/resources/img/analytics.png" alt="">
+						<h2>개인 일정 관리</h2>
 						<p>무거운 수첩은 이제 그만!</p>
 						<p>일정을 관리하는데 놀랄만큼 효과적입니다!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
-							src="${pageContext.request.contextPath}/resources/img/team_project.jpg" alt="">
-						<h2>팀프로젝트</h2>
+							src="${pageContext.request.contextPath}/resources/img/reunion.png" alt="">
+						<h2>공동 작업</h2>
 						<p>언제, 어디서나 모두!</p>
-						<p>팀원간 일정을 공유하세요!</p>
+						<p>조원간의 계획을 공유하세요!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
-							src="${pageContext.request.contextPath}/resources/img/conference.jpg" alt="">
+							src="${pageContext.request.contextPath}/resources/img/businessmen.png" alt="">
 						<h2>회사 내 똑똑한 도구</h2>
 						<p>최고의 시각화 도구</p>
-						<p>간판은 당신의 회사생활을 도와줍니다.</p>
+						<p>간판은 당신의 회사 생활을 도와줍니다.</p>
 					</div>
 				</div>
 				<!-- /.row -->
@@ -83,10 +83,12 @@
 		</c:when>
 		<c:otherwise>
 			<div class="row">
-				<div class="text-center">
-					<a href="${pageContext.request.contextPath}/go_board/guide.do" class="btn btn-lg btn-success">간판 길잡이</a>
+				<div class="jumbotron text-center"  id="jumbotron-main">
+					<h3>간판이 처음이시라면 간판 길잡이의 안내를 받아보세요</h3>
+					<h3>간판을 만들어보세요&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></h3>
+					<a href="${pageContext.request.contextPath}/go_board/guide.do" class="btn btn-hovernavy btn-lg">간판 길잡이</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do" class="btn btn-lg btn-success">간판 만들기</a>
+					<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do" class="btn btn-hovernavy btn-lg"">간판 만들기</a>
 				</div>
 				<!-- text-center -->
 			</div>
@@ -94,14 +96,14 @@
 			<hr>
 			<div class="row">
 				<div class="col-md-8">
-					<div class="jumbotron">변경이력들 공개</div>
+					<div class="jumbotron">변경 이력들 공개</div>
 					<!-- jumbotron -->
 				</div>
 				<!-- col-md-6 -->
 
 				<div class="col-md-4">
 					<div class="well">
-						<h3>${mvo.nickName}님 간판 현황 | 총${signBoardCount}개</h3>
+						<h3>${mvo.nickName}님 간판 현황 | 총&nbsp;${signBoardCount}개</h3>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -119,9 +121,8 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						
-				        <nav>
-				             <ul class="pagination">
+				        <nav class="text-center">
+				             <ul class="pagination pagination-sm">
 				               <c:choose>
 				                  <c:when test="${sListVO.pagingBean.isPreviousPageGroup()}">
 				                   <li>

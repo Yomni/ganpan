@@ -21,7 +21,7 @@
 							<input type="password" name="password" class="form-control" id="password" required="required"/><br>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-default btn-success btn-block" id="loginBtn">들어가기</button>
+							<button type="submit" class="btn btn-success btn-block" id="loginBtn">들어가기</button>
 						</div>
 					</div>
 				</div>

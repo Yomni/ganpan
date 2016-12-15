@@ -18,7 +18,7 @@
 				  		<label for="exampleInputName2">비밀번호</label>
 				    	<input type="password" class="form-control" id="password" name="password"/>
 			 			<button type="submit" class="btn btn-danger">탈퇴하기</button><br>
-				  		<label for="exampleInputName2">※주의 탈퇴 시 보유한 칸반이 모두 삭제됩니다!</label>
+				  		<label for="exampleInputName2">※주의: 탈퇴 시 보유한 간판이 모두 삭제됩니다!</label>
 				  	</form>
 				  </div>
 				</div>

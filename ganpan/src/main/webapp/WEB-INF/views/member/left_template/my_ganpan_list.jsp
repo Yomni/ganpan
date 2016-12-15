@@ -28,7 +28,7 @@
 						</table><br>
 					</c:otherwise>
 				</c:choose>
-					<nav>
+					<nav class="text-center">
   						<ul class="pagination" >
 							 <c:choose>
 							    <c:when test="${sbListVO.pagingBean.isPreviousPageGroup()}">
