@@ -3366,8 +3366,8 @@ select[multiple].form-group-lg .form-control, textarea.form-group-lg .form-contr
 
 .btn-primary {
 	color: #fff;
-	background-color: #337ab7;
-	border-color: #2e6da4
+	background-color: #000000;
+	border-color: #000000
 }
 
 .btn-primary.active, .btn-primary.focus, .btn-primary:active,
@@ -5251,7 +5251,7 @@ a.badge:focus, a.badge:hover {
 }
 
 #jumbotron-main {
-	background-image: url("/ganpan/resources/img/kanban_background.jpg");
+	background-image: url("/ganpan/resources/img/aaa.jpg");
 	background-size: 100% 100%;
 }
 #jumbotron-guide{
