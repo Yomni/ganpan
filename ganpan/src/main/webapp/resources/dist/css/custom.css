@@ -40,49 +40,161 @@
 	background-color: #fff
 }
 
-
-
-
-
-/* 메인화면- 가입하기,회원가입 버튼 */
-
-.btn-black {
+/* 메인화면- 남색 버튼 */
+.btn-navy {
 	color: #fff;
-	background-color: #000000;
-	border-color: #000000
+	background-color: rgba(141, 135, 135, 0.1);
+	border-color: #dad7ed;
+	margin-top: 25px;
+    padding: 10px 20px;
 }
 
-.btn-black.active, .btn-black.focus, .btn-black:active,
-	.btn-black:focus, .btn-black:hover, .open>.dropdown-toggle.btn-black
+.btn-navy.active, .btn-navy.focus, .btn-navy:active,
+	.btn-navy:focus, .btn-navy:hover, .open>.dropdown-toggle.btn-navy
 	{
 	color: #fff;
-	background-color: #000000;
-	border-color: #000000
+	background-color: rgba(236, 165, 165, 0.29);
+	border-color: rgba(236, 165, 165, 0.29);
 }
 
-.btn-black.active, .btn-black:active, .open>.dropdown-toggle.btn-black
+.btn-navy.active, .btn-navy:active, .open>.dropdown-toggle.btn-navy
 	{
 	background-image: none
 }
 
-.btn-black.disabled, .btn-black.disabled.active, .btn-black.disabled.focus,
-	.btn-black.disabled:active, .btn-black.disabled:focus, .btn-black.disabled:hover,
-	.btn-black[disabled], .btn-black[disabled].active, .btn-black[disabled].focus,
-	.btn-black[disabled]:active, .btn-black[disabled]:focus,
-	.btn-black[disabled]:hover, fieldset[disabled] .btn-black, fieldset[disabled] .btn-black.active,
-	fieldset[disabled] .btn-black.focus, fieldset[disabled] .btn-black:active,
-	fieldset[disabled] .btn-black:focus, fieldset[disabled] .btn-black:hover
+.btn-navy.disabled, .btn-navy.disabled.active, .btn-navy.disabled.focus,
+	.btn-navy.disabled:active, .btn-navy.disabled:focus, .btn-navy.disabled:hover,
+	.btn-navy[disabled], .btn-navy[disabled].active, .btn-navy[disabled].focus,
+	.btn-navy[disabled]:active, .btn-navy[disabled]:focus,
+	.btn-navy[disabled]:hover, fieldset[disabled] .btn-navy, fieldset[disabled] .btn-navy.active,
+	fieldset[disabled] .btn-navy.focus, fieldset[disabled] .btn-navy:active,
+	fieldset[disabled] .btn-navy:focus, fieldset[disabled] .btn-navy:hover
 	{
-	background-color: #000000;
-	border-color: #000000
+	background-color: rgba(236, 165, 165, 0.29);
+	border-color: rgba(236, 165, 165, 0.29);
 }
 
-.btn-black .badge {
-	color: #000000;
-	background-color: #ffffff
+.btn-navy .badge {
+	color: #3d3288;
+	background-color: #3d3288;
 }
 
 
+/* 메인화면- 올렸을 시 남색 버튼 */
+.btn-hovernavy {
+	color: #3d3288;
+	background-color: #FFFFFF;
+	border-color: #3d3288;
+}
+
+.btn-hovernavy.active, .btn-hovernavy.focus, .btn-hovernavy:active,
+	.btn-hovernavy:focus, .btn-hovernavy:hover, .open>.dropdown-toggle.btn-hovernavy
+	{
+	color: #fff;
+	background-color: #3d3288;
+	border-color: #3d3288;
+}
+
+.btn-hovernavy.active, .btn-hovernavy:active, .open>.dropdown-toggle.btn-hovernavy
+	{
+	background-image: none
+}
+
+.btn-hovernavy.disabled, .btn-hovernavy.disabled.active, .btn-hovernavy.disabled.focus,
+	.btn-hovernavy.disabled:active, .btn-hovernavy.disabled:focus, .btn-hovernavy.disabled:hover,
+	.btn-hovernavy[disabled], .btn-hovernavy[disabled].active, .btn-hovernavy[disabled].focus,
+	.btn-hovernavy[disabled]:active, .btn-hovernavy[disabled]:focus,
+	.btn-hovernavy[disabled]:hover, fieldset[disabled] .btn-hovernavy, fieldset[disabled] .btn-hovernavy.active,
+	fieldset[disabled] .btn-hovernavy.focus, fieldset[disabled] .btn-hovernavy:active,
+	fieldset[disabled] .btn-hovernavy:focus, fieldset[disabled] .btn-hovernavy:hover
+	{
+	background-color: #FFFFFF;
+	border-color: #FFFFFF;
+}
+
+.btn-hovernavy .badge {
+	color: #FFFFFF;
+	background-color: #FFFFFF;
+}
+
+
+/* 메인화면- 진보라 버튼 */
+
+.btn-purple {
+	color: #fff;
+	background-color: #25143e;
+	border-color: #25143e;
+}
+
+.btn-purple.active, .btn-purple.focus, .btn-purple:active,
+	.btn-purple:focus, .btn-purple:hover, .open>.dropdown-toggle.btn-purple
+	{
+	color: #fff;
+	background-color: #25143e;
+	border-color: #25143e;
+}
+
+.btn-purple.active, .btn-purple:active, .open>.dropdown-toggle.btn-purple
+	{
+	background-image: none
+}
+
+.btn-purple.disabled, .btn-purple.disabled.active, .btn-purple.disabled.focus,
+	.btn-purple.disabled:active, .btn-purple.disabled:focus, .btn-purple.disabled:hover,
+	.btn-purple[disabled], .btn-purple[disabled].active, .btn-purple[disabled].focus,
+	.btn-purple[disabled]:active, .btn-purple[disabled]:focus,
+	.btn-purple[disabled]:hover, fieldset[disabled] .btn-purple, fieldset[disabled] .btn-purple.active,
+	fieldset[disabled] .btn-purple.focus, fieldset[disabled] .btn-purple:active,
+	fieldset[disabled] .btn-purple:focus, fieldset[disabled] .btn-purple:hover
+	{
+	background-color: #25143e;
+	border-color: #25143e;
+}
+
+.btn-purple .badge {
+	color: #25143e;
+	background-color: #25143e;
+}
+
+
+
+/* 메인화면- 진파랑 버튼 */
+
+.btn-blue {
+	color: #fff;
+	background-color: #6b7089;
+	border-color: #6b7089;
+}
+
+.btn-blue.active, .btn-blue.focus, .btn-blue:active,
+	.btn-blue:focus, .btn-blue:hover, .open>.dropdown-toggle.btn-blue
+	{
+	color: #fff;
+	background-color: #6b7089;
+	border-color: #6b7089;
+}
+
+.btn-blue.active, .btn-blue:active, .open>.dropdown-toggle.btn-blue
+	{
+	background-image: none
+}
+
+.btn-blue.disabled, .btn-blue.disabled.active, .btn-blue.disabled.focus,
+	.btn-blue.disabled:active, .btn-blue.disabled:focus, .btn-blue.disabled:hover,
+	.btn-blue[disabled], .btn-blue[disabled].active, .btn-blue[disabled].focus,
+	.btn-blue[disabled]:active, .btn-blue[disabled]:focus,
+	.btn-blue[disabled]:hover, fieldset[disabled] .btn-blue, fieldset[disabled] .btn-blue.active,
+	fieldset[disabled] .btn-blue.focus, fieldset[disabled] .btn-blue:active,
+	fieldset[disabled] .btn-blue:focus, fieldset[disabled] .btn-blue:hover
+	{
+	background-color: #6b7089;
+	border-color: #6b7089;
+}
+
+.btn-blue .badge {
+	color: #6b7089;
+	background-color: #6b7089;
+}
 
 
 #jumbotron-main {
@@ -120,4 +232,25 @@
 
 .jumbotron .container {
 	max-width: 100%
+}
+
+/* 로그인시 home.jsp 화면 div */
+div.loginhome {
+	text-align: center;
+	background-color: #5d7386;
+	border-radius: 5px;
+	padding: 27px;
+	height: auto;
+	min-height: 100px;
+	overflow: auto;
+}
+
+#grad3 {
+    height: 100px;
+    background: red; /* For browsers that do not support gradients */        
+    background: -webkit-linear-gradient(180deg, #716b7b, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, #716b7b, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, #716b7b, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, #716b7b, white); /* Standard syntax (must be last) */
+}
 }

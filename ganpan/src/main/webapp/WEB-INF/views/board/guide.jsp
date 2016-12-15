@@ -36,21 +36,21 @@
 			<div class="row">
 				<div class="col-sm-4">
 					<img class="img1"
-						src="${pageContext.request.contextPath}/resources/img/schedule.jpg" alt="">
+						src="${pageContext.request.contextPath}/resources/img/analytics.png" alt="">
 					<h2>개인 일정관리</h2>
 					<p>무거운 수첩은 이제 그만!</p>
 					<p>일정을 관리하는데 놀랄만큼 효과적입니다!</p>
 				</div>
 				<div class="col-sm-4">
 					<img class="img1"
-						src="${pageContext.request.contextPath}/resources/img/team_project.jpg" alt="">
+						src="${pageContext.request.contextPath}/resources/img/reunion.png" alt="">
 					<h2>팀프로젝트</h2>
 					<p>언제, 어디서나 모두!</p>
 					<p>팀원간 일정을 공유하세요!</p>
 				</div>
 				<div class="col-sm-4">
 					<img class="img1"
-						src="${pageContext.request.contextPath}/resources/img/conference.jpg" alt="">
+						src="${pageContext.request.contextPath}/resources/img/businessmen.png" alt="">
 					<h2>회사 내 똑똑한 도구</h2>
 					<p>최고의 시각화 도구</p>
 					<p>간판은 당신의 회사생활을 도와줍니다.</p>

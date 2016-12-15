@@ -26,7 +26,7 @@
 							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required">
 							<br>
 							<br>
-							<button type="submit" class="btn btn-default btn-black btn-block" id="registerBtn">가입하기</button>
+							<button type="submit" class="btn btn-default btn-purple btn-block" id="registerBtn">가입하기</button>
 						</form>
 					</div>
 					<!-- col-md-6 -->
@@ -46,7 +46,7 @@
 						<p>놀랄수 없을만큼 똑똑한 계획이 가능합니다.</p>
 						<p>집단작업의 첨단에서 당신을 지원합니다.</p>
 						<p>
-							<a class="btn btn-default btn-lg" href="${pageContext.request.contextPath}/go_board/guide.do">간판 탐색하기 &raquo;</a>
+							<a class="btn btn-hovernavy btn-lg" href="${pageContext.request.contextPath}/go_board/guide.do">간판 탐색하기 &raquo;</a>
 						</p>
 					</div>
 				</div>
@@ -57,21 +57,21 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<img class="img1"
-							src="${pageContext.request.contextPath}/resources/img/schedule.jpg" alt="">
+							src="${pageContext.request.contextPath}/resources/img/analytics.png" alt="">
 						<h2>개인 일정관리</h2>
 						<p>무거운 수첩은 이제 그만!</p>
 						<p>일정을 관리하는데 놀랄만큼 효과적입니다!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
-							src="${pageContext.request.contextPath}/resources/img/team_project.jpg" alt="">
+							src="${pageContext.request.contextPath}/resources/img/reunion.png" alt="">
 						<h2>팀프로젝트</h2>
 						<p>언제, 어디서나 모두!</p>
 						<p>팀원간 일정을 공유하세요!</p>
 					</div>
 					<div class="col-sm-4">
 						<img class="img1"
-							src="${pageContext.request.contextPath}/resources/img/conference.jpg" alt="">
+							src="${pageContext.request.contextPath}/resources/img/businessmen.png" alt="">
 						<h2>회사 내 똑똑한 도구</h2>
 						<p>최고의 시각화 도구</p>
 						<p>간판은 당신의 회사생활을 도와줍니다.</p>
@@ -83,10 +83,10 @@
 		</c:when>
 		<c:otherwise>
 			<div class="row">
-				<div class="text-center">
-					<a href="${pageContext.request.contextPath}/go_board/guide.do" class="btn btn-lg btn-success">간판 길잡이</a>
+				<div id="grad3" style="color:white;text-align:center;" >
+					<a href="${pageContext.request.contextPath}/go_board/guide.do" class="btn btn-navy btn-lg">간판 길잡이</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do" class="btn btn-lg btn-success">간판 만들기</a>
+					<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do" class="btn btn-navy btn-lg"">간판 만들기</a>
 				</div>
 				<!-- text-center -->
 			</div>

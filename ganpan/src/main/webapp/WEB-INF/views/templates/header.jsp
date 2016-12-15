@@ -36,11 +36,11 @@
 				<c:choose>
 				<c:when test="${sessionScope.mvo == null}">
 				<a class="btn btn-primary2 navbar-btn" href="${pageContext.request.contextPath}/go_member/login_form.do">들어가기</a>
-				<a class="btn btn-black navbar-btn" href="${pageContext.request.contextPath}/go_member/register_form.do">회원가입</a>
+				<a class="btn btn-purple navbar-btn" href="${pageContext.request.contextPath}/go_member/register_form.do">회원가입</a>
 				</c:when>
 				<c:otherwise>
 				<a class="btn btn-primary2 navbar-btn" href="${pageContext.request.contextPath}/go_member/left_template/my_info.do">내 정보</a> 
-				<a class="btn btn-default navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a>
+				<a class="btn btn-purple navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a>
 				</c:otherwise>
 				</c:choose>
 			</span>
