@@ -88,12 +88,12 @@ public class OrganizationController {
 	 * @return
 	 */
 	@RequestMapping("sendInvitationList.do")
-	public ModelAndView sendInvitationList(String signBoardName, String bossNickName) {
+	public ModelAndView sendInvitationList(String signBoardName, String bossNickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		List<HashMap<String, String>> MList = organizationService.sendInvitationList(svo);
+		ListVO<HashMap<String, String>> mListVO = organizationService.sendInvitationList(svo, pageNo);
 		mv.setViewName("board/left_template/invite_group_member");
-		mv.addObject("MList", MList);
+		mv.addObject("mListVO", mListVO);
 		mv.addObject("svo", svo);
 		return mv;
 	}

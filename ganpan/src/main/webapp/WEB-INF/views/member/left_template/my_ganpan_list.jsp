@@ -26,20 +26,34 @@
 								</c:forEach>
 							</tbody>
 						</table><br>
-						<c:choose>
-							<c:when test="${sbListVO.pagingBean.isPreviousPageGroup()}">
-								<a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${sbListVO.pagingBean.getStartPageOfPageGroup()-1}">◀</a>
-							</c:when>
-						</c:choose>
-							<c:forEach begin="${sbListVO.pagingBean.getStartPageOfPageGroup()}" end="${sbListVO.pagingBean.nowPage-1}" varStatus="order">[<a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${order.index}">${order.index}</a>]</c:forEach>[${sbListVO.pagingBean.nowPage}]<c:forEach begin="${sbListVO.pagingBean.nowPage+1}" end="${sbListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">[<a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${order.index}">${order.index}</a>]</c:forEach> 
-						<c:choose>
-							<c:when test="${sbListVO.pagingBean.isNextPageGroup()}">
-								<a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${sbListVO.pagingBean.getEndPageOfPageGroup()+1}">▶</a>
-							</c:when>
-						</c:choose>
 					</c:otherwise>
 				</c:choose>
-			</div>
+					<nav>
+  						<ul class="pagination" >
+							 <c:choose>
+							    <c:when test="${sbListVO.pagingBean.isPreviousPageGroup()}">
+							       <li>
+					   				 <a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${sbListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
+					   				 <span aria-hidden="true">&laquo;</span></a>
+						            </li>
+							       </c:when>
+							 	 </c:choose>
+					        	<c:forEach begin="${sbListVO.pagingBean.getStartPageOfPageGroup()}" end="${sbListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+					        		<li><a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${order.index}">
+					        			${order.index}</a>
+					        		</li>
+					        	</c:forEach> 
+						       <c:choose>
+						        <c:when test="${sbListVO.pagingBean.isNextPageGroup()}">
+						          <li>
+						     	    <a href="${pageContext.request.contextPath}/mySignBoardList.do?pageNo=${sbListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
+						     	     <span aria-hidden="true">&raquo;</span></a>
+						     	  </li>
+						        </c:when>
+					 		  </c:choose>
+					       </ul>	
+					   </nav>
+				</div>
 			<!-- col -->
 		</div>
 		<!-- row -->

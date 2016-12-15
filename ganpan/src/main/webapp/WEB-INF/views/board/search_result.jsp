@@ -7,7 +7,7 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>별명</th>
+					<th>조장</th>
 					<th>간판명</th>
 				</tr>
 			</thead>

@@ -195,7 +195,6 @@ public class SignBoardController {
 	public ModelAndView invitationList(HttpSession session,String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		ListVO<InvitationMngVO> iListVO = signBoardService.invitationList(mvo.getNickName(),pageNo);
-		//List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
 		if (iListVO.getList().size() == 0)
 			return new ModelAndView("member/left_template/invitation_list_fail");
 		else

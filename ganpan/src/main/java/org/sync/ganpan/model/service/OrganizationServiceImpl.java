@@ -98,8 +98,26 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 	}
 
+	@Override
 	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
 		return organizationDAO.sendInvitationList(svo);
+	}
+	
+	@Override
+	public ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo) {
+		PagingBean pb=null;
+		int TotalsendInvitationCount = organizationDAO.getTotalsendInvitationCount(svo);
+		if(pageNo==null)
+			pb=new PagingBean(TotalsendInvitationCount);
+		else
+			pb=new PagingBean(TotalsendInvitationCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		map.put("signBoardName", svo.getSignBoardName());
+		map.put("bossNickName", svo.getBossMemberVO().getNickName());
+		List<HashMap<String, String>> list=organizationDAO.sendInvitationList(map);
+		return new ListVO<HashMap<String, String>>(list,pb);
 	}
 
 	@Override
