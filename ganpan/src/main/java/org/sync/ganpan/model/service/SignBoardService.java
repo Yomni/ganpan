@@ -28,6 +28,9 @@ public interface SignBoardService {
 
 	// 닉네임으로 내가 그룹원인 보스닉네임, 간판 타이블 반환
 	List<SignBoardVO> myJoinSignBoardList(String nickName);
+	
+	// 닉네임으로 내가 그룹원인 보스닉네임, 간판 타이블 반환 + 페이징 추가
+	ListVO<SignBoardVO> myJoinSignBoardList(String nickName, String pageNo);
 
 	// 내 소유 간판으로 이동하고 간판 내 작업을 호출
 	SignBoardVO showSignBoard(SignBoardVO svo);
@@ -58,5 +61,6 @@ public interface SignBoardService {
 	void updateSignBoardBoss(OrganizationVO ovo);
 
 	ListVO<InvitationMngVO> invitationList(String nickName, String pageNo);
+
 
 }

@@ -76,6 +76,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
  	</select>
  	
+ 	<select id="myJoinSignBoardListPaing" parameterType="map" resultMap="signBoardRM">
+ 		<![CDATA[
+ 		SELECT sign_board_name, boss_nickname
+		FROM (
+			SELECT row_number() over(order by sign_board_name desc) as rnum, sign_board_name, boss_nickname
+			FROM organization
+			WHERE worker_nickname = #{nickName} and boss_nickname<>#{nickName}
+		)
+		WHERE rnum between #{getStartRowNumber} and #{getEndRowNumber}
+		]]>
+ 	</select>
+ 	
  	<select id="myPublicSignBoardList" resultMap="signBoardRM">
  		SELECT sign_board_name, boss_nickname
 		FROM sign_board

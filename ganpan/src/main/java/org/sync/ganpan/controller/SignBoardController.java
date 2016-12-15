@@ -95,10 +95,10 @@ public class SignBoardController {
 	 * @author 주선, 민영
 	 */
 	@RequestMapping("myJoinSignBoardList.do")
-	public ModelAndView myJoinSignBoardList(HttpSession session) {
+	public ModelAndView myJoinSignBoardList(HttpSession session, String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		List<SignBoardVO> sbList = signBoardService.myJoinSignBoardList(mvo.getNickName());
-		return new ModelAndView("member/left_template/my_join_ganpan_list", "sbList", sbList);
+		ListVO<SignBoardVO> sbListVO = signBoardService.myJoinSignBoardList(mvo.getNickName(), pageNo);
+		return new ModelAndView("member/left_template/my_join_ganpan_list", "sbListVO", sbListVO);
 	}
 
 	/**
@@ -195,7 +195,6 @@ public class SignBoardController {
 	public ModelAndView invitationList(HttpSession session,String pageNo) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		ListVO<InvitationMngVO> iListVO = signBoardService.invitationList(mvo.getNickName(),pageNo);
-		//List<InvitationMngVO> inviteList = signBoardService.invitationList(mvo.getNickName());
 		if (iListVO.getList().size() == 0)
 			return new ModelAndView("member/left_template/invitation_list_fail");
 		else

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
@@ -34,6 +35,8 @@ public interface SignBoardDAO {
 	List<SignBoardVO> myPrivateSignBoardList(String nickName);
 
 	List<SignBoardVO> myPrivateJoinSignBoardList(String nickName);
+	
+	List<SignBoardVO> myJoinSignBoardList(Map<String, Object> tempMap);
 
 	SignBoardVO ganpanSetting(SignBoardVO svo);
 
@@ -56,7 +59,5 @@ public interface SignBoardDAO {
 	List<InvitationMngVO> invitationList(Map<String, Object> map);
 
 	int getTotalInvitationCount(String nickName);
-
-
-
+	
 }

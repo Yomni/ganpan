@@ -28,21 +28,31 @@
 					</c:forEach>
 				</tbody>
 			</table>
-     	 <c:choose>
-	       <c:when test="${oListVO.pagingBean.isPreviousPageGroup()}">
-   				 <a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${oListVO.pagingBean.getStartPageOfPageGroup()-1}">◀</a>
-	       </c:when>
-		  </c:choose>
-        	<c:forEach begin="${oListVO.pagingBean.getStartPageOfPageGroup()}" end="${oListVO.pagingBean.nowPage-1}" varStatus="order">
-        		[<a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">${order.index}</a>]
-        	</c:forEach>[${oListVO.pagingBean.nowPage}]<c:forEach begin="${oListVO.pagingBean.nowPage+1}" end="${oListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
-        		[<a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">${order.index}</a>]
-        	</c:forEach> 
-	     <c:choose>
-	        <c:when test="${oListVO.pagingBean.isNextPageGroup()}">
-	     	   <a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${oListVO.pagingBean.getEndPageOfPageGroup()+1}">▶</a>
-	        </c:when>
- 		  </c:choose>
+			<nav>
+				<ul class="pagination">
+					 <c:choose>
+				       <c:when test="${oListVO.pagingBean.isPreviousPageGroup()}">
+				        <li>
+		   				 <a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${oListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
+		   				 <span aria-hidden="true">&laquo;</span></a>
+			            </li>
+				       </c:when>
+				 	 </c:choose>
+		        	<c:forEach begin="${oListVO.pagingBean.getStartPageOfPageGroup()}" end="${oListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+		        		<li><a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">
+		        			${order.index}</a>
+		        		</li>
+		        	</c:forEach> 
+			       <c:choose>
+			        <c:when test="${oListVO.pagingBean.isNextPageGroup()}">
+			          <li>
+			     	    <a href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${oListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
+			     	     <span aria-hidden="true">&raquo;</span></a>
+			     	  </li>
+			        </c:when>
+		 		  </c:choose>
+		       </ul>
+		   </nav>
 		</div>
 	</div>
 </div>
