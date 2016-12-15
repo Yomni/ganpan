@@ -8,6 +8,11 @@ public class ChangeMngVO {
 	private WorkVO workVO;// workNo
 	private ChangeGenreVO changeGenreVO;// changeNo
 
+	public ChangeMngVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public ChangeMngVO(int changeMngNo, String changeWorker, String changeMngDate, int boardNo, WorkVO workVO,
 			ChangeGenreVO changeGenreVO) {
 		super();

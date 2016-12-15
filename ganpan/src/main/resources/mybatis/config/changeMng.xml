@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  <mapper namespace="changeMng">
    
-   <resultMap id="ChangeMngRM" type="ChangeMngVO">
+   <resultMap id="changeMngRM" type="changeMngVO">
 		<result property="changeMngNo" column="change_management_no"/>
 		<result property="changeWorker" column="change_worker"/>
 		<result property="changeMngDate" column="change_management_DATE"/>
@@ -79,15 +79,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,(SELECT board_no from work where work_no = #{value})
 			,0)
    </insert>
-   <select id="showChangeMngList" parameterType="signBoardVO">
-   		select c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
-		from change_management c, work w
-		where c.work_no=w.work_no
-   </select>
    
    <insert id="insertLogForUpdateWork" parameterType="workVO">
    		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
 		values(seq_change_management_no.nextval,#{organizationVO.workerMemberVO.nickName},sysdate,#{boardNo},#{workNo},1)
    </insert>
+   
+   <select id="showChangeMngList" resultMap="changeMngRM">
+		select c.change_management_no, c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
+		from change_management c, work w
+		where w.sign_board_name=#{svo.signBoardName} and w.boss_nickname=#{svo.bossMemberVO.nickName} and c.board_no=#{boardNo} and c.work_no=w.work_no
+   </select>
+   
+   <select id="showTotalChangeMngList" resultMap="changeMngRM">
+   		select c.change_management_no, c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
+		from change_management c, work w
+		where w.sign_board_name=#{svo.signBoardName} and w.boss_nickname=#{svo.bossMemberVO.nickName} and c.work_no=w.work_no
+   </select>
+   
+   
    
 </mapper>
