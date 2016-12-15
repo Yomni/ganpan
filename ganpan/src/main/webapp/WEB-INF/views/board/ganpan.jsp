@@ -155,6 +155,6 @@
 				location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
 			}); // clilck
 		}); //ready
-	}
+	};
 </script>
 </c:if>

@@ -8,8 +8,8 @@ public interface WorkService {
 	int updateWorkerToNull(OrganizationVO ovo);
 	void createWork(WorkVO wvo);
 	void deleteWork(int workNo);
-	void updateWork(int workNo);
 	void joinAsWorkerByWorkNo(String workNo, String nickName);
 	boolean moveWork(int workNo);
+	void updateWork(WorkVO wvo);
 	
 }

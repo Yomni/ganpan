@@ -45,11 +45,6 @@ public class WorkServiceImpl implements WorkService {
 		workDAO.joinAsWorkerByWorkNo(wvo);
 	}
 
-	@Override
-	public void updateWork(int workNo) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public boolean moveWork(int workNo) {
@@ -58,5 +53,10 @@ public class WorkServiceImpl implements WorkService {
 		if (result == 1)
 			returnFlag = true;
 		return returnFlag;
+	}
+	
+	@Override
+	public void updateWork(WorkVO wvo) {
+	    workDAO.updateWork(wvo);
 	}
 }// class WorkServiceImpl

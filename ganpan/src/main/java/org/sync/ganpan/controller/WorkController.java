@@ -1,8 +1,6 @@
 package org.sync.ganpan.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,27 +66,16 @@ public class WorkController {
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
-	//민서거
-	/*@RequestMapping("updateWork.do")
-	public String updateWork(HttpSession session, MemberVO mvo) {
-		WorkVO wvo=new WorkVO(workNo,workName,workDetails);
-		workService.updateWork(workNo);
+
+	@RequestMapping(value = "updateWork.do", method = RequestMethod.POST)
+	public String updateWork(RedirectAttributes redirectAttributes, int workNo,String workName, String workDetails) {
+	    WorkVO wvo=new WorkVO(workNo,workName,workDetails);
+	   System.out.println("updateWork.do :" + workNo + workName + workDetails);
+		workService.updateWork(wvo);
+		redirectAttributes.addAttribute("workName", workName);
+		redirectAttributes.addAttribute("workDetails", workNo);
 		return "redirect:showSignBoard.do";
 	}
-	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
-	public String updateMember(HttpSession session, MemberVO mvo) {
-		memberService.updateMember(mvo);
-		session.setAttribute("mvo", mvo);
-		return "redirect:go_member/left_template/my_info.do";
-	}*/
-/*	@RequestMapping("updateWork.do")
-	public String updateWork(RedirectAttributes redirectAttributes, int workNo, String workName, String workDetails) {
-		System.out.println("updateWork.do :" + workNo + workName + workDetails);
-		workService.updateWork(workNo);
-		redirectAttributes.addAttribute("workName", workName);
-		redirectAttributes.addAttribute("workDetails", workDetails);
-		return "redirect:showSignBoard.do";
-	}*/
 
 	/**
 	 * 콘텐츠 작업자로 참여
