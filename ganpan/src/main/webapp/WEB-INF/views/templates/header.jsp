@@ -40,7 +40,7 @@
 				</c:when>
 				<c:otherwise>
 				<a class="btn btn-primary2 navbar-btn" href="${pageContext.request.contextPath}/go_member/left_template/my_info.do">내 정보</a> 
-				<a class="btn btn-purple navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a>
+				<a class="btn btn-danger navbar-btn" href="${pageContext.request.contextPath}/logout.do">나가기</a>
 				</c:otherwise>
 				</c:choose>
 			</span>

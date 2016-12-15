@@ -83,10 +83,12 @@
 		</c:when>
 		<c:otherwise>
 			<div class="row">
-				<div id="grad3" style="color:white;text-align:center;" >
-					<a href="${pageContext.request.contextPath}/go_board/guide.do" class="btn btn-navy btn-lg">간판 길잡이</a>
+				<div class="jumbotron text-center"  id="jumbotron-main">
+					<h3>간판이 처음이시라면 간판 길잡이의 안내를 받아보세요</h3>
+					<h3>간판을 만들어보세요&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></h3>
+					<a href="${pageContext.request.contextPath}/go_board/guide.do" class="btn btn-hovernavy btn-lg">간판 길잡이</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do" class="btn btn-navy btn-lg"">간판 만들기</a>
+					<a href="${pageContext.request.contextPath}/go_board/create_new_ganpan.do" class="btn btn-hovernavy btn-lg"">간판 만들기</a>
 				</div>
 				<!-- text-center -->
 			</div>

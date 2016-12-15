@@ -6,6 +6,7 @@
 			<div class="col-md-3 col-md-offset-3 text-center">
 				<c:choose>
 					<c:when test="${empty sbListVO.list}">
+						<br><br><br><br><br>
 						<h2>
 						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 						참여하신 간판이 없습니다
