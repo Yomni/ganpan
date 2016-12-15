@@ -59,24 +59,30 @@
 										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-														<h4 class="modal-title">${works.workName}</h4>
-													</div>
-													<div class="modal-body">
-														<p>
-															<textarea rows="" cols="">${works.workDetails}</textarea>
-														</p>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
-														<c:if test="${rightMoveWork}">
-															<button type="submit" class="btn btn-primary" data-dismiss="modal" id="updateBtn">수정</button>
-															<button type="button" class="btn btn-danger" data-dismiss="modal" id="${works.workNo}">삭제</button>
-														</c:if>
-													</div>
+													<form action="${pageContext.request.contextPath}/updateWork.do" method="post" id="${works.workNo}Form">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<input type="hidden" name="signBoardName" value="${rsvo.signBoardName}"/>
+															<input type="hidden" name="bossNickName" value="${rsvo.bossMemberVO.nickName}"/>
+															<input type="hidden" name="boardNo" value="${works.boardNo}"/>
+															<input type="hidden" name="workNo" value="${works.workNo}"/>
+															<h4 class="modal-title"><input type="text" name="workName" value="${works.workName}" required="required"/></h4>
+														</div>
+														<div class="modal-body">
+															<p>
+																<textarea rows="" cols="" name="workDetails" required="required">${works.workDetails}</textarea>
+															</p>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal" id="btn btn-default">닫기</button>
+															<c:if test="${rightMoveWork}">
+																<button type="submit" class="btn btn-primary" data-dismiss="modal" id="${works.workNo}">수정</button>
+																<button type="button" class="btn btn-danger" data-dismiss="modal" id="${works.workNo}">삭제</button>
+															</c:if>
+														</div>
+													</form>
 												</div>
 												<!-- /.modal-content -->
 											</div>
@@ -95,14 +101,13 @@
 	<!-- row -->
 </div>
 <!-- container -->
-
 <!-- 
    1. sortable
    2. drag & drop
    3. ajax변경
  -->
-
-<c:if test="${sessionScope.mvo != null}">
+<c:choose>
+<c:when test="${sessionScope.mvo != null}">
 <script type="text/javascript">
 	if(${rightMoveWork}) {
 		$(function(){
@@ -120,7 +125,7 @@
 				receive:function() {
 					$.ajax({
 						type:"POST",
-						url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+						url:"${pageContext.request.contextPath}/moveWorkAjax.do",
 						data:"workNo=" + workNo
 					}); // ajax
 				} // receive
@@ -131,7 +136,7 @@
 				receive:function() {
 					$.ajax({
 						type:"POST",
-						url:"${pageContext.request.contextPath}/moveWorkAjax.do",				
+						url:"${pageContext.request.contextPath}/moveWorkAjax.do",
 						data:"workNo=" + workNo
 					}); // ajax
 				} // receive
@@ -141,13 +146,16 @@
 // 				$(this).removeData();
 // 			}); // on
 		    
-			$("#updateBtn").click(function(){
-	     		if(confirm("게시물을 수정하시겠습니까?"))
-	       			location.href="${pageContext.request.contextPath}/updateWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+workNo;
-	   		}); // click 
+			$(".modal-footer .btn-primary").click(function(){
+	     		if(confirm("작업을 수정하시겠습니까?\n*주의) 다른 조원에게도 영향을 줍니다.")){
+					$("#"+$(this).attr("id")+"Form").submit();
+				} else {
+					return false;
+				}
+	   		}); // click
 	   		
 			$(".modal-footer .btn-danger").click(function(){
-				if(confirm("작업을 삭제하시겠습니까?\n주의) 다른 조원에게도 영향을 줍니다."))
+				if(confirm("작업을 삭제하시겠습니까?\n*주의) 다른 조원에게도 영향을 줍니다."))
 					location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+$(this).attr("id");
 			}); // click
 		     
@@ -156,5 +164,16 @@
 			}); // clilck
 		}); //ready
 	}
+	else {
+		$(".modal-title input").attr("readonly","readonly");
+		$(".modal-body p textarea").attr("readonly","readonly");
+	}
 </script>
-</c:if>
+</c:when>
+<c:otherwise>
+<script type="text/javascript">
+	$(".modal-title input").attr("readonly","readonly");
+	$(".modal-body p textarea").attr("readonly","readonly");
+</script>
+</c:otherwise>
+</c:choose>
