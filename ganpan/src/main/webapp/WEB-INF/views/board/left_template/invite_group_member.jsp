@@ -13,10 +13,10 @@
 					<input type="hidden" value="${svo.bossMemberVO.nickName}" name="bossNickName"> 
 					<input type="hidden" id="value" value="email" name="type">
 					<div class="form-group">
-						<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required" />
 						<h4>
 							<span id="idCheckView"></span>
 						</h4>
+						<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required" />
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success pull-right" id="invitationBtn">초대하기</button>
@@ -115,33 +115,22 @@
                  if(data=="idfail"){// 회원 테이블에 존재하지 않는 경우
                     $("#idCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");
                     checkResultGroup="";
-                 }else if(data=="groupfail"){// 그룹에 있는 회원이 아닌 경우
-                    $("#idCheckView").html("초대 가능합니다").css("color","green"); 
-                    checkResultGroup="group";
                  }else if(data=="groupbossfail"){// 그룹장이 자신을 초대한 경우
                     $("#idCheckView").html("자신에게 초대할 수 없습니다!").css("color", "red");
                     checkResultGroup="";
-                 }else if(data=="workersignboardfail"){ 
-                     $("#idCheckView").html("초대 가능합니다").css("color", "green");
+                 }else if(data=="alreadyinvitefail"){ 
+                	 alert("alreadyinvitefail");
+                     $("#idCheckView").html("이미 초대하신 회원입니다!").css("color", "red");
                      checkResultGroup="";
+                 }else if(data=="groupfail"){// 그룹에 있는 회원이 아닌 경우
+                     $("#idCheckView").html("초대 가능합니다").css("color","green"); 
+                     checkResultGroup="group";
                  }else{
                     checkResultGroup="";
                     $("#idCheckView").html("이미 조에 속해있는 회원입니다!").css("color", "red");     
                  }               
               }//callback         
            });//ajax
-           $.ajax({
-        	   // 이미 초대 된 회원인지 확인(invitation table)
-               type:"POST",
-               url:"${pageContext.request.contextPath}/inviteCheckAjax.do",            
-               data:"id="+id+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
-               success:function(data){   
-                  if(data=="fail"){
-                     $("#idCheckView").html("이미 초대 된 회원입니다!").css("color", "red");
-                     checkResultGroup="";
-                  }       
-               }//callback         
-            });//ajax
         });//keyup
         
 	});//ready

@@ -148,18 +148,24 @@ public class OrganizationServiceImpl implements OrganizationService {
 		}
 		OrganizationVO ovo=new OrganizationVO(id,signBoardName,bossNickName);
 		int nickNameCount = memberDAO.nickNameCheck(ovo.getWorkerMemberVO().getNickName());
+		int groupCheck = organizationDAO.groupCheck(ovo);
+		int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
+		int inviteCheck = organizationDAO.inviteCheck(ovo);
 		if( nickNameCount == 0){
+			System.out.println("nickNameCount");
 			return "idfail";
-		}else{
-			int groupCheck = organizationDAO.groupCheck(ovo);
-			int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
-			if(groupCheck == 0){ // 그룹에 속한 회원이 없을 때
-				return "groupfail";
-			}else if(id.equals(bossNickName)){ // 그룹장 별명과 입력받은 아이디가 같을 때
-				return "groupbossfail";
-			}else if(workerSignBoardNameCheck == 1){ // 그룹원 중에 해당 칸반 이름과 동일한 칸반을 가지고 있을 때
-				return "workersignboardfail";
-			}
+		}else if(id.equals(bossNickName)){ // 그룹장 별명과 입력받은 아이디가 같을 때
+			System.out.println("bossNickName");
+			return "groupbossfail";
+		}else if(inviteCheck == 1){ //이미 초대된 회원을 초대 했을 경우
+			System.out.println("inviteCheck");
+			return "alreadyinvitefail";
+		}else if(groupCheck == 0){ // 그룹에 속한 회원이 없을 때
+			System.out.println("groupCheck");
+			return "groupfail";
+		}else if(workerSignBoardNameCheck == 1){ // 그룹원 중에 해당 칸반 이름과 동일한 칸반을 가지고 있을 때
+			System.out.println("workerSignBoardNameCheck");
+			return "workersignboardfail";
 		}
 		return "ok";
 	}

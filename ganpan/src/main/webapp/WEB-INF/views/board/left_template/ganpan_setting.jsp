@@ -56,10 +56,10 @@
 							<h3 class="panel-title">간판의 조장을 위임합니다</h3>
 						</div>
 						<div class="panel-body">
-							<input type="text" class="form-control" name="id" id="id" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
 							<h4>
 								<span id="groupCheckView"></span>
 							</h4>
+							<input type="text" class="form-control" name="id" id="id" placeholder="위임할 그룹원의 전자우편 혹은 별명 작성" required="required" />
 							<input type="submit" class="btn btn-success pull-right" id="changeTitleBtn" value="위임" />
 							<br>
 						</div>
