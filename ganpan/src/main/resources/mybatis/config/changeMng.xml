@@ -22,18 +22,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,work_no,change_no)
 		values(seq_change_management_no.nextval,#{organizationVO.workerMemberVO.nickName},sysdate,#{workNo},0)
    </insert>
+   <!-- 
+	   	INSERT INTO CHANGE_GENRE VALUES(0, '추가');
+		INSERT INTO CHANGE_GENRE VALUES(1, '수정');
+		INSERT INTO CHANGE_GENRE VALUES(2, '삭제');
+		INSERT INTO CHANGE_GENRE VALUES(3, '이동');
+	-->
+   <insert id="insertLogForDeleteWork" parameterType="int">
+   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,work_no,change_no)
+		values(seq_change_management_no.nextval,(SELECT worker_nickname as change_worker from work where work_no = #{value}),sysdate,#{value},2)
+   </insert>
    
+   <insert id="insertLogForMoveWork" parameterType="int">
+   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,work_no, board_no, change_no)
+		values(seq_change_management_no.nextval
+		,(SELECT worker_nickname as change_worker from work where work_no = #{value})
+		,sysdate
+		,#{value}
+		,(SELECT board_no from work where work_no = #{value})
+		,3)
+   </insert>
+   
+   <insert id="insertLogForCreateWorkByMove" parameterType="int">
+   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker
+   			,change_management_date
+   			,work_no
+   			,board_no
+   			,change_no)
+		values(seq_change_management_no.nextval
+			,(SELECT worker_nickname as change_worker from work where work_no = #{value})
+			,sysdate
+			,#{value}
+			,(SELECT board_no from work where work_no = #{value})
+			,0)
+   </insert>
    <select id="showChangeMngList" parameterType="signBoardVO">
    		select c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
 		from change_management c, work w
 		where c.work_no=w.work_no
    </select>
-   
 </mapper>
-
-
-
-
-
-
-
