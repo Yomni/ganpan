@@ -23,6 +23,7 @@ public class ChangeMngController {
 		List<ChangeMngVO> list = changeMngService.showChangeMngList(svo);
 		
 		
+		
 		return "board/change_mng";
 	}
 }//class ChangeMngController

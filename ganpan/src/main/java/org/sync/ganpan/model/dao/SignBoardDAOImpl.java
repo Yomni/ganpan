@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.InvitationMngVO;
+import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -25,6 +26,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public int getTotalSignBoardCountByNickName(String nickName) {
 		return template.selectOne("signBoard.getTotalSignBoardCountByNickName", nickName);
+	}
+
+	@Override
+	public int getTotalJoinSignBoardCountByNickName(String nickName) {
+		return template.selectOne("signBoard.getTotalJoinSignBoardCountByNickName", nickName);
 	}
 
 	@Override
@@ -56,6 +62,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	@Override
 	public List<SignBoardVO> myJoinSignBoardList(String nickName) {
 		return template.selectList("signBoard.myJoinSignBoardList", nickName);
+	}
+
+	@Override
+	public List<SignBoardVO> myJoinSignBoardList(Map<String, Object> tempMap) {
+		return template.selectList("signBoard.myJoinSignBoardListPaing", tempMap);
 	}
 
 	@Override

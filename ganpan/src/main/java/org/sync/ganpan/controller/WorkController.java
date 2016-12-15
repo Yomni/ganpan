@@ -24,6 +24,10 @@ public class WorkController {
 	private WorkService workService;
 
 	/**
+	 * createWork로 갈 때 signBoardVO도 넣어줘서 보내준다.
+	 * @author 용민
+	 * @param signBoardName
+	 * @param bossNickName
 	 * @return
 	 */
 	@RequestMapping("goCreateWork.do")
@@ -34,7 +38,7 @@ public class WorkController {
 	}
 
 	/**
-	 * 작업 추가
+	 * 간판에 작업 추가
 	 * @author 용민
 	 * @param wvo
 	 * @param signBoardName
@@ -58,6 +62,14 @@ public class WorkController {
 	// @ResponseBody
 	// public boolean moveWork(String){
 
+	/**
+	 * @author 민서,용민
+	 * @param redirectAttributes
+	 * @param workNo
+	 * @param bossNickName
+	 * @param signBoardName
+	 * @return
+	 */
 	@RequestMapping("deleteWork.do")
 	public String deleteWork(RedirectAttributes redirectAttributes, int workNo, String bossNickName,
 			String signBoardName) {
@@ -67,13 +79,21 @@ public class WorkController {
 		return "redirect:showSignBoard.do";
 	}
 
+	/**
+	 * 작업들의 상세 내용을 수정하는 method
+	 * @author 민서,용민
+	 * @param redirectAttributes
+	 * @param wvo
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @return
+	 */
 	@RequestMapping(value = "updateWork.do", method = RequestMethod.POST)
-	public String updateWork(RedirectAttributes redirectAttributes, int workNo,String workName, String workDetails) {
-	    WorkVO wvo=new WorkVO(workNo,workName,workDetails);
-	   System.out.println("updateWork.do :" + workNo + workName + workDetails);
+	public String updateWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName,
+			String bossNickName) {
 		workService.updateWork(wvo);
-		redirectAttributes.addAttribute("workName", workName);
-		redirectAttributes.addAttribute("workDetails", workNo);
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
 	}
 
@@ -91,7 +111,7 @@ public class WorkController {
 	}
 
 	/**
-	 * Ajax를 이용하여 작업 이동 시 DB에 반영
+	 * Ajax를 이용하여 작업 이동(TO_DO -> DOING, DOING -> DONE) 시 DB에 반영
 	 * @author 용민
 	 * @param workNo
 	 * @return

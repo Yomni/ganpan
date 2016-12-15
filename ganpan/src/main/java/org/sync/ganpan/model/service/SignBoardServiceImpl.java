@@ -104,6 +104,24 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 	@Override
+	public ListVO<SignBoardVO> myJoinSignBoardList(String nickName, String pageNo) {
+		PagingBean pb = null;
+		int signBoardCount = signBoardDAO.getTotalJoinSignBoardCountByNickName(nickName);
+		if (pageNo == null){
+			pb = new PagingBean(signBoardCount);
+		}else{
+			pb = new PagingBean(signBoardCount, Integer.parseInt(pageNo));
+		}
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		tempMap.put("nickName", nickName);
+		tempMap.put("getStartRowNumber", pb.getStartRowNumber());
+		tempMap.put("getEndRowNumber", pb.getEndRowNumber());
+		List<SignBoardVO> sbList = signBoardDAO.myJoinSignBoardList(tempMap);
+		ListVO<SignBoardVO> sblistVO = new ListVO<SignBoardVO>(sbList, pb);
+		return sblistVO;
+	}
+
+	@Override
 	@Transactional
 	public HashMap<String, List<SignBoardVO>> homeSignBoardList(String nickName) {
 		HashMap<String, List<SignBoardVO>> sbMap = new HashMap<String, List<SignBoardVO>>();

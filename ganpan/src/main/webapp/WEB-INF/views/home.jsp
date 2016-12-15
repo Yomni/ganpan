@@ -16,7 +16,8 @@
 
 					<div class="col-md-6">
 						<form action="register_main.do" method="post" id="registerForm">
-							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명" required="required">
+							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명 (*특수문자 사용불가)" required="required" 
+							onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;">
 							<br>
 							<br>
 							<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편" required="required">
@@ -109,7 +110,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${slist}" var="signBoard">
+								<c:forEach items="${sListVO.list}" var="signBoard">
 									<tr>
 										<td>${signBoard.signBoardVO.bossMemberVO.nickName}</td>
 										<td><a href="${pageContext.request.contextPath}/showSignBoard.do?signBoardName=${signBoard.signBoardVO.signBoardName}
@@ -118,6 +119,32 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						
+				        <nav>
+				             <ul class="pagination">
+				               <c:choose>
+				                  <c:when test="${sListVO.pagingBean.isPreviousPageGroup()}">
+				                   <li>
+				                     <a href="${pageContext.request.contextPath}/getLoginHome.do?nickName=${mvo.nickName}&pageNo=${sListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
+				                     <span aria-hidden="true">&laquo;</span></a>
+				                    </li>
+				                  </c:when>
+				                </c:choose>
+				                <c:forEach begin="${sListVO.pagingBean.getStartPageOfPageGroup()}" end="${sListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+				                   <li><a href="${pageContext.request.contextPath}/getLoginHome.do?nickName=${mvo.nickName}&pageNo=${order.index}">
+				                      ${order.index}</a>
+				                   </li>
+				                </c:forEach> 
+				               <c:choose>
+				                <c:when test="${sListVO.pagingBean.isNextPageGroup()}">
+				                  <li>
+				                    <a href="${pageContext.request.contextPath}/getLoginHome.do?nickName=${mvo.nickName}&pageNo=${sListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
+				                     <span aria-hidden="true">&raquo;</span></a>
+				                  </li>
+				                </c:when>
+				              </c:choose>
+				            </ul>
+				        </nav>
 						<!-- table -->
 					</div>
 					<!-- well -->

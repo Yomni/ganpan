@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -36,6 +35,10 @@ public class WorkDAOImpl implements WorkDAO {
 	public void deleteWork(int workNo) {
 		template.insert("work.deleteWork",workNo);
 	}
+	@Override
+	public void updateWork(WorkVO wvo) {
+		template.insert("work.updateWork",wvo);
+	}
 
 	@Override
 	public void updateWorkerToNullByNickName(String nickName) {
@@ -50,10 +53,6 @@ public class WorkDAOImpl implements WorkDAO {
 	@Override
 	public int moveWork(int workNo) {
 		return template.update("work.moveWork",workNo);
-	}
-	@Override
-	public int updateWork(WorkVO wvo) {
-		return template.update("work.updateWork", wvo);
 	}
 }//class WorkDAOImpl
 

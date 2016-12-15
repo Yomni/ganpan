@@ -43,6 +43,22 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
+	public ListVO<OrganizationVO> getOrganizationSignBoardList(String nickName, String pageNo) {
+		PagingBean pb=null;
+		int totalCount = organizationDAO.getJoinedSignBoardCount(nickName);
+		if(pageNo==null)
+			pb=new PagingBean(totalCount);
+		else
+			pb=new PagingBean(totalCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("nickName", nickName);
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		List<OrganizationVO> list = organizationDAO.getOrganizationSignBoardList(map);
+		return new ListVO<OrganizationVO>(list, pb);
+	}
+
+	@Override
 	public void cancelInvitation(InvitationMngVO ivo) {
 		organizationDAO.cancelInvitation(ivo);
 	}
@@ -98,8 +114,26 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 	}
 
+	@Override
 	public List<HashMap<String, String>> sendInvitationList(SignBoardVO svo) {
 		return organizationDAO.sendInvitationList(svo);
+	}
+	
+	@Override
+	public ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo) {
+		PagingBean pb=null;
+		int TotalsendInvitationCount = organizationDAO.getTotalsendInvitationCount(svo);
+		if(pageNo==null)
+			pb=new PagingBean(TotalsendInvitationCount);
+		else
+			pb=new PagingBean(TotalsendInvitationCount,Integer.parseInt(pageNo));
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("getStartRowNumber", pb.getStartRowNumber());
+		map.put("getEndRowNumber", pb.getEndRowNumber());
+		map.put("signBoardName", svo.getSignBoardName());
+		map.put("bossNickName", svo.getBossMemberVO().getNickName());
+		List<HashMap<String, String>> list=organizationDAO.sendInvitationList(map);
+		return new ListVO<HashMap<String, String>>(list,pb);
 	}
 
 	@Override
@@ -114,18 +148,24 @@ public class OrganizationServiceImpl implements OrganizationService {
 		}
 		OrganizationVO ovo=new OrganizationVO(id,signBoardName,bossNickName);
 		int nickNameCount = memberDAO.nickNameCheck(ovo.getWorkerMemberVO().getNickName());
+		int groupCheck = organizationDAO.groupCheck(ovo);
+		int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
+		int inviteCheck = organizationDAO.inviteCheck(ovo);
 		if( nickNameCount == 0){
+			System.out.println("nickNameCount");
 			return "idfail";
-		}else{
-			int groupCheck = organizationDAO.groupCheck(ovo);
-			int workerSignBoardNameCheck = organizationDAO.workerSignBoardNameCheck(ovo);
-			if(groupCheck == 0){ // 그룹에 속한 회원이 없을 때
-				return "groupfail";
-			}else if(id.equals(bossNickName)){ // 그룹장 별명과 입력받은 아이디가 같을 때
-				return "groupbossfail";
-			}else if(workerSignBoardNameCheck == 1){ // 그룹원 중에 해당 칸반 이름과 동일한 칸반을 가지고 있을 때
-				return "workersignboardfail";
-			}
+		}else if(id.equals(bossNickName)){ // 그룹장 별명과 입력받은 아이디가 같을 때
+			System.out.println("bossNickName");
+			return "groupbossfail";
+		}else if(inviteCheck == 1){ //이미 초대된 회원을 초대 했을 경우
+			System.out.println("inviteCheck");
+			return "alreadyinvitefail";
+		}else if(groupCheck == 0){ // 그룹에 속한 회원이 없을 때
+			System.out.println("groupCheck");
+			return "groupfail";
+		}else if(workerSignBoardNameCheck == 1){ // 그룹원 중에 해당 칸반 이름과 동일한 칸반을 가지고 있을 때
+			System.out.println("workerSignBoardNameCheck");
+			return "workersignboardfail";
 		}
 		return "ok";
 	}

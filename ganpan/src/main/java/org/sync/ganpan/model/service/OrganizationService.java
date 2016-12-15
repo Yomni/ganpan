@@ -40,4 +40,8 @@ public interface OrganizationService {
 
 	String inviteCheck(String id, String signBoardName, String bossNickName);
 
+	ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo);
+
+	ListVO<OrganizationVO> getOrganizationSignBoardList(String nickName, String pageNo);
+
 }

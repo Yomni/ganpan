@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</update>
  	
  	<insert id="createWork" parameterType="workVO">
- 		<selectKey keyProperty="workNo"  order="BEFORE"  resultType="int" >
+ 		<selectKey keyProperty="workNo"  order="BEFORE" resultType="int" >
  			select seq_work_no.nextval from dual
  		</selectKey>
  		INSERT INTO WORK(work_no, work_name, work_details, worker_nickname, sign_board_name, boss_nickname)
@@ -63,10 +63,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from work where work_no=#{workNo}
 	</delete>
 	
- 		<update id="updateWork" parameterType="workVO">	
+	<update id="updateWork" parameterType="workVO">	
 		update work
-		set workName=#{workVO.workName},workDetails=#{workVO.workDetails}
-		where workNo=#{workNo}
+		set work_name=#{workName},
+			work_details=#{workDetails},
+			change_date = sysdate 
+		where work_no = #{workNo}
 	</update>
  	
  	<update id="joinAsWorkerByWorkNo" parameterType="workVO">

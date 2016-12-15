@@ -40,10 +40,10 @@ public class OrganizationController {
 	 * @return
 	 */
 	@RequestMapping("getLoginHome.do")
-	public ModelAndView getLoginHomeSignBoardList(String nickName) {
+	public ModelAndView getLoginHomeSignBoardList(String nickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
-		mv.addObject("slist", organizationService.getOrganizationSignBoardList(nickName));
+		mv.addObject("sListVO", organizationService.getOrganizationSignBoardList(nickName, pageNo));
 		mv.addObject("signBoardCount", organizationService.getJoinedSignBoardCount(nickName));
 		return mv;
 	}
@@ -88,12 +88,12 @@ public class OrganizationController {
 	 * @return
 	 */
 	@RequestMapping("sendInvitationList.do")
-	public ModelAndView sendInvitationList(String signBoardName, String bossNickName) {
+	public ModelAndView sendInvitationList(String signBoardName, String bossNickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
-		List<HashMap<String, String>> MList = organizationService.sendInvitationList(svo);
+		ListVO<HashMap<String, String>> mListVO = organizationService.sendInvitationList(svo, pageNo);
 		mv.setViewName("board/left_template/invite_group_member");
-		mv.addObject("MList", MList);
+		mv.addObject("mListVO", mListVO);
 		mv.addObject("svo", svo);
 		return mv;
 	}
@@ -140,16 +140,14 @@ public class OrganizationController {
 	 * @author 민서, 동혁
 	 */
 	@RequestMapping("goManageSignBoardMember.do")
-	public ModelAndView getOrganizationList(HttpServletRequest request) {
+	public ModelAndView getOrganizationList(String signBoardName, String bossNickName ,String pageNo) {
 		ModelAndView mv = new ModelAndView();
-		String signBoardName = request.getParameter("signBoardName");
-		String bossNickName = request.getParameter("bossNickName");
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);// ganpan1, kosta1
-		List<OrganizationVO> oList = organizationService.getOrganizationList(svo);
-
+		ListVO<OrganizationVO> oListVO = organizationService.getOrganizationList(svo,pageNo);
 		mv.addObject("svo", svo);
-		mv.addObject("oList", oList);
+		mv.addObject("oListVO", oListVO);
 		mv.setViewName("board/left_template/manage_organization_member");
+		System.out.println(oListVO);
 		return mv;
 	}
 
@@ -176,18 +174,16 @@ public class OrganizationController {
 	 * @return
 	 */
 	@RequestMapping("banish.do")
-	public String banish(HttpServletRequest request) {
-		String workerNickName = request.getParameter("workerNickName");
-		String signBoardName = request.getParameter("signBoardName");
-		String bossNickName = request.getParameter("bossNickName");
+	public String banish(String workerNickName, String signBoardName, String bossNickName, RedirectAttributes redirectAttributes) {
 		MemberVO workerMemberVO = new MemberVO(workerNickName);
 		SignBoardVO signBoardVO = new SignBoardVO(signBoardName, bossNickName);
 		OrganizationVO ovo = new OrganizationVO(workerMemberVO, signBoardVO);
 		// 그룹에서 강제퇴장!
 		organizationService.banish(ovo);
-
+		redirectAttributes.addAttribute("signBoardName", signBoardName);
+		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		// 다시 getOrganizationList로 보내줘야 한다.
-		return "redirect:goManageSignBoardMember.do?signBoardName=" + signBoardName + "&bossNickName=" + bossNickName;
+		return "redirect:goManageSignBoardMember.do";
 	}
 	
 	/**

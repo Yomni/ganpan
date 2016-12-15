@@ -16,13 +16,11 @@ public interface WorkDAO {
 
 	void deleteWork(int workNo);
 
+	void updateWork(WorkVO wvo);
+
 	void updateWorkerToNullByNickName(String nickName);
 
 	void joinAsWorkerByWorkNo(WorkVO wvo);
 
 	int moveWork(int workNo);
-
-	int updateWork(WorkVO wvo);
-
-	
-}//interface WorkDAO
+}// interface WorkDAO
