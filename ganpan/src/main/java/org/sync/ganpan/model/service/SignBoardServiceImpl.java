@@ -106,7 +106,7 @@ public class SignBoardServiceImpl implements SignBoardService {
 	@Override
 	public ListVO<SignBoardVO> myJoinSignBoardList(String nickName, String pageNo) {
 		PagingBean pb = null;
-		int signBoardCount = signBoardDAO.getTotalSignBoardCountByNickName(nickName);
+		int signBoardCount = signBoardDAO.getTotalJoinSignBoardCountByNickName(nickName);
 		if (pageNo == null){
 			pb = new PagingBean(signBoardCount);
 		}else{

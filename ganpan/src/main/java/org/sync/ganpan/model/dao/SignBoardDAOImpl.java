@@ -29,6 +29,11 @@ public class SignBoardDAOImpl implements SignBoardDAO {
 	}
 
 	@Override
+	public int getTotalJoinSignBoardCountByNickName(String nickName) {
+		return template.selectOne("signBoard.getTotalJoinSignBoardCountByNickName", nickName);
+	}
+
+	@Override
 	public List<SignBoardVO> findSignBoardListByTitle(Map<String, Object> tempMap) {
 		List<SignBoardVO> sbList = template.selectList("signBoard.findSignBoardListByTitle", tempMap);
 		return sbList;

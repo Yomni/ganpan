@@ -60,8 +60,6 @@
 				              </c:choose>
 				            </ul>
 				        </nav>
-						
-						
 					</c:otherwise>
 				</c:choose>
 			</div>

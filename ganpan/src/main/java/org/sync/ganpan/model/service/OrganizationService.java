@@ -42,4 +42,6 @@ public interface OrganizationService {
 
 	ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo);
 
+	ListVO<OrganizationVO> getOrganizationSignBoardList(String nickName, String pageNo);
+
 }
