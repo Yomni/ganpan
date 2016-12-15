@@ -1,42 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="col-md-6 col-md-offset-3">
-	<form method="post" action="${pageContext.request.contextPath}/updateMember.do" >
-	 <div class="panel panel-default">
-  		<div class="panel-heading">
-  		  <h3 class="panel-title">회원 정보를 수정하세요</h3>
- 		 </div>
-  		<div class="panel-body">
-			<div class="form-group">
-				<h4><span id="eMailCheckView"></span></h4>
-				<label for="eMail">전자우편</label>
-				<input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편"
-					value="${mvo.eMail}" required="required"/>
-			</div>
-			<div class="form-group">
-				<h4><span id="nickNameCheckView"></span></h4>
-				<label for="nickName">별명</label>
-				<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명"
-					value="${mvo.nickName}" readonly="readonly" required="required"/>
-			</div>
-			<div class="form-group">
-				<h4><span id="passwordView"></span></h4>
-				<label for="password">비밀번호</label>
-				<input type="password" class="form-control" id="password"
-					value="${mvo.password}" name="password" placeholder="비밀번호" required="required"/>
-			</div>
-			<div class="form-group">
-				<h4><span id="passwordCheckView"></span></h4>
-				<label for="passwordCheck">비밀번호 확인</label>
-				<input type="password" class="form-control" id="passwordCheck" 
-					value="${mvo.password}" placeholder="비밀번호 확인" required="required"/>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="btn btn-default btn-success btn-block" id="updateBtn">회원정보수정</button>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-2">
+				<form method="post" action="${pageContext.request.contextPath}/updateMember.do" >
+				 <div class="panel panel-default">
+			  		<div class="panel-heading">
+			  		  	<h3 class="panel-title">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							회원 정보를 수정하세요
+						</h3>
+			 		 </div>
+			  		<div class="panel-body">
+						<div class="form-group">
+							<h4><span id="eMailCheckView"></span></h4>
+							<label for="eMail">전자우편</label>
+							<input type="email" class="form-control" id="eMail" name="eMail" placeholder="전자우편"
+								value="${mvo.eMail}" required="required"/>
+						</div>
+						<div class="form-group">
+							<h4><span id="nickNameCheckView"></span></h4>
+							<label for="nickName">별명</label>
+							<input type="text" class="form-control" id="nickName" name="nickName" placeholder="별명"
+								value="${mvo.nickName}" readonly="readonly" required="required"/>
+						</div>
+						<div class="form-group">
+							<h4><span id="passwordView"></span></h4>
+							<label for="password">비밀번호</label>
+							<input type="password" class="form-control" id="password"
+								value="${mvo.password}" name="password" placeholder="비밀번호" required="required"/>
+						</div>
+						<div class="form-group">
+							<h4><span id="passwordCheckView"></span></h4>
+							<label for="passwordCheck">비밀번호 확인</label>
+							<input type="password" class="form-control" id="passwordCheck" 
+								value="${mvo.password}" placeholder="비밀번호 확인" required="required"/>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-default btn-success btn-block" id="updateBtn">회원정보수정</button>
+						</div>
+					</div>
+				</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	</form>
 </div>
 
 <script type="text/javascript">
