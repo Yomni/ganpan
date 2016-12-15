@@ -31,7 +31,6 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		PagingBean toDoPb = createPagingBean(argMap, toDoPageNo);
 		argMap.put("pb", toDoPb);
 		ListVO<ChangeMngVO> toDoListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), toDoPb);
-		System.out.println(toDoListVO);
 		map.put("toDoListVO", toDoListVO);
 
 		// 2. doing의 변경이력들만 뽑아온다.
@@ -41,7 +40,6 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		PagingBean doingPb = createPagingBean(argMap, doingPageNo);
 		argMap.put("pb", doingPb);
 		ListVO<ChangeMngVO> doingListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), doingPb);
-		System.out.println(doingListVO);
 		map.put("doingListVO", doingListVO);
 
 		// 3. done의 변경이력들만 뽑아온다.
@@ -51,20 +49,17 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		PagingBean donePb = createPagingBean(argMap, donePageNo);
 		argMap.put("pb", donePb);
 		ListVO<ChangeMngVO> doneListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), donePb);
-		System.out.println(doneListVO);
 		map.put("doneListVO", doneListVO);
 
 		// 4. 총 변경이력을 뽑아온다.
 		// 4 - 1 map에 추가
 		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(svo));
-		System.out.println(changeMngDAO.showTotalChangeMngList(svo));
 		
 		return map;
 	}
 
 	public PagingBean createPagingBean(Map<String, Object> argMap, String pageNo) {
 		int totalCount = changeMngDAO.getTotalChangeMngCountEachBoard(argMap);
-		System.out.println(totalCount);
 		PagingBean pb = null;
 		if (pageNo == null) {
 			pb = new PagingBean(totalCount);

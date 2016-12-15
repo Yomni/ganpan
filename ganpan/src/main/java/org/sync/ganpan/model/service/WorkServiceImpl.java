@@ -51,17 +51,17 @@ public class WorkServiceImpl implements WorkService {
 	@Transactional
 	public boolean moveWork(int workNo) {
 		boolean returnFlag = false;
-		
+
 		// 변경이력에는 TO_DO -> DOING 시
 		// TO_DO변경이력에는 '이동'
 		changeMngDAO.insertLogForMoveWork(workNo);
 
 		// 실제로 DB상에서 이동
 		int result = workDAO.moveWork(workNo);
-		
+
 		// DOING변경이력에는 '추가'로 저장
 		changeMngDAO.insertLogForCreateWork(workNo);
-		
+
 		if (result == 1)
 			returnFlag = true;
 		return returnFlag;

@@ -19,6 +19,8 @@ public class ChangeMngController {
 		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo = new SignBoardVO(signBoardName, bossNickName);
 		mv.setViewName("board/change_mng");
+		mv.addObject("signBoardName",signBoardName);
+		mv.addObject("bossNickName",bossNickName);
 		mv.addObject("changeMngMap", changeMngService.showChangeMngList(svo, toDoPageNo, doingPageNo, donePageNo));
 		return mv;
 	}

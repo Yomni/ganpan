@@ -48,6 +48,8 @@
 			<mvc:exclude-mapping path="/register.do" />
 			<mvc:exclude-mapping path="/register_main.do" />
 			<mvc:exclude-mapping path="/showSignBoard.do" />
+			<mvc:exclude-mapping path="/changeMng.do" />
+			<mvc:exclude-mapping path="/showMemberList.do" />
 			<mvc:exclude-mapping path="/go_home.do" />
 			<mvc:exclude-mapping path="/go_board/guide.do" />
 			<mvc:exclude-mapping path="/go_etc/bad_access.do" />
