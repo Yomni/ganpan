@@ -1,9 +1,5 @@
 package org.sync.ganpan.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -22,7 +18,6 @@ public class ChangeMngController {
 		ModelAndView mv = new ModelAndView();
 		SignBoardVO svo= new SignBoardVO(signBoardName, bossNickName);
 		mv.addObject("changeMngMap", changeMngService.showChangeMngList(svo));
-		
 		return mv;
 	}
 }//class ChangeMngController

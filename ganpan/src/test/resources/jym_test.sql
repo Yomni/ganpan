@@ -119,3 +119,9 @@ update work
 			work_details='상세내용',
 			change_date = sysdate 
 		where work_no = 45
+		
+		
+		select c.change_worker,  to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI'), ch.change_name, w.work_name
+		from change_management c, work w, change_genre ch
+		where w.sign_board_name='test' and w.boss_nickname='sync' and c.board_no=1 and c.work_no=w.work_no
+		and ch.change_no = c.change_no order by c.change_management_no desc

@@ -42,7 +42,7 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		
 		// 4. 총 변경이력을 뽑아온다.
 		// 4 - 1 map에 추가
-		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(argMap));
+		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(svo));
 		
 		return map;
 	}

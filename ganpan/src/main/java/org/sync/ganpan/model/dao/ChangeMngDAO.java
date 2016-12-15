@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.sync.ganpan.model.vo.ChangeMngVO;
+import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
 public interface ChangeMngDAO {
@@ -19,5 +20,5 @@ public interface ChangeMngDAO {
 
 	void insertLogForUpdateWork(WorkVO wvo);
 
-	Object showTotalChangeMngList(Map<String, Object> argMap);
+	List<ChangeMngVO> showTotalChangeMngList(SignBoardVO svo);
 }
