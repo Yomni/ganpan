@@ -36,19 +36,32 @@ public class WorkServiceImpl implements WorkService {
 	@Override
 	@Transactional
 	public void deleteWork(int workNo) {
-		workDAO.deleteWork(workNo);
 		changeMngDAO.insertLogForDeleteWork(workNo);
+		workDAO.deleteWork(workNo);
 	}
 
 	@Override
+	@Transactional
 	public void updateWork(WorkVO wvo) {
+		changeMngDAO.insertLogForUpdateWork(wvo);
 		workDAO.updateWork(wvo);
 	}
 
 	@Override
+	@Transactional
 	public boolean moveWork(int workNo) {
 		boolean returnFlag = false;
+		
+		// 변경이력에는 TO_DO -> DOING 시
+		// TO_DO변경이력에는 '이동'
+		changeMngDAO.insertLogForMoveWork(workNo);
+
+		// 실제로 DB상에서 이동
 		int result = workDAO.moveWork(workNo);
+		
+		// DOING변경이력에는 '추가'로 저장
+		changeMngDAO.insertLogForCreateWork(workNo);
+		
 		if (result == 1)
 			returnFlag = true;
 		return returnFlag;

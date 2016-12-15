@@ -86,8 +86,10 @@ where c.work_no=w.work_no;
 select change_worker, change_management_date, board_no,work_no,change_no
 from change_management
 
+select * from CHANGE_MANAGEMENT;
 
-insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
-values(seq_change_management_no.nextval,'kosta1',sysdate,1,1,0);
+select c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
+		from change_management c, work w
+		where c.work_no=w.work_no;
 
 
