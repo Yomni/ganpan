@@ -7,9 +7,9 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
 public interface ChangeMngDAO {
+	List<ChangeMngVO> showChangeMngList(SignBoardVO svo);
 
 	void insertLogForCreateWork(WorkVO wvo);
 
-	List<ChangeMngVO> showChangeMngList(SignBoardVO svo);
-
+	void insertLogForDeleteWork(int workNo);
 }
