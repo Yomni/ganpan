@@ -122,7 +122,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	@Override
 	public ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo) {
 		PagingBean pb=null;
-		int TotalsendInvitationCount = organizationDAO.getTotalsendInvitationCount(svo);
+		int TotalsendInvitationCount = organizationDAO.getTotalSendInvitationCount(svo);
 		if(pageNo==null)
 			pb=new PagingBean(TotalsendInvitationCount);
 		else
@@ -171,14 +171,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
-	public String inviteCheck(String id, String signBoardName, String bossNickName) {
-		if(id.contains("@")==true){
-			id=organizationDAO.getNickNameByEmail(id);
+	public boolean isInvitedOrganization(String nickName) {
+		int countInvitation = organizationDAO.getInvitedCountByNickName(nickName);
+		if(countInvitation != 0) {
+			return true;
 		}
-		OrganizationVO ovo=new OrganizationVO(id,signBoardName,bossNickName);
-		if(organizationDAO.inviteCheck(ovo)==0){//해당 정보의 초대 이력이 초대테이블에 없음(초대 가능)
-			return "ok";
-		}else
-			return "fail";
+		return false; // 초대 현황이 0인 경우
 	}
 }

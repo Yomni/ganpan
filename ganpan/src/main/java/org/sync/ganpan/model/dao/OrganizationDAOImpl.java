@@ -102,9 +102,13 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 	}
 
 	@Override
-	public int getTotalsendInvitationCount(SignBoardVO svo) {
-		return template.selectOne("organization.getTotalsendInvitationCount",svo);
+	public int getTotalSendInvitationCount(SignBoardVO svo) {
+		return template.selectOne("organization.getTotalSendInvitationCount",svo);
 	}
 
+	@Override
+	public int getInvitedCountByNickName(String nickName) {
+		return template.selectOne("organization.getInvitedCountByNickName", nickName);
+	}
 
 }// class organizationDAOImpl

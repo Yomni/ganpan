@@ -45,6 +45,7 @@ public class OrganizationController {
 		mv.setViewName("home");
 		mv.addObject("sListVO", organizationService.getOrganizationSignBoardList(nickName, pageNo));
 		mv.addObject("signBoardCount", organizationService.getJoinedSignBoardCount(nickName));
+		mv.addObject("invitationFlag", organizationService.isInvitedOrganization(nickName));
 		return mv;
 	}
 
@@ -198,19 +199,5 @@ public class OrganizationController {
 	public String groupCheckAjax(String signBoardName, String bossNickName, String id) {
 		return organizationService.groupCheck(id, signBoardName, bossNickName);
 	}
-
-	/**
-	 * @author 민영,주선
-	 * @param signBoardName
-	 * @param bossNickName
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.POST, value = "inviteCheckAjax.do")
-	@ResponseBody
-	public String inviteCheckAjax(String signBoardName, String bossNickName, String id){
-		return organizationService.inviteCheck(id, signBoardName, bossNickName);
-	}
-	
 	
 }// class OrganizationController

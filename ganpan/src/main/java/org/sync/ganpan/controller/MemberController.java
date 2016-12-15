@@ -143,7 +143,8 @@ public class MemberController {
 	/******************************** 주선 **********************************/
 	/**
 	 * 회원 로그인
-	 * @author 주선
+	 * 로그인 할 때 초대되어있는지 안되있는지 확인
+	 * @author 주선,용민(수정)
 	 * @param request
 	 * @param id
 	 * @param password
@@ -158,6 +159,8 @@ public class MemberController {
 			session.setAttribute("mvo", mvo);
 			ListVO<OrganizationVO> sListVO = organizationService.getOrganizationSignBoardList(mvo.getNickName(), null);
 			int signBoardCount = organizationService.getJoinedSignBoardCount(mvo.getNickName());
+			boolean invitationFlag = organizationService.isInvitedOrganization(mvo.getNickName());
+			session.setAttribute("invitationFlag", invitationFlag);
 			session.setAttribute("signBoardCount", signBoardCount);
 			session.setAttribute("sListVO", sListVO);
 			return "redirect:go_home.do";
