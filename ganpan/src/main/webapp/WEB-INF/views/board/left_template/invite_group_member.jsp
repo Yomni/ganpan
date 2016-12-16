@@ -66,7 +66,15 @@
 								       </c:when>
 								 	 </c:choose>
 						        	<c:forEach begin="${mListVO.pagingBean.getStartPageOfPageGroup()}" end="${mListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
-						        		<li><a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">
+							        	<c:choose>
+											<c:when test="${mListVO.pagingBean.nowPage == order.index}">
+												<li class="active">
+											</c:when>
+											<c:otherwise>
+												<li>
+											</c:otherwise>
+										</c:choose>
+						        		<a href="${pageContext.request.contextPath}/sendInvitationList.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}&pageNo=${order.index}">
 						        			${order.index}</a>
 						        		</li>
 						        	</c:forEach> 

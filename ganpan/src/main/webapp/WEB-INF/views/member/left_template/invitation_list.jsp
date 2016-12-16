@@ -47,7 +47,15 @@
 					       </c:when>
 					 	 </c:choose>
 			        	<c:forEach begin="${iListVO.pagingBean.getStartPageOfPageGroup()}" end="${iListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
-			        		<li><a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">
+			        		<c:choose>
+								<c:when test="${iListVO.pagingBean.nowPage == order.index}">
+									<li class="active">
+								</c:when>
+								<c:otherwise>
+									<li>
+								</c:otherwise>
+							</c:choose>
+			        		<a href="${pageContext.request.contextPath}/invitationList.do?pageNo=${order.index}">
 			        			${order.index}</a>
 			        		</li>
 			        	</c:forEach> 
@@ -73,13 +81,12 @@
 				var signBoardName = $("#inviteTable tr:eq(${status.count}) td:eq(0)").text();
 				var bossNickName = $("#inviteTable tr:eq(${status.count}) td:eq(1)").text();
 				location.href="${pageContext.request.contextPath}/acceptInvitation.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
-// 				alert($("#inviteTable tr:eq(${status.count}) td:eq(1)").text());
-			});
+			}); // click
 			$("#reject${status.count}").click(function(){
 				var signBoardName = $("#inviteTable tr:eq(${status.count}) td:eq(0)").text();
 				var bossNickName = $("#inviteTable tr:eq(${status.count}) td:eq(1)").text();
 				location.href="${pageContext.request.contextPath}/rejectInvitation.do?signBoardName="+signBoardName+"&bossNickName="+bossNickName;
-			});
-		</c:forEach>
+			}); // click
+		</c:forEach> // forEach
 	});//ready
 </script>
