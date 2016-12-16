@@ -63,3 +63,13 @@ BEGIN
 	WHERE sign_board_name = :OLD.sign_board_name
 			and boss_nickname = :OLD.boss_nickname;
 END;
+
+-- ++ 변경이력 관련 트리거 추가
+CREATE OR REPLACE TRIGGER sb_changemng_trigger
+AFTER UPDATE OF sign_board_name ON sign_board 
+FOR EACH ROW
+BEGIN
+  UPDATE CHANGE_MANAGEMENT
+  SET sign_board_name=:NEW.sign_board_name
+  WHERE sign_board_name=:OLD.sign_board_name and boss_nickname=:OLD.boss_nickname;
+END;
