@@ -158,11 +158,11 @@
 </div>
 <!-- /container -->
 <c:if test="${invitationFlag && sessionScope.mvo != null}">
-<!-- <script type="text/javascript"> -->
-// 	$(window).load(function() {
-// 		if(confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")){
-// 			location.href="${pageContext.request.contextPath}/invitationList.do";
-// 		}
-// 	});
-<!-- </script> -->
+<script type="text/javascript">
+ 	$(window).load(function() {
+ 		if(confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")){
+ 			location.href="${pageContext.request.contextPath}/invitationList.do";
+ 		}
+ 	});
+</script>
 </c:if>
