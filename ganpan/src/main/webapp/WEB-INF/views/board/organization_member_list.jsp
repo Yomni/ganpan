@@ -4,13 +4,9 @@
 <!-- Main Content -->
 <div class="container">
 	<div class="row">
+		<h2 class="text-center text-capitalize page-header">구성원</h2>
 		<div class="col-md-6 col-md-offset-3">
 			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th colspan="3">구성원보기</th>
-					</tr>
-				</thead>
 				<tbody>
 					<tr>
 						<td>조장</td>
