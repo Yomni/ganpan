@@ -114,13 +114,11 @@
 								<mark>${clist.changeWorker}</mark> 가 ${clist.workVO.organizationVO.signBoardVO.bossMemberVO.nickName} /
 								<a href="${pageContext.request.contextPath}/showSignBoard.do?signBoardName=${clist.workVO.organizationVO.signBoardVO.signBoardName}
 										&bossNickName=${clist.workVO.organizationVO.signBoardVO.bossMemberVO.nickName}">${clist.workVO.organizationVO.signBoardVO.signBoardName}</a>
-								에서 <em>${clist.workVO.workName}</em>작업을 
-								'
+								에서 <em>${clist.workVO.workName}</em> 을(를) 
 								<c:if test="${clist.boardNo == 1}"><em>해야 할 작업</em></c:if>
 								<c:if test="${clist.boardNo == 2}"><em>하고 있는 작업</em></c:if>
 								<c:if test="${clist.boardNo == 3}"><em>끝난 작업</em></c:if>
-								'
-								에서
+								에(서)
 								${clist.changeGenreVO.changeName}
 							</div>
 							<c:set var="lastIndex" value="${clist.changeMngNo}" />

@@ -62,7 +62,7 @@
 										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-													<form action="${pageContext.request.contextPath}/updateWork.do" method="post" id="${works.workNo}Form">
+													<form action="${pageContext.request.contextPath}/updateWork.do" method="post" id="${works.workNo}Form" class="form-group">
 														<div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
@@ -72,11 +72,11 @@
 															<input type="hidden" name="boardNo" value="${works.boardNo}"/>
 															<input type="hidden" name="workNo" value="${works.workNo}"/>
 															<input type="hidden" name="organizationVO.workerMemberVO.nickName" value="${works.organizationVO.workerMemberVO.nickName}"/>
-															<h4 class="modal-title"><input type="text" name="workName" value="${works.workName}" required="required"/></h4>
+															<h4 class="modal-title"><input class="form-control" type="text" name="workName" value="${works.workName}" required="required"/></h4>
 														</div>
 														<div class="modal-body">
 															<p>
-																<textarea rows="" cols="" name="workDetails" required="required">${works.workDetails}</textarea>
+																<textarea class="form-control" rows="" cols="" name="workDetails" required="required">${works.workDetails}</textarea>
 															</p>
 														</div>
 														<div class="modal-footer">
