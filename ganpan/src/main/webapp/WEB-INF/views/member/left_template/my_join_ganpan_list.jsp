@@ -11,6 +11,7 @@
 						<br>
 						<br>
 						<br>
+						<br>
 						<h2>
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 참여하신 간판이 없습니다
 						</h2>

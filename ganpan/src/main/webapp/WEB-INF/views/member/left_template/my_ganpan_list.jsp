@@ -6,7 +6,15 @@
 			<div class="col-md-3 col-md-offset-3 text-center">
 				<c:choose>
 					<c:when test="${empty sbListVO.list}">
-						<h3>소유하신 간판이 없습니다</h3>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<h2>
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 소유하신 간판이 없습니다
+						</h2>
 					</c:when>
 					<c:otherwise>
 						<h2>나의 간판 목록</h2>
