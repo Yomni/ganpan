@@ -8,14 +8,14 @@
 <tiles-definitions>
 	<!-- Definition => viewName -->
 	<definition name="home" template="/WEB-INF/views/templates/layout_3part.jsp">
-		<put-attribute name="title" value="sync" />
+		<put-attribute name="title" value="간판" />
 		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
 	</definition>
 	
 	<definition name="home_left" template="/WEB-INF/views/templates/layout_4part.jsp">
-		<put-attribute name="title" value="sync" />
+		<put-attribute name="title" value="간판" />
 		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
 	</definition>

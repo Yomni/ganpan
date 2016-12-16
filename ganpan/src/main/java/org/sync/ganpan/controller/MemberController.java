@@ -58,7 +58,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value = "register_main.do", method = RequestMethod.POST)
-	public ModelAndView registerFromIndexMember(MemberVO mvo, HttpSession session) {
+	public ModelAndView registerFromIndexMember(RedirectAttributes redirectAttributes,MemberVO mvo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		boolean nickNameLengthFlag = false;
 		boolean nickNameDuplicateFlag = false;
@@ -90,7 +90,8 @@ public class MemberController {
 			session.setAttribute("mvo", mvo); // login
 			// 성공 시 db 반영
 			memberService.registerMember(mvo);
-			mv.setViewName("redirect:registerResultView.do?nickName=" + mvo.getNickName());
+			redirectAttributes.addAttribute("nickName", mvo.getNickName());
+			mv.setViewName("redirect:registerResultView.do");
 		}
 		return mv;
 	}
