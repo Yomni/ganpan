@@ -26,7 +26,7 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, Object> argMap = new HashMap<String, Object>();
 		argMap.put("svo", svo);
-		
+
 		// 1. to_do의 변경이력들만 뽑아온다.
 		// 1 -1. map에 추가.
 		// ListVO형태로 넣어줘야함.
@@ -57,7 +57,7 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		// 4. 총 변경이력을 뽑아온다.
 		// 4 - 1 map에 추가
 		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(svo));
-		
+
 		return map;
 	}
 
@@ -72,14 +72,11 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		}
 		return pb;
 	}
-	
+
 	@Override
 	public List<ChangeMngVO> getAllChangeMngListToJoined(List<OrganizationVO> orgList) {
-		List<ChangeMngVO> changeList = new ArrayList<ChangeMngVO>();
-		for (int i = 0; i < orgList.size(); i++) {
-			// 참여 or 가지고 있는 모든 간판의 변경이력들을 출력해야 한다.
-			changeList.addAll(changeMngDAO.showTotalChangeMngList(orgList.get(i).getSignBoardVO()));
-		}
+		// 참여 or 가지고 있는 모든 간판의 변경이력들을 출력해야 한다.
+		List<ChangeMngVO> changeList = changeMngDAO.getAllChangeMngListToJoined(orgList);
 		return changeList;
 	}
 }

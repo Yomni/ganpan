@@ -18,6 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="workVO.workName" column="work_name"/>
 		<result property="changeGenreVO.changeNo" column="change_no"/>
 		<result property="changeGenreVO.changeName" column="change_name"/>
+		<result property="organizationVO.signBoardVO.signBoardName" column="sign_board_name"/>
+		<result property="organizationVO.signBoardVO.bossMemberVO.nickName" column="boss_nickname"/>
    </resultMap>
    
    <insert id="insertLogForCreateWork" parameterType="workVO">
@@ -139,7 +141,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where c.sign_board_name=#{signBoardName} and c.boss_nickname=#{bossMemberVO.nickName} 
 			and ch.change_no = c.change_no)
    </select>
-   
+   <select id="getAllChangeMngListToJoined" parameterType="java.util.List" resultMap="changeMngRM">
+	   	select rnum as change_management_no, change_worker, change_management_date, board_no, work_name, change_name
+		from (select row_number() over(order by c.change_management_date desc) as rnum, c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, c.board_no, c.work_name, ch.change_name
+				from change_management c, change_genre ch
+				where 
+				<foreach collection="list" item="item" index="index">
+					<if test="index != list.size()">
+						(c.sign_board_name=#{item.signBoardVO.signBoardName} and c.boss_nickname=#{item.signBoardVO.bossMemberVO.nickName} and ch.change_no = c.change_no) or
+					</if>
+					<if test="index == list.size()-1">
+						(c.sign_board_name=#{item.signBoardVO.signBoardName} and c.boss_nickname=#{item.signBoardVO.bossMemberVO.nickName} and ch.change_no = c.change_no)
+					</if>
+				</foreach>
+				)
+		where rnum between 1 and 20
+   </select>
    <select id="getTotalChangeMngCount" parameterType="map" resultType="int">
    		select count(*)
    		from change_management 

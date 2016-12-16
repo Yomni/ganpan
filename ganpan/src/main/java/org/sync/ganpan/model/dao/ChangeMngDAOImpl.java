@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.sync.ganpan.model.vo.ChangeMngVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.SignBoardVO;
 import org.sync.ganpan.model.vo.WorkVO;
 
@@ -54,5 +55,10 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 	@Override
 	public int getTotalChangeMngCountEachBoard(Map<String, Object> argMap) {
 		return template.selectOne("changeMng.getTotalChangeMngCount", argMap);
+	}
+	
+	@Override
+	public List<ChangeMngVO> getAllChangeMngListToJoined(List<OrganizationVO> orgList) {
+		return template.selectList("changeMng.getAllChangeMngListToJoined", orgList);
 	}
 }// class ChangeMngDAOImpl

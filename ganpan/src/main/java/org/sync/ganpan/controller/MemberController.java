@@ -163,7 +163,6 @@ public class MemberController {
 		if (mvo != null) {
 			session.setAttribute("mvo", mvo);
 			ListVO<OrganizationVO> sListVO = organizationService.getOrganizationSignBoardList(mvo.getNickName(), null);
-			System.out.println(sListVO);
 			if(sListVO.getList().isEmpty() == false) { // 참여 혹은 소유하고있는 간판이 있을 경우
 				// 변경이력을 같이 보내준다.
 				List<ChangeMngVO> changeList = changeMngService.getAllChangeMngListToJoined(sListVO.getList());

@@ -107,11 +107,29 @@ select * from work;
 select * from CHANGE_MANAGEMENT;
 select  *  from user_triggers;
 
+select * from CHANGE_MANAGEMENT
+where sign_board_name in('Test','test22')
+	and boss_nickname in('java','sync')
+;
 delete from work;
 
 select change_worker, change_management_date, change_name, work_name
 from (select row_number() over(order by c.change_management_date desc) as rnum,c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, ch.change_name, c.work_name 
 		from change_management c, change_genre ch
-		where c.sign_board_name='test' and c.boss_nickname='sync' and c.board_no=3
+		where c.sign_board_name='Test' and c.boss_nickname='sync'
 			and ch.change_no = c.change_no)
-where rnum between 1 and 5
+where rnum between 1 and 20
+
+
+select rnum as change_management_no, change_worker, change_management_date, board_no, work_name, change_name,
+					sign_board_name, boss_nickname
+from (select row_number() over(order by c.change_management_date desc) as rnum, c.change_worker, 
+				to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date,
+				c.board_no, c.work_name, ch.change_name, c.sign_board_name, c.boss_nickname
+		from change_management c, change_genre ch
+		where 
+		(c.sign_board_name ='Test' and c.boss_nickname='sync' and ch.change_no = c.change_no) or
+		(c.sign_board_name ='test22' and c.boss_nickname='java' and ch.change_no = c.change_no) or
+		(c.sign_board_name ='Test' and c.boss_nickname='java' and ch.change_no = c.change_no)
+		)
+where rnum between 1 and 20

@@ -91,7 +91,14 @@
 			<hr>
 			<div class="row">
 				<div class="col-md-8">
-					<div class="jumbotron">변경 이력들 공개</div>
+					<div class="jumbotron">
+						<p class="text-center"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>작업 현황</p>
+						<c:forEach items="${changeList}" var="clist">
+						<div class="well well-sm">
+							<span class="">${clist.changeWorker}</span>소유의 
+						</div>
+						</c:forEach>
+					</div>
 					<!-- jumbotron -->
 				</div>
 				<!-- col-md-6 -->
