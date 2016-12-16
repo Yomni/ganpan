@@ -103,11 +103,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 	@Transactional
 	public void banish(OrganizationVO ovo) {
 		// work table에서 worker_nickName -> null로 update
-		int updateResult = workDAO.updateWorkerToNull(ovo);
-																							// update
+		workDAO.updateWorkerToNull(ovo);
 
 		// Organization worker_nickName을 삭제
-		int deleteResult = organizationDAO.deleteWorker(ovo);
+		organizationDAO.deleteWorker(ovo);
 
 	}
 

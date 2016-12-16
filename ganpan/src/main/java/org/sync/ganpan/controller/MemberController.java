@@ -1,6 +1,7 @@
 package org.sync.ganpan.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.sync.ganpan.model.service.ChangeMngService;
 import org.sync.ganpan.model.service.MemberService;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.SignBoardService;
+import org.sync.ganpan.model.vo.ChangeMngVO;
 import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
 import org.sync.ganpan.model.vo.OrganizationVO;
@@ -30,6 +33,8 @@ public class MemberController {
 	private SignBoardService signBoardService;
 	@Resource
 	private OrganizationService organizationService;
+	@Resource
+	private ChangeMngService changeMngService;
 
 	/****************************************민영**********************************************/
 	/**
@@ -158,6 +163,12 @@ public class MemberController {
 		if (mvo != null) {
 			session.setAttribute("mvo", mvo);
 			ListVO<OrganizationVO> sListVO = organizationService.getOrganizationSignBoardList(mvo.getNickName(), null);
+			System.out.println(sListVO);
+			if(sListVO.getList().isEmpty() == false) { // 참여 혹은 소유하고있는 간판이 있을 경우
+				// 변경이력을 같이 보내준다.
+				List<ChangeMngVO> changeList = changeMngService.getAllChangeMngListToJoined(sListVO.getList());
+				session.setAttribute("changeList", changeList);
+			}
 			int signBoardCount = organizationService.getJoinedSignBoardCount(mvo.getNickName());
 			boolean invitationFlag = organizationService.isInvitedOrganization(mvo.getNickName());
 			session.setAttribute("invitationFlag", invitationFlag);

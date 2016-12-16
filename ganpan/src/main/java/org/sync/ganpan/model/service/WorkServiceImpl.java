@@ -29,10 +29,8 @@ public class WorkServiceImpl implements WorkService {
 	@Override
 	@Transactional
 	public void createWork(WorkVO wvo) {
-		for (int i = 0; i < 100; i++) {
-			workDAO.createWork(wvo);
-			changeMngDAO.insertLogForCreateWork(wvo);
-		}
+		workDAO.createWork(wvo);
+		changeMngDAO.insertLogForCreateWork(wvo);
 	}
 
 	@Override

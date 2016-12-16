@@ -1,10 +1,8 @@
 package org.sync.ganpan.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -44,6 +42,7 @@ public class OrganizationController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
 		mv.addObject("sListVO", organizationService.getOrganizationSignBoardList(nickName, pageNo));
+		System.out.println(organizationService.getOrganizationSignBoardList(nickName, pageNo));
 		mv.addObject("signBoardCount", organizationService.getJoinedSignBoardCount(nickName));
 		mv.addObject("invitationFlag", organizationService.isInvitedOrganization(nickName));
 		return mv;

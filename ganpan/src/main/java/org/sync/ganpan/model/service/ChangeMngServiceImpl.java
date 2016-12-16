@@ -1,6 +1,8 @@
 package org.sync.ganpan.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.sync.ganpan.model.dao.ChangeMngDAO;
 import org.sync.ganpan.model.vo.ChangeMngVO;
 import org.sync.ganpan.model.vo.ListVO;
+import org.sync.ganpan.model.vo.OrganizationVO;
 import org.sync.ganpan.model.vo.PagingBean;
 import org.sync.ganpan.model.vo.SignBoardVO;
 
@@ -58,6 +61,7 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		return map;
 	}
 
+	@Override
 	public PagingBean createPagingBean(Map<String, Object> argMap, String pageNo) {
 		int totalCount = changeMngDAO.getTotalChangeMngCountEachBoard(argMap);
 		PagingBean pb = null;
@@ -67,5 +71,15 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 			pb = new PagingBean(totalCount, Integer.parseInt(pageNo));
 		}
 		return pb;
+	}
+	
+	@Override
+	public List<ChangeMngVO> getAllChangeMngListToJoined(List<OrganizationVO> orgList) {
+		List<ChangeMngVO> changeList = new ArrayList<ChangeMngVO>();
+		for (int i = 0; i < orgList.size(); i++) {
+			// 참여 or 가지고 있는 모든 간판의 변경이력들을 출력해야 한다.
+			changeList.addAll(changeMngDAO.showTotalChangeMngList(orgList.get(i).getSignBoardVO()));
+		}
+		return changeList;
 	}
 }

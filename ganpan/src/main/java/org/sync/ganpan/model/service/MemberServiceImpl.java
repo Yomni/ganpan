@@ -1,18 +1,14 @@
 package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.annotation.Resource;
 
-//github.com/Yomni/ganpan.git
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.sync.ganpan.model.dao.MemberDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 import org.sync.ganpan.model.vo.MemberVO;
-import org.sync.ganpan.model.vo.OrganizationVO;
 
 /**
  * Member의 Business layer를 위한 ServiceClass
