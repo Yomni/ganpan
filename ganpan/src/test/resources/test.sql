@@ -328,6 +328,7 @@ SELECT * FROM invitation_management;
 SELECT * FROM organization;
 SELECT * FROM have_board;
 SELECT * FROM work;
+SELECT * FROM change_management;
 
 
 INSERT INTO MEMBER VALUES('java','test2', '1');
