@@ -97,16 +97,19 @@ CREATE TABLE WORK(
 
 CREATE TABLE CHANGE_GENRE(
    change_no NUMBER PRIMARY KEY,
-   change_name VARCHAR2(50) NOT NULL
+   change_name VARCHAR2(300) NOT NULL
 );
 
 CREATE TABLE CHANGE_MANAGEMENT(
    change_management_no NUMBER PRIMARY KEY,
    change_worker VARCHAR2(50) NOT NULL,
+   work_name VARCHAR2(50) NOT NULL,
    change_management_DATE DATE DEFAULT SYSDATE NOT NULL,
    board_no NUMBER default 1 NOT NULL,
    work_no NUMBER NOT NULL,
    change_no NUMBER NOT NULL,
+   sign_board_name VARCHAR2(50) NOT NULL,
+   boss_nickname VARCHAR2(50) NOT NULL,
    
    CONSTRAINT fk_change_management_change FOREIGN KEY(change_no) 
          REFERENCES CHANGE_GENRE(change_no) ON DELETE CASCADE
@@ -125,7 +128,8 @@ INSERT INTO BOARD_GENRE VALUES(2, 'DOING');
 INSERT INTO BOARD_GENRE VALUES(3, 'DONE');
 
 -- INSERT CHANGE_GENRE(추가 수정 삭제 이동)
-INSERT INTO CHANGE_GENRE VALUES(0, '추가');
-INSERT INTO CHANGE_GENRE VALUES(1, '수정');
-INSERT INTO CHANGE_GENRE VALUES(2, '삭제');
-INSERT INTO CHANGE_GENRE VALUES(3, '이동');
+-- INSERT Tag 버젼
+INSERT INTO CHANGE_GENRE VALUES(0, '<span class="label label-primary">추가</span>');
+INSERT INTO CHANGE_GENRE VALUES(1, '<span class="label label-warning">수정</span>');
+INSERT INTO CHANGE_GENRE VALUES(2, '<span class="label label-danger">삭제</span>');
+INSERT INTO CHANGE_GENRE VALUES(3, '<span class="label label-success">이동</span>');

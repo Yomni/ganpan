@@ -105,17 +105,13 @@ select * from ORGANIZATION;
 select * from HAVE_BOARD;
 select * from work;
 select * from CHANGE_MANAGEMENT;
-delete from work;
 select  *  from user_triggers;
 
-DELETE FROM WORK;
+delete from work;
 
-SELECT worker_nickname from work where work_no = 1
-
-insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,work_no,change_no)
-		values(seq_change_management_no.nextval,(SELECT worker_nickname from work where work_no = 1),sysdate,1,2)
-update work
-		set work_name='업데이트',
-			work_details='상세내용',
-			change_date = sysdate 
-		where work_no = 45
+select change_worker, change_management_date, change_name, work_name
+from (select row_number() over(order by c.change_management_date desc) as rnum,c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, ch.change_name, c.work_name 
+		from change_management c, change_genre ch
+		where c.sign_board_name='test' and c.boss_nickname='sync' and c.board_no=3
+			and ch.change_no = c.change_no)
+where rnum between 1 and 5

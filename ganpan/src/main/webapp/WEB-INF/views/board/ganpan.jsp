@@ -15,7 +15,7 @@
 		<div class="col-md-12">
 			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
-				<a class="btn btn-info" href="${pageContext.request.contextPath}/change_mng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경 이력 보기</a> 
+				<a class="btn btn-info" href="${pageContext.request.contextPath}/changeMng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경 이력 보기</a> 
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
 				<c:if test="${rsvo.bossMemberVO.nickName==sessionScope.mvo.nickName}">
 					<a class="btn btn-primary" href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a>
@@ -43,14 +43,14 @@
 								<ul class="list-unstyled ui-widget-header ui-widget-content" id="${boardList.boardGenreVO.boardName}">
 									<c:forEach items="${boardList.works}" var="works">
 										<li class="panel panel-info" id="draggablePanelList" draggable="true">
-											<div class="panel-heading">${works.workName}</div>
+											<div class="panel-heading">작업자 : ${works.organizationVO.workerMemberVO.nickName}</div>
 											<div class="panel-body">
 												<c:choose>
 													<c:when test="${works.organizationVO.workerMemberVO.nickName == null && boardList.boardGenreVO.boardNo != 3}">
 														<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
 													</c:when>
 													<c:otherwise>
-														<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">${works.organizationVO.workerMemberVO.nickName}</a>
+														<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">작업명 : ${works.workName}</a>
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -127,10 +127,7 @@
 					$.ajax({
 						type:"POST",
 						url:"${pageContext.request.contextPath}/moveWorkAjax.do",
-						data:"workNo=" + workNo,
-						success:function(data) {
-							alert(data);
-						}
+						data:"workNo=" + workNo
 					}); // ajax
 				} // receive
 			}); // sortable
@@ -141,18 +138,11 @@
 					$.ajax({
 						type:"POST",
 						url:"${pageContext.request.contextPath}/moveWorkAjax.do",
-						data:"workNo=" + workNo,
-						success:function(data) {
-							alert(data);
-						}
+						data:"workNo=" + workNo
 					}); // ajax
 				} // receive
 			}); // sortable
 		     
-// 			$("#${works.workNo}modal").on("hidden.bs.modal", function(event){
-// 				$(this).removeData();
-// 			}); // on
-		    
 			$(".modal-footer .btn-primary").click(function(){
 	     		if(confirm("작업을 수정하시겠습니까?\n*주의) 다른 조원에게도 영향을 줍니다.")){
 					$("#"+$(this).attr("id")+"Form").submit();

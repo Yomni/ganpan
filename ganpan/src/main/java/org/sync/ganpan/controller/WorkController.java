@@ -52,7 +52,6 @@ public class WorkController {
 		wvo.setOrganizationVO(
 				new OrganizationVO(new MemberVO(workerNickName), new SignBoardVO(signBoardName, bossNickName)));
 		workService.createWork(wvo);
-
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
 		return "redirect:showSignBoard.do";
@@ -91,6 +90,7 @@ public class WorkController {
 	@RequestMapping(value = "updateWork.do", method = RequestMethod.POST)
 	public String updateWork(RedirectAttributes redirectAttributes, WorkVO wvo, String signBoardName,
 			String bossNickName) {
+		wvo.getOrganizationVO().setSignBoardVO(new SignBoardVO(signBoardName, bossNickName));
 		workService.updateWork(wvo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);

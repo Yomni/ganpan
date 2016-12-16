@@ -15,38 +15,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="changeMngDate" column="change_management_DATE"/>
 		<result property="boardNo" column="board_no"/>
 		<result property="workVO.workNo" column="work_no"/>
+		<result property="workVO.workName" column="work_name"/>
 		<result property="changeGenreVO.changeNo" column="change_no"/>
+		<result property="changeGenreVO.changeName" column="change_name"/>
    </resultMap>
    
    <insert id="insertLogForCreateWork" parameterType="workVO">
    		insert into CHANGE_MANAGEMENT(change_management_no
    			,change_worker
+   			,work_name
    			,change_management_date
    			,work_no
+   			,sign_board_name
+   			,boss_nickname
    			,change_no)
 		values(seq_change_management_no.nextval
 			,#{organizationVO.workerMemberVO.nickName}
+			,#{workName}
 			,sysdate
 			,#{workNo}
+			,#{organizationVO.signBoardVO.signBoardName}
+			,#{organizationVO.signBoardVO.bossMemberVO.nickName}
 			,0)
    </insert>
-   <!-- 
-	   	INSERT INTO CHANGE_GENRE VALUES(0, '추가');
-		INSERT INTO CHANGE_GENRE VALUES(1, '수정');
-		INSERT INTO CHANGE_GENRE VALUES(2, '삭제');
-		INSERT INTO CHANGE_GENRE VALUES(3, '이동');
-	-->
+   
    <insert id="insertLogForDeleteWork" parameterType="int">
    		insert into CHANGE_MANAGEMENT(change_management_no
    			,change_worker
+   			,work_name
    			,change_management_date
    			,work_no
+   			,sign_board_name
+   			,boss_nickname
    			,board_no
    			,change_no)
 		values(seq_change_management_no.nextval
 			,(SELECT worker_nickname as change_worker from work where work_no = #{value})
+			,(SELECT work_name from work where work_no = #{value})
 			,sysdate
 			,#{value}
+			,(SELECT sign_board_name from work where work_no = #{value})
+			,(SELECT boss_nickname from work where work_no = #{value})
 			,(SELECT board_no from work where work_no = #{value})
 			,2)
    </insert>
@@ -54,49 +63,87 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <insert id="insertLogForMoveWork" parameterType="int">
    		insert into CHANGE_MANAGEMENT(change_management_no
    			,change_worker
+   			,work_name
    			,change_management_date
    			,work_no
+   			,sign_board_name
+   			,boss_nickname
    			,board_no
    			,change_no)
 		values(seq_change_management_no.nextval
 			,(SELECT worker_nickname as change_worker from work where work_no = #{value})
+			,(SELECT work_name from work where work_no = #{value})
 			,sysdate
 			,#{value}
+			,(SELECT sign_board_name from work where work_no = #{value})
+			,(SELECT boss_nickname from work where work_no = #{value})
 			,(SELECT board_no from work where work_no = #{value})
 			,3)
    </insert>
    
    <insert id="insertLogForCreateWorkByMove" parameterType="int">
-   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker
+   		insert into CHANGE_MANAGEMENT(change_management_no
+   			,change_worker
+   			,work_name
    			,change_management_date
    			,work_no
+   			,sign_board_name
+   			,boss_nickname
    			,board_no
    			,change_no)
 		values(seq_change_management_no.nextval
 			,(SELECT worker_nickname as change_worker from work where work_no = #{value})
+			,(SELECT work_name from work where work_no = #{value})
 			,sysdate
 			,#{value}
+			,(SELECT sign_board_name from work where work_no = #{value})
+			,(SELECT boss_nickname from work where work_no = #{value})
 			,(SELECT board_no from work where work_no = #{value})
 			,0)
    </insert>
    
    <insert id="insertLogForUpdateWork" parameterType="workVO">
-   		insert into CHANGE_MANAGEMENT(change_management_no,change_worker,change_management_date,board_no,work_no,change_no)
-		values(seq_change_management_no.nextval,#{organizationVO.workerMemberVO.nickName},sysdate,#{boardNo},#{workNo},1)
+   		insert into CHANGE_MANAGEMENT(change_management_no
+   			,change_worker
+   			,work_name
+   			,change_management_date
+   			,board_no
+   			,work_no
+   			,sign_board_name
+   			,boss_nickname
+   			,change_no)
+		values(seq_change_management_no.nextval
+			,#{organizationVO.workerMemberVO.nickName}
+			,#{workName}
+			,sysdate
+			,#{boardNo}
+			,#{workNo}
+			,#{organizationVO.signBoardVO.signBoardName}
+			,#{organizationVO.signBoardVO.bossMemberVO.nickName}
+			,1)
    </insert>
    
-   <select id="showChangeMngList" resultMap="changeMngRM">
-		select c.change_management_no, c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
-		from change_management c, work w
-		where w.sign_board_name=#{svo.signBoardName} and w.boss_nickname=#{svo.bossMemberVO.nickName} and c.board_no=#{boardNo} and c.work_no=w.work_no
+   <select id="showChangeMngListEachBoard" parameterType="map" resultMap="changeMngRM">
+   		select change_worker, change_management_date, change_name, work_name
+		from (select row_number() over(order by c.change_management_date desc) as rnum,c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, ch.change_name, c.work_name 
+				from change_management c, change_genre ch
+				where c.sign_board_name=#{svo.signBoardName} and c.boss_nickname=#{svo.bossMemberVO.nickName} and c.board_no=#{boardNo} 
+					and ch.change_no = c.change_no)
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber}
    </select>
    
-   <select id="showTotalChangeMngList" resultMap="changeMngRM">
-   		select c.change_management_no, c.change_worker, c.change_management_date, c.board_no, c.work_no, c.change_no
-		from change_management c, work w
-		where w.sign_board_name=#{svo.signBoardName} and w.boss_nickname=#{svo.bossMemberVO.nickName} and c.work_no=w.work_no
+   <select id="showTotalChangeMngList" parameterType="map" resultMap="changeMngRM">
+   		select rnum as change_management_no, change_worker, change_management_date, board_no, work_name, change_name
+   		from (select row_number() over(order by c.change_management_date desc) as rnum, c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, c.board_no, c.work_name, ch.change_name
+		from change_management c, change_genre ch
+		where c.sign_board_name=#{signBoardName} and c.boss_nickname=#{bossMemberVO.nickName} 
+			and ch.change_no = c.change_no)
    </select>
    
-   
+   <select id="getTotalChangeMngCount" parameterType="map" resultType="int">
+   		select count(*)
+   		from change_management 
+		where sign_board_name=#{svo.signBoardName} and boss_nickname=#{svo.bossMemberVO.nickName} and board_no=#{boardNo} 
+   </select>
    
 </mapper>
