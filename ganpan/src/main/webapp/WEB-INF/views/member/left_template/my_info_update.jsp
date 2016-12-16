@@ -109,7 +109,15 @@
 				$("#passwordCheckView").html("");
 				checkResultPassword = false;
 				return;
-			} 
+			}
+			if(passwordCheck.length < 6 || passwordCheck.length > 15){
+				$("#passwordView").html(
+					"<div class='alert alert-danger' role='alert'>"
+					+ "비밀번호는 6자 이상 15자 이하로 작성해주세요."
+					+ "</div>");
+				checkResultPassword = false;
+				return;
+			}
 			if(password != passwordCheck) {
 				$("#passwordCheckView").html(
 					"<div class='alert alert-danger' role='alert'>"
