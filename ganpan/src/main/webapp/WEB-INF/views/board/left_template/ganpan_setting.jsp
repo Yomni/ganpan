@@ -157,7 +157,7 @@
 					if(data=="idfail"){
 						$("#groupCheckView").html("존재하지 않는 사용자입니다!").css("color", "red");
 						checkResultGroup="";
-					}else if(data=="groupfail"){
+					}else if(data=="groupfail"||data=="alreadyinvitefail"){
 						$("#groupCheckView").html("조원이 아니면 위임할 수 없습니다!").css("color", "red");
 						checkResultGroup="";
 					}else if(data=="groupbossfail"){
