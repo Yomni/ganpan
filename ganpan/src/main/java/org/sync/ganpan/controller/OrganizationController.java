@@ -1,6 +1,7 @@
 package org.sync.ganpan.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.sync.ganpan.model.service.ChangeMngService;
 import org.sync.ganpan.model.service.OrganizationService;
 import org.sync.ganpan.model.service.WorkService;
+import org.sync.ganpan.model.vo.ChangeMngVO;
 import org.sync.ganpan.model.vo.InvitationMngVO;
 import org.sync.ganpan.model.vo.ListVO;
 import org.sync.ganpan.model.vo.MemberVO;
@@ -30,6 +33,8 @@ public class OrganizationController {
 	private OrganizationService organizationService;
 	@Resource
 	private WorkService workService;
+	@Resource
+	private ChangeMngService changeMngService;
 
 	/**
 	 * 로그인 되었을 때 홈화면 가면 간판리스트 새로 갱신되어야 합니다.
@@ -41,8 +46,13 @@ public class OrganizationController {
 	public ModelAndView getLoginHomeSignBoardList(String nickName, String pageNo) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
-		mv.addObject("sListVO", organizationService.getOrganizationSignBoardList(nickName, pageNo));
-		System.out.println(organizationService.getOrganizationSignBoardList(nickName, pageNo));
+		ListVO<OrganizationVO> sListVO = organizationService.getOrganizationSignBoardList(nickName, pageNo);
+		if(sListVO.getList().isEmpty() == false) { // 참여 혹은 소유하고있는 간판이 있을 경우
+			// 변경이력을 같이 보내준다.
+			List<ChangeMngVO> changeList = changeMngService.getAllChangeMngListToJoined(sListVO.getList());
+			mv.addObject("changeList",changeList);
+		}
+		mv.addObject("sListVO", sListVO);
 		mv.addObject("signBoardCount", organizationService.getJoinedSignBoardCount(nickName));
 		mv.addObject("invitationFlag", organizationService.isInvitedOrganization(nickName));
 		return mv;
@@ -194,5 +204,4 @@ public class OrganizationController {
 	public String groupCheckAjax(String signBoardName, String bossNickName, String id) {
 		return organizationService.groupCheck(id, signBoardName, bossNickName);
 	}
-	
 }// class OrganizationController

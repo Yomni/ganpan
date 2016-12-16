@@ -13,7 +13,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
+			<h2 class="text-center text-capitalize page-header">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/changeMng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경 이력 보기</a> 
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
@@ -49,8 +49,11 @@
 													<c:when test="${works.organizationVO.workerMemberVO.nickName == null && boardList.boardGenreVO.boardNo != 3}">
 														<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
 													</c:when>
-													<c:otherwise>
+													<c:when test="${sessionScope.mvo != null}">
 														<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">작업명 : ${works.workName}</a>
+													</c:when>
+													<c:otherwise>
+														작업명 : ${works.workName}
 													</c:otherwise>
 												</c:choose>
 											</div>
