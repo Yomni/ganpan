@@ -13,39 +13,44 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${sbList}" var="svo">
-				<tr>
-					<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
-					<td>${svo.bossMemberVO.nickName}</td>
-					<td><a href="${pageContext.request.contextPath}/showSignBoard.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}">
-						${svo.signBoardName}</a></td>
-				</tr>
+					<tr>
+						<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
+						<td>${svo.bossMemberVO.nickName}</td>
+						<td><a href="${pageContext.request.contextPath}/showSignBoard.do?signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}"> ${svo.signBoardName}</a></td>
+					</tr>
 				</c:forEach>
 			</tbody>
-		</table><br>
-        <nav class="text-center">
-             <ul class="pagination">
-               <c:choose>
-                  <c:when test="${pb.isPreviousPageGroup()}">
-                   <li>
-                     <a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getStartPageOfPageGroup()-1}" aria-label="Previous">
-                     <span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                  </c:when>
-                </c:choose>
-                <c:forEach begin="${pb.getStartPageOfPageGroup()}" end="${pb.getEndPageOfPageGroup()}" varStatus="order">
-                   <li><a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${order.index}">
-                      ${order.index}</a>
-                   </li>
-                </c:forEach> 
-               <c:choose>
-                <c:when test="${pb.isNextPageGroup()}">
-                  <li>
-                    <a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getEndPageOfPageGroup()+1}">${order.index}
-                     <span aria-hidden="true">&raquo;</span></a>
-                  </li>
-                </c:when>
-              </c:choose>
-            </ul>
-        </nav>
+		</table>
+		<br>
+		<nav class="text-center">
+			<ul class="pagination">
+				<c:choose>
+					<c:when test="${pb.isPreviousPageGroup()}">
+						<li><a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getStartPageOfPageGroup()-1}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a></li>
+					</c:when>
+				</c:choose>
+				<c:forEach begin="${pb.getStartPageOfPageGroup()}" end="${pb.getEndPageOfPageGroup()}" varStatus="order">
+					<c:choose>
+						<c:when test="${pb.nowPage == order.index}">
+							<li class="active">
+						</c:when>
+						<c:otherwise>
+							<li>
+						</c:otherwise>
+					</c:choose>
+					<a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${order.index}"> ${order.index}</a>
+					</li>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${pb.isNextPageGroup()}">
+						<li><a href="${pageContext.request.contextPath}/findSignBoardListByTitle.do?title=${title}&pageNo=${pb.getEndPageOfPageGroup()+1}">${order.index}
+								<span aria-hidden="true">&raquo;</span>
+							</a></li>
+					</c:when>
+				</c:choose>
+			</ul>
+		</nav>
 	</div>
 </div>

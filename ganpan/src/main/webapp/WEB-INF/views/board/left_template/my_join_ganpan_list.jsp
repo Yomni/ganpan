@@ -24,42 +24,45 @@
 									<tr>
 										<td><a href="${pageContext.request.contextPath}/showSignBoard.do?bossNickName=${signBoardVO.bossMemberVO.nickName}&signBoardName=${signBoardVO.signBoardName}">${signBoardVO.signBoardName} </a></td>
 										<td>${signBoardVO.bossMemberVO.nickName}</td>
-										<td>
-											<a class="btn btn-sm btn-danger" id="leave${status.count}" aria-label="Left Align"
-											href="${pageContext.request.contextPath}/leaveOrganization.do
+										<td><a class="btn btn-sm btn-danger" id="leave${status.count}" aria-label="Left Align" href="${pageContext.request.contextPath}/leaveOrganization.do
 											?signBoardName=${signBoardVO.signBoardName}&bossNickName=${signBoardVO.bossMemberVO.nickName}">
 												<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
-											</a>
-										</td>
+											</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
-						</table><br>
-				        <nav>
-				             <ul class="pagination">
-				               <c:choose>
-				                  <c:when test="${sbListVO.pagingBean.isPreviousPageGroup()}">
-				                   <li>
-				                     <a href="${pageContext.request.contextPath}/myJoinSignBoardList.do?pageNo=${sbListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
-				                     <span aria-hidden="true">&laquo;</span></a>
-				                    </li>
-				                  </c:when>
-				                </c:choose>
-				                <c:forEach begin="${sbListVO.pagingBean.getStartPageOfPageGroup()}" end="${sbListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
-				                   <li><a href="${pageContext.request.contextPath}/myJoinSignBoardList.do?pageNo=${order.index}">
-				                      ${order.index}</a>
-				                   </li>
-				                </c:forEach> 
-				               <c:choose>
-				                <c:when test="${sbListVO.pagingBean.isNextPageGroup()}">
-				                  <li>
-				                    <a href="${pageContext.request.contextPath}/myJoinSignBoardList.do?pageNo=${sbListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
-				                     <span aria-hidden="true">&raquo;</span></a>
-				                  </li>
-				                </c:when>
-				              </c:choose>
-				            </ul>
-				        </nav>
+						</table>
+						<br>
+						<nav>
+							<ul class="pagination">
+								<c:choose>
+									<c:when test="${sbListVO.pagingBean.isPreviousPageGroup()}">
+										<li><a href="${pageContext.request.contextPath}/myJoinSignBoardList.do?pageNo=${sbListVO.pagingBean.getStartPageOfPageGroup()-1}" aria-label="Previous">
+												<span aria-hidden="true">&laquo;</span>
+											</a></li>
+									</c:when>
+								</c:choose>
+								<c:forEach begin="${sbListVO.pagingBean.getStartPageOfPageGroup()}" end="${sbListVO.pagingBean.getEndPageOfPageGroup()}" varStatus="order">
+									<c:choose>
+										<c:when test="${sbListVO.pagingBean.nowPage == order.index}">
+											<li class="active">
+										</c:when>
+										<c:otherwise>
+											<li>
+										</c:otherwise>
+									</c:choose>
+									<a href="${pageContext.request.contextPath}/myJoinSignBoardList.do?pageNo=${order.index}"> ${order.index}</a>
+									</li>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${sbListVO.pagingBean.isNextPageGroup()}">
+										<li><a href="${pageContext.request.contextPath}/myJoinSignBoardList.do?pageNo=${sbListVO.pagingBean.getEndPageOfPageGroup()+1}" aria-label="Next">
+												<span aria-hidden="true">&raquo;</span>
+											</a></li>
+									</c:when>
+								</c:choose>
+							</ul>
+						</nav>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -68,7 +71,6 @@
 		<!-- row -->
 	</div>
 	<!-- container -->
-
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
