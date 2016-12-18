@@ -115,8 +115,7 @@
 		</c:forEach>
 
         var checkResultGroup="";
-        $("#id").keyup(function(){i
-        	
+        $("#id").keyup(function(){
         	var id = $(this).val().trim();
            $.ajax({
               type:"POST",
@@ -130,7 +129,7 @@
                     $("#idCheckView").html("자신에게 초대할 수 없습니다!").css("color", "red");
                     checkResultGroup="";
                  }else if(data=="alreadyinvitefail"){ 
-                	 alert("alreadyinvitefail");
+                	 //alert("alreadyinvitefail");
                      $("#idCheckView").html("이미 초대하신 회원입니다!").css("color", "red");
                      checkResultGroup="";
                  }else if(data=="groupfail"){// 그룹에 있는 회원이 아닌 경우
