@@ -115,7 +115,8 @@
 		</c:forEach>
 
         var checkResultGroup="";
-        $("#id").keyup(function(){
+        $("#id").keyup(function(){i
+        	
         	var id = $(this).val().trim();
            $.ajax({
               type:"POST",
