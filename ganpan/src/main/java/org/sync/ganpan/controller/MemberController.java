@@ -224,6 +224,7 @@ public class MemberController {
 	@RequestMapping(value = "autocompleteAjax.do", method = RequestMethod.POST)
 	@ResponseBody
 	public List<MemberVO> autocompleteAjax(String id){
+		// id가 포함되는 닉네임을 가진 모든 회원 리스트로 가져오는 메서드
 		List<MemberVO> list = memberService.findAllMemberById(id);
 		JSONArray jarray = new JSONArray();
 		JSONObject object = null;

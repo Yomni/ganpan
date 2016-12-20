@@ -121,11 +121,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 	public ListVO<HashMap<String, String>> sendInvitationList(SignBoardVO svo, String pageNo) {
 		PagingBean pb=null;
 		int TotalsendInvitationCount = organizationDAO.getTotalSendInvitationCount(svo);
-		if(pageNo==null)
+		if(pageNo==null) // 페이지넘버 없이 들어왔을 시 PagingBean 초기값으로 생성한다
 			pb=new PagingBean(TotalsendInvitationCount);
-		else
+		else // 페이지 넘버가 함께 들어왔을 시 함께 생성자에 넣어 생성한다
 			pb=new PagingBean(TotalsendInvitationCount,Integer.parseInt(pageNo));
 		Map<String,Object> map=new HashMap<String, Object>();
+		// 맵으로 pb에 있는 함수들을 이용해 값들을 organization.xml까지 넘겨준다
 		map.put("getStartRowNumber", pb.getStartRowNumber());
 		map.put("getEndRowNumber", pb.getEndRowNumber());
 		map.put("signBoardName", svo.getSignBoardName());
