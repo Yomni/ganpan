@@ -154,7 +154,7 @@
                 url:"${pageContext.request.contextPath}/groupCheckAjax.do",            
                 data:"id="+id+"&signBoardName=${svo.signBoardName}&bossNickName=${svo.bossMemberVO.nickName}",
                 success:function(data){
-                	
+               	
                 }//callback         
              });//ajax
            $.ajax({

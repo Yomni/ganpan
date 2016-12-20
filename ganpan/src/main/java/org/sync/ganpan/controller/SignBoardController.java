@@ -76,6 +76,7 @@ public class SignBoardController {
 		map.put("bossNickName", mvo.getNickName());
 		map.put("signBoardName", title);
 		int count = signBoardService.titleCheck(map);
+		// 조장명과 간판명으로 signBoard 테이블에 존재하는지 체크
 		return (count == 0) ? "ok" : "fail";
 	}
 
@@ -154,9 +155,11 @@ public class SignBoardController {
 	public String updateSignBoardName(RedirectAttributes redirectAttributes, String changeTitle, String signBoardName,
 			String bossNickName) {
 		HashMap<String, String> map = new HashMap<String, String>();
+		// map에 변경할 간판 제목, 기존 간판 제목,  조장 닉네임을 넣어준다
 		map.put("changeTitle", changeTitle);
 		map.put("signBoardName", signBoardName);
 		map.put("bossNickName", bossNickName);
+		// sql문으로 이동
 		signBoardService.updateSignBoardName(map);
 		redirectAttributes.addAttribute("signBoardName", changeTitle);
 		redirectAttributes.addAttribute("bossNickName", bossNickName);
@@ -237,12 +240,15 @@ public class SignBoardController {
 	}
 
 	@RequestMapping("updateSignBoardBoss.do")
-	public String updateSignBoardBoss(RedirectAttributes redirectAttributes, String signBoardName, String bossNickName,
-			String id) {
+	public String updateSignBoardBoss(RedirectAttributes redirectAttributes,
+			String signBoardName, String bossNickName, String id) {
+		// 만약 위임할 아이디(id)에 @가 포함되어 있다면 이메일로 검색해 별명을 찾아온다
 		if (id.contains("@") == true) {
 			id = organizationService.getNickNameByEmail(id);
 		}
 		OrganizationVO ovo = new OrganizationVO(id, signBoardName, bossNickName);
+		// 간판 제목(signBoardName)과 조장이름(bossNickName)을 이용해 signboard 테이블을
+		// 검색한 후 그 간판의 조장을 위임할 별명(id)로 변경해준다
 		signBoardService.updateSignBoardBoss(ovo);
 		redirectAttributes.addAttribute("signBoardName", signBoardName);
 		redirectAttributes.addAttribute("bossNickName", id);
