@@ -28,9 +28,9 @@ import org.sync.ganpan.model.vo.SignBoardVO;
 @Controller
 public class SignBoardController {
 	@Resource
-	SignBoardService signBoardService;
+	private SignBoardService signBoardService;
 	@Resource
-	OrganizationService organizationService;
+	private OrganizationService organizationService;
 
 	/**
 	 * 칸반 검색

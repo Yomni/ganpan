@@ -119,6 +119,7 @@ public class WorkController {
 	@RequestMapping(method = RequestMethod.POST, value = "moveWorkAjax.do")
 	@ResponseBody
 	public boolean moveWorkAjax(int workNo) {
+		// 작업을 이동한 결과를 반환
 		return workService.moveWork(workNo);
 	}
 }

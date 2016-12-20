@@ -13,6 +13,16 @@ public class ChangeMngController {
 	@Resource
 	private ChangeMngService changeMngService;
 
+	/**
+	 * 변경이력 보기
+	 * @author 용민
+	 * @param signBoardName
+	 * @param bossNickName
+	 * @param toDoPageNo
+	 * @param doingPageNo
+	 * @param donePageNo
+	 * @return
+	 */
 	@RequestMapping("changeMng.do")
 	public ModelAndView showChangeMng(String signBoardName, String bossNickName, String toDoPageNo, String doingPageNo,
 			String donePageNo) {

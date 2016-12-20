@@ -127,20 +127,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <select id="showChangeMngListEachBoard" parameterType="map" resultMap="changeMngRM">
    		select change_worker, change_management_date, change_name, work_name
-		from (select row_number() over(order by c.change_management_date desc) as rnum,c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, ch.change_name, c.work_name 
+		from (select row_number() over(order by c.change_management_date desc) as rnum,
+					c.change_worker, ch.change_name, c.work_name ,
+					to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date					
 				from change_management c, change_genre ch
-				where c.sign_board_name=#{svo.signBoardName} and c.boss_nickname=#{svo.bossMemberVO.nickName} and c.board_no=#{boardNo} 
+				where c.sign_board_name=#{svo.signBoardName} 
+					and c.boss_nickname=#{svo.bossMemberVO.nickName} 
+					and c.board_no=#{boardNo} 
 					and ch.change_no = c.change_no)
 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber}
    </select>
-   
-   <select id="showTotalChangeMngList" parameterType="map" resultMap="changeMngRM">
+      <select id="showTotalChangeMngList" parameterType="map" resultMap="changeMngRM">
    		select rnum as change_management_no, change_worker, change_management_date, board_no, work_name, change_name
-   		from (select row_number() over(order by c.change_management_date desc) as rnum, c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date, c.board_no, c.work_name, ch.change_name
-		from change_management c, change_genre ch
-		where c.sign_board_name=#{signBoardName} and c.boss_nickname=#{bossMemberVO.nickName} 
-			and ch.change_no = c.change_no)
+   		from (select row_number() over(order by c.change_management_date desc) as rnum,
+					c.change_worker, to_Char(c.change_management_date, 'YYYY-MM-DD HH24:MI') as change_management_date,
+					c.board_no, c.work_name, ch.change_name
+			from change_management c, change_genre ch
+			where c.sign_board_name=#{signBoardName} 
+				and c.boss_nickname=#{bossMemberVO.nickName} 
+				and ch.change_no = c.change_no)
    </select>
+      <select id="getTotalChangeMngCount" parameterType="map" resultType="int">
+   		select count(*)
+   		from change_management 
+		where sign_board_name=#{svo.signBoardName} and boss_nickname=#{svo.bossMemberVO.nickName} and board_no=#{boardNo} 
+   </select>
+   
    <select id="getAllChangeMngListToJoined" parameterType="java.util.List" resultMap="changeMngRM">
 	   	select rnum as change_management_no, change_worker
 	   			, change_management_date, board_no
@@ -159,13 +171,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						(c.sign_board_name=#{item.signBoardVO.signBoardName} and c.boss_nickname=#{item.signBoardVO.bossMemberVO.nickName} and ch.change_no = c.change_no)
 					</if>
 				</foreach>
-				)
+				)	
 		where rnum between 1 and 20
    </select>
-   <select id="getTotalChangeMngCount" parameterType="map" resultType="int">
-   		select count(*)
-   		from change_management 
-		where sign_board_name=#{svo.signBoardName} and boss_nickname=#{svo.bossMemberVO.nickName} and board_no=#{boardNo} 
-   </select>
-   
 </mapper>

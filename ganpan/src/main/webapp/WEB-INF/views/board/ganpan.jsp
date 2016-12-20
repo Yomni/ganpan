@@ -121,8 +121,7 @@
 			$("ul li").mouseover(function() {
 				workNo = $(this).find("a").attr("id");
 			}); // mouseover
-			
-			$("#TO_DO").sortable({
+						$("#TO_DO").sortable({
 				connectWith:"#DOING"
 			}); // sortable
 			
@@ -158,11 +157,13 @@
 	   		
 			$(".modal-footer .btn-danger").click(function(){
 				if(confirm("작업을 삭제하시겠습니까?\n*주의) 다른 조원에게도 영향을 줍니다."))
-					location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+$(this).attr("id");
+					location.href="${pageContext.request.contextPath}/deleteWork.do?signBoardName=${rsvo.signBoardName}"
+						+ "&bossNickName=${rsvo.bossMemberVO.nickName}&workNo="+$(this).attr("id");
 			}); // click
 		     
 			$("ul li div.panel-body button").click(function(){
-				location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
+				location.href="${pageContext.request.contextPath}/joinAsWorkerByWorkNo.do?signBoardName=${rsvo.signBoardName}"
+						+ "&bossNickName=${rsvo.bossMemberVO.nickName}&nickName=${sessionScope.mvo.nickName}&workNo="+$(this).attr("id");
 			}); // clilck
 		}); //ready
 	}

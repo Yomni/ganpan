@@ -25,7 +25,6 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, Object> argMap = new HashMap<String, Object>();
 		argMap.put("svo", svo);
-
 		// 1. to_do의 변경이력들만 뽑아온다.
 		// 1 -1. map에 추가.
 		// ListVO형태로 넣어줘야함.
@@ -34,7 +33,6 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		argMap.put("pb", toDoPb);
 		ListVO<ChangeMngVO> toDoListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), toDoPb);
 		map.put("toDoListVO", toDoListVO);
-
 		// 2. doing의 변경이력들만 뽑아온다.
 		// 2-1 map에 추가
 		// ListVO형태로 넣어줘야함.
@@ -43,7 +41,6 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		argMap.put("pb", doingPb);
 		ListVO<ChangeMngVO> doingListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), doingPb);
 		map.put("doingListVO", doingListVO);
-
 		// 3. done의 변경이력들만 뽑아온다.
 		// 3-1 map에 추가
 		// ListVO형태로 넣어줘야함.
@@ -52,7 +49,6 @@ public class ChangeMngServiceImpl implements ChangeMngService {
 		argMap.put("pb", donePb);
 		ListVO<ChangeMngVO> doneListVO = new ListVO<ChangeMngVO>(changeMngDAO.showChangeMngList(argMap), donePb);
 		map.put("doneListVO", doneListVO);
-
 		// 4. 총 변경이력을 뽑아온다.
 		// 4 - 1 map에 추가
 		map.put("totalChangeMngList", changeMngDAO.showTotalChangeMngList(svo));

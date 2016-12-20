@@ -43,6 +43,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
+	@Transactional
 	public ListVO<OrganizationVO> getOrganizationSignBoardList(String nickName, String pageNo) {
 		PagingBean pb=null;
 		int totalCount = organizationDAO.getJoinedSignBoardCount(nickName);
@@ -77,6 +78,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 	
 	@Override
+	@Transactional
 	public ListVO<OrganizationVO> getOrganizationList(SignBoardVO svo, String pageNo) {
 		PagingBean pb=null;
 		int joinMemberTotalCount = organizationDAO.getTotalJoinMemberCount(svo);
@@ -91,7 +93,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		map.put("bossNickName", svo.getBossMemberVO().getNickName());
 		List<OrganizationVO> list=organizationDAO.getOrganizationList(map);
 		return new ListVO<OrganizationVO>(list,pb);
-	}	
+	}
 	
 
 	@Override
