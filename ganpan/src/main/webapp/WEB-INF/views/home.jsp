@@ -7,7 +7,9 @@
 				<div class="container-fluid">
 					<div class="col-md-6">
 						<h1>
-							간판에 <br> 가입하세요!
+							간판에
+							<br>
+							가입하세요!
 						</h1>
 						<p>작업에 대한 계획을 한눈에 확인하세요!</p>
 						<p>놀라울 만큼 간단합니다!</p>
@@ -17,11 +19,14 @@
 					<div class="col-md-6">
 						<form action="register_main.do" method="post" id="registerForm">
 							<input type="text" class="form-control" name="nickName" id="nickName" placeholder="별명 (*특수문자 사용불가)" required="required" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;">
-							<br> <br>
+							<br>
+							<br>
 							<input type="email" class="form-control" name="eMail" id="eMail" placeholder="전자우편" required="required">
-							<br> <br>
+							<br>
+							<br>
 							<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required="required">
-							<br> <br>
+							<br>
+							<br>
 							<button type="submit" class="btn btn-purple btn-block" id="registerBtn">가입하기</button>
 						</form>
 					</div>
@@ -91,13 +96,35 @@
 			<hr>
 			<div class="row">
 				<div class="col-md-8">
-					<div class="jumbotron">
-						<p class="text-center"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>작업 현황</p>
+					<div class="jumbotron" id="jumbotron-login">
+						<c:choose>
+						<c:when test="${changeList == null }">
+						<p class="text-center">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							참여하거나 소유하신 간판이 없습니다.<br>
+							간판을 만들어 보세요!<br>
+							작업 현황을 현재 화면에서 볼 수 있습니다.
+						</p>
+						</c:when>
+						<c:otherwise>
 						<c:forEach items="${changeList}" var="clist">
-						<div class="well well-sm">
-							<span class="">${clist.changeWorker}</span>소유의 
-						</div>
+							<div class="well well-sm">
+								<span class="glyphicon glyphicon-tag" aria-hidden="true">${clist.changeMngDate}</span>
+								<br>
+								<mark>${clist.changeWorker}</mark> 가 ${clist.workVO.organizationVO.signBoardVO.bossMemberVO.nickName} /
+								<a href="${pageContext.request.contextPath}/showSignBoard.do?signBoardName=${clist.workVO.organizationVO.signBoardVO.signBoardName}
+										&bossNickName=${clist.workVO.organizationVO.signBoardVO.bossMemberVO.nickName}">${clist.workVO.organizationVO.signBoardVO.signBoardName}</a>
+								에서 <em>${clist.workVO.workName}</em> 을(를) 
+								<c:if test="${clist.boardNo == 1}"><em>해야 할 작업</em></c:if>
+								<c:if test="${clist.boardNo == 2}"><em>하고 있는 작업</em></c:if>
+								<c:if test="${clist.boardNo == 3}"><em>끝난 작업</em></c:if>
+								에(서)
+								${clist.changeGenreVO.changeName}
+							</div>
+							<c:set var="lastIndex" value="${clist.changeMngNo}" />
 						</c:forEach>
+						</c:otherwise>
+						</c:choose>
 					</div>
 					<!-- jumbotron -->
 				</div>
@@ -105,7 +132,7 @@
 
 				<div class="col-md-4">
 					<div class="well">
-						<h3>${mvo.nickName}님간판현황 | 총&nbsp;${signBoardCount}개</h3>
+						<h3>${mvo.nickName}님 간판현황 <span class="pull-right">총&nbsp;${signBoardCount}개</span></h3>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -166,10 +193,10 @@
 <!-- /container -->
 <c:if test="${invitationFlag && sessionScope.mvo != null}">
 <script type="text/javascript">
- 	$(window).load(function() {
- 		if(confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")){
- 			location.href="${pageContext.request.contextPath}/invitationList.do";
- 		}
- 	}); // LOAD
+	$(window).load(function() {
+		if (confirm("조직초대가 있습니다.\n수락하러 가시겠습니까?")) {
+			location.href = "${pageContext.request.contextPath}/invitationList.do";
+		}
+	}); // LOAD
 </script>
 </c:if>

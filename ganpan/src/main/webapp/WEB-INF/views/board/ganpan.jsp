@@ -13,7 +13,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2 class="text-center text-capitalize">${rsvo.signBoardName}</h2>
+			<h2 class="text-center text-capitalize page-header">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/changeMng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경 이력 보기</a> 
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
@@ -49,8 +49,11 @@
 													<c:when test="${works.organizationVO.workerMemberVO.nickName == null && boardList.boardGenreVO.boardNo != 3}">
 														<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
 													</c:when>
-													<c:otherwise>
+													<c:when test="${sessionScope.mvo != null}">
 														<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">작업명 : ${works.workName}</a>
+													</c:when>
+													<c:otherwise>
+														작업명 : ${works.workName}
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -59,7 +62,7 @@
 										<div class="modal fade" id="${works.workNo}modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-													<form action="${pageContext.request.contextPath}/updateWork.do" method="post" id="${works.workNo}Form">
+													<form action="${pageContext.request.contextPath}/updateWork.do" method="post" id="${works.workNo}Form" class="form-group">
 														<div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
@@ -69,11 +72,11 @@
 															<input type="hidden" name="boardNo" value="${works.boardNo}"/>
 															<input type="hidden" name="workNo" value="${works.workNo}"/>
 															<input type="hidden" name="organizationVO.workerMemberVO.nickName" value="${works.organizationVO.workerMemberVO.nickName}"/>
-															<h4 class="modal-title"><input type="text" name="workName" value="${works.workName}" required="required"/></h4>
+															<h4 class="modal-title"><input class="form-control" type="text" name="workName" value="${works.workName}" required="required"/></h4>
 														</div>
 														<div class="modal-body">
 															<p>
-																<textarea rows="" cols="" name="workDetails" required="required">${works.workDetails}</textarea>
+																<textarea class="form-control" rows="" cols="" name="workDetails" required="required">${works.workDetails}</textarea>
 															</p>
 														</div>
 														<div class="modal-footer">
