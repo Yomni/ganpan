@@ -15,11 +15,13 @@
 		<div class="col-md-12">
 			<h2 class="text-center text-capitalize page-header">${rsvo.signBoardName}</h2>
 			<div class="pull-right">
+			<c:if test="${sessionScope.mvo != null}">
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/changeMng.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">변경 이력 보기</a> 
 				<a class="btn btn-info" href="${pageContext.request.contextPath}/showMemberList.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">참여 구성원 보기</a>
 				<c:if test="${rsvo.bossMemberVO.nickName==sessionScope.mvo.nickName}">
 					<a class="btn btn-primary" href="${pageContext.request.contextPath}/ganpanSettingPage.do?signBoardName=${rsvo.signBoardName}&bossNickName=${rsvo.bossMemberVO.nickName}">간판 설정</a>
 				</c:if>
+			</c:if>
 			</div>
 			<br> <br>
 			<table class="table table-bordered">

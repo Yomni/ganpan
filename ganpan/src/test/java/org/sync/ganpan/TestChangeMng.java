@@ -8,10 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.sync.ganpan.model.dao.ChangeMngDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
-import org.sync.ganpan.model.vo.MemberVO;
-import org.sync.ganpan.model.vo.OrganizationVO;
-import org.sync.ganpan.model.vo.SignBoardVO;
-import org.sync.ganpan.model.vo.WorkVO;
 
 /*
  *    TDD : 테스트 주도 개발(test-driven development, TDD)은 
