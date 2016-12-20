@@ -2,6 +2,7 @@ package org.sync.ganpan.model.service;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.sync.ganpan.model.vo.MemberVO;
 
@@ -14,5 +15,6 @@ public interface MemberService {
 	int updateMember(MemberVO mvo);
 	int idCheck(String id);
 	int leave(String nickName, String password);
+	List<MemberVO> findAllMemberById(String id);
 
 }

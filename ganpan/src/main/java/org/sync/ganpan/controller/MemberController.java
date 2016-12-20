@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -217,4 +219,19 @@ public class MemberController {
 			return "redirect:go_home.do";
 		}
 	}
+
+	@RequestMapping(value = "autocompleteAjax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public List<MemberVO> autocompleteAjax(String id){
+		List<MemberVO> list = memberService.findAllMemberById(id);
+		JSONArray jarray = new JSONArray();
+		JSONObject object = null;
+		for(int i = 0; i < list.size(); i++){
+			object = new JSONObject();
+			object.put("data", list.get(i).getNickName());
+			jarray.add(object);
+		}
+		return jarray;
+	}
+	
 }

@@ -57,6 +57,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM organization
 		WHERE worker_nickname = #{nickName}
 	</select>
+	<select id="findAllMemberById" resultMap="memberRM" parameterType="string">
+		SELECT nickname,e_mail
+		FROM member
+		WHERE nickname like '%'||#{value}||'%'
+	</select>
 </mapper>
 
 

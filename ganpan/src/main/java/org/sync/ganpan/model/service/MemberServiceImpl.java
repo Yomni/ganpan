@@ -1,6 +1,7 @@
 package org.sync.ganpan.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -69,5 +70,10 @@ public class MemberServiceImpl implements MemberService {
 		// 3. transaction 처리
 		workDAO.updateWorkerToNullByNickName(nickName);
 		return memberDAO.leave(mvo);
+	}
+
+	@Override
+	public List<MemberVO> findAllMemberById(String id) {
+		return memberDAO.findAllMemberById(id);
 	}
 }

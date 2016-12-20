@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.sync.ganpan.model.dao.MemberDAO;
 import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.WorkDAO;
 
@@ -38,13 +39,15 @@ public class TestJUnit {
 	private WorkDAO wDAO;
 	@Resource
 	private OrganizationDAO oDAO;
+	@Resource
+	private MemberDAO mDAO;
 
 	@Resource
 	private WorkDAO workDAO;
 	
 	@Test
 	public void test() {
-		
+		mDAO.findAllMemberById("주");
 	}// method test
 
 }//class TestJUnit

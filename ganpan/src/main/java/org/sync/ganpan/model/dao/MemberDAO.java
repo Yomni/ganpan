@@ -25,4 +25,6 @@ public interface MemberDAO {
 
 	List<OrganizationVO> findAllOrgByMember(MemberVO mvo);
 
+	List<MemberVO> findAllMemberById(String id);
+
 }

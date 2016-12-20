@@ -356,4 +356,3 @@ insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판'
 insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판2','kosta9','1');
 insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판3','kosta10','0');
 insert into SIGN_BOARD(sign_board_name,boss_nickname,visibility) values('간판4','kosta11','1');
-
