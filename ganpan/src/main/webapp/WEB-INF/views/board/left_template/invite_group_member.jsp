@@ -17,7 +17,7 @@
 							<h4>
 								<span id="idCheckView"></span>
 							</h4>
-							<input type="text" class="form-control" id="id" name="id" placeholder="초대하실 회원의 별명이나 전자우편" required="required"/> 
+							<input type="text" class="form-control" id="id" name="id"  placeholder="초대하실 회원의 별명이나 전자우편" required="required"/> 
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-success pull-right" id="invitationBtn">초대하기</button>
@@ -96,6 +96,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		 var checkResultGroup="";
     	$("#id").autocomplete({
             source : function( request, response ) {
                  $.ajax({
@@ -119,13 +120,13 @@
 	        messages: {
 	             noResults: '',
 	             results: function() {}
-	        }
-          	
+	        },
+	        select: function(e, ui) {
+	        	$("#idCheckView").html("초대 가능합니다").css("color","green"); 
+                checkResultGroup="group";
+	        },
             //조회를 위한 최소글자수
-//             minLength: 2,
-//             select: function( event, ui ) {
-//                 // 만약 검색리스트에서 선택하였을때 선택한 데이터에 의한 이벤트발생
-//             } // select
+            minLength: 2,
         }); // autocomplete
     	
 		$("#invitationBtn").click(function() {
@@ -145,7 +146,7 @@
 			});
 		</c:forEach>
 
-        var checkResultGroup="";
+       
         $("#id").keyup(function(){
         	var id = $(this).val().trim();
             $.ajax({
@@ -181,6 +182,5 @@
               }//callback         
            });//ajax
         });//keyup
-        
 	});//ready
 </script>
