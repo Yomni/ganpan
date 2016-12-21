@@ -61,4 +61,21 @@ public class InvitationMngVO {
 				+ ", invitationDate=" + invitationDate + "]";
 	}
 
+	
+	
+	테이블명(논리)		테이블명(물리)	
+	설명	
+	Mapping VO	VO
+	
+	
+	속성명(논리)	Key	설명
+		PK	
+			
+			
+	
+	Query
+	
+	• 
+	
+
 }// class InvitationMngVO
