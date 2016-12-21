@@ -118,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,#{organizationVO.workerMemberVO.nickName}
 			,#{workName}
 			,sysdate
-			,#{boardNo}
+			,(SELECT board_no from work where work_no = #{workNo})
 			,#{workNo}
 			,#{organizationVO.signBoardVO.signBoardName}
 			,#{organizationVO.signBoardVO.bossMemberVO.nickName}
