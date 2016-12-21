@@ -14,8 +14,8 @@ DROP SEQUENCE seq_change_management_no;
 DROP SEQUENCE seq_work_no;
 
 -- CREATE SEQUENCE
-CREATE SEQUENCE seq_change_management_no;
-CREATE SEQUENCE seq_work_no;
+CREATE SEQUENCE seq_change_management_no nocache;
+CREATE SEQUENCE seq_work_no nocache;
 
 -- CREATE TABLE
 CREATE TABLE MEMBER(

@@ -38,13 +38,13 @@ AFTER UPDATE OF boss_nickname ON SIGN_BOARD FOR EACH ROW
 BEGIN
   UPDATE INVITATION_MANAGEMENT
   SET boss_nickname=:NEW.boss_nickname
-  WHERE boss_nickname=:OLD.boss_nickname;
+  WHERE boss_nickname=:OLD.boss_nickname and sign_board_name = :OLD.sign_board_name;
   UPDATE ORGANIZATION
   SET boss_nickname=:NEW.boss_nickname
-  WHERE boss_nickname=:OLD.boss_nickname;
+  WHERE boss_nickname=:OLD.boss_nickname and sign_board_name = :OLD.sign_board_name;
   UPDATE HAVE_BOARD
   SET boss_nickname=:NEW.boss_nickname
-  WHERE boss_nickname=:OLD.boss_nickname;
+  WHERE boss_nickname=:OLD.boss_nickname and sign_board_name = :OLD.sign_board_name;
 END;
 
 -- WORK는 직접적으로 SIGN_BOARD와는 관계 맺지 않기 때문에 따로 트리거 생성
@@ -53,7 +53,7 @@ AFTER UPDATE OF boss_nickname ON ORGANIZATION FOR EACH ROW
 BEGIN
   UPDATE WORK
   SET boss_nickname=:NEW.boss_nickname
-  WHERE boss_nickname=:OLD.boss_nickname;
+  WHERE boss_nickname=:OLD.boss_nickname and sign_board_name = :OLD.sign_board_name;
 END;
 
 -- 회원 탈퇴 시 해당 회원이 가진 간판 삭제 시 work들도 같이 삭제되어야 한다.

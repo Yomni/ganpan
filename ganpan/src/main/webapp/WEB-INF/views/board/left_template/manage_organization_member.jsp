@@ -27,7 +27,7 @@
 										<a class="btn btn-sm btn-default" href="${pageContext.request.contextPath}/banish.do?signBoardName=
 										${list.signBoardVO.signBoardName}&bossNickName=
 										${list.signBoardVO.bossMemberVO.nickName}&workerNickName=
-										${list.workerMemberVO.nickName}">그룹에서 추방</a>
+										${list.workerMemberVO.nickName}">조직에서 추방</a>
 									</td>
 								</c:if>
 							</tr>

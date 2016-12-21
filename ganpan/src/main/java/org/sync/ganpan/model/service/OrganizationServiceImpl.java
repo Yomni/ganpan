@@ -23,7 +23,6 @@ import org.sync.ganpan.model.vo.SignBoardVO;
  *
  */
 @Service
-
 public class OrganizationServiceImpl implements OrganizationService {
 	@Resource
 	private OrganizationDAO organizationDAO;
@@ -109,7 +108,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 		// Organization worker_nickName을 삭제
 		organizationDAO.deleteWorker(ovo);
-
 	}
 
 	@Override
