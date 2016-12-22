@@ -49,6 +49,7 @@
 											<div class="panel-body">
 												<c:choose>
 													<c:when test="${works.organizationVO.workerMemberVO.nickName == null && boardList.boardGenreVO.boardNo != 3}">
+														<a href="#" data-toggle="modal" data-target="#${works.workNo}modal" id="${works.workNo}">작업명 : ${works.workName}</a>
 														<button class="btn btn-danger btn-sm" id="${works.workNo}">작업자로 참여</button>
 													</c:when>
 													<c:when test="${sessionScope.mvo != null}">

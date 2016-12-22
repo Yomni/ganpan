@@ -174,4 +174,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)	
 		where rnum between 1 and 20
    </select>
+   <delete id="deleteSignBoard" parameterType="signBoardVO">
+   		delete from change_management
+   		where sign_board_name = #{signBoardName} and boss_nickname = #{bossMemberVO.nickName}
+   </delete>
 </mapper>

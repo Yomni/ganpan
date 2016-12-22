@@ -92,7 +92,7 @@ CREATE TABLE WORK(
    CONSTRAINT fk_work_BOARD_GENRE FOREIGN KEY(board_no) 
          REFERENCES BOARD_GENRE(board_no) ON DELETE CASCADE,
    CONSTRAINT fk_org_pk_organization FOREIGN KEY(worker_nickname,sign_board_name, boss_nickname) 
-         REFERENCES ORGANIZATION(worker_nickname,sign_board_name, boss_nickname)
+         REFERENCES ORGANIZATION(worker_nickname,sign_board_name, boss_nickname) ON DELETE CASCADE
 );
 
 CREATE TABLE CHANGE_GENRE(

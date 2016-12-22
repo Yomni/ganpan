@@ -26,4 +26,6 @@ public interface ChangeMngDAO {
 	int getTotalChangeMngCountEachBoard(Map<String, Object> argMap);
 
 	List<ChangeMngVO> getAllChangeMngListToJoined(List<OrganizationVO> orgList);
+
+	void deleteSignBoard(SignBoardVO svo);
 }

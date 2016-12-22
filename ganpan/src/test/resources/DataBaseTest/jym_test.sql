@@ -105,6 +105,7 @@ select * from ORGANIZATION;
 select * from HAVE_BOARD;
 select * from work;
 select * from CHANGE_MANAGEMENT;
+delete from CHANGE_MANAGEMENT;
 select  *  from user_triggers;
 
 select * from CHANGE_MANAGEMENT

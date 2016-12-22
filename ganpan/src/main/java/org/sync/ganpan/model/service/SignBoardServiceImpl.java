@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.sync.ganpan.model.dao.ChangeMngDAO;
 import org.sync.ganpan.model.dao.HaveBoardDAO;
 import org.sync.ganpan.model.dao.OrganizationDAO;
 import org.sync.ganpan.model.dao.SignBoardDAO;
@@ -35,6 +36,8 @@ public class SignBoardServiceImpl implements SignBoardService {
 	private HaveBoardDAO haveBoardDAO;
 	@Resource
 	private OrganizationDAO organizationDAO;
+	@Resource
+	private ChangeMngDAO changeMngDAO;
 
 	@Override
 	public Map<String, Object> findSignBoardListByTitle(String title, String pageNo) {
@@ -212,8 +215,10 @@ public class SignBoardServiceImpl implements SignBoardService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteSignBoard(SignBoardVO svo) {
 		signBoardDAO.deleteSignBoard(svo);
+		changeMngDAO.deleteSignBoard(svo);
 	}
 
 	@Override

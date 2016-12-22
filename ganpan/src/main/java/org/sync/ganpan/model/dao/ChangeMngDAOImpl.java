@@ -18,6 +18,10 @@ public class ChangeMngDAOImpl implements ChangeMngDAO {
 	private SqlSessionTemplate template;
 
 	@Override
+	public void deleteSignBoard(SignBoardVO svo) {
+		template.delete("changeMng.deleteSignBoard",svo);
+	}
+	@Override
 	public void insertLogForCreateWork(WorkVO wvo) {
 		template.insert("changeMng.insertLogForCreateWork", wvo);
 	}
